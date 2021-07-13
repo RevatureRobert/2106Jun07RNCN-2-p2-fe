@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { createStackNavigator, } from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
 const AddChirpBtnComponent: React.FC = () => {
 
+    const navigation = useNavigation();
     return (
         <View style={styles.addButtonContainer}>
             <View style={styles.buttonsContainer}>
-            <MaterialCommunityIcons name="pencil" color='#111' size={24} />
+            <Button onPress={() => navigation.navigate('compose')} title="">
+                <MaterialCommunityIcons name="pencil" color='#111' size={24} />
+            </Button>
             </View>
         </View>
     );

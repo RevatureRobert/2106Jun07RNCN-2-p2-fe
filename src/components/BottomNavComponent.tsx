@@ -26,7 +26,7 @@ const BottomNavComponent = () => {
         name="Feed"
         component={ChirpsComponent}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Feed',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
