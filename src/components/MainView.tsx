@@ -11,7 +11,7 @@ const MainView: React.FC = () => {
             backgroundColor="#111111"
             barStyle="light-content"
             />
-            <HeaderComponent />
+            <HeaderComponent currentView="allChirps" newChirp={{username: "", body: "", timestamp: ""}} />
             <BottomNavComponent />
             <AddChirpBtnComponent />
         </View>

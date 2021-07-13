@@ -48,29 +48,16 @@ export const GetChirp =
 
 // makes an api call that posts a chirp
 export const PostChirp =
-  (chirp: {}) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
+  (chirp: {}) => async () => {
     console.log(chirp);
     try {
-      dispatch({
-        type: CHIRPS_LOADING
-      });
-
       await axios
         .post('/chirp', chirp)
-        .then(function (res) {
-          dispatch({
-            type: CHIRPS_SUCCESS,
-            payload: res.data
-          });
-          console.log(res);
+        .then(function(res) {
+          console.log(res.data);
         })
-        .catch(function (error) {
-          console.log(error);
-        });
     } catch (e) {
-      dispatch({
-        type: CHIRPS_FAIL
-      });
+      console.log(e);
     }
   };
 
