@@ -1,28 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import { Store } from './Redux/store/store';
-import { registerRootComponent } from 'expo';
+import { Store } from './Redux/store/Store'
+import { NavigationContainer } from '@react-navigation/native';
+import { registerRootComponent } from 'expo'; // import it explicitly
+import { createStackNavigator } from '@react-navigation/stack';
+import MainView from './components/MainView';
+import AddChirpView from './components/AddChirpView';
+
+const Stack = createStackNavigator();
 
 function App() {
   return (
     <Provider store={Store}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+      <Stack.Navigator
+      initialRouteName="home"
+      headerMode="none">
+        <Stack.Screen
+          name="Home"
+          component={MainView}
+        />
+          <Stack.Screen
+          name="compose"
+          component={AddChirpView}
+        />
+      </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#111111',
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    overflow: 'hidden'
+  },
+
+  webContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
 });
 
 export default registerRootComponent(App);
