@@ -7,8 +7,9 @@ const AddChirpView: React.FC = () => {
     return (
         <View style={styles.AddChirpViewContainer}>
             <View style={styles.AddChirpContent}>
-                <Image source={require('../assets/defaultUserImage.png')} style={{width: 64, height: 64, borderRadius: 72/2}}></Image>
+                <Image source={require('../assets/defaultUserImage.png')} style={{width: 48, height: 48, borderRadius: 72/2}}></Image>
                 <TextInput
+                    multiline={true}
                     style={styles.input}
                     onChangeText={inputState => { setInputState(inputState) }}
                     value={inputState}
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     borderColor: '#333',
     textAlign: 'left',
+    borderRadius: 15,
     textAlignVertical: 'top',
     flex: 1
    }

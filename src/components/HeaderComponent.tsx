@@ -8,7 +8,7 @@ const HeaderComponent: React.FC = () => {
             <View style={{flexDirection: 'row'}}>
                 <Image source={require('../assets/defaultUserImage.png')} style={{width: 24, height: 24, borderRadius: 24/2}}>
                 </Image>
-                <Text style={{color: '#fff', paddingLeft: 8, fontWeight: 'bold'}}>@redoral</Text> {/* change this to get cognito user */}
+                <Text style={{color: '#fff', paddingLeft: 8, fontWeight: 'bold'}}>@redoral</Text>
             </View>
             <Image source={require('../assets/chirperLogo.png')} style={{width: 90, height: 24}} />
         </View>

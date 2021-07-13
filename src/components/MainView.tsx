@@ -9,7 +9,7 @@ const MainView: React.FC = () => {
         <View style={styles.container}>
             <StatusBar
             backgroundColor="#111111"
-            barStyle="light-content" // Here is where you change the font-color
+            barStyle="light-content"
             />
             <HeaderComponent />
             <BottomNavComponent />

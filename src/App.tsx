@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import { Store } from './Redux/store/Store'
+import { Store } from './Redux/store/store'
 import { NavigationContainer } from '@react-navigation/native';
 import { registerRootComponent } from 'expo'; // import it explicitly
 import { createStackNavigator } from '@react-navigation/stack';

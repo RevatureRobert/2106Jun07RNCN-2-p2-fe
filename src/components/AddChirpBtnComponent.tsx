@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, } from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 const AddChirpBtnComponent: React.FC = () => {
 
     const navigation = useNavigation();
+
     return (
         <View style={styles.addButtonContainer}>
-            <View style={styles.buttonsContainer}>
-            <Button onPress={() => navigation.navigate('compose')} title="">
+            <TouchableHighlight 
+                underlayColor='#fff'
+                onPress={() => navigation.navigate('compose')} style={styles.buttonsContainer}>
                 <MaterialCommunityIcons name="pencil" color='#111' size={24} />
-            </Button>
-            </View>
+            </TouchableHighlight>
         </View>
     );
 }
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         flex: 1,
         right: 0,
+        overflow: 'hidden',
         marginRight: 15,
         marginBottom: 75,
         borderRadius: 100 / 2,
