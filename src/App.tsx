@@ -1,28 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import ChirpsComponent from './components/ChirpsComponent';
+import HeaderComponent from './components/HeaderComponent';
+import AddChirpBtnComponent from './components/AddChirpBtnComponent';
+import BottomNaComponent from './components/BottomNavComponent';
 import { Provider } from 'react-redux';
-import { Store } from './Redux/store/store';
-import { registerRootComponent } from 'expo';
+import { Store } from './Redux/store/Store'
+import { NavigationContainer } from '@react-navigation/native';
+import { registerRootComponent } from 'expo'; // import it explicitly
+import BottomNavComponent from './components/BottomNavComponent';
+
 
 function App() {
   return (
     <Provider store={Store}>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+        <View style={styles.container}>
+                <StatusBar
+          backgroundColor="#111111"
+          barStyle="light-content" // Here is where you change the font-color
+          />
+          <HeaderComponent />
+          <BottomNavComponent />
+          <AddChirpBtnComponent />
+        </View>
+      </NavigationContainer>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#111111',
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+    overflow: 'hidden'
+  },
+
+  webContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
 });
 
 export default registerRootComponent(App);
