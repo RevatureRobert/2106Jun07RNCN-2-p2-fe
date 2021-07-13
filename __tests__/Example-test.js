@@ -34,6 +34,8 @@
 //     expect(style.backgroundColor).toMatchSnapshot();
 // });
 
+//Did it work?
+
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import configureStore from 'redux-mock-store';
