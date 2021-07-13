@@ -3,8 +3,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { Store } from './Redux/store/store';
+import { registerRootComponent } from 'expo';
 
-export default function App() {
+function App() {
   return (
     <Provider store={Store}>
       <View style={styles.container}>
@@ -23,3 +24,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export default registerRootComponent(App);
