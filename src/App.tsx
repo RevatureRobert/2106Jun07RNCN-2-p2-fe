@@ -5,20 +5,19 @@ import HeaderComponent from './components/HeaderComponent';
 import AddChirpBtnComponent from './components/AddChirpBtnComponent';
 import BottomNaComponent from './components/BottomNavComponent';
 import { Provider } from 'react-redux';
-import { Store } from './Redux/store/Store'
+import { Store } from './Redux/store/store';
 import { NavigationContainer } from '@react-navigation/native';
 import { registerRootComponent } from 'expo'; // import it explicitly
 import BottomNavComponent from './components/BottomNavComponent';
-
 
 function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
         <View style={styles.container}>
-                <StatusBar
-          backgroundColor="#111111"
-          barStyle="light-content" // Here is where you change the font-color
+          <StatusBar
+            backgroundColor="#111111"
+            barStyle="light-content" // Here is where you change the font-color
           />
           <HeaderComponent />
           <BottomNavComponent />
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
   webContainer: {
     flex: 1,
     flexDirection: 'row'
-  },
+  }
 });
 
 export default registerRootComponent(App);
