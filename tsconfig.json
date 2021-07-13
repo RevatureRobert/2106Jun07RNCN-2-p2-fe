@@ -3,5 +3,5 @@
   "compilerOptions": {
     "strict": true
   },
-  // "noEmit": false
+  "noEmit": false
 }
