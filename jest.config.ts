@@ -12,6 +12,7 @@ module.exports = {
       // `haste.defaultPlatform` of the provided Jest config
       withEnzyme(require('jest-expo/web/jest-preset')),
     ],
+    collectCoverage: true,
     collectCoverageFrom: [
         "./src/**/*.{ts, tsx}",
         // "!**/node_modules/**",
