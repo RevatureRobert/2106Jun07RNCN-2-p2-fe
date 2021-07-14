@@ -7,8 +7,8 @@ export type ChirpsType = [
     username: string;
     body: string;
     timestamp: string;
-    likes: string;
-    img: string;
+    likes: [];
+    comments: [];
   }
 ];
 

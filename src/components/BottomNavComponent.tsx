@@ -26,9 +26,9 @@ const BottomNavComponent = () => {
         name="Feed"
         component={ChirpsComponent}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Feed',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="home-outline" color={color} size={size} />
           ),
         }}
       />
@@ -38,7 +38,7 @@ const BottomNavComponent = () => {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="account-outline" color={color} size={size} />
           ),
         }}
       />
@@ -48,7 +48,7 @@ const BottomNavComponent = () => {
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={size} />
+            <MaterialCommunityIcons name="account-cog-outline" color={color} size={size} />
           ),
         }}
       />

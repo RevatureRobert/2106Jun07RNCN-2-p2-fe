@@ -18,4 +18,8 @@ module.exports = {
         // "!**/node_modules/**",
     ],
     coverageDirectory: 'coverage',
-  };
+    // setupFiles: ["jest-canvas-mock"],
+    preset: "jest-expo-enzyme",
+    // setupFilesAfterEnv: ['<rootDir>/__tests__/test-setup.js'],
+    setupFiles: ['<rootDir>/__tests__/test-setup.js'],
+};
