@@ -9,6 +9,7 @@ export type ChirpsType = [
     timestamp: string;
     likes: [];
     comments: [];
+    media?: string;
   }
 ];
 
