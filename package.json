@@ -9,7 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-community/masked-view": "0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
@@ -17,14 +17,14 @@
     "dotenv": "^10.0.0",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-gesture-handler": "~1.10.2",
+    "react-native-gesture-handler": "~1.10.3",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
-    "react-native-toast-notifications": "^3.0.1",
+    "react-native-toast-notifications": "^3.1.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "^0.17.1",
     "react-redux": "^7.2.4",
@@ -34,22 +34,22 @@
     "ts-node": "^10.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.14.6",
     "@types/enzyme": "^3.10.9",
     "@types/jest": "^26.0.24",
-    "@types/react": "~16.9.35",
-    "@types/react-native": "~0.63.2",
+    "@types/react": "~17.0.14",
+    "@types/react-native": "~0.64.12",
     "@types/react-native-vector-icons": "^6.4.8",
     "@types/redux-mock-store": "^1.0.3",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
-    "jest": "^26.6.3",
+    "jest": "^27.0.6",
     "jest-expo": "^42.0.1",
     "jest-expo-enzyme": "^1.2.1",
-    "react-test-renderer": "16.13.1",
+    "react-test-renderer": "17.0.2",
     "redux-mock-store": "^1.5.4",
     "ts-jest": "^27.0.3",
-    "typescript": "~4.0.0"
+    "typescript": "~4.3.5"
   },
   "private": true
 }
