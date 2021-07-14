@@ -15,8 +15,9 @@ const Item = ({username, body, timestamp}: {username:string, body: string, times
                 <Text style={styles.chirpBody}>{body}</Text>
                 <Text style={styles.chirpTimestamp}>{timestamp}</Text>
             </View>
-            <View>
-                <MaterialCommunityIcons name="delete" size={20} color={'#ededed'} />
+            <View style={{alignContent: 'center'}}>
+            <MaterialCommunityIcons name="dots-horizontal" size={20} color={'#ededed'} />
+            <MaterialCommunityIcons name="heart-outline" color="#ededed" size={20}></MaterialCommunityIcons>
             </View>
         </View>
   );
@@ -39,6 +40,7 @@ const ChirpsComponent: React.FC = () => {
     React.useEffect(() => {
         fetchData();
     }, []);
+
 
     const chirpsState = useSelector((state: RootStore) => state.chirps);
 
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         padding: 15,
-        backgroundColor: '#080808',
+        backgroundColor: '#0f0f0f',
         borderBottomWidth: 1,
         borderBottomColor: '#333',
         justifyContent: 'space-between'

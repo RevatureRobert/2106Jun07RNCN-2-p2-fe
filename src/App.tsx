@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { Store } from './Redux/store/store'
-import { NavigationContainer } from '@react-navigation/native';
-import { registerRootComponent } from 'expo'; // import it explicitly
+import { View } from 'react-native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { registerRootComponent } from 'expo';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainView from './components/MainView';
 import AddChirpView from './components/AddChirpView';
@@ -14,32 +14,35 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <Provider store={Store}>
-      <NavigationContainer>
+      <NavigationContainer theme={DarkTheme}>
         <ToastProvider normalColor="white" textStyle={{color: '#000'}} offset={50}>
+          <View style={{backgroundColor: '#111', flex: 1}}>
           <Stack.Navigator
           initialRouteName="home"
-          headerMode="none">
+          headerMode="none"
+          screenOptions={{
+            cardStyle: {backgroundColor: '#111'}
+          }}>
             <Stack.Screen
               name="Home"
               component={MainView}
+              options={{
+                gestureDirection: 'horizontal',
+              }}
             />
               <Stack.Screen
               name="compose"
+              options={{
+                gestureDirection: 'horizontal',
+              }}
               component={AddChirpView}
             />
           </Stack.Navigator>
+          </View>
         </ToastProvider>
       </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#111111',
-    flex: 1,
-    overflow: 'hidden'
-  },
-});
 
 export default registerRootComponent(App);
