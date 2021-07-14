@@ -47,17 +47,15 @@ export const GetChirp =
   };
 
 // makes an api call that posts a chirp
-export const PostChirp =
-  (chirp: {}) => async () => {
-    console.log(chirp);
+export const PostChirp =  async (chirp: {}) => {
     try {
-      await axios
-        .post('/chirp', chirp)
-        .then(function(res) {
-          return ('Chip has been posted.');
-        })
+      await axios.post('/chirp', chirp)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+
+      return 'Chirp has been posted.';
     } catch (e) {
-      return ('Error posting chirp: ' + e)
+      return 'Error: ' + e;
     }
   };
 

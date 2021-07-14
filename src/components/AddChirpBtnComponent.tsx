@@ -3,6 +3,15 @@ import { View, StyleSheet, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator, } from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+
+interface props{
+    newChirp?: {
+        username: string;
+        body: string;
+        timestamp: number;
+    }
+}
+
 const AddChirpBtnComponent: React.FC = () => {
 
     const navigation = useNavigation();

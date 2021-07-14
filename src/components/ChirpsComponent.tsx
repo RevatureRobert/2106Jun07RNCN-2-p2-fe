@@ -57,6 +57,7 @@ const ChirpsComponent: React.FC = () => {
                 refreshing={isFetching}
                 keyExtractor={item => item.timestamp}
              />
+             
         </View>
     );
 }

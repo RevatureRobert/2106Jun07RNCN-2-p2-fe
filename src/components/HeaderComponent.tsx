@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableHighlight, Button } from 'react
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import { PostChirp } from '../Redux/actions/ChirpActions';
+import { useToast } from "react-native-toast-notifications";
 
 interface props{
     currentView: string;
@@ -13,9 +14,15 @@ interface props{
     }
 }
 
-
 const HeaderComponent: React.FC<props> = (props) => {
     const navigation = useNavigation();
+    const toast = useToast();
+
+    async function postChirp(){
+        const chirp = await PostChirp(props.newChirp);
+        toast.show(chirp);
+        navigation.goBack();
+    }
 
     switch (props.currentView){
         case 'addChirp':{
@@ -26,7 +33,7 @@ const HeaderComponent: React.FC<props> = (props) => {
                 onPress={() => navigation.goBack()}>
                     <MaterialCommunityIcons name="keyboard-backspace" color='#fff' size={24} />
                 </TouchableHighlight>
-                <TouchableHighlight onPress={PostChirp(props.newChirp)} style={styles.button}>
+                <TouchableHighlight onPress={postChirp} style={styles.button}>
                     <Text style={styles.buttonText}>Post</Text>
                 </TouchableHighlight>
             </View>

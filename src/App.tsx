@@ -7,6 +7,7 @@ import { registerRootComponent } from 'expo'; // import it explicitly
 import { createStackNavigator } from '@react-navigation/stack';
 import MainView from './components/MainView';
 import AddChirpView from './components/AddChirpView';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 const Stack = createStackNavigator();
 
@@ -14,18 +15,20 @@ function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-      <Stack.Navigator
-      initialRouteName="home"
-      headerMode="none">
-        <Stack.Screen
-          name="Home"
-          component={MainView}
-        />
-          <Stack.Screen
-          name="compose"
-          component={AddChirpView}
-        />
-      </Stack.Navigator>
+        <ToastProvider normalColor="white" textStyle={{color: '#000'}} offset={50}>
+          <Stack.Navigator
+          initialRouteName="home"
+          headerMode="none">
+            <Stack.Screen
+              name="Home"
+              component={MainView}
+            />
+              <Stack.Screen
+              name="compose"
+              component={AddChirpView}
+            />
+          </Stack.Navigator>
+        </ToastProvider>
       </NavigationContainer>
     </Provider>
   );
@@ -36,11 +39,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#111111',
     flex: 1,
     overflow: 'hidden'
-  },
-
-  webContainer: {
-    flex: 1,
-    flexDirection: 'row'
   },
 });
 

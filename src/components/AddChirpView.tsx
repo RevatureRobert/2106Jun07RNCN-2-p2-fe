@@ -4,8 +4,6 @@ import HeaderComponent from './HeaderComponent';
 
 const AddChirpView: React.FC = () => {
     const [inputState, setInputState] = React.useState('');
-
-
     return (
         <View style={styles.AddChirpViewContainer}>
             <HeaderComponent currentView="addChirp" newChirp={{
