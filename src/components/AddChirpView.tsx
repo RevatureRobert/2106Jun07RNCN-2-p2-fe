@@ -24,7 +24,7 @@ const AddChirpView: React.FC = () => {
           style={styles.input}
           placeholder='Posting as @redoral'
           placeholderTextColor='#dfdfdf'
-          onChangeText={(inputState) => {
+          onChangeText={() => {
             setInputState(inputState);
           }}
           value={inputState}
