@@ -5,7 +5,7 @@ import { GetAllChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/Store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const Item = ({username, body, timestamp}: {username:string, body: string, timestamp: string}) => (        
+const Item = ({username, body, timestamp}: {username:string, body: string, timestamp: string}) => (
         <View style={styles.chirpItem}>
             <View>
                 <Image source={require('../assets/defaultUserImage.png')} style={{width: 64, height: 64, borderRadius: 72/2}}></Image>
@@ -23,13 +23,24 @@ const Item = ({username, body, timestamp}: {username:string, body: string, times
 
 
 const ChirpsComponent: React.FC = () => {
+    const [isFetching, setIsFetching] = React.useState(false)
     const dispatch = useDispatch();
 
+    const fetchData = () => {
+        dispatch(GetAllChirps());
+        setIsFetching(false);
+    }
+
+    const onRefresh = () => {
+        setIsFetching(true);
+        fetchData();
+    }
+
     React.useEffect(() => {
-        dispatch(GetAllChirps())
+        fetchData();
     }, []);
 
-        const chirpsState = useSelector((state: RootStore) => state.chirps);
+    const chirpsState = useSelector((state: RootStore) => state.chirps);
 
     const renderItem = ({item}: {item: any}) => (
         <Item username={item.username} body={item.body} timestamp={new Date(Number(item.timestamp)).toLocaleString()} />
@@ -42,6 +53,8 @@ const ChirpsComponent: React.FC = () => {
                 showsHorizontalScrollIndicator={false}
                 data={chirpsState.chirps?.sort((a, b) => Number(a.timestamp) < Number(b.timestamp) ? 1 : -1)}
                 renderItem={renderItem}
+                onRefresh={onRefresh}
+                refreshing={isFetching}
                 keyExtractor={item => item.timestamp}
              />
         </View>

@@ -54,10 +54,10 @@ export const PostChirp =
       await axios
         .post('/chirp', chirp)
         .then(function(res) {
-          console.log(res.data);
+          return ('Chip has been posted.');
         })
     } catch (e) {
-      console.log(e);
+      return ('Error posting chirp: ' + e)
     }
   };
 
