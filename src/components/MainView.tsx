@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: 'hidden'
     },
+<<<<<<< HEAD
+=======
+
+    webContainer: {
+    flex: 1,
+    flexDirection: 'row'
+    },
+>>>>>>> dag-login
 });
 
 export default MainView;

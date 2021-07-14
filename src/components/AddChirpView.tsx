@@ -35,7 +35,11 @@ const styles = StyleSheet.create({
        },
 
     AddChirpContent: {
+<<<<<<< HEAD
         backgroundColor: '#080808',
+=======
+        backgroundColor: '#111',
+>>>>>>> dag-login
         color: '#fff',
         flex: 1,
         flexDirection: 'row',
@@ -44,12 +48,22 @@ const styles = StyleSheet.create({
 
    input: {
     color: '#fff',
+<<<<<<< HEAD
     padding: 25,
     borderWidth: 1,
     marginLeft: 12,
     borderColor: '#333',
     textAlign: 'left',
     borderRadius: 15,
+=======
+    height:256,
+    padding: 25,
+    borderWidth: 1,
+    marginLeft: 12,
+    marginTop: 6,
+    borderColor: '#333',
+    textAlign: 'left',
+>>>>>>> dag-login
     textAlignVertical: 'top',
     flex: 1
    }

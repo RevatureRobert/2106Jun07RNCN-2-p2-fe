@@ -49,11 +49,17 @@ export const signUp = (
 ): ThunkAction<void, RootStore, null, AuthActionTypes> => {
   return async (dispatch) => {
     try {
-      const res = await Auth.signUp(data.username, data.password);
+      const res = await Auth.signUp(
+        data.username,
+        data.password,
+        data.attributes?.email as string,
+        data.attributes?.bio as string,
+        data.attributes?.picture as string
+      );
       if (res.user) {
         const userData: User = {
           username: data.username,
-          email: data.email,
+          email: data.attributes?.email,
           password: data.password
         };
         dispatch({
