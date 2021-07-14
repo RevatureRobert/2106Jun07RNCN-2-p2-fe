@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: 'hidden'
     },
-
-    webContainer: {
-    flex: 1,
-    flexDirection: 'row'
-    },
 });
 
 export default MainView;

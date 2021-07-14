@@ -1,27 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, Pressable } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/Store';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-const Item = ({username, body, timestamp}: {username:string, body: string, timestamp: string}) => (
-        <View style={styles.chirpItem}>
-            <View>
-                <Image source={require('../assets/defaultUserImage.png')} style={{width: 64, height: 64, borderRadius: 72/2}}></Image>
-            </View>
-            <View style={styles.chirpContent}>
-                <Text style={styles.chirpUser}>@{username}</Text>
-                <Text style={styles.chirpBody}>{body}</Text>
-                <Text style={styles.chirpTimestamp}>{timestamp}</Text>
-            </View>
-            <View style={{alignContent: 'center'}}>
-            <MaterialCommunityIcons name="dots-horizontal" size={20} color={'#ededed'} />
-            <MaterialCommunityIcons name="heart-outline" color="#ededed" size={20}></MaterialCommunityIcons>
-            </View>
-        </View>
-  );
-
+import ChirpItemComponent from './ChirpItemComponent';
 
 const ChirpsComponent: React.FC = () => {
     const [isFetching, setIsFetching] = React.useState(false)
@@ -43,9 +25,8 @@ const ChirpsComponent: React.FC = () => {
 
 
     const chirpsState = useSelector((state: RootStore) => state.chirps);
-
     const renderItem = ({item}: {item: any}) => (
-        <Item username={item.username} body={item.body} timestamp={new Date(Number(item.timestamp)).toLocaleString()} />
+        <ChirpItemComponent username={item.username} body={item.body} timestamp={new Date(Number(item.timestamp)).toLocaleString()} />
     );
 
     return (
@@ -93,7 +74,7 @@ const styles = StyleSheet.create({
 
     chirpBody: {
         fontSize: 16,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
     },
 
     chirpTimestamp: {

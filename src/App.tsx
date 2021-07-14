@@ -24,7 +24,7 @@ function App() {
             cardStyle: {backgroundColor: '#111'}
           }}>
             <Stack.Screen
-              name="Home"
+              name="home"
               component={MainView}
               options={{
                 gestureDirection: 'horizontal',
@@ -32,6 +32,13 @@ function App() {
             />
               <Stack.Screen
               name="compose"
+              options={{
+                gestureDirection: 'horizontal',
+              }}
+              component={AddChirpView}
+            />
+              <Stack.Screen
+              name="chirp"
               options={{
                 gestureDirection: 'horizontal',
               }}
