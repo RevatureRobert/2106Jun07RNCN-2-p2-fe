@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image 
+ //   ,ScrollView 
+} 
+    from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/Store';
@@ -25,11 +28,11 @@ const Item = ({username, body, timestamp}: {username:string, body: string, times
 const ChirpsComponent: React.FC = () => {
     const dispatch = useDispatch();
 
-    React.useEffect(() => {
+    React.useEffect( () => {
         dispatch(GetAllChirps())
     }, []);
 
-        const chirpsState = useSelector((state: RootStore) => state.chirps);
+    const chirpsState = useSelector((state: RootStore) => state.chirps);
 
     const renderItem = ({item}: {item: any}) => (
         <Item username={item.username} body={item.body} timestamp={new Date(Number(item.timestamp)).toLocaleString()} />

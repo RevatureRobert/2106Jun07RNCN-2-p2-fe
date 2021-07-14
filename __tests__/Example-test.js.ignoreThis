@@ -34,14 +34,14 @@ it(`renders a view with a custom background`, () => {
     // here we are extracting the style prop from `View` on native and `div` on web
     const prop = component.find(Platform.select({ default: 'View', web: 'div' })).prop('style');
 
-    console.log(prop);
-    console.log("Typeof prop is: ", typeof prop);
+    // console.log(prop);
+    // console.log("Typeof prop is: ", typeof prop);
 
     // Flatten the style so we can read it as an object
     const style = StyleSheet.flatten(prop);
 
-    console.log(style);
-    console.log("Typeof style is: ", typeof style)
+    // console.log(style);
+    // console.log("Typeof style is: ", typeof style)
 
     /**
      * Android: exports[`renders a view with a custom background 1`] = `"rgba(0,0,0,0.5)"`;
