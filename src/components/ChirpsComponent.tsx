@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../Redux/actions/ChirpActions';
-import { RootStore } from '../Redux/store/Store';
+import { RootStore } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 
 const ChirpsComponent: React.FC = () => {

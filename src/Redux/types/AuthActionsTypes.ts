@@ -27,9 +27,13 @@ export interface SignInData {
 }
 
 export interface SignUpData {
-  email: string;
   username: string;
   password: string;
+  attributes?: {
+    email: string;
+    bio?: string;
+    picture?: string;
+  };
 }
 
 export interface SetUserAction {
