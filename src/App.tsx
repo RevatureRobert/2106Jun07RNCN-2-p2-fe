@@ -1,28 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
-import ChirpsComponent from './components/ChirpsComponent';
-import HeaderComponent from './components/HeaderComponent';
-import AddChirpBtnComponent from './components/AddChirpBtnComponent';
-import BottomNaComponent from './components/BottomNavComponent';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { Store } from './Redux/store/store';
+import Amplify from 'aws-amplify';
 import { NavigationContainer } from '@react-navigation/native';
-import { registerRootComponent } from 'expo'; // import it explicitly
-import BottomNavComponent from './components/BottomNavComponent';
+import { registerRootComponent } from 'expo';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainView from './components/MainView';
+import AddChirpView from './components/AddChirpView';
+import config from '../src/cognitoConfig.json';
+
+Amplify.configure({
+  Auth: {
+    mandatorySignId: true,
+    region: config.cognito.REGION,
+    userPoolId: config.cognito.USER_POOL_ID,
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+  }
+});
+
+const Stack = createStackNavigator();
 
 function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <View style={styles.container}>
-          <StatusBar
-            backgroundColor="#111111"
-            barStyle="light-content" // Here is where you change the font-color
-          />
-          <HeaderComponent />
-          <BottomNavComponent />
-          <AddChirpBtnComponent />
-        </View>
+        <Stack.Navigator initialRouteName="home" headerMode="none">
+          <Stack.Screen name="Home" component={MainView} />
+          <Stack.Screen name="compose" component={AddChirpView} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );

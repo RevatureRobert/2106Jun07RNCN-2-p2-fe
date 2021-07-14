@@ -1,61 +1,77 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native';
 import ChirpsComponent from './ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import SignupComponent from './SignupComponent';
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavComponent = () => {
   return (
     <View style={styles.bottomNavigationContainer}>
-       <Tab.Navigator
-      initialRouteName="Feed"
-      tabBarOptions={{
-        activeTintColor: '#fff',
-        showLabel: false,
-        style: {
-          backgroundColor: '#111',
-          borderTopWidth: 0,
-          borderBottomWidth: 0,
-          marginBottom: 0,
-        }
-      }}
-    >
-      <Tab.Screen
-        name="Feed"
-        component={ChirpsComponent}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
+      <Tab.Navigator
+        initialRouteName="Feed"
+        tabBarOptions={{
+          activeTintColor: '#fff',
+          showLabel: false,
+          style: {
+            backgroundColor: '#111',
+            borderTopWidth: 0,
+            borderBottomWidth: 0,
+            marginBottom: 0
+          }
         }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ChirpsComponent}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
-        component={ChirpsComponent}
-        options={{
-          tabBarLabel: 'Settings',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+      >
+        <Tab.Screen
+          name="Feed"
+          component={ChirpsComponent}
+          options={{
+            tabBarLabel: 'Feed',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ChirpsComponent}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="account"
+                color={color}
+                size={size}
+              />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={ChirpsComponent}
+          options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="cog" color={color} size={size} />
+            )
+          }}
+        />
+        {/* to test signup component  */}
+        {/* <Tab.Screen
+          name="Signup"
+          component={SignupComponent}
+          options={{
+            tabBarLabel: 'Signup',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="cog" color={color} size={size} />
+            )
+          }}
+        /> */}
+      </Tab.Navigator>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   bottomNavigationContainer: {
