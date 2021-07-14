@@ -35,9 +35,6 @@ const SignupComponent: React.FC = () => {
         setLoading(false)
       )
     );
-    console.log(email);
-    console.log(username);
-    console.log(password);
 
     await dispatch(
       CreateUser({

@@ -10,6 +10,7 @@ import MainView from './components/MainView';
 import AddChirpView from './components/AddChirpView';
 import { ToastProvider } from 'react-native-toast-notifications';
 import config from './cognitoConfig.json';
+import SignupComponent from './components/SignupComponent';
 
 Amplify.configure({
   Auth: {

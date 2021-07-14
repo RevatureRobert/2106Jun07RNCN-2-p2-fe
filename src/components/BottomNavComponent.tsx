@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import ChirpsComponent from './ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import SignupComponent from './SignupComponent';
 // import SignupComponent from './SignupComponent';
 
 const Tab = createBottomTabNavigator();

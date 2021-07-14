@@ -72,24 +72,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  chirpItem: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 15,
-    backgroundColor: '#080808',
-    borderBottomWidth: 1,
-    borderBottomColor: '#333',
-    justifyContent: 'space-between'
-  },
-
   chirpContent: {
     paddingLeft: 20,
     flex: 1
-  },
-
-  chirpBody: {
-    fontSize: 16,
-    color: '#FFFFFF'
   },
 
   chirpBody: {
