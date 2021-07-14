@@ -8,7 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainView from './components/MainView';
 import AddChirpView from './components/AddChirpView';
 import { ToastProvider } from 'react-native-toast-notifications';
-
 const Stack = createStackNavigator();
 
 function App() {

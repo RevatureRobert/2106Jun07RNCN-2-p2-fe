@@ -17,8 +17,7 @@ const MainView: React.FC = () => {
         </View>
       );
 }
-    
-    
+
 const styles = StyleSheet.create({
     container: {
     backgroundColor: '#111111',

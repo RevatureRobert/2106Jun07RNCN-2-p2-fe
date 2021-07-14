@@ -42,17 +42,18 @@ const styles = StyleSheet.create({
         padding: 25
     },
 
-   input: {
-    color: '#fff',
-    padding: 25,
-    borderWidth: 1,
-    marginLeft: 12,
-    borderColor: '#333',
-    textAlign: 'left',
-    borderRadius: 15,
-    textAlignVertical: 'top',
-    flex: 1
-   }
+    input: {
+        color: '#fff',
+        padding: 25,
+        borderWidth: 1,
+        marginLeft: 12,
+        borderColor: '#333',
+        fontSize: 16,
+        textAlign: 'left',
+        borderRadius: 15,
+        textAlignVertical: 'top',
+        flex: 1
+    }
 });
 
 export default AddChirpView;
