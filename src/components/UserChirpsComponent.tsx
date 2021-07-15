@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetUsersChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
+import LoadingComponent from './LoadingComponent';
 
 const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
@@ -40,21 +41,25 @@ const UserChirpsComponent: React.FC = () => {
     />
   );
 
-  return (
-    <View style={styles.chirpsContainer}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        data={chirpsState.chirps?.sort((a, b) =>
-          Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
-        )}
-        renderItem={renderItem}
-        onRefresh={onRefresh}
-        refreshing={isFetching}
-        keyExtractor={(item) => item.timestamp}
-      />
-    </View>
-  );
+  if (chirpsState.loading === true) {
+    return <LoadingComponent />;
+  } else {
+    return (
+      <View style={styles.chirpsContainer}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          data={chirpsState.chirps?.sort((a, b) =>
+            Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+          )}
+          renderItem={renderItem}
+          onRefresh={onRefresh}
+          refreshing={isFetching}
+          keyExtractor={(item) => item.timestamp}
+        />
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
