@@ -11,18 +11,18 @@ import {
 export const GetAllChirps =
   () => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
-      dispatch({
+      dispatch(({
         type: CHIRPS_LOADING
-      });
+      }));
       const res = await axios.get('/chirp/all');
-      dispatch({
+      dispatch(({
         type: CHIRPS_SUCCESS,
         payload: res.data
-      });
+      }));
     } catch (e) {
-      dispatch({
+      dispatch(({
         type: CHIRPS_FAIL
-      });
+      }));
     }
   };
 
@@ -30,19 +30,19 @@ export const GetAllChirps =
 export const GetChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
-      dispatch({
+      dispatch(({
         type: CHIRPS_LOADING
-      });
+      }));
 
       const res = await axios.get('/chirp/${timestamp}');
-      dispatch({
+      dispatch(({
         type: CHIRPS_SUCCESS,
         payload: res.data
-      });
+      }));
     } catch (e) {
-      dispatch({
+      dispatch(({
         type: CHIRPS_FAIL
-      });
+      }));
     }
   };
 
@@ -61,25 +61,25 @@ export const PostChirp = async (chirp: {}) => {
 export const DeleteChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
-      dispatch({
+      dispatch(({
         type: CHIRPS_LOADING
-      });
+      }));
 
       await axios
         .delete(`/chirp/${timestamp}`)
-        .then(function (res) {
-          dispatch({
+        .then(function (resp) {
+          dispatch(({
             type: CHIRPS_SUCCESS,
-            payload: res.data
-          });
-          console.log(res);
+            payload: resp.data
+          }));
+          console.log(resp);
         })
         .catch(function (error) {
           console.log(error);
         });
     } catch (e) {
-      dispatch({
+      dispatch(({
         type: CHIRPS_FAIL
-      });
+      }));
     }
   };
