@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import ChirpsComponent from '../src/components/ChirpsComponent'; 
 import thunk from 'redux-thunk';
 import { testState } from '../src/shared/constants';
+import { alert } from '../src/shared/functions';
 
 describe('Testing ChirpsComponent', () => {
     
@@ -13,7 +14,7 @@ describe('Testing ChirpsComponent', () => {
 
     beforeEach(async () => {
         const store = mockStore(testState);
-        console.log("What is store? ", store.getState);
+        alert("What is store? ", store.getState());
         wrapper = mount(
             <Provider store={store}>
                 <ChirpsComponent />
