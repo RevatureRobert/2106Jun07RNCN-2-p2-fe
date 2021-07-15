@@ -5,22 +5,27 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootStore } from '../Redux/store/store';
 import HeaderComponent from './HeaderComponent';
 
 const AddChirpView: React.FC = () => {
   const [inputState, setInputState] = React.useState('');
+  const currentUser = useSelector((state: RootStore) => state.auth);
+  const placeholder = `Posting as @${currentUser.user?.username}`;
+
   return (
     <SafeAreaView style={styles.MainContainer}>
       <View style={styles.AddChirpViewContainer}>
         <HeaderComponent
           currentView='addChirp'
           newChirp={{
-            username: 'redoral',
+            username: currentUser.user ? currentUser.user?.username : '',
             body: inputState,
-            timestamp: Date.now().toString()
+            timestamp: Date.now().toString(),
           }}
         />
         <View style={styles.AddChirpContent}>
@@ -31,7 +36,7 @@ const AddChirpView: React.FC = () => {
           <TextInput
             multiline={true}
             style={styles.input}
-            placeholder='Posting as @redoral'
+            placeholder={placeholder}
             placeholderTextColor='#dfdfdf'
             // inputState has to be redeclared as a prop for some reason.
             // eslint-disable-next-line
@@ -49,7 +54,7 @@ const AddChirpView: React.FC = () => {
             style={[
               styles.Count,
               inputState.length > 225 ? { color: '#D4B16A' } : null,
-              inputState.length > 281 ? { color: '#D46A6A' } : null
+              inputState.length > 281 ? { color: '#D46A6A' } : null,
             ]}
           >
             {inputState.length}/281
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#111',
     color: '#fff',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
 
   AddChirpContent: {
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     flex: 1,
     flexDirection: 'row',
-    padding: 25
+    padding: 25,
   },
 
   input: {
@@ -86,25 +91,25 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     textAlignVertical: 'top',
     flex: 1,
-    height: '50%'
+    height: '50%',
   },
 
   Button: {
     position: 'absolute',
     top: '51%',
-    right: 10
+    right: 10,
   },
 
   Count: {
     color: '#ccc',
     position: 'absolute',
     top: '54.5%',
-    left: 100
+    left: 100,
   },
 
   MainContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default AddChirpView;
