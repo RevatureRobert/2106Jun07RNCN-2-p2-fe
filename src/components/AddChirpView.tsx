@@ -33,6 +33,8 @@ const AddChirpView: React.FC = () => {
             style={styles.input}
             placeholder='Posting as @redoral'
             placeholderTextColor='#dfdfdf'
+            // inputState has to be redeclared as a prop for some reason.
+            // eslint-disable-next-line
             onChangeText={(inputState) => {
               setInputState(inputState);
             }}
