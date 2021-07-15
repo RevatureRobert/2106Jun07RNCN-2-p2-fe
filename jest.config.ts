@@ -15,16 +15,10 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: [
         "./src/**/*.{ts, tsx}",
-        // "!**/node_modules/**",
     ],
     coverageDirectory: 'coverage',
-    // setupFiles: ["jest-canvas-mock"],
     preset: "jest-expo-enzyme",
-    // setupFilesAfterEnv: ['<rootDir>/__tests__/test-setup.js'],
-    setupFiles: ['<rootDir>/__tests__/test-setup.js'],
-    // modulePathIgnorePatterns: [
-    //   "Example-test.js",
-    // ],
+    // setupFiles: ['<rootDir>/__tests__/test-setup.js'],
     transform: {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
