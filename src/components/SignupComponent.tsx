@@ -68,6 +68,8 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
         bio: 'bio.',
       })
     );
+
+    navigation.navigate('login');
   };
 
   return (
@@ -109,7 +111,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
         <Text style={styles.loginText}>Sign up</Text>
         <MaterialCommunityIcons name='chevron-right' size={18} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+      <TouchableOpacity onPress={() => navigation.navigate('login')}>
         <Text style={styles.signInText}>Already have an account? Log in.</Text>
       </TouchableOpacity>
     </SafeAreaView>
