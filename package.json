@@ -1,5 +1,15 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "name": "chirper-front-end",
+  "version": "0.0.0",
+  "homepage": "https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe",
+  "license": "MIT",
+  "contributors": [
+    "Caleb Sword",
+    "Marc Skwarczynski",
+    "Red Oral",
+    "Daguinson Fleurantin"
+  ],
   "scripts": {
     "start": "cross-env ALERT=off expo start",
     "start-v": "cross-env ALERT=on expo start",

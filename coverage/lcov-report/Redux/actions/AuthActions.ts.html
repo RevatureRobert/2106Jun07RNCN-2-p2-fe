@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
@@ -174,25 +174,7 @@
 <a name='L115'></a><a href='#L115'>115</a>
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a>
-<a name='L123'></a><a href='#L123'>123</a>
-<a name='L124'></a><a href='#L124'>124</a>
-<a name='L125'></a><a href='#L125'>125</a>
-<a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a>
-<a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,9 +220,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -251,23 +230,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -339,7 +303,7 @@ import {
   SET_VERIFICATION,
   SET_USER,
   SIGN_OUT,
-  User
+  User,
 } from '../types/AuthActionsTypes';
 import { Dispatch } from 'redux';
 import { Auth } from 'aws-amplify';
@@ -356,11 +320,11 @@ export const signIn = <span class="cstat-no" title="statement not covered" ><spa
 <span class="cstat-no" title="statement not covered" >      if (res) {</span>
         const userData: User = <span class="cstat-no" title="statement not covered" >{</span>
           username: res.getUsername(),
-          password: data.password
+          password: data.password,
         };
 <span class="cstat-no" title="statement not covered" >        dispatch({</span>
           type: SET_USER,
-          payload: userData
+          payload: userData,
         });
       }
 <span class="cstat-no" title="statement not covered" >      console.log('LOOK: ', res);</span>
@@ -372,11 +336,8 @@ export const signIn = <span class="cstat-no" title="statement not covered" ><spa
   };
 };
 &nbsp;
-export const signUp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span>
-  data: SignUpData,
-  onError: () =&gt; void
-): ThunkAction&lt;void, RootStore, null, AuthActionTypes&gt; =&gt; {
-<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >as</span>ync (dispatch) =&gt; {</span>
+export const signUp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>ata: SignUpData, onError: () =&gt; void) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
       const res = <span class="cstat-no" title="statement not covered" >await Auth.signUp(</span>
         data.username,
@@ -385,24 +346,9 @@ export const signUp = <span class="cstat-no" title="statement not covered" ><spa
         data.attributes?.bio as string,
         data.attributes?.picture as string
       );
-<span class="cstat-no" title="statement not covered" >      if (res.user) {</span>
-        const userData: User = <span class="cstat-no" title="statement not covered" >{</span>
-          username: data.username,
-          email: data.attributes?.email,
-          password: data.password
-        };
-<span class="cstat-no" title="statement not covered" >        dispatch({</span>
-          type: SET_USER,
-          payload: userData
-        });
-      }
 <span class="cstat-no" title="statement not covered" >      console.log(res.user);</span>
     } catch (err) {
 <span class="cstat-no" title="statement not covered" >      onError();</span>
-<span class="cstat-no" title="statement not covered" >      dispatch({</span>
-        type: SET_ERROR,
-        payload: err
-      });
     }
   };
 };
@@ -415,7 +361,7 @@ export const getVerification = <span class="cstat-no" title="statement not cover
 &gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >as</span>ync (dispatch) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    dispatch({</span>
-      type: SET_VERIFICATION
+      type: SET_VERIFICATION,
     });
   };
 };
@@ -431,7 +377,7 @@ export const logout = <span class="cstat-no" title="statement not covered" ><spa
 <span class="cstat-no" title="statement not covered" >      dispatch(setLoading(true));</span>
 <span class="cstat-no" title="statement not covered" >      await Auth.signOut();</span>
 <span class="cstat-no" title="statement not covered" >      dispatch({</span>
-        type: SIGN_OUT
+        type: SIGN_OUT,
       });
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >      dispatch(setLoading(false));</span>
@@ -469,7 +415,7 @@ export const setLoading = <span class="cstat-no" title="statement not covered" >
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jul 15 2021 14:37:11 GMT-0400 (Eastern Daylight Time)
+                at Thu Jul 15 2021 14:57:10 GMT-0400 (Eastern Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
