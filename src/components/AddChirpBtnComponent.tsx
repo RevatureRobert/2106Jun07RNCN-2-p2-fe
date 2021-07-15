@@ -18,11 +18,11 @@ const AddChirpBtnComponent: React.FC = () => {
   return (
     <View style={styles.addButtonContainer}>
       <TouchableHighlight
-        underlayColor="#fff"
+        underlayColor='#fff'
         onPress={() => navigation.navigate('compose')}
         style={styles.buttonsContainer}
       >
-        <MaterialCommunityIcons name="pencil" color="#111" size={24} />
+        <MaterialCommunityIcons name='pencil' color='#111' size={24} />
       </TouchableHighlight>
     </View>
   );
@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: 15,
     marginBottom: 75,
-    borderRadius: 100 / 2
+    borderRadius: 100 / 2,
+    ...Platform.select({
+      ios: { marginBottom: 100 }
+    })
   },
 
   buttonsContainer: {
