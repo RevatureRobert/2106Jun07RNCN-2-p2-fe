@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../Redux/store/store';
@@ -20,59 +22,61 @@ const AddChirpView: React.FC = () => {
   const placeholder = `Posting as @${currentUser.user?.username}`;
 
   return (
-    <KeyboardAvoidingView
-      style={styles.MainContainer}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <View style={styles.AddChirpViewContainer}>
-        <HeaderComponent
-          currentView='addChirp'
-          newChirp={{
-            username: currentUser.user ? currentUser.user?.username : '',
-            body: inputState,
-            timestamp: Date.now().toString(),
-          }}
-        />
-        <View style={styles.AddChirpContent}>
-          <Image
-            source={require('../assets/defaultUserImage.png')}
-            style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
-          ></Image>
-          <TextInput
-            multiline={true}
-            style={styles.input}
-            placeholder={placeholder}
-            placeholderTextColor='#dfdfdf'
-            // inputState has to be redeclared as a prop for some reason.
-            // eslint-disable-next-line
-            onChangeText={(inputState) => {
-              setInputState(inputState);
+    <SafeAreaView style={styles.MainContainer}>
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidingView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <View style={styles.AddChirpViewContainer}>
+          <HeaderComponent
+            currentView='addChirp'
+            newChirp={{
+              username: currentUser.user ? currentUser.user?.username : '',
+              body: inputState,
+              timestamp: Date.now().toString(),
             }}
-            value={inputState}
           />
+          <View style={styles.AddChirpContent}>
+            <Image
+              source={require('../assets/defaultUserImage.png')}
+              style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
+            ></Image>
+            <TextInput
+              multiline={true}
+              style={styles.input}
+              placeholder={placeholder}
+              placeholderTextColor='#dfdfdf'
+              // inputState has to be redeclared as a prop for some reason.
+              // eslint-disable-next-line
+              onChangeText={(inputState) => {
+                setInputState(inputState);
+              }}
+              value={inputState}
+            />
+          </View>
+          <View style={styles.BottomLine}>
+            <Text
+              style={[
+                styles.Count,
+                inputState.length > 225 ? { color: '#D4B16A' } : null,
+                inputState.length > 281 ? { color: '#D46A6A' } : null,
+              ]}
+            >
+              {inputState.length}/281
+            </Text>
+            <TouchableOpacity>
+              <View style={styles.Button}>
+                <MaterialCommunityIcons
+                  name='image-outline'
+                  size={30}
+                  color='#ccc'
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.BottomLine}>
-          <Text
-            style={[
-              styles.Count,
-              inputState.length > 225 ? { color: '#D4B16A' } : null,
-              inputState.length > 281 ? { color: '#D46A6A' } : null,
-            ]}
-          >
-            {inputState.length}/281
-          </Text>
-          <TouchableOpacity>
-            <View style={styles.Button}>
-              <MaterialCommunityIcons
-                name='image-outline'
-                size={30}
-                color='#ccc'
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -125,10 +129,11 @@ const styles = StyleSheet.create({
 
   MainContainer: {
     flex: 1,
-    ...Platform.select({
-      ios: { paddingTop: 50 },
-    }),
     backgroundColor: '#080808',
+  },
+
+  keyboardAvoidingView: {
+    flex: 1,
   },
 });
 

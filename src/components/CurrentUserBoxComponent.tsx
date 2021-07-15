@@ -9,12 +9,19 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../Redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { logout } from '../Redux/actions/AuthActions';
 
 const CurrentUserBoxComponent: React.FC = () => {
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+
+  const dispatch = useDispatch();
+
+  const logOutPress = () => {
+    dispatch(logout);
+  };
 
   return (
     <SafeAreaView style={styles.androidSafeArea}>
@@ -25,7 +32,7 @@ const CurrentUserBoxComponent: React.FC = () => {
       ></Image>
       <Text style={styles.usernameText}>@{currentUser?.username}</Text>
       <Text style={styles.bioText}>This is a sample bio.</Text>
-      <TouchableHighlight style={styles.logOutBtn}>
+      <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
         <View
           style={{
             flexDirection: 'row',
