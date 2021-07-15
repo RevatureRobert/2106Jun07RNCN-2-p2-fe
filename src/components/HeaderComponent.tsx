@@ -4,8 +4,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  TouchableHighlight,
-  Button
+  TouchableHighlight
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
@@ -45,7 +44,11 @@ const HeaderComponent: React.FC<props> = (props) => {
               size={24}
             />
           </TouchableHighlight>
-          <TouchableHighlight onPress={postChirp} style={styles.button}>
+          <TouchableHighlight
+            onPress={postChirp}
+            style={styles.button}
+            disabled={props.newChirp.body.length > 281}
+          >
             <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>
         </View>

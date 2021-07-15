@@ -1,36 +1,60 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Image } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import HeaderComponent from './HeaderComponent';
 
 const AddChirpView: React.FC = () => {
   const [inputState, setInputState] = React.useState('');
   return (
-    <View style={styles.AddChirpViewContainer}>
-      <HeaderComponent
-        currentView='addChirp'
-        newChirp={{
-          username: 'redoral',
-          body: inputState,
-          timestamp: Date.now().toString(),
-        }}
-      />
-      <View style={styles.AddChirpContent}>
-        <Image
-          source={require('../assets/defaultUserImage.png')}
-          style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
-        ></Image>
-        <TextInput
-          multiline={true}
-          style={styles.input}
-          placeholder='Posting as @redoral'
-          placeholderTextColor='#dfdfdf'
-          onChangeText={() => {
-            setInputState(inputState);
+    <SafeAreaView style={styles.MainContainer}>
+      <View style={styles.AddChirpViewContainer}>
+        <HeaderComponent
+          currentView='addChirp'
+          newChirp={{
+            username: 'redoral',
+            body: inputState,
+            timestamp: Date.now().toString()
           }}
-          value={inputState}
         />
+        <View style={styles.AddChirpContent}>
+          <Image
+            source={require('../assets/defaultUserImage.png')}
+            style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
+          ></Image>
+          <TextInput
+            multiline={true}
+            style={styles.input}
+            placeholder='Posting as @redoral'
+            placeholderTextColor='#dfdfdf'
+            onChangeText={(inputState) => {
+              setInputState(inputState);
+            }}
+            value={inputState}
+          />
+          <TouchableOpacity>
+            <View style={styles.Button}>
+              <Text>📎</Text>
+            </View>
+          </TouchableOpacity>
+          <Text
+            style={[
+              styles.Count,
+              inputState.length > 225 ? { color: '#D4B16A' } : null,
+              inputState.length > 281 ? { color: '#D46A6A' } : null
+            ]}
+          >
+            {inputState.length}/281
+          </Text>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -39,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#111',
     color: '#fff',
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
 
   AddChirpContent: {
@@ -47,7 +71,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     flex: 1,
     flexDirection: 'row',
-    padding: 25,
+    padding: 25
   },
 
   input: {
@@ -60,7 +84,25 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     textAlignVertical: 'top',
     flex: 1,
+    height: '50%'
   },
+
+  Button: {
+    position: 'absolute',
+    top: '51%',
+    right: 10
+  },
+
+  Count: {
+    color: '#ccc',
+    position: 'absolute',
+    top: '54.5%',
+    left: 100
+  },
+
+  MainContainer: {
+    flex: 1
+  }
 });
 
 export default AddChirpView;
