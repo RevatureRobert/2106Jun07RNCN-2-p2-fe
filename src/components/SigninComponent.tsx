@@ -8,6 +8,8 @@ import {
   GestureResponderEvent,
   StatusBar,
   Image,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../Redux/actions/AuthActions';
@@ -60,14 +62,17 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.signInView}>
+    <KeyboardAvoidingView
+      style={styles.signInView}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <StatusBar backgroundColor='#111111' barStyle='light-content' />
       <Image
         source={require('../assets/chirperLogo.png')}
         style={{
           height: 48,
           alignSelf: 'center',
-          marginBottom: 10,
+          marginBottom: 10
         }}
         resizeMode='contain'
       />
@@ -91,7 +96,7 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate('signup')}>
         <Text style={styles.signInText}>No account? Sign up.</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   input: {
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   },
 
   loginBtn: {
@@ -121,18 +126,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
 
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
 
   loginText: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 10,
-  },
+    marginTop: 10
+  }
 });
 
 export default SigninComponent;
