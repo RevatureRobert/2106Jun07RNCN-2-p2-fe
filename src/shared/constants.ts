@@ -100,10 +100,10 @@ class State {
     userChirp: Chirp;
     
     constructor(
-        user:User = new User('testUser'),
+        user:User = new User('dummyUser'),
         chirps:Chirp[] = [],
-        auth:Auth = new Auth(new User('testUser')),
-        userChirp:Chirp = new Chirp('testUser')
+        auth:Auth = new Auth(new User('dummyUser')),
+        userChirp:Chirp = new Chirp('dummyUser')
     ) {
         this.user = user;
         this.chirps = chirps;
@@ -117,13 +117,13 @@ export const testState = new State();
 //Old testState, will probably be deprecated
 export const testStateOld = {
     chirps: [{
-        username: "testUser1",
+        username: "dummyUser1",
         body: "this is a chirp1",
         timestamp: "12345678901",
         likes: "why is likes a string?1",
         comments: "this is a comment1"
     },{
-        username: "testUser2",
+        username: "dummyUser2",
         body: "this is a chirp2",
         timestamp: "12345678902",
         likes: "why is likes a string?2",
@@ -144,7 +144,7 @@ export const testStateOld = {
         error: "ERROR",
         success: "SUCCESS",
         userChirp: {
-            username: "testUser4",
+            username: "dummyUser4",
             body: "this is a chirp4",
             timestamp: "12345678904",
             likes: "why is likes a string?4",
@@ -152,7 +152,7 @@ export const testStateOld = {
         }
     },
     userChirp: {
-        username: "testUser3",
+        username: "dummyUser3",
         body: "this is a chirp3",
         timestamp: "12345678903",
         likes: "why is likes a string?3",
