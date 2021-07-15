@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1626307781236" clover="3.2.0">
-  <project timestamp="1626307781236" name="All files">
-    <metrics statements="183" coveredstatements="41" conditionals="52" coveredconditionals="16" methods="52" coveredmethods="7" elements="287" coveredelements="64" complexity="0" loc="183" ncloc="183" packages="6" files="17" classes="17"/>
+<coverage generated="1626308275933" clover="3.2.0">
+  <project timestamp="1626308275933" name="All files">
+    <metrics statements="183" coveredstatements="43" conditionals="52" coveredconditionals="19" methods="52" coveredmethods="7" elements="287" coveredelements="69" complexity="0" loc="183" ncloc="183" packages="6" files="17" classes="17"/>
     <package name="Redux.actions">
       <metrics statements="105" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="42" coveredmethods="2"/>
       <file name="AuthActions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\Redux\actions\AuthActions.ts">
@@ -215,7 +215,7 @@
       </file>
     </package>
     <package name="shared">
-      <metrics statements="31" coveredstatements="25" conditionals="24" coveredconditionals="16" methods="6" coveredmethods="5"/>
+      <metrics statements="31" coveredstatements="27" conditionals="24" coveredconditionals="19" methods="6" coveredmethods="5"/>
       <file name="constants.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\shared\constants.ts">
         <metrics statements="26" coveredstatements="23" conditionals="17" coveredconditionals="15" methods="5" coveredmethods="4"/>
         <line num="22" count="6" type="stmt"/>
@@ -246,12 +246,12 @@
         <line num="118" count="3" type="stmt"/>
       </file>
       <file name="functions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\shared\functions.ts">
-        <metrics statements="5" coveredstatements="2" conditionals="7" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="3" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="4" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
+        <metrics statements="5" coveredstatements="4" conditionals="7" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="3" type="cond" truecount="3" falsecount="1"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
       </file>
     </package>
   </project>

@@ -14,7 +14,7 @@ describe('Testing ChirpsComponent', () => {
 
     beforeEach(async () => {
         const store = mockStore(testState);
-        alert("What is store? ", store.getState());
+        alert("What is store.getState()? It looks like: \n", store.getState());
         wrapper = mount(
             <Provider store={store}>
                 <ChirpsComponent />
