@@ -8,10 +8,8 @@ import {
   Pressable,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllChirps } from '../Redux/actions/ChirpActions';
-import { GetUsersChirps } from '../Redux/actions/UserChirpActions';
+import { GetUsersChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/store';
-import { Store } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 
 const UserChirpsComponent: React.FC = () => {
@@ -32,7 +30,7 @@ const UserChirpsComponent: React.FC = () => {
     fetchData();
   }, []);
 
-  const chirpsState = useSelector((state: RootStore) => state.userChirp);
+  const chirpsState = useSelector((state: RootStore) => state.chirps);
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
       username={item.username}
@@ -47,7 +45,7 @@ const UserChirpsComponent: React.FC = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        data={chirpsState.userChirps?.sort((a, b) =>
+        data={chirpsState.chirps?.sort((a, b) =>
           Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
         )}
         renderItem={renderItem}
