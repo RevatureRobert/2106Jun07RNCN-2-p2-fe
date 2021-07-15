@@ -8,6 +8,8 @@ import {
   Image,
   TouchableOpacity,
   GestureResponderEvent,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../Redux/actions/AuthActions';
@@ -65,19 +67,24 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
     await dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.',
+        bio: 'bio.'
       })
     );
+
+    navigation.navigate('login');
   };
 
   return (
-    <SafeAreaView style={styles.signInView}>
+    <KeyboardAvoidingView
+      style={styles.signInView}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image
           source={require('../assets/chirperIcon.png')}
           style={{
             height: 48,
-            marginBottom: 10,
+            marginBottom: 10
           }}
           resizeMode='contain'
         />
@@ -109,10 +116,10 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
         <Text style={styles.loginText}>Sign up</Text>
         <MaterialCommunityIcons name='chevron-right' size={18} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+      <TouchableOpacity onPress={() => navigation.navigate('login')}>
         <Text style={styles.signInText}>Already have an account? Log in.</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   input: {
@@ -132,7 +139,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   },
 
   loginBtn: {
@@ -142,18 +149,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
 
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
 
   loginText: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 10,
-  },
+    marginTop: 10
+  }
 });
 
 export default SignupComponent;

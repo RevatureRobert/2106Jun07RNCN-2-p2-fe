@@ -8,18 +8,17 @@ import {
   Pressable,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllChirps } from '../Redux/actions/ChirpActions';
+import { GetUsersChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/store';
-import { Store } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from './LoadingComponent';
 
-const ChirpsComponent: React.FC = () => {
+const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
   const fetchData = () => {
-    dispatch(GetAllChirps());
+    dispatch(GetUsersChirps('redoral'));
     setIsFetching(false);
   };
 
@@ -101,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChirpsComponent;
+export default UserChirpsComponent;
