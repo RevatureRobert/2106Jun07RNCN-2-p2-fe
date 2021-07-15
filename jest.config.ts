@@ -22,4 +22,11 @@ module.exports = {
     preset: "jest-expo-enzyme",
     // setupFilesAfterEnv: ['<rootDir>/__tests__/test-setup.js'],
     setupFiles: ['<rootDir>/__tests__/test-setup.js'],
+    // modulePathIgnorePatterns: [
+    //   "Example-test.js",
+    // ],
+    transform: {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
 };
+
