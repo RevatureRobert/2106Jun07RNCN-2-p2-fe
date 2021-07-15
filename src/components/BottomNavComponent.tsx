@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import ChirpsComponent from './ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import UserChirpsComponent from './UserChirpsComponent';
 import SignupComponent from './SignupComponent';
 // import SignupComponent from './SignupComponent';
 
@@ -12,7 +13,7 @@ const BottomNavComponent = () => {
   return (
     <View style={styles.bottomNavigationContainer}>
       <Tab.Navigator
-        initialRouteName="Feed"
+        initialRouteName='Feed'
         tabBarOptions={{
           activeTintColor: '#fff',
           showLabel: false,
@@ -20,50 +21,52 @@ const BottomNavComponent = () => {
             backgroundColor: '#111',
             borderTopWidth: 0,
             borderBottomWidth: 0,
-            marginBottom: 0
-          }
+            marginBottom: 0,
+          },
         }}
       >
         <Tab.Screen
-          name="Feed"
+          name='Feed'
           component={ChirpsComponent}
           options={{
             tabBarLabel: 'Feed',
+            unmountOnBlur: true,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
-                name="home-outline"
+                name='home-outline'
                 color={color}
                 size={size}
               />
-            )
+            ),
           }}
         />
         <Tab.Screen
-          name="Profile"
-          component={ChirpsComponent}
+          name='Profile'
+          component={UserChirpsComponent}
           options={{
             tabBarLabel: 'Profile',
+            unmountOnBlur: true,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
-                name="account-outline"
+                name='account-outline'
                 color={color}
                 size={size}
               />
-            )
+            ),
           }}
         />
         <Tab.Screen
-          name="Settings"
+          name='Settings'
           component={ChirpsComponent}
           options={{
             tabBarLabel: 'Settings',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
-                name="account-cog-outline"
+                name='account-cog-outline'
                 color={color}
                 size={size}
               />
-            )
+            ),
           }}
         />
       </Tab.Navigator>
@@ -73,8 +76,8 @@ const BottomNavComponent = () => {
 
 const styles = StyleSheet.create({
   bottomNavigationContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default BottomNavComponent;

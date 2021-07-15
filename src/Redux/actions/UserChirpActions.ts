@@ -14,7 +14,7 @@ export const GetUsersChirps =
         type: USER_CHIRPS_LOADING,
       });
 
-      const res = await axios.get(window.location.pathname);
+      const res = await axios.get(`/${username}`);
       dispatch({
         type: USER_CHIRPS_SUCCESS,
         payload: res.data,

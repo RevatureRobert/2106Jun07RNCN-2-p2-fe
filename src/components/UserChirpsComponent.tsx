@@ -9,16 +9,17 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../Redux/actions/ChirpActions';
+import { GetUsersChirps } from '../Redux/actions/UserChirpActions';
 import { RootStore } from '../Redux/store/store';
 import { Store } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 
-const ChirpsComponent: React.FC = () => {
+const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
   const fetchData = () => {
-    dispatch(GetAllChirps());
+    dispatch(GetUsersChirps('redoral'));
     setIsFetching(false);
   };
 
@@ -31,7 +32,7 @@ const ChirpsComponent: React.FC = () => {
     fetchData();
   }, []);
 
-  const chirpsState = useSelector((state: RootStore) => state.chirps);
+  const chirpsState = useSelector((state: RootStore) => state.userChirp);
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
       username={item.username}
@@ -46,7 +47,7 @@ const ChirpsComponent: React.FC = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        data={chirpsState.chirps?.sort((a, b) =>
+        data={chirpsState.userChirps?.sort((a, b) =>
           Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
         )}
         renderItem={renderItem}
@@ -96,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChirpsComponent;
+export default UserChirpsComponent;
