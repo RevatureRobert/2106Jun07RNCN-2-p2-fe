@@ -5,12 +5,14 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  Button
+  Button,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../Redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
+import { useSelector } from 'react-redux';
+import { RootStore } from '../Redux/store/store';
 
 interface props {
   currentView: string;
@@ -24,6 +26,8 @@ interface props {
 const HeaderComponent: React.FC<props> = (props) => {
   const navigation = useNavigation();
   const toast = useToast();
+
+  const user = useSelector((state: RootStore) => state.auth);
 
   async function postChirp() {
     const chirp = await PostChirp(props.newChirp);
@@ -60,7 +64,7 @@ const HeaderComponent: React.FC<props> = (props) => {
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
             ></Image>
             <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>
-              @redoral
+              @{user.user?.username}
             </Text>
           </View>
           <Image
@@ -81,20 +85,20 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
 
   button: {
     backgroundColor: '#fff',
     padding: 8,
     width: 80,
-    borderRadius: 50
+    borderRadius: 50,
   },
 
   buttonText: {
     textAlign: 'center',
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 });
 
 export default HeaderComponent;

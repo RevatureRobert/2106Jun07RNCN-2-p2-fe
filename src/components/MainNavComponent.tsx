@@ -18,9 +18,7 @@ type RootStackParamList = {
 
 const MainNavComponent: React.FC = () => {
   const Stack = createStackNavigator<RootStackParamList>();
-  enableScreens(false);
-
-  const isLoggedIn = useSelector((state: RootStore) => state.auth);
+  const user = useSelector((state: RootStore) => state.auth);
 
   return (
     <Stack.Navigator
@@ -29,7 +27,7 @@ const MainNavComponent: React.FC = () => {
         cardStyle: { backgroundColor: '#111' },
       }}
     >
-      {isLoggedIn.authenticated === true ? (
+      {user.authenticated === true ? (
         <>
           <Stack.Screen
             name='home'

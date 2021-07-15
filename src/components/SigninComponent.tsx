@@ -13,8 +13,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../Redux/actions/AuthActions';
 import { RootStore } from '../Redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const SigninComponent: React.FC = () => {
+type RootStackParamList = {
+  home: undefined;
+  compose: undefined;
+  chirp: undefined;
+  login: undefined;
+  signup: undefined;
+};
+
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'login'>;
+
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'login'
+>;
+
+type Props = {
+  route: ProfileScreenRouteProp;
+  navigation: ProfileScreenNavigationProp;
+};
+
+const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -49,14 +71,12 @@ const SigninComponent: React.FC = () => {
         }}
         resizeMode='contain'
       />
-
       <TextInput
         placeholder='Username'
         placeholderTextColor='#dfdfdf'
         onChangeText={(name) => setUsername(name)}
         style={styles.input}
       />
-
       <TextInput
         placeholder='Password'
         placeholderTextColor='#dfdfdf'
@@ -65,8 +85,11 @@ const SigninComponent: React.FC = () => {
         style={styles.input}
       />
       <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
-        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.loginText}>Log in</Text>
         <MaterialCommunityIcons name='chevron-right' size={18} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+        <Text style={styles.signInText}>No account? Sign up.</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -103,6 +126,12 @@ const styles = StyleSheet.create({
 
   loginText: {
     fontWeight: '700',
+  },
+
+  signInText: {
+    alignSelf: 'center',
+    color: '#dfdfdf',
+    marginTop: 10,
   },
 });
 
