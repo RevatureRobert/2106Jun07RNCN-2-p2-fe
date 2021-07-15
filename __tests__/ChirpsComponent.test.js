@@ -12,7 +12,7 @@ describe('Testing ChirpsComponent', () => {
     const mockStore = configureStore([thunk]);
     let wrapper
 
-    beforeEach(async () => {
+    beforeEach( () => {
         const store = mockStore(testState);
         alert("What is store.getState()? It looks like: \n", store.getState());
         wrapper = mount(
@@ -20,6 +20,7 @@ describe('Testing ChirpsComponent', () => {
                 <ChirpsComponent />
 			</Provider>
         );
+        alert('What does wrapper look like? It looks like: \n', wrapper.debug());
     });
 
     //dummy test

@@ -5,8 +5,8 @@
  * @param message 
  * @param value 
  */
-export function alert(message:string, value:any = undefined){
-    const verbose = process.env.ALERT_VERBOSE === "true";
+export function alert(message:string, value:any){
+    const verbose = process.env.ALERT === "on";
     if (verbose){
         if (value != undefined && value != null){
             console.log(message, value);

@@ -1,10 +1,10 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "cross-env ALERT_VERBOSE=true expo start",
-    "start-q": "cross-env ALERT_VERBOSE=false expo start",
-    "test": "cross-env ALERT_VERBOSE=true jest",
-    "test-q": "cross-env ALERT_VERBOSE=false jest",
+    "start": "cross-env ALERT=off expo start",
+    "start-v": "cross-env ALERT=on expo start",
+    "test": "cross-env ALERT=off jest",
+    "test-v": "cross-env ALERT=on jest",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

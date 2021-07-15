@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1626308275933" clover="3.2.0">
-  <project timestamp="1626308275933" name="All files">
-    <metrics statements="183" coveredstatements="43" conditionals="52" coveredconditionals="19" methods="52" coveredmethods="7" elements="287" coveredelements="69" complexity="0" loc="183" ncloc="183" packages="6" files="17" classes="17"/>
+<coverage generated="1626358636736" clover="3.2.0">
+  <project timestamp="1626358636737" name="All files">
+    <metrics statements="179" coveredstatements="43" conditionals="51" coveredconditionals="19" methods="50" coveredmethods="7" elements="280" coveredelements="69" complexity="0" loc="179" ncloc="179" packages="6" files="17" classes="17"/>
     <package name="Redux.actions">
-      <metrics statements="105" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="42" coveredmethods="2"/>
+      <metrics statements="101" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="40" coveredmethods="2"/>
       <file name="AuthActions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\Redux\actions\AuthActions.ts">
         <metrics statements="40" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="14" coveredmethods="0"/>
         <line num="20" count="0" type="stmt"/>
@@ -21,34 +21,34 @@
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
         <line num="94" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="98" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
-        <line num="110" count="0" type="stmt"/>
-        <line num="111" count="0" type="stmt"/>
-        <line num="115" count="0" type="stmt"/>
-        <line num="118" count="0" type="stmt"/>
-        <line num="119" count="0" type="stmt"/>
-        <line num="123" count="0" type="stmt"/>
-        <line num="126" count="0" type="stmt"/>
-        <line num="127" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
       </file>
       <file name="ChirpActions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\Redux\actions\ChirpActions.ts">
-        <metrics statements="29" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="2"/>
+        <metrics statements="25" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="2"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
         <line num="14" count="3" type="stmt"/>
@@ -61,23 +61,19 @@
         <line num="37" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="51" count="3" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="62" count="3" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
-        <line num="79" count="3" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
         <line num="81" count="0" type="stmt"/>
-        <line num="85" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="98" count="0" type="stmt"/>
       </file>
       <file name="UserAPIActions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\Redux\actions\UserAPIActions.ts">
         <metrics statements="30" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="0"/>
@@ -215,7 +211,7 @@
       </file>
     </package>
     <package name="shared">
-      <metrics statements="31" coveredstatements="27" conditionals="24" coveredconditionals="19" methods="6" coveredmethods="5"/>
+      <metrics statements="31" coveredstatements="27" conditionals="23" coveredconditionals="19" methods="6" coveredmethods="5"/>
       <file name="constants.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\shared\constants.ts">
         <metrics statements="26" coveredstatements="23" conditionals="17" coveredconditionals="15" methods="5" coveredmethods="4"/>
         <line num="22" count="6" type="stmt"/>
@@ -246,11 +242,11 @@
         <line num="118" count="3" type="stmt"/>
       </file>
       <file name="functions.ts" path="C:\Users\Bigmo\Revature\2106RNCN-2-p2-fe\src\shared\functions.ts">
-        <metrics statements="5" coveredstatements="4" conditionals="7" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="11" count="3" type="cond" truecount="3" falsecount="1"/>
-        <line num="12" count="3" type="stmt"/>
+        <metrics statements="5" coveredstatements="4" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="6" type="cond" truecount="3" falsecount="1"/>
+        <line num="12" count="6" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
       </file>
     </package>
