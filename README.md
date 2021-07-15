@@ -12,6 +12,6 @@ The environment variable ```ALERT``` was introduced. By checkings the scripts pr
 - ```npm run start-v```
 - ```npm run test-v```
 
-Typing these commands executes the code in "verbose" mode, in which ```ALERT``` is set to ```on``` (accessed in the code by ```process.env.ALERT```). When ```ALERT``` is ```"on"```, the method ```alert()``` method prints to console for debugging. This allows use to use the functionality of ```console.log``` without inducing requiring us to comment out or remove code after we finishing debugging. ```alert``` is defined in ```src/shared/functions.ts```.
+Typing these commands executes the code in "verbose" mode, in which ALERT is set to ```on``` (accessed in the code by ```process.env.ALERT```). When ALERT is "on", the method  method prints to console for debugging. This allows use to use the functionality of console.log without inducing requiring us to comment out or remove code after we finishing debugging. alert is defined in ```src/shared/functions.ts```.
 
-When executing ```npm start``` or ```npm test```, any ```alert``` method has no effect. This functionality works using the ```cross-env``` module, so make sure to run ```npm install``` before trying to run any code.
+When executing ```npm start``` or ```npm test```, any alert method has no effect. This functionality works using the ```cross-env``` module, so make sure to run npm install before trying to run any code.
