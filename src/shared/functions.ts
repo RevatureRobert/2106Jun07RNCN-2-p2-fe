@@ -1,6 +1,5 @@
 /**
- * Prints message to console only if environment variable ALERT_VERBOSE is set 
- * to the string 'true'.
+ * Prints message to console only if environment variable ALERT is set to 'on'.
  * 
  * @param message 
  * @param value 
