@@ -1,9 +1,9 @@
 import { withEnzyme } from 'jest-expo-enzyme';
-//import { defaults } from 'jest-config';
 
 module.exports = {
     //==========================================================================
     //Configure Enzyme (see https://npm.io/package/jest-expo-enzyme)
+    //==========================================================================
     projects: [
       withEnzyme(require('jest-expo/ios/jest-preset')),
       withEnzyme(require('jest-expo/android/jest-preset')),
@@ -14,6 +14,7 @@ module.exports = {
 
     //==========================================================================
     //configure Jest coverage report
+    //==========================================================================
     collectCoverage: true,
     collectCoverageFrom: [
         "./src/**/*.{ts, tsx}",
@@ -27,10 +28,15 @@ module.exports = {
     
     //==========================================================================
     //miscellaneous 
+    //==========================================================================
     transform: {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    // moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
+
+    /*//if you include next line, add import { defaults } from 'jest-config';
+    moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],*/
+
+    //see https://docs.expo.io/guides/testing-with-jest/#jest-configuration
     transformIgnorePatterns: [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
