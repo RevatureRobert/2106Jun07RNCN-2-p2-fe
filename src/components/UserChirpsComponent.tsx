@@ -16,9 +16,12 @@ import LoadingComponent from './LoadingComponent';
 const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   const fetchData = () => {
-    dispatch(GetUsersChirps('redoral'));
+    dispatch(
+      GetUsersChirps(currentUser?.username ? currentUser.username : ' ')
+    );
     setIsFetching(false);
   };
 
