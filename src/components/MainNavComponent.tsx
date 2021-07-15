@@ -4,72 +4,76 @@ import SignupComponent from './SignupComponent';
 import SigninComponent from './SigninComponent';
 import MainView from './MainView';
 import AddChirpView from './AddChirpView';
+import { enableScreens } from 'react-native-screens';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../Redux/store/store';
 
+type RootStackParamList = {
+  home: undefined;
+  compose: undefined;
+  chirp: undefined;
+  login: undefined;
+  signup: undefined;
+};
+
 const MainNavComponent: React.FC = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
+  enableScreens(false);
 
-  const currentUser = useSelector((state: RootStore) => state.auth);
+  const isLoggedIn = useSelector((state: RootStore) => state.auth);
 
-  if (currentUser.authenticated === true) {
-    return (
-      <Stack.Navigator
-        initialRouteName='home'
-        headerMode='none'
-        screenOptions={{
-          cardStyle: { backgroundColor: '#111' },
-        }}
-      >
-        <Stack.Screen
-          name='home'
-          component={MainView}
-          options={{
-            gestureDirection: 'horizontal',
-          }}
-        />
-        <Stack.Screen
-          name='compose'
-          options={{
-            gestureDirection: 'horizontal',
-          }}
-          component={AddChirpView}
-        />
-        <Stack.Screen
-          name='chirp'
-          options={{
-            gestureDirection: 'horizontal',
-          }}
-          component={AddChirpView}
-        />
-      </Stack.Navigator>
-    );
-  } else {
-    return (
-      <Stack.Navigator
-        initialRouteName='login'
-        headerMode='none'
-        screenOptions={{
-          cardStyle: { backgroundColor: '#111' },
-        }}
-      >
-        <Stack.Screen
-          name='login'
-          component={SigninComponent}
-          options={{
-            gestureDirection: 'horizontal',
-          }}
-        />
-        <Stack.Screen
-          name='signup'
-          options={{
-            gestureDirection: 'horizontal',
-          }}
-          component={SignupComponent}
-        />
-      </Stack.Navigator>
-    );
-  }
+  return (
+    <Stack.Navigator
+      headerMode='none'
+      screenOptions={{
+        cardStyle: { backgroundColor: '#111' },
+      }}
+    >
+      {isLoggedIn.authenticated === true ? (
+        <>
+          <Stack.Screen
+            name='home'
+            component={MainView}
+            options={{
+              gestureDirection: 'horizontal',
+            }}
+          />
+          <Stack.Screen
+            name='compose'
+            options={{
+              gestureDirection: 'horizontal',
+            }}
+            component={AddChirpView}
+          />
+          <Stack.Screen
+            name='chirp'
+            options={{
+              gestureDirection: 'horizontal',
+            }}
+            component={AddChirpView}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen
+            name='login'
+            component={SigninComponent}
+            options={{
+              gestureDirection: 'horizontal',
+            }}
+          />
+
+          <Stack.Screen
+            name='signup'
+            options={{
+              gestureDirection: 'horizontal',
+            }}
+            component={SignupComponent}
+          />
+        </>
+      )}
+    </Stack.Navigator>
+  );
 };
 
 export default MainNavComponent;
