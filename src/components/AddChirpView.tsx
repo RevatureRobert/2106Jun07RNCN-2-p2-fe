@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../Redux/store/store';
@@ -30,7 +30,7 @@ const AddChirpView: React.FC = () => {
           newChirp={{
             username: currentUser.user ? currentUser.user?.username : '',
             body: inputState,
-            timestamp: Date.now().toString()
+            timestamp: Date.now().toString(),
           }}
         />
         <View style={styles.AddChirpContent}>
@@ -56,7 +56,7 @@ const AddChirpView: React.FC = () => {
             style={[
               styles.Count,
               inputState.length > 225 ? { color: '#D4B16A' } : null,
-              inputState.length > 281 ? { color: '#D46A6A' } : null
+              inputState.length > 281 ? { color: '#D46A6A' } : null,
             ]}
           >
             {inputState.length}/281
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   AddChirpViewContainer: {
     color: '#fff',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
 
   AddChirpContent: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 25,
     paddingRight: 25,
-    paddingTop: 25
+    paddingTop: 25,
   },
 
   input: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     textAlignVertical: 'top',
     flex: 1,
-    paddingTop: 25
+    paddingTop: 25,
   },
 
   BottomLine: {
@@ -111,26 +111,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 30,
     marginLeft: 90,
     marginRight: 30,
-    marginTop: -10
+    marginTop: -10,
   },
 
   Button: {},
 
   Count: {
-    color: '#ccc'
+    color: '#ccc',
   },
 
   MainContainer: {
     flex: 1,
     ...Platform.select({
       ios: { paddingTop: 50 },
-      android: { paddingTop: 15 }
     }),
-    backgroundColor: '#080808'
-  }
+    backgroundColor: '#080808',
+  },
 });
 
 export default AddChirpView;

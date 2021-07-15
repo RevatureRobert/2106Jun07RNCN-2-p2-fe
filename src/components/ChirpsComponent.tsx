@@ -13,6 +13,7 @@ import { RootStore } from '../Redux/store/store';
 import { Store } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from './LoadingComponent';
+import HeaderComponent from './HeaderComponent';
 
 const ChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
@@ -43,10 +44,22 @@ const ChirpsComponent: React.FC = () => {
   );
 
   if (chirpsState.loading === true) {
-    return <LoadingComponent />;
+    return (
+      <>
+        <HeaderComponent
+          currentView='allChirps'
+          newChirp={{ username: '', body: '', timestamp: '' }}
+        />
+        <LoadingComponent />
+      </>
+    );
   } else {
     return (
       <View style={styles.chirpsContainer}>
+        <HeaderComponent
+          currentView='allChirps'
+          newChirp={{ username: '', body: '', timestamp: '' }}
+        />
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
@@ -67,16 +80,6 @@ const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
     backgroundColor: '#111',
-  },
-
-  chirpItem: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 15,
-    backgroundColor: '#0f0f0f',
-    borderBottomWidth: 1,
-    borderBottomColor: '#333',
-    justifyContent: 'space-between',
   },
 
   chirpContent: {
