@@ -17,6 +17,7 @@ export type Chirps = {
   username: string;
   body: string;
 };
+
 export interface ChirpsLoading {
   type: typeof CHIRPS_LOADING;
 }

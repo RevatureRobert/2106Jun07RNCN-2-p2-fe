@@ -2,26 +2,26 @@ import axios from '../../components/axiosConfig';
 import { Dispatch } from 'redux';
 import {
   UserChirpsActionsTypes,
-  CHIRPS_FAIL,
-  CHIRPS_LOADING,
-  CHIRPS_SUCCESS
+  USER_CHIRPS_FAIL,
+  USER_CHIRPS_LOADING,
+  USER_CHIRPS_SUCCESS,
 } from '../types/UserChirpActionsTypes';
 
 export const GetUsersChirps =
-  () => async (dispatch: Dispatch<UserChirpsActionsTypes>) => {
+  (username: string) => async (dispatch: Dispatch<UserChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING
+        type: USER_CHIRPS_LOADING,
       });
 
       const res = await axios.get(window.location.pathname);
       dispatch({
-        type: CHIRPS_SUCCESS,
-        payload: res.data
+        type: USER_CHIRPS_SUCCESS,
+        payload: res.data,
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL
+        type: USER_CHIRPS_FAIL,
       });
     }
   };

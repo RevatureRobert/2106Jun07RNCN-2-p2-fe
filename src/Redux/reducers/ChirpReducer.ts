@@ -3,7 +3,7 @@ import {
   ChirpsType,
   CHIRPS_FAIL,
   CHIRPS_LOADING,
-  CHIRPS_SUCCESS
+  CHIRPS_SUCCESS,
 } from '../types/ChirpActionsTypes';
 
 interface DefaultStateI {
@@ -11,34 +11,28 @@ interface DefaultStateI {
   chirps?: ChirpsType;
 }
 
-const defaultState: DefaultStateI = ({
-  loading: false
-});
+const defaultState: DefaultStateI = {
+  loading: false,
+};
 
 const chirpsReducer = (
   state: DefaultStateI = defaultState,
-  action: ChirpsActionsTypes  = {type: CHIRPS_SUCCESS, payload: [{
-    username: "testUser1",
-    body: "this is a chirp1",
-    timestamp: "12345678901",
-    likes: "why is likes a string?1",
-    img: "this is a comment1"
-}]}
+  action: ChirpsActionsTypes
 ): DefaultStateI => {
   switch (action.type) {
     case CHIRPS_FAIL:
-      return ({
-        loading: false
-      });
-    case CHIRPS_LOADING:
-      return ({
-        loading: true
-      });
-    case CHIRPS_SUCCESS:
-      return ({
+      return {
         loading: false,
-        chirps: action.payload
-      });
+      };
+    case CHIRPS_LOADING:
+      return {
+        loading: true,
+      };
+    case CHIRPS_SUCCESS:
+      return {
+        loading: false,
+        chirps: action.payload,
+      };
     default:
       return state;
   }

@@ -5,11 +5,12 @@ import {
   StyleSheet,
   FlatList,
   Image,
-  Pressable
+  Pressable,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/store';
+import { Store } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 
 const ChirpsComponent: React.FC = () => {
@@ -31,6 +32,7 @@ const ChirpsComponent: React.FC = () => {
   }, []);
 
   const chirpsState = useSelector((state: RootStore) => state.chirps);
+  console.log(Store.getState().chirps);
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
       username={item.username}
@@ -60,7 +62,7 @@ const ChirpsComponent: React.FC = () => {
 const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
-    backgroundColor: '#111'
+    backgroundColor: '#111',
   },
 
   chirpItem: {
@@ -70,29 +72,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#0f0f0f',
     borderBottomWidth: 1,
     borderBottomColor: '#333',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   chirpContent: {
     paddingLeft: 20,
-    flex: 1
+    flex: 1,
   },
 
   chirpUser: {
     color: '#FFFFFF',
     fontWeight: '700',
-    fontSize: 16
+    fontSize: 16,
   },
 
   chirpBody: {
     fontSize: 16,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
 
   chirpTimestamp: {
     fontSize: 12,
-    color: '#dfdfdf'
-  }
+    color: '#dfdfdf',
+  },
 });
 
 export default ChirpsComponent;

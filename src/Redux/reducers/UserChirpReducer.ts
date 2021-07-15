@@ -1,18 +1,18 @@
 import {
   UserChirpsActionsTypes,
-  CHIRPS_FAIL,
-  CHIRPS_LOADING,
-  CHIRPS_SUCCESS,
-  UserChirpsType
+  USER_CHIRPS_FAIL,
+  USER_CHIRPS_LOADING,
+  USER_CHIRPS_SUCCESS,
+  UserChirpsType,
 } from '../types/UserChirpActionsTypes';
 
 interface DefaultStateI {
   loading: boolean;
-  chirps?: UserChirpsType;
+  userChirps?: UserChirpsType;
 }
 
 const defaultState: DefaultStateI = {
-  loading: false
+  loading: false,
 };
 
 const UserChirpsReducer = (
@@ -20,18 +20,18 @@ const UserChirpsReducer = (
   action: UserChirpsActionsTypes
 ): DefaultStateI => {
   switch (action.type) {
-    case CHIRPS_FAIL:
-      return {
-        loading: false
-      };
-    case CHIRPS_LOADING:
-      return {
-        loading: true
-      };
-    case CHIRPS_SUCCESS:
+    case USER_CHIRPS_FAIL:
       return {
         loading: false,
-        chirps: action.payload
+      };
+    case USER_CHIRPS_LOADING:
+      return {
+        loading: true,
+      };
+    case USER_CHIRPS_SUCCESS:
+      return {
+        loading: false,
+        userChirps: action.payload,
       };
     default:
       return state;
