@@ -10,7 +10,10 @@ module.exports = {
       withEnzyme(require('jest-expo/web/jest-preset')),
     ],
     preset: "jest-expo-enzyme",
-    // setupFiles: ['<rootDir>/__tests__/test-setup.js'],
+    setupFiles: [
+      '<rootDir>/__tests__/test-setup.js',
+      "<rootDir>/__tests__/mocks/test-shim.js",
+    ],
 
     //==========================================================================
     //configure Jest coverage report
@@ -35,6 +38,12 @@ module.exports = {
 
     /*//if you include next line, add import { defaults } from 'jest-config';
     moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],*/
+
+    //see https://jestjs.io/docs/webpack#handling-static-assets
+    moduleNameMapper: {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__tests__/mocksfileMock.js",
+      "\\.(css|less)$": "<rootDir>/__tests__/mocks/styleMock.js"
+    },
 
     //see https://docs.expo.io/guides/testing-with-jest/#jest-configuration
     transformIgnorePatterns: [

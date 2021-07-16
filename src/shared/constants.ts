@@ -114,6 +114,9 @@ class State {
 
 export const testState = new State();
 
+export const fileMock = 'test-file-stub';
+export const styleMock = {};
+
 //Old testState, will probably be deprecated
 export const testStateOld = {
     chirps: [{
