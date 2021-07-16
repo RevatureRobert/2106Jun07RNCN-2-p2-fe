@@ -3,7 +3,7 @@
   "name": "chirper-front-end",
   "version": "0.0.0",
   "homepage": "https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe",
-  "license": "MIT",
+  "license": "Unlicensed",
   "contributors": [
     "Caleb Sword",
     "Marc Skwarczynski",
@@ -13,11 +13,11 @@
   "scripts": {
     "start": "cross-env ALERT=off expo start",
     "start-v": "cross-env ALERT=on expo start",
-    "test": "cross-env ALERT=off jest",
-    "test-v": "cross-env ALERT=on jest",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "test": "cross-env ALERT=off jest --detectOpenHandles",
+    "test-v": "cross-env ALERT=on jest --detectOpenHandles",
+    "android": "cross-env ALERT=off expo start --android",
+    "ios": "cross-env ALERT=off expo start --ios",
+    "web": "cross-env ALERT=off expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {

@@ -26,7 +26,7 @@ const ChirpItemComponent: React.FC<props> = (props) => {
         ></Image>
       </View>
       <View style={styles.chirpContent}>
-        <Text style={styles.chirpUser}>@{props.username}</Text>
+        <Text testID={'username-of-chirp'} style={styles.chirpUser}>@{props.username}</Text>
         <Text style={styles.chirpBody}>{props.body}</Text>
         {props.media ? (
           <Image
