@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,11 +14,10 @@ import { logout } from '../../redux/actions/AuthActions';
 
 const CurrentUserBoxComponent: React.FC = () => {
   const currentUser = useSelector((state: RootStore) => state.auth.user);
-
   const dispatch = useDispatch();
 
   const logOutPress = () => {
-    dispatch(logout);
+    dispatch(logout());
   };
 
   return (
