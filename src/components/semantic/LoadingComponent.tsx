@@ -5,7 +5,7 @@ const LoadingComponent: React.FC = () => {
   return (
     <View style={styles.loadingView}>
       <Image
-        source={require('../assets/preloader.gif')}
+        source={require('../../assets/preloader.gif')}
         style={styles.loadingImg}
         resizeMode='contain'
       ></Image>

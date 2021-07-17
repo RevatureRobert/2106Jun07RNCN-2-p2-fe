@@ -24,7 +24,7 @@ const CurrentUserBoxComponent: React.FC = () => {
   return (
     <SafeAreaView style={styles.androidSafeArea}>
       <Image
-        source={require('../assets/defaultUserImage.png')}
+        source={require('../../assets/defaultUserImage.png')}
         style={styles.userImg}
         resizeMode='contain'
       ></Image>

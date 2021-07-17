@@ -37,7 +37,7 @@ const AddChirpView: React.FC = () => {
           />
           <View style={styles.AddChirpContent}>
             <Image
-              source={require('../assets/defaultUserImage.png')}
+              source={require('../../assets/defaultUserImage.png')}
               style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
             ></Image>
             <TextInput

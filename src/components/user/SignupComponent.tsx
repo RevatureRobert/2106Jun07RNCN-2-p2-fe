@@ -84,7 +84,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image
-            source={require('../assets/chirperIcon.png')}
+            source={require('../../assets/chirperIcon.png')}
             style={{
               height: 48,
               marginBottom: 10,

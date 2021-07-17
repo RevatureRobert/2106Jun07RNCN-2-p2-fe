@@ -72,7 +72,7 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
       >
         <StatusBar backgroundColor='#111111' barStyle='light-content' />
         <Image
-          source={require('../assets/chirperLogo.png')}
+          source={require('../../assets/chirperLogo.png')}
           style={{
             height: 48,
             alignSelf: 'center',

@@ -21,7 +21,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     >
       <View>
         <Image
-          source={require('../assets/defaultUserImage.png')}
+          source={require('../../assets/defaultUserImage.png')}
           style={{ width: 52, height: 52, borderRadius: 72 / 2 }}
         ></Image>
       </View>
