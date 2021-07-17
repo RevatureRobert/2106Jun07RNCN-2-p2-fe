@@ -16,7 +16,7 @@ const LoadingComponent: React.FC = () => {
 const styles = StyleSheet.create({
   loadingView: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#141414',
     justifyContent: 'center',
   },
 

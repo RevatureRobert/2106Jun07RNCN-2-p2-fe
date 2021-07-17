@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
+  Platform,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -33,13 +34,13 @@ const CurrentUserBoxComponent: React.FC = () => {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
             alignContent: 'center',
           }}
         >
           <MaterialCommunityIcons name='logout' size={18} color='#fff' />
-          <Text style={styles.logOutText}>Log out</Text>
+          <Text style={styles.logOutText}> Log out</Text>
         </View>
       </TouchableHighlight>
     </SafeAreaView>
@@ -51,17 +52,36 @@ const styles = StyleSheet.create({
     height: 225,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#111',
+    backgroundColor: '#1e1e1e',
+    borderRadius: 25,
+    margin: 12,
+    marginBottom: 0,
+    marginTop: -64,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
 
   userImg: {
-    height: 64,
+    height: 72,
     borderRadius: 64,
   },
 
   usernameText: {
     color: '#fff',
     fontWeight: '700',
+    marginTop: 12,
     fontSize: 18,
   },
 
@@ -74,8 +94,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     backgroundColor: '#ff4242',
-    borderRadius: 15,
-    width: 100,
+    borderRadius: 25,
+    width: 124,
   },
 
   logOutText: {

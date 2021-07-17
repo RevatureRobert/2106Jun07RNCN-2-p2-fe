@@ -83,17 +83,17 @@ const HeaderComponent: React.FC<Props> = (Props) => {
 const styles = StyleSheet.create({
   headerContainer: {
     textAlign: 'center',
-    backgroundColor: '#111',
+    backgroundColor: '#1b1b1b',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 50,
+    height: 55,
     flexDirection: 'row',
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 
   button: {
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f3f3',
     padding: 8,
     width: 80,
     borderRadius: 50,

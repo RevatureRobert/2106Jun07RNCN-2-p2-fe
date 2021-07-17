@@ -131,7 +131,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   signInView: {
-    backgroundColor: '#111',
+    backgroundColor: '#141414',
     padding: 15,
     flex: 1,
     alignContent: 'center',
@@ -139,9 +139,8 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    color: '#fff',
-    borderWidth: 1,
-    borderColor: '#333',
+    color: '#1b1b1b',
+    backgroundColor: '#222',
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
@@ -150,9 +149,9 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     padding: 15,
-    marginTop: 10,
+    marginTop: 22,
     borderRadius: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#f3f3f3',
     flexDirection: 'row',
 
     justifyContent: 'space-between',
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 10,
+    marginTop: 22,
   },
 });
 

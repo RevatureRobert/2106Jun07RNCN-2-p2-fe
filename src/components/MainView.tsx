@@ -1,26 +1,25 @@
 import React from 'react';
-import { StyleSheet, StatusBar, View, Platform } from 'react-native';
+import { StyleSheet, StatusBar, SafeAreaView, Platform } from 'react-native';
 import AddChirpBtnComponent from './addchirp/AddChirpBtnComponent';
 import BottomNavComponent from './navigation/BottomNavComponent';
 
 const MainView: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor='#111111' barStyle='light-content' />
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor='#1b1b1b' barStyle='light-content' />
       <BottomNavComponent />
       <AddChirpBtnComponent />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#111111',
+    backgroundColor: '#141414',
     flex: 1,
     overflow: 'hidden',
     ...Platform.select({
-      ios: { paddingTop: 50 },
-      android: { paddingTop: 15 },
+      android: { paddingTop: 0 },
     }),
   },
 });

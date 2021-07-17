@@ -40,26 +40,32 @@ const UserChirpsComponent: React.FC = () => {
 
   if (chirpsState.loading === true) {
     return (
-      <>
+      <View style={{ backgroundColor: '#141414', flex: 1 }}>
+        <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
         <CurrentUserBoxComponent />
-        <LoadingComponent />
-      </>
+        <View style={styles.chirpsContainer}>
+          <LoadingComponent />
+        </View>
+      </View>
     );
   } else {
     return (
-      <View style={styles.chirpsContainer}>
+      <View style={{ backgroundColor: '#141414', flex: 1 }}>
+        <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
         <CurrentUserBoxComponent />
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          data={chirpsState.chirps?.sort((a, b) =>
-            Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
-          )}
-          renderItem={renderItem}
-          onRefresh={onRefresh}
-          refreshing={isFetching}
-          keyExtractor={(item) => item.timestamp}
-        />
+        <View style={styles.chirpsContainer}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            data={chirpsState.chirps?.sort((a, b) =>
+              Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+            )}
+            renderItem={renderItem}
+            onRefresh={onRefresh}
+            refreshing={isFetching}
+            keyExtractor={(item) => item.timestamp}
+          />
+        </View>
       </View>
     );
   }
@@ -68,38 +74,8 @@ const UserChirpsComponent: React.FC = () => {
 const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
-    backgroundColor: '#111',
-  },
-
-  chirpItem: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 15,
-    backgroundColor: '#0f0f0f',
-    borderBottomWidth: 1,
-    borderBottomColor: '#333',
-    justifyContent: 'space-between',
-  },
-
-  chirpContent: {
-    paddingLeft: 20,
-    flex: 1,
-  },
-
-  chirpUser: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-
-  chirpBody: {
-    fontSize: 16,
-    color: '#FFFFFF',
-  },
-
-  chirpTimestamp: {
-    fontSize: 12,
-    color: '#dfdfdf',
+    backgroundColor: '#141414',
+    overflow: 'hidden',
   },
 });
 

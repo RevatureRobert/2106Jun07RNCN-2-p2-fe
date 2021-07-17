@@ -44,7 +44,7 @@ const AddChirpView: React.FC = () => {
               multiline={true}
               style={styles.input}
               placeholder={placeholder}
-              placeholderTextColor='#dfdfdf'
+              placeholderTextColor='#e1e1e1'
               // inputState has to be redeclared as a prop for some reason.
               // eslint-disable-next-line
               onChangeText={(input) => {
@@ -87,21 +87,24 @@ const styles = StyleSheet.create({
   },
 
   AddChirpContent: {
-    backgroundColor: '#080808',
+    backgroundColor: '#141414',
     color: '#fff',
-    flex: 1,
+    flex: 0.75,
     flexDirection: 'row',
     paddingLeft: 25,
     paddingRight: 25,
     paddingTop: 25,
+    paddingBottom: 0,
+    marginBottom: 0,
   },
 
   input: {
     color: '#fff',
     padding: 25,
     borderWidth: 1,
+    backgroundColor: '#1b1b1b',
     marginLeft: 12,
-    borderColor: '#333',
+    borderColor: '#1b1b1b',
     textAlign: 'left',
     borderRadius: 15,
     textAlignVertical: 'top',
@@ -113,22 +116,21 @@ const styles = StyleSheet.create({
     flex: 0.2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginBottom: 30,
     marginLeft: 90,
     marginRight: 30,
-    marginTop: -10,
+    paddingTop: 5,
   },
 
   Button: {},
 
   Count: {
-    color: '#ccc',
+    color: '#e1e1e1',
   },
 
   MainContainer: {
     flex: 1,
-    backgroundColor: '#080808',
+    backgroundColor: '#141414',
   },
 
   keyboardAvoidingView: {

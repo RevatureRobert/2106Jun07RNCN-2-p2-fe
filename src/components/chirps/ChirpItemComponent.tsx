@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,7 +14,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   const navigation = useNavigation();
 
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={() => navigation.navigate('compose')}
       onLongPress={() => null}
       style={styles.chirpItem}
@@ -44,11 +44,13 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <View style={{ flex: 1, flexDirection: 'row', alignContent: 'center' }}>
           <MaterialCommunityIcons
             name='heart-outline'
-            color='#ccc'
+            color='#e1e1e1'
             size={20}
             style={{ paddingTop: 5 }}
           ></MaterialCommunityIcons>
-          <Text style={{ color: '#ccc', alignSelf: 'center', paddingLeft: 5 }}>
+          <Text
+            style={{ color: '#e1e1e1', alignSelf: 'center', paddingLeft: 5 }}
+          >
             0
           </Text>
         </View>
@@ -60,7 +62,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           color={'#ededed'}
         />
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
@@ -68,10 +70,13 @@ const styles = StyleSheet.create({
   chirpItem: {
     flex: 1,
     flexDirection: 'row',
-    padding: 15,
-    backgroundColor: '#0f0f0f',
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 15,
+    paddingBottom: 15,
+    backgroundColor: '#141414',
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: '#1b1b1b',
     justifyContent: 'space-between',
   },
 
@@ -81,19 +86,19 @@ const styles = StyleSheet.create({
   },
 
   chirpUser: {
-    color: '#FFFFFF',
+    color: '#f3f3f3',
     fontWeight: '700',
     fontSize: 16,
   },
 
   chirpBody: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#ffffff',
   },
 
   chirpTimestamp: {
     fontSize: 12,
-    color: '#dfdfdf',
+    color: '#e1e1e1',
   },
 });
 

@@ -9,66 +9,65 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavComponent = () => {
   return (
-    <View style={styles.bottomNavigationContainer}>
-      <Tab.Navigator
-        initialRouteName='Feed'
-        tabBarOptions={{
-          activeTintColor: '#fff',
-          showLabel: false,
-          style: {
-            backgroundColor: '#111',
-            borderTopWidth: 0,
-            borderBottomWidth: 0,
-            marginBottom: 0,
-          },
+    <Tab.Navigator
+      initialRouteName='Feed'
+      tabBarOptions={{
+        activeTintColor: '#fff',
+        showLabel: false,
+        style: {
+          backgroundColor: '#1b1b1b',
+          borderTopWidth: 0,
+          borderBottomWidth: 0,
+          marginBottom: 0,
+          height: 64,
+        },
+      }}
+    >
+      <Tab.Screen
+        name='Feed'
+        component={ChirpsComponent}
+        options={{
+          tabBarLabel: 'Feed',
+          unmountOnBlur: true,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='home-outline'
+              color={color}
+              size={size}
+            />
+          ),
         }}
-      >
-        <Tab.Screen
-          name='Feed'
-          component={ChirpsComponent}
-          options={{
-            tabBarLabel: 'Feed',
-            unmountOnBlur: true,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name='home-outline'
-                color={color}
-                size={size}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Profile'
-          component={UserChirpsComponent}
-          options={{
-            tabBarLabel: 'Profile',
-            unmountOnBlur: true,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name='account-outline'
-                color={color}
-                size={size}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name='Settings'
-          component={ChirpsComponent}
-          options={{
-            tabBarLabel: 'Settings',
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name='account-cog-outline'
-                color={color}
-                size={size}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </View>
+      />
+      <Tab.Screen
+        name='Profile'
+        component={UserChirpsComponent}
+        options={{
+          tabBarLabel: 'Profile',
+          unmountOnBlur: true,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='account-outline'
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Settings'
+        component={ChirpsComponent}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='account-cog-outline'
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
