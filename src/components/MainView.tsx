@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, StatusBar, View, Platform } from 'react-native';
-import HeaderComponent from './HeaderComponent';
-import AddChirpBtnComponent from './AddChirpBtnComponent';
-import BottomNavComponent from './BottomNavComponent';
+import AddChirpBtnComponent from './addchirp/AddChirpBtnComponent';
+import BottomNavComponent from './navigation/BottomNavComponent';
 
 const MainView: React.FC = () => {
   return (

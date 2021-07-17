@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import ChirpsComponent from './ChirpsComponent';
+import ChirpsComponent from '../chirps/ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import UserChirpsComponent from './UserChirpsComponent';
-import SignupComponent from './SignupComponent';
-// import SignupComponent from './SignupComponent';
+import UserChirpsComponent from '../chirps/UserChirpsComponent';
 
 const Tab = createBottomTabNavigator();
 

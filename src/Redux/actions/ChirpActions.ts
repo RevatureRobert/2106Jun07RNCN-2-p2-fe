@@ -1,4 +1,4 @@
-import axios from '../../components/axiosConfig';
+import axios from '../axiosConfig';
 import { Dispatch } from 'redux';
 import {
   ChirpsActionsTypes,
