@@ -4,16 +4,16 @@ import {
   Text,
   StyleSheet,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { PostChirp } from '../Redux/actions/ChirpActions';
+import { PostChirp } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../Redux/store/store';
+import { RootStore } from '../../redux/store/store';
 
-interface props {
+interface Props {
   currentView: string;
   newChirp: {
     username: string;
@@ -22,20 +22,20 @@ interface props {
   };
 }
 
-const HeaderComponent: React.FC<props> = (props) => {
+const HeaderComponent: React.FC<Props> = (Props) => {
   const navigation = useNavigation();
   const toast = useToast();
 
   const user = useSelector((state: RootStore) => state.auth);
 
   async function postChirp() {
-    const chirp = await PostChirp(props.newChirp);
+    const chirp = await PostChirp(Props.newChirp);
     toast.show(chirp);
     navigation.goBack();
   }
 
-  switch (props.currentView) {
-    case 'addChirp': {
+  switch (Props.currentView) {
+    case 'addChirp':
       return (
         <View style={styles.headerContainer}>
           <TouchableHighlight
@@ -51,13 +51,14 @@ const HeaderComponent: React.FC<props> = (props) => {
           <TouchableHighlight
             onPress={postChirp}
             style={styles.button}
-            disabled={props.newChirp.body.length > 281}
+            disabled={Props.newChirp.body.length > 281}
           >
             <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>
         </View>
       );
-    }
+    case 'userView':
+      return <></>;
     default:
       return (
         <View style={styles.headerContainer}>
@@ -88,20 +89,20 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
 
   button: {
     backgroundColor: '#fff',
     padding: 8,
     width: 80,
-    borderRadius: 50
+    borderRadius: 50,
   },
 
   buttonText: {
     textAlign: 'center',
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 });
 
 export default HeaderComponent;

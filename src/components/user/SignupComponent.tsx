@@ -1,6 +1,5 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   TextInput,
   Text,
@@ -9,15 +8,16 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setError, signUp } from '../Redux/actions/AuthActions';
-import { CreateUser } from '../Redux/actions/UserAPIActions';
-import { RootStore } from '../Redux/store/store';
+import { setError, signUp } from '../../redux/actions/AuthActions';
+import { CreateUser } from '../../redux/actions/UserAPIActions';
+import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import LoadingComponent from '../semantic/LoadingComponent';
 
 type RootStackParamList = {
   home: undefined;
@@ -55,72 +55,78 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
       }
     };
   }, [error, dispatch]);
-  const onSubmitData = async (e: GestureResponderEvent) => {
+  const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
     setLoading(true);
-    await dispatch(
+    dispatch(
       signUp({ username, password, attributes: { email } }, () =>
         setLoading(false)
       )
     );
 
-    await dispatch(
+    dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.'
+        bio: 'bio.',
       })
     );
 
     navigation.navigate('login');
   };
 
-  return (
-    <KeyboardAvoidingView
-      style={styles.signInView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Image
-          source={require('../assets/chirperIcon.png')}
-          style={{
-            height: 48,
-            marginBottom: 10
-          }}
-          resizeMode='contain'
+  if (loading === true) {
+    return <LoadingComponent />;
+  } else {
+    return (
+      <KeyboardAvoidingView
+        style={styles.signInView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image
+            source={require('../assets/chirperIcon.png')}
+            style={{
+              height: 48,
+              marginBottom: 10,
+            }}
+            resizeMode='contain'
+          />
+          <Text style={{ color: '#fff', fontSize: 22, fontWeight: '700' }}>
+            Sign up for chirper
+          </Text>
+        </View>
+        <TextInput
+          placeholder='Username'
+          placeholderTextColor='#dfdfdf'
+          onChangeText={(inputName) => setUsername(inputName)}
+          style={styles.input}
         />
-        <Text style={{ color: '#fff', fontSize: 22, fontWeight: '700' }}>
-          Sign up for chirper
-        </Text>
-      </View>
-      <TextInput
-        placeholder='Username'
-        placeholderTextColor='#dfdfdf'
-        onChangeText={(name) => setUsername(name)}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder='Email'
-        placeholderTextColor='#dfdfdf'
-        onChangeText={(email) => setEmail(email)}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder='Password'
-        placeholderTextColor='#dfdfdf'
-        secureTextEntry={true}
-        onChangeText={(password) => setPassword(password)}
-        style={styles.input}
-      />
-      {/* </View> */}
-      <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
-        <Text style={styles.loginText}>Sign up</Text>
-        <MaterialCommunityIcons name='chevron-right' size={18} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('login')}>
-        <Text style={styles.signInText}>Already have an account? Log in.</Text>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
-  );
+        <TextInput
+          placeholder='Email'
+          placeholderTextColor='#dfdfdf'
+          onChangeText={(inputEmail) => setEmail(inputEmail)}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder='Password'
+          placeholderTextColor='#dfdfdf'
+          secureTextEntry={true}
+          onChangeText={(inputPassword) => setPassword(inputPassword)}
+          style={styles.input}
+        />
+        {/* </View> */}
+        <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
+          <Text style={styles.loginText}>Sign up</Text>
+          <MaterialCommunityIcons name='chevron-right' size={18} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('login')}>
+          <Text style={styles.signInText}>
+            Already have an account? Log in.
+          </Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -129,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   input: {
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10
+    padding: 10,
   },
 
   loginBtn: {
@@ -149,18 +155,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
 
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   loginText: {
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
 
 export default SignupComponent;

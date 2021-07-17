@@ -1,18 +1,16 @@
 import React from 'react';
 import {
-  Platform,
   SafeAreaView,
   StyleSheet,
-  StatusBar,
   View,
   Image,
   Text,
   TouchableHighlight,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../Redux/store/store';
+import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { logout } from '../Redux/actions/AuthActions';
+import { logout } from '../../redux/actions/AuthActions';
 
 const CurrentUserBoxComponent: React.FC = () => {
   const currentUser = useSelector((state: RootStore) => state.auth.user);

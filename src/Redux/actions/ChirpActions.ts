@@ -34,7 +34,7 @@ export const GetChirp =
         type: CHIRPS_LOADING,
       });
 
-      const res = await axios.get('/chirp/${timestamp}');
+      const res = await axios.get(`/chirp/${timestamp}`);
       dispatch({
         type: CHIRPS_SUCCESS,
         payload: res.data,
@@ -46,6 +46,7 @@ export const GetChirp =
     }
   };
 
+// gets all chirps by a user
 export const GetUsersChirps =
   (username: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {

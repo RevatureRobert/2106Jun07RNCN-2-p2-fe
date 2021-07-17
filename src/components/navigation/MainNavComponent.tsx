@@ -1,12 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignupComponent from './SignupComponent';
-import SigninComponent from './SigninComponent';
-import MainView from './MainView';
-import AddChirpView from './AddChirpView';
-import { enableScreens } from 'react-native-screens';
+import SignupComponent from '../user/SignupComponent';
+import SigninComponent from '../user/SigninComponent';
+import MainView from '../MainView';
+import AddChirpView from '../addchirp/AddChirpView';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../Redux/store/store';
+import { RootStore } from '../../redux/store/store';
 
 type RootStackParamList = {
   home: undefined;

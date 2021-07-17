@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 
-interface props {
+interface Props {
   username: string;
   body: string;
   media?: string;
   timestamp: string;
 }
 
-const ChirpItemComponent: React.FC<props> = (props) => {
+const ChirpItemComponent: React.FC<Props> = (Props) => {
   const navigation = useNavigation();
 
   return (
@@ -26,11 +26,11 @@ const ChirpItemComponent: React.FC<props> = (props) => {
         ></Image>
       </View>
       <View style={styles.chirpContent}>
-        <Text style={styles.chirpUser}>@{props.username}</Text>
-        <Text style={styles.chirpBody}>{props.body}</Text>
-        {props.media ? (
+        <Text style={styles.chirpUser}>@{Props.username}</Text>
+        <Text style={styles.chirpBody}>{Props.body}</Text>
+        {Props.media ? (
           <Image
-            source={{ uri: props.media }}
+            source={{ uri: Props.media }}
             style={{
               height: 250,
               marginTop: 10,
@@ -40,7 +40,7 @@ const ChirpItemComponent: React.FC<props> = (props) => {
             resizeMode='cover'
           />
         ) : null}
-        <Text style={styles.chirpTimestamp}>{props.timestamp}</Text>
+        <Text style={styles.chirpTimestamp}>{Props.timestamp}</Text>
         <View style={{ flex: 1, flexDirection: 'row', alignContent: 'center' }}>
           <MaterialCommunityIcons
             name='heart-outline'

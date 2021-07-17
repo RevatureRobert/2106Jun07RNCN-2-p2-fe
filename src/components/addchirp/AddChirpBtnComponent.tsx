@@ -1,16 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableHighlight, Platform } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-
-interface props {
-  newChirp?: {
-    username: string;
-    body: string;
-    timestamp: number;
-  };
-}
 
 const AddChirpBtnComponent: React.FC = () => {
   const navigation = useNavigation();
@@ -45,8 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: 75,
     borderRadius: 100 / 2,
     ...Platform.select({
-      ios: { marginBottom: 100 }
-    })
+      ios: { marginBottom: 100 },
+    }),
   },
 
   buttonsContainer: {
@@ -54,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     textAlign: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   button: {
@@ -62,8 +53,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     color: '#FFF',
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 });
 
 export default AddChirpBtnComponent;

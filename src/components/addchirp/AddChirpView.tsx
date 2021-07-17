@@ -9,11 +9,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../Redux/store/store';
-import HeaderComponent from './HeaderComponent';
+import { RootStore } from '../../redux/store/store';
+import HeaderComponent from '../semantic/HeaderComponent';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const AddChirpView: React.FC = () => {
@@ -48,8 +47,8 @@ const AddChirpView: React.FC = () => {
               placeholderTextColor='#dfdfdf'
               // inputState has to be redeclared as a prop for some reason.
               // eslint-disable-next-line
-              onChangeText={(inputState) => {
-                setInputState(inputState);
+              onChangeText={(input) => {
+                setInputState(input);
               }}
               value={inputState}
             />

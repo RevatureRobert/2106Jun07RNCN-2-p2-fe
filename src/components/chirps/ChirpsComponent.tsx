@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  Pressable,
-} from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllChirps } from '../Redux/actions/ChirpActions';
-import { RootStore } from '../Redux/store/store';
-import { Store } from '../Redux/store/store';
-import ChirpItemComponent from './ChirpItemComponent';
-import LoadingComponent from './LoadingComponent';
-import HeaderComponent from './HeaderComponent';
+import { GetAllChirps } from '../../redux/actions/ChirpActions';
+import { RootStore } from '../../redux/store/store';
+import ChirpItemComponent from '../chirps/ChirpItemComponent';
+import LoadingComponent from '../semantic/LoadingComponent';
+import HeaderComponent from '../semantic/HeaderComponent';
 
 const ChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);

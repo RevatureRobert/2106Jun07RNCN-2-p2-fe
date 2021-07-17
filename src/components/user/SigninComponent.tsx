@@ -9,14 +9,15 @@ import {
   StatusBar,
   Image,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setError, signIn } from '../Redux/actions/AuthActions';
-import { RootStore } from '../Redux/store/store';
+import { setError, signIn } from '../../redux/actions/AuthActions';
+import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import LoadingComponent from '../semantic/LoadingComponent';
 
 type RootStackParamList = {
   home: undefined;
@@ -53,51 +54,55 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
       }
     };
   }, [error, dispatch]);
-  const onSubmitData = async (e: GestureResponderEvent) => {
+  const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
     setLoading(true);
-    await dispatch(signIn({ username, password }, () => setLoading(false)));
+    dispatch(signIn({ username, password }, () => setLoading(false)));
     console.log(username);
     console.log(password);
   };
 
-  return (
-    <KeyboardAvoidingView
-      style={styles.signInView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <StatusBar backgroundColor='#111111' barStyle='light-content' />
-      <Image
-        source={require('../assets/chirperLogo.png')}
-        style={{
-          height: 48,
-          alignSelf: 'center',
-          marginBottom: 10
-        }}
-        resizeMode='contain'
-      />
-      <TextInput
-        placeholder='Username'
-        placeholderTextColor='#dfdfdf'
-        onChangeText={(name) => setUsername(name)}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder='Password'
-        placeholderTextColor='#dfdfdf'
-        secureTextEntry={true}
-        onChangeText={(password) => setPassword(password)}
-        style={styles.input}
-      />
-      <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
-        <Text style={styles.loginText}>Log in</Text>
-        <MaterialCommunityIcons name='chevron-right' size={18} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
-        <Text style={styles.signInText}>No account? Sign up.</Text>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
-  );
+  if (loading === true) {
+    return <LoadingComponent />;
+  } else {
+    return (
+      <KeyboardAvoidingView
+        style={styles.signInView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <StatusBar backgroundColor='#111111' barStyle='light-content' />
+        <Image
+          source={require('../assets/chirperLogo.png')}
+          style={{
+            height: 48,
+            alignSelf: 'center',
+            marginBottom: 10,
+          }}
+          resizeMode='contain'
+        />
+        <TextInput
+          placeholder='Username'
+          placeholderTextColor='#dfdfdf'
+          onChangeText={(inputName) => setUsername(inputName)}
+          style={styles.input}
+        />
+        <TextInput
+          placeholder='Password'
+          placeholderTextColor='#dfdfdf'
+          secureTextEntry={true}
+          onChangeText={(inputPassword) => setPassword(inputPassword)}
+          style={styles.input}
+        />
+        <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
+          <Text style={styles.loginText}>Log in</Text>
+          <MaterialCommunityIcons name='chevron-right' size={18} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+          <Text style={styles.signInText}>No account? Sign up.</Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   input: {
@@ -116,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10
+    padding: 10,
   },
 
   loginBtn: {
@@ -126,18 +131,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
 
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   loginText: {
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
 
 export default SigninComponent;

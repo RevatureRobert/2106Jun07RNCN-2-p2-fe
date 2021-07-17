@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Store } from './Redux/store/store';
+import { Store } from './redux/store/store';
 import { View } from 'react-native';
 import Amplify from 'aws-amplify';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
 import { ToastProvider } from 'react-native-toast-notifications';
 import config from './cognitoConfig.json';
-import MainNavComponent from './components/MainNavComponent';
+import MainNavComponent from './components/navigation/MainNavComponent';
 
 Amplify.configure({
   Auth: {
