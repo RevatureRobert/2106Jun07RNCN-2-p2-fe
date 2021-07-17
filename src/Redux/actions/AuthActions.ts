@@ -12,7 +12,6 @@ import {
   SIGN_OUT,
   User,
 } from '../types/AuthActionsTypes';
-import { Dispatch } from 'redux';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from 'amazon-cognito-identity-js';
 
