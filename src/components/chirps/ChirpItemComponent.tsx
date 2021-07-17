@@ -26,15 +26,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         ></Image>
       </View>
       <View style={styles.chirpContent}>
-<<<<<<< HEAD:src/components/ChirpItemComponent.tsx
-        <Text testID={'username-of-chirp'} style={styles.chirpUser}>@{props.username}</Text>
-        <Text style={styles.chirpBody}>{props.body}</Text>
-        {props.media ? (
-=======
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {Props.media ? (
->>>>>>> ff414ce986e176472508b9eec685c8dc72f8c90f:src/components/chirps/ChirpItemComponent.tsx
           <Image
             source={{ uri: Props.media }}
             style={{
