@@ -68,7 +68,7 @@ const AddChirpView: React.FC = () => {
                 <MaterialCommunityIcons
                   name='image-outline'
                   size={30}
-                  color='#ccc'
+                  color='#e1e1e1'
                 />
               </View>
             </TouchableOpacity>
@@ -81,14 +81,14 @@ const AddChirpView: React.FC = () => {
 
 const styles = StyleSheet.create({
   AddChirpViewContainer: {
-    color: '#fff',
+    color: '#f3f3f3',
     flex: 1,
     flexDirection: 'column',
   },
 
   AddChirpContent: {
     backgroundColor: '#141414',
-    color: '#fff',
+    color: '#f3f3f3',
     flex: 0.75,
     flexDirection: 'row',
     paddingLeft: 25,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    color: '#fff',
+    color: '#f3f3f3',
     padding: 25,
     borderWidth: 1,
     backgroundColor: '#1b1b1b',
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     borderRadius: 15,
     textAlignVertical: 'top',
+    fontSize: 16,
     flex: 1,
     paddingTop: 25,
   },

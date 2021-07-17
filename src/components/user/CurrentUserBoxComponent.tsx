@@ -29,7 +29,7 @@ const CurrentUserBoxComponent: React.FC = () => {
         resizeMode='contain'
       ></Image>
       <Text style={styles.usernameText}>@{currentUser?.username}</Text>
-      <Text style={styles.bioText}>This is a sample bio.</Text>
+      <Text style={styles.bioText}>Paranormal Investigator at Chirper 👻</Text>
       <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
         <View
           style={{
@@ -49,7 +49,7 @@ const CurrentUserBoxComponent: React.FC = () => {
 
 const styles = StyleSheet.create({
   androidSafeArea: {
-    height: 225,
+    minHeight: 250,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#1e1e1e',
@@ -88,6 +88,8 @@ const styles = StyleSheet.create({
   bioText: {
     color: '#fff',
     fontSize: 14,
+    maxWidth: 200,
+    textAlign: 'center',
   },
 
   logOutBtn: {
