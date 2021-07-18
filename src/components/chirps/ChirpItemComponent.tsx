@@ -30,7 +30,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
 
   const [likeState, setLikeState] = React.useState({
     liked: isLiked,
-    count: 0,
+    count: Props.likes.length,
     icon: isLiked === true ? 'heart' : 'heart-outline',
     color: isLiked === true ? '#f42f42' : '#e1e1e1',
   });
@@ -38,9 +38,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   async function toggleLike() {
     if (likeState.liked === true) {
       isLiked = false;
+
       setLikeState({
         liked: isLiked,
-        count: 0,
+        count: Props.likes.length--,
         icon: 'heart-outline',
         color: '#e1e1e1',
       });
@@ -50,7 +51,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       isLiked = true;
       setLikeState({
         liked: true,
-        count: +1,
+        count: Props.likes.length++,
         icon: 'heart',
         color: '#f42f42',
       });
@@ -97,7 +98,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           <Text
             style={{ color: '#e1e1e1', alignSelf: 'center', paddingLeft: 5 }}
           >
-            {Props.likes.length + likeState.count}
+            {Props.likes.length}
           </Text>
         </Pressable>
       </View>
