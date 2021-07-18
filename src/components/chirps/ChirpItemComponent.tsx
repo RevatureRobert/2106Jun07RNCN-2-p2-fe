@@ -31,8 +31,8 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   const [likeState, setLikeState] = React.useState({
     liked: isLiked,
     count: 0,
-    icon: 'heart-outline',
-    color: '#e1e1e1',
+    icon: isLiked === true ? 'heart' : 'heart-outline',
+    color: isLiked === true ? '#f42f42' : '#e1e1e1',
   });
 
   async function toggleLike() {
@@ -84,30 +84,22 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpTimestamp}>
           {new Date(Number(Props.timestamp)).toLocaleString()}
         </Text>
-        <View style={{ flex: 1, flexDirection: 'row', alignContent: 'center' }}>
-          <Pressable onPress={toggleLike}>
-            {likeState.liked === true ? (
-              <MaterialCommunityIcons
-                name='heart'
-                color='#f42f42'
-                size={20}
-                style={{ paddingTop: 5 }}
-              ></MaterialCommunityIcons>
-            ) : (
-              <MaterialCommunityIcons
-                name='heart-outline'
-                color='#e1e1e1'
-                size={20}
-                style={{ paddingTop: 5 }}
-              ></MaterialCommunityIcons>
-            )}
-          </Pressable>
+        <Pressable
+          onPress={toggleLike}
+          style={{ flex: 1, flexDirection: 'row', alignContent: 'center' }}
+        >
+          <MaterialCommunityIcons
+            name={likeState.icon}
+            color={likeState.color}
+            size={20}
+            style={{ paddingTop: 5 }}
+          ></MaterialCommunityIcons>
           <Text
             style={{ color: '#e1e1e1', alignSelf: 'center', paddingLeft: 5 }}
           >
             {Props.likes.length + likeState.count}
           </Text>
-        </View>
+        </Pressable>
       </View>
       <View style={{ alignContent: 'center' }}>
         <MaterialCommunityIcons
