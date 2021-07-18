@@ -46,8 +46,6 @@ const ChirpsComponent: React.FC = () => {
             username: '',
             body: '',
             timestamp: '',
-            comments: [],
-            likes: [],
           }}
         />
         <LoadingComponent />
@@ -62,8 +60,6 @@ const ChirpsComponent: React.FC = () => {
             username: '',
             body: '',
             timestamp: '',
-            comments: [],
-            likes: [],
           }}
         />
         <FlatList

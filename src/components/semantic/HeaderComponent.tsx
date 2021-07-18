@@ -18,8 +18,6 @@ interface Props {
   newChirp: {
     username: string;
     body: string;
-    comments: [];
-    likes: [];
     timestamp: string;
   };
 }
