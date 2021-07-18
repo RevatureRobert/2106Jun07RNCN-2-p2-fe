@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import ChirpsComponent from '../chirps/ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserChirpsComponent from '../chirps/UserChirpsComponent';
 
+// creates the tab navigator
 const Tab = createBottomTabNavigator();
 
 const BottomNavComponent = () => {
@@ -23,6 +23,7 @@ const BottomNavComponent = () => {
         },
       }}
     >
+      {/* all chirps feed */}
       <Tab.Screen
         name='Feed'
         component={ChirpsComponent}
@@ -38,6 +39,7 @@ const BottomNavComponent = () => {
           ),
         }}
       />
+      {/* user profile */}
       <Tab.Screen
         name='Profile'
         component={UserChirpsComponent}
@@ -53,6 +55,7 @@ const BottomNavComponent = () => {
           ),
         }}
       />
+      {/* user settings */}
       <Tab.Screen
         name='Settings'
         component={ChirpsComponent}
@@ -70,11 +73,5 @@ const BottomNavComponent = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  bottomNavigationContainer: {
-    flex: 1,
-  },
-});
 
 export default BottomNavComponent;

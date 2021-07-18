@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
+import styles from './chirpstyles';
 
 interface Props {
   username: string;
@@ -21,6 +22,7 @@ interface Props {
   timestamp: string;
 }
 
+// component that structures and defines the text per chirp in the list
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
@@ -81,15 +83,18 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   // main return statement
   return (
     <TouchableOpacity onPress={() => null} style={styles.chirpItem}>
+      {/* user image */}
       <View>
         <Image
           source={require('../../assets/defaultUserImage.png')}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
+      {/* main chirp content, displays username, chirp body, timestamp, and like button */}
       <View style={styles.chirpContent}>
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
+        {/* checks if chirp has an image */}
         {Props.media ? (
           <Image
             source={{ uri: Props.media }}
@@ -132,41 +137,5 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  chirpItem: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingLeft: 25,
-    paddingRight: 25,
-    paddingTop: 15,
-    paddingBottom: 15,
-    backgroundColor: '#141414',
-    borderBottomWidth: 1,
-    borderBottomColor: '#1b1b1b',
-    justifyContent: 'space-between',
-  },
-
-  chirpContent: {
-    paddingLeft: 20,
-    flex: 1,
-  },
-
-  chirpUser: {
-    color: '#f3f3f3',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-
-  chirpBody: {
-    fontSize: 16,
-    color: '#ffffff',
-  },
-
-  chirpTimestamp: {
-    fontSize: 12,
-    color: '#e1e1e1',
-  },
-});
 
 export default ChirpItemComponent;

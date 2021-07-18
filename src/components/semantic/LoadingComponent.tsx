@@ -1,6 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, View } from 'react-native';
+import styles from './semanticstyles';
 
+// loading component... for when things are... loading (displays a spinner)
 const LoadingComponent: React.FC = () => {
   return (
     <View style={styles.loadingView}>
@@ -12,18 +14,5 @@ const LoadingComponent: React.FC = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  loadingView: {
-    flex: 1,
-    backgroundColor: '#141414',
-    justifyContent: 'center',
-  },
-
-  loadingImg: {
-    height: 48,
-    alignSelf: 'center',
-  },
-});
 
 export default LoadingComponent;

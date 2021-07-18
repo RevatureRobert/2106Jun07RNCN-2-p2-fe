@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableHighlight,
-} from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
+import styles from './semanticstyles';
 
 interface Props {
   currentView: string;
@@ -22,19 +17,25 @@ interface Props {
   };
 }
 
+// main header component, displayed on top of app
 const HeaderComponent: React.FC<Props> = (Props) => {
+  // initializes navigation and toast library
   const navigation = useNavigation();
   const toast = useToast();
 
+  // gets the current user from the store
   const user = useSelector((state: RootStore) => state.auth);
 
+  // post chirp function for when in AddChirpView
   async function postChirp() {
     const chirp = await PostChirp(Props.newChirp);
     toast.show(chirp);
     navigation.goBack();
   }
 
+  // checks currentView
   switch (Props.currentView) {
+    // displays back button and add chirp button
     case 'addChirp':
       return (
         <View style={styles.headerContainer}>
@@ -57,6 +58,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           </TouchableHighlight>
         </View>
       );
+    // displays current logged in user and chirper logo
     case 'userView':
       return <></>;
     default:
@@ -79,30 +81,5 @@ const HeaderComponent: React.FC<Props> = (Props) => {
       );
   }
 };
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    textAlign: 'center',
-    backgroundColor: '#1b1b1b',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 55,
-    flexDirection: 'row',
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-
-  button: {
-    backgroundColor: '#f3f3f3',
-    padding: 8,
-    width: 80,
-    borderRadius: 50,
-  },
-
-  buttonText: {
-    textAlign: 'center',
-    fontWeight: '700',
-  },
-});
 
 export default HeaderComponent;
