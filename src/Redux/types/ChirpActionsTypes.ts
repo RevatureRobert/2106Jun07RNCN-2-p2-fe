@@ -16,6 +16,10 @@ export type ChirpsType = [
 export type Chirps = {
   username: string;
   body: string;
+  timestamp: string;
+  likes: [];
+  comments: [];
+  media?: string;
 };
 
 export interface ChirpsLoading {

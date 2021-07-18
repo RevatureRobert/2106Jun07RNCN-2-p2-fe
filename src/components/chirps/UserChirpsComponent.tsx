@@ -33,6 +33,8 @@ const UserChirpsComponent: React.FC = () => {
     <ChirpItemComponent
       username={item.username}
       body={item.body}
+      likes={item.likes}
+      comments={item.comments}
       media={item.media ? item.media : undefined}
       timestamp={new Date(Number(item.timestamp)).toLocaleString()}
     />

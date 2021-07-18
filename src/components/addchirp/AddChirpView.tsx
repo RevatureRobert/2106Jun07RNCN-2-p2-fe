@@ -32,6 +32,8 @@ const AddChirpView: React.FC = () => {
             newChirp={{
               username: currentUser.user ? currentUser.user?.username : '',
               body: inputState,
+              comments: [],
+              likes: [],
               timestamp: Date.now().toString(),
             }}
           />

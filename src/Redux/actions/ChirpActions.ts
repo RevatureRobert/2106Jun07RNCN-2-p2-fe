@@ -77,7 +77,7 @@ export const PostChirp = async (chirp: {}) => {
   }
 };
 
-// makes an api call that posts a chirp
+// makes an api call that deletes a chirp
 export const DeleteChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
@@ -103,3 +103,27 @@ export const DeleteChirp =
       });
     }
   };
+
+export const LikeChirp = async (timestamp: string, username: string) => {
+  console.log(timestamp, username);
+  try {
+    await axios
+      .put(`/chirp/like/${timestamp}/${username}`)
+      .catch((error) => console.log(error));
+    console.log('Success');
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const UnlikeChirp = async (timestamp: string, username: string) => {
+  console.log(timestamp, username);
+  try {
+    await axios
+      .put(`/chirp/unlike/${timestamp}/${username}`)
+      .catch((error) => console.log(error));
+    console.log('Success');
+  } catch (e) {
+    console.log(e);
+  }
+};

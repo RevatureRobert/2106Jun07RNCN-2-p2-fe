@@ -30,8 +30,10 @@ const ChirpsComponent: React.FC = () => {
     <ChirpItemComponent
       username={item.username}
       body={item.body}
+      comments={item.comments}
+      likes={item.likes}
       media={item.media ? item.media : undefined}
-      timestamp={new Date(Number(item.timestamp)).toLocaleString()}
+      timestamp={item.timestamp}
     />
   );
 
@@ -40,7 +42,13 @@ const ChirpsComponent: React.FC = () => {
       <>
         <HeaderComponent
           currentView='allChirps'
-          newChirp={{ username: '', body: '', timestamp: '' }}
+          newChirp={{
+            username: '',
+            body: '',
+            timestamp: '',
+            comments: [],
+            likes: [],
+          }}
         />
         <LoadingComponent />
       </>
@@ -50,7 +58,13 @@ const ChirpsComponent: React.FC = () => {
       <View style={styles.chirpsContainer}>
         <HeaderComponent
           currentView='allChirps'
-          newChirp={{ username: '', body: '', timestamp: '' }}
+          newChirp={{
+            username: '',
+            body: '',
+            timestamp: '',
+            comments: [],
+            likes: [],
+          }}
         />
         <FlatList
           showsVerticalScrollIndicator={false}
