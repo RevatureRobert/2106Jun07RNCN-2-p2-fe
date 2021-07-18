@@ -36,7 +36,7 @@ const UserChirpsComponent: React.FC = () => {
       likes={item.likes}
       comments={item.comments}
       media={item.media ? item.media : undefined}
-      timestamp={new Date(Number(item.timestamp)).toLocaleString()}
+      timestamp={item.timestamp}
     />
   );
 
