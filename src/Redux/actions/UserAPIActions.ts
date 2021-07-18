@@ -1,16 +1,12 @@
-import axios from 'axios';
-// import { Console } from 'console';
+import axios from '../axiosConfig';
 import { Dispatch } from 'redux';
 import {
   UserAPIActionTypes,
   UserAPIType,
   USER_FAIL,
   USER_LOADING,
-  USER_SUCCESS
+  USER_SUCCESS,
 } from '../types/UserAPIActionsTypes';
-
-const apiURL = 'http://chirper.hopto.org:3000';
-// const apiURL = 'localhost:3000';
 
 /**
  * Makes api call for bio corresponding to username
@@ -22,17 +18,17 @@ export const GetUserBio =
   (username: string) => async (dispatch: Dispatch<UserAPIActionTypes>) => {
     try {
       dispatch({
-        type: USER_LOADING
+        type: USER_LOADING,
       });
 
-      const res = await axios.get(`${apiURL}/user/${username}`);
+      const res = await axios.get(`/user/${username}`);
       dispatch({
         type: USER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       });
     } catch (e) {
       dispatch({
-        type: USER_FAIL
+        type: USER_FAIL,
       });
     }
   };
@@ -47,24 +43,24 @@ export const PostUserBio =
   (params: UserAPIType) => async (dispatch: Dispatch<UserAPIActionTypes>) => {
     try {
       dispatch({
-        type: USER_LOADING
+        type: USER_LOADING,
       });
 
       const body = { bio: params.bio };
       await axios
-        .put(`${apiURL}/user/${params.username}/bio`, body)
-        .then(function (res) {
+        .put(`/user/${params.username}/bio`, body)
+        .then((res) => {
           dispatch({
             type: USER_SUCCESS,
-            payload: res.data
+            payload: res.data,
           });
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
     } catch (e) {
       dispatch({
-        type: USER_FAIL
+        type: USER_FAIL,
       });
     }
   };
@@ -73,15 +69,15 @@ export const CreateUser =
   (user: {}) => async (dispatch: Dispatch<UserAPIActionTypes>) => {
     try {
       dispatch({
-        type: USER_LOADING
+        type: USER_LOADING,
       });
 
       await axios
-        .post(`${apiURL}/user`, user)
-        .then(function (res) {
+        .post(`/user`, user)
+        .then((res) => {
           dispatch({
             type: USER_SUCCESS,
-            payload: res.data
+            payload: res.data,
           });
         })
         .catch(function (error) {
@@ -89,7 +85,7 @@ export const CreateUser =
         });
     } catch (e) {
       dispatch({
-        type: USER_FAIL
+        type: USER_FAIL,
       });
     }
   };
@@ -98,15 +94,15 @@ export const DeleteUser =
   (user: string) => async (dispatch: Dispatch<UserAPIActionTypes>) => {
     try {
       dispatch({
-        type: USER_LOADING
+        type: USER_LOADING,
       });
       const body = { data: { username: user } };
       await axios
-        .delete(`${apiURL}/user/${user}`, body)
-        .then(function (res) {
+        .delete(`/user/${user}`, body)
+        .then((res) => {
           dispatch({
             type: USER_SUCCESS,
-            payload: res.data
+            payload: res.data,
           });
         })
         .catch(function (error) {
@@ -114,7 +110,7 @@ export const DeleteUser =
         });
     } catch (e) {
       dispatch({
-        type: USER_FAIL
+        type: USER_FAIL,
       });
     }
   };

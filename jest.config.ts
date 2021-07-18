@@ -1,25 +1,43 @@
 import { withEnzyme } from 'jest-expo-enzyme';
-import {defaults} from 'jest-config';
 
 module.exports = {
-    moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
+    //==========================================================================
+    //Configure Enzyme (see https://npm.io/package/jest-expo-enzyme)
+    //==========================================================================
     projects: [
-      // Skipping Node because we want to test DOM presets only
       withEnzyme(require('jest-expo/ios/jest-preset')),
       withEnzyme(require('jest-expo/android/jest-preset')),
-      // The Enzyme support added to web is different from that added to native, which `withEnzyme` handles
-      // Luckily you won't have to do anything special because it reads the platform from
-      // `haste.defaultPlatform` of the provided Jest config
       withEnzyme(require('jest-expo/web/jest-preset')),
     ],
+    preset: "jest-expo-enzyme",
+    // setupFiles: ['<rootDir>/__tests__/test-setup.js'],
+
+    //==========================================================================
+    //configure Jest coverage report
+    //==========================================================================
     collectCoverage: true,
     collectCoverageFrom: [
         "./src/**/*.{ts, tsx}",
-        // "!**/node_modules/**",
     ],
     coverageDirectory: 'coverage',
-    // setupFiles: ["jest-canvas-mock"],
-    preset: "jest-expo-enzyme",
-    // setupFilesAfterEnv: ['<rootDir>/__tests__/test-setup.js'],
-    setupFiles: ['<rootDir>/__tests__/test-setup.js'],
+    coverageThreshold: {
+      global: {
+        statements: 30,
+      }
+    },
+    
+    //==========================================================================
+    //miscellaneous 
+    //==========================================================================
+    transform: {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+
+    /*//if you include next line, add import { defaults } from 'jest-config';
+    moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],*/
+
+    //see https://docs.expo.io/guides/testing-with-jest/#jest-configuration
+    transformIgnorePatterns: [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
 };

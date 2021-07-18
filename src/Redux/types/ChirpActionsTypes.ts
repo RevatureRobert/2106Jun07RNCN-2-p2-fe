@@ -9,13 +9,19 @@ export type ChirpsType = [
     timestamp: string;
     likes: [];
     comments: [];
+    media?: string;
   }
 ];
 
 export type Chirps = {
   username: string;
   body: string;
+  timestamp: string;
+  likes: [];
+  comments: [];
+  media?: string;
 };
+
 export interface ChirpsLoading {
   type: typeof CHIRPS_LOADING;
 }

@@ -3,7 +3,7 @@ import {
   ChirpsType,
   CHIRPS_FAIL,
   CHIRPS_LOADING,
-  CHIRPS_SUCCESS
+  CHIRPS_SUCCESS,
 } from '../types/ChirpActionsTypes';
 
 interface DefaultStateI {
@@ -12,7 +12,7 @@ interface DefaultStateI {
 }
 
 const defaultState: DefaultStateI = {
-  loading: false
+  loading: false,
 };
 
 const chirpsReducer = (
@@ -22,16 +22,16 @@ const chirpsReducer = (
   switch (action.type) {
     case CHIRPS_FAIL:
       return {
-        loading: false
+        loading: false,
       };
     case CHIRPS_LOADING:
       return {
-        loading: true
+        loading: true,
       };
     case CHIRPS_SUCCESS:
       return {
         loading: false,
-        chirps: action.payload
+        chirps: action.payload,
       };
     default:
       return state;

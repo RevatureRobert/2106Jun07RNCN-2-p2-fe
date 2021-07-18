@@ -1,6 +1,6 @@
-export const CHIRPS_LOADING = 'CHIRPS_LOADING';
-export const CHIRPS_FAIL = 'CHIRPS_FAIL';
-export const CHIRPS_SUCCESS = 'CHIRPS_SUCCESS';
+export const USER_CHIRPS_LOADING = 'CHIRPS_LOADING';
+export const USER_CHIRPS_FAIL = 'CHIRPS_FAIL';
+export const USER_CHIRPS_SUCCESS = 'CHIRPS_SUCCESS';
 
 export type UserChirpsType = [
   {
@@ -11,21 +11,25 @@ export type UserChirpsType = [
   }
 ];
 
-export type Chirps = {
+export type UserChirps = {
   username: string;
   body: string;
 };
-export interface ChirpsLoading {
-  type: typeof CHIRPS_LOADING;
+
+export interface UserChirpsLoading {
+  type: typeof USER_CHIRPS_LOADING;
 }
 
-export interface ChirpsFail {
-  type: typeof CHIRPS_FAIL;
+export interface UserChirpsFail {
+  type: typeof USER_CHIRPS_FAIL;
 }
 
-export interface ChirpsSuccess {
-  type: typeof CHIRPS_SUCCESS;
+export interface UserChirpsSuccess {
+  type: typeof USER_CHIRPS_SUCCESS;
   payload: UserChirpsType;
 }
 
-export type UserChirpsActionsTypes = ChirpsLoading | ChirpsFail | ChirpsSuccess;
+export type UserChirpsActionsTypes =
+  | UserChirpsLoading
+  | UserChirpsFail
+  | UserChirpsSuccess;
