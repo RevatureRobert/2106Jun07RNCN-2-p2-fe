@@ -67,7 +67,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
       />
     );
   } else {
-    return <Text>No replies bruv</Text>;
+    return null;
   }
 };
 
