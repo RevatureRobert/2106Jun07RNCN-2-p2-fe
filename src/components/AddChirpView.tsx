@@ -5,14 +5,13 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../Redux/store/store';
 import HeaderComponent from './HeaderComponent';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ImageUploader } from './ImageUploader';
 
 const AddChirpView: React.FC = () => {
   const [inputState, setInputState] = React.useState('');
@@ -61,15 +60,7 @@ const AddChirpView: React.FC = () => {
           >
             {inputState.length}/281
           </Text>
-          <TouchableOpacity>
-            <View style={styles.Button}>
-              <MaterialCommunityIcons
-                name='image-outline'
-                size={30}
-                color='#ccc'
-              />
-            </View>
-          </TouchableOpacity>
+          <ImageUploader />
         </View>
       </View>
     </KeyboardAvoidingView>
