@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, TouchableHighlight, Platform } from 'react-native';
+import { View, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import styles from './addchirpstyles';
 
+// floating post chirp burron
 const AddChirpBtnComponent: React.FC = () => {
   const navigation = useNavigation();
 
@@ -18,43 +20,5 @@ const AddChirpBtnComponent: React.FC = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  addButtonContainer: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    width: 64,
-    height: 64,
-    bottom: 0,
-    position: 'absolute',
-    flex: 1,
-    right: 0,
-    overflow: 'hidden',
-    marginRight: 15,
-    marginBottom: 75,
-    borderRadius: 100 / 2,
-    ...Platform.select({
-      ios: { marginBottom: 100 },
-    }),
-  },
-
-  buttonsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  button: {
-    fontSize: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    color: '#FFF',
-    alignSelf: 'center',
-  },
-});
 
 export default AddChirpBtnComponent;

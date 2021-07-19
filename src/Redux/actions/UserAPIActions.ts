@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axiosConfig';
 import { Dispatch } from 'redux';
 import {
   UserAPIActionTypes,
@@ -7,8 +7,6 @@ import {
   USER_LOADING,
   USER_SUCCESS,
 } from '../types/UserAPIActionsTypes';
-
-const apiURL = 'http://chirper.hopto.org:3000';
 
 /**
  * Makes api call for bio corresponding to username
@@ -23,7 +21,7 @@ export const GetUserBio =
         type: USER_LOADING,
       });
 
-      const res = await axios.get(`${apiURL}/user/${username}`);
+      const res = await axios.get(`/user/${username}`);
       dispatch({
         type: USER_SUCCESS,
         payload: res.data,
@@ -50,7 +48,7 @@ export const PostUserBio =
 
       const body = { bio: params.bio };
       await axios
-        .put(`${apiURL}/user/${params.username}/bio`, body)
+        .put(`/user/${params.username}/bio`, body)
         .then((res) => {
           dispatch({
             type: USER_SUCCESS,
@@ -75,7 +73,7 @@ export const CreateUser =
       });
 
       await axios
-        .post(`${apiURL}/user`, user)
+        .post(`/user`, user)
         .then((res) => {
           dispatch({
             type: USER_SUCCESS,
@@ -100,7 +98,7 @@ export const DeleteUser =
       });
       const body = { data: { username: user } };
       await axios
-        .delete(`${apiURL}/user/${user}`, body)
+        .delete(`/user/${user}`, body)
         .then((res) => {
           dispatch({
             type: USER_SUCCESS,

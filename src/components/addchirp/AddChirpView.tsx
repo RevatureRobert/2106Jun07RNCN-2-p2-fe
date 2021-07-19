@@ -14,8 +14,11 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import HeaderComponent from '../semantic/HeaderComponent';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import styles from './addchirpstyles';
 
+// the main screen for posting a new chirp
 const AddChirpView: React.FC = () => {
+  // sets input state as a listener, gets current logged in user, sets placeholder dynamically
   const [inputState, setInputState] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth);
   const placeholder = `Posting as @${currentUser.user?.username}`;
@@ -27,6 +30,8 @@ const AddChirpView: React.FC = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={styles.AddChirpViewContainer}>
+          {/* passes input value, current username, and current timestamp to headerComponent
+              which holds the function for posting a chirp */}
           <HeaderComponent
             currentView='addChirp'
             newChirp={{
@@ -35,6 +40,7 @@ const AddChirpView: React.FC = () => {
               timestamp: Date.now().toString(),
             }}
           />
+          {/* main view for posting that includes user image and textbox */}
           <View style={styles.AddChirpContent}>
             <Image
               source={require('../../assets/defaultUserImage.png')}
@@ -44,7 +50,7 @@ const AddChirpView: React.FC = () => {
               multiline={true}
               style={styles.input}
               placeholder={placeholder}
-              placeholderTextColor='#dfdfdf'
+              placeholderTextColor='#e1e1e1'
               // inputState has to be redeclared as a prop for some reason.
               // eslint-disable-next-line
               onChangeText={(input) => {
@@ -53,6 +59,7 @@ const AddChirpView: React.FC = () => {
               value={inputState}
             />
           </View>
+          {/* counter for length of input */}
           <View style={styles.BottomLine}>
             <Text
               style={[
@@ -63,12 +70,13 @@ const AddChirpView: React.FC = () => {
             >
               {inputState.length}/281
             </Text>
+            {/* add image to chirp button */}
             <TouchableOpacity>
-              <View style={styles.Button}>
+              <View>
                 <MaterialCommunityIcons
                   name='image-outline'
                   size={30}
-                  color='#ccc'
+                  color='#e1e1e1'
                 />
               </View>
             </TouchableOpacity>
@@ -78,62 +86,5 @@ const AddChirpView: React.FC = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  AddChirpViewContainer: {
-    color: '#fff',
-    flex: 1,
-    flexDirection: 'column',
-  },
-
-  AddChirpContent: {
-    backgroundColor: '#080808',
-    color: '#fff',
-    flex: 1,
-    flexDirection: 'row',
-    paddingLeft: 25,
-    paddingRight: 25,
-    paddingTop: 25,
-  },
-
-  input: {
-    color: '#fff',
-    padding: 25,
-    borderWidth: 1,
-    marginLeft: 12,
-    borderColor: '#333',
-    textAlign: 'left',
-    borderRadius: 15,
-    textAlignVertical: 'top',
-    flex: 1,
-    paddingTop: 25,
-  },
-
-  BottomLine: {
-    flex: 0.2,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 30,
-    marginLeft: 90,
-    marginRight: 30,
-    marginTop: -10,
-  },
-
-  Button: {},
-
-  Count: {
-    color: '#ccc',
-  },
-
-  MainContainer: {
-    flex: 1,
-    backgroundColor: '#080808',
-  },
-
-  keyboardAvoidingView: {
-    flex: 1,
-  },
-});
 
 export default AddChirpView;
