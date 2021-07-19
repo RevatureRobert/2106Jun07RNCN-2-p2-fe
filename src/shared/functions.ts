@@ -1,9 +1,9 @@
 /**
- * Prints message to console only if environment variable ALERT_VERBOSE is set 
- * to the string 'true'.
+ * Prints console.log(message, value) only if environment variable ALERT is set 
+ * to 'on'.
  * 
- * @param message 
- * @param value 
+ * @param message - string to print to console
+ * @param value (optional) variable to print after string
  */
 export function alert(message:string, value:any){
     const verbose = process.env.ALERT === "on";

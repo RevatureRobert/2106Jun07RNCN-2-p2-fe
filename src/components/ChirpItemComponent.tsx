@@ -22,11 +22,11 @@ const ChirpItemComponent: React.FC<props> = (props) => {
       <View>
         <Image
           source={require('../assets/defaultUserImage.png')}
-          style={{ width: 64, height: 64, borderRadius: 72 / 2 }}
+          style={{ width: 52, height: 52, borderRadius: 72 / 2 }}
         ></Image>
       </View>
       <View style={styles.chirpContent}>
-        <Text style={styles.chirpUser}>@{props.username}</Text>
+        <Text testID={'username-of-chirp'} style={styles.chirpUser}>@{props.username}</Text>
         <Text style={styles.chirpBody}>{props.body}</Text>
         {props.media ? (
           <Image
@@ -35,7 +35,7 @@ const ChirpItemComponent: React.FC<props> = (props) => {
               height: 250,
               marginTop: 10,
               marginBottom: 10,
-              borderRadius: 15
+              borderRadius: 15,
             }}
             resizeMode='cover'
           />
@@ -72,29 +72,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#0f0f0f',
     borderBottomWidth: 1,
     borderBottomColor: '#333',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   chirpContent: {
     paddingLeft: 20,
-    flex: 1
+    flex: 1,
   },
 
   chirpUser: {
     color: '#FFFFFF',
     fontWeight: '700',
-    fontSize: 16
+    fontSize: 16,
   },
 
   chirpBody: {
     fontSize: 16,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
 
   chirpTimestamp: {
     fontSize: 12,
-    color: '#dfdfdf'
-  }
+    color: '#dfdfdf',
+  },
 });
 
 export default ChirpItemComponent;

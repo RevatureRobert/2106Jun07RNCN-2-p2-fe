@@ -14,17 +14,21 @@ describe('Testing ChirpsComponent', () => {
 
     beforeEach( () => {
         const store = mockStore(testState);
-        alert("What is store.getState()? It looks like: \n", store.getState());
+        alert("store.getState() looks like: \n", store.getState());
         wrapper = mount(
             <Provider store={store}>
                 <ChirpsComponent />
 			</Provider>
         );
-        alert('What does wrapper look like? It looks like: \n', wrapper.debug());
+        alert('wrapper looks like: \n', wrapper.debug());
     });
 
-    //dummy test
-    it('guaranteed to succeed if beforeEach() doesn\'t throw errors', () => {
-        expect(wrapper).toBe(wrapper)
+    it('defines the component', () => {
+        expect(wrapper).toBeDefined();
     });
+
+    it('', () => {
+        
+    });
+
 });

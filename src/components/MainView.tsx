@@ -8,10 +8,6 @@ const MainView: React.FC = () => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor='#111111' barStyle='light-content' />
-      <HeaderComponent
-        currentView='allChirps'
-        newChirp={{ username: '', body: '', timestamp: '' }}
-      />
       <BottomNavComponent />
       <AddChirpBtnComponent />
     </View>
@@ -25,9 +21,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({
       ios: { paddingTop: 50 },
-      android: { paddingTop: 15 }
-    })
-  }
+      android: { paddingTop: 15 },
+    }),
+  },
 });
 
 export default MainView;

@@ -12,13 +12,17 @@ import { GetUsersChirps } from '../Redux/actions/ChirpActions';
 import { RootStore } from '../Redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from './LoadingComponent';
+import CurrentUserBoxComponent from './CurrentUserBoxComponent';
 
 const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   const fetchData = () => {
-    dispatch(GetUsersChirps('redoral'));
+    dispatch(
+      GetUsersChirps(currentUser?.username ? currentUser.username : ' ')
+    );
     setIsFetching(false);
   };
 
@@ -42,10 +46,16 @@ const UserChirpsComponent: React.FC = () => {
   );
 
   if (chirpsState.loading === true) {
-    return <LoadingComponent />;
+    return (
+      <>
+        <CurrentUserBoxComponent />
+        <LoadingComponent />
+      </>
+    );
   } else {
     return (
       <View style={styles.chirpsContainer}>
+        <CurrentUserBoxComponent />
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
