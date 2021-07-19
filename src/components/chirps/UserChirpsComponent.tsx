@@ -83,15 +83,4 @@ const UserChirpsComponent: React.FC = () => {
   }
 };
 
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-  chirpsContainer: {
-    flex: 1,
-    backgroundColor: '#141414',
-    overflow: 'hidden'
-  }
-});
-
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default UserChirpsComponent;

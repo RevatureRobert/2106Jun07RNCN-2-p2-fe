@@ -52,12 +52,7 @@ const ChirpsComponent: React.FC = () => {
           newChirp={{
             username: '',
             body: '',
-            timestamp: '',
-<<<<<<< HEAD
-            comments: [],
-            likes: []
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
+            timestamp: ''
           }}
         />
         <LoadingComponent />
@@ -72,12 +67,7 @@ const ChirpsComponent: React.FC = () => {
           newChirp={{
             username: '',
             body: '',
-            timestamp: '',
-<<<<<<< HEAD
-            comments: [],
-            likes: []
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
+            timestamp: ''
           }}
         />
         <FlatList
@@ -96,35 +86,4 @@ const ChirpsComponent: React.FC = () => {
   }
 };
 
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-  chirpsContainer: {
-    flex: 1,
-    backgroundColor: '#111'
-  },
-
-  chirpContent: {
-    paddingLeft: 20,
-    flex: 1
-  },
-
-  chirpUser: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-    fontSize: 16
-  },
-
-  chirpBody: {
-    fontSize: 16,
-    color: '#FFFFFF'
-  },
-
-  chirpTimestamp: {
-    fontSize: 12,
-    color: '#dfdfdf'
-  }
-});
-
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default ChirpsComponent;

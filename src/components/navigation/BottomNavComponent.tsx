@@ -89,13 +89,4 @@ const BottomNavComponent = () => {
   );
 };
 
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-  bottomNavigationContainer: {
-    flex: 1
-  }
-});
-
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default BottomNavComponent;

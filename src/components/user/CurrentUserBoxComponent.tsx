@@ -4,11 +4,7 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight,
-<<<<<<< HEAD
-  Platform
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
+  TouchableHighlight
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -56,68 +52,4 @@ const CurrentUserBoxComponent: React.FC = () => {
   );
 };
 
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-  androidSafeArea: {
-    minHeight: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#1e1e1e',
-    borderRadius: 25,
-    margin: 12,
-    marginBottom: 0,
-    marginTop: -64,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 5
-        },
-        shadowOpacity: 1,
-        shadowRadius: 3.84
-      },
-      android: {
-        elevation: 5
-      }
-    })
-  },
-
-  userImg: {
-    height: 72,
-    borderRadius: 64
-  },
-
-  usernameText: {
-    color: '#fff',
-    fontWeight: '700',
-    marginTop: 12,
-    fontSize: 18
-  },
-
-  bioText: {
-    color: '#fff',
-    fontSize: 14,
-    maxWidth: 200,
-    textAlign: 'center'
-  },
-
-  logOutBtn: {
-    padding: 10,
-    marginTop: 10,
-    backgroundColor: '#ff4242',
-    borderRadius: 25,
-    width: 124
-  },
-
-  logOutText: {
-    fontWeight: '700',
-    color: '#fff',
-    alignSelf: 'center',
-    paddingRight: 10
-  }
-});
-
-=======
->>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default CurrentUserBoxComponent;
