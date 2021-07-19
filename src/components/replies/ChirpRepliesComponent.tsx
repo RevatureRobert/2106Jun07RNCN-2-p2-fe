@@ -6,6 +6,7 @@ import { RootStore } from '../../redux/store/store';
 import { GetReplies } from '../../redux/actions/ChirpActions';
 import LoadingComponent from '../semantic/LoadingComponent';
 import { Text } from 'react-native';
+import PostReplyComponent from './PostReplyComponent';
 
 interface Props {
   username: string;
@@ -61,6 +62,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
         renderItem={renderItem}
         onRefresh={onRefresh}
         refreshing={isFetching}
+        style={{ flex: 1 }}
         keyExtractor={(item) => item.timestamp}
       />
     );

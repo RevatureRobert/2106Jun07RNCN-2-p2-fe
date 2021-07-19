@@ -4,6 +4,7 @@ import styles from './chirpstyles';
 import ChirpItemComponent from './ChirpItemComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
 import ChirpRepliesComponent from '../replies/ChirpRepliesComponent';
+import PostReplyComponent from '../replies/PostReplyComponent';
 
 interface Props {
   route: {
@@ -33,6 +34,7 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         likes={route.params.likes}
         comments={route.params.comments}
       />
+      <PostReplyComponent />
       <ChirpRepliesComponent
         username={route.params.username}
         timestamp={route.params.timestamp}

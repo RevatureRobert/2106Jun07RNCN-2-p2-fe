@@ -119,7 +119,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         </Text>
         <Pressable
           onPress={toggleLike}
-          style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
         >
           <MaterialCommunityIcons
             name={likeState.icon}

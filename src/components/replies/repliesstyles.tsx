@@ -7,6 +7,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#111',
   },
 
+  // PostReplyComponent.tsx
+  input: {
+    color: '#f3f3f3',
+    padding: 15,
+    borderWidth: 1,
+    backgroundColor: '#1b1b1b',
+    borderColor: '#1b1b1b',
+    textAlign: 'left',
+    borderRadius: 15,
+    marginLeft: 5,
+    marginRight: 12,
+    textAlignVertical: 'center',
+    fontSize: 14,
+    flex: 1,
+  },
+
+  postReplyComponent: {
+    flexDirection: 'row',
+    borderColor: '#1b1b1b',
+    borderBottomWidth: 1,
+    padding: 12,
+  },
+
+  postReplyButton: {
+    backgroundColor: '#f4f4f4',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    width: 72,
+    borderRadius: 25,
+  },
+
+  postReplyButtonText: {
+    fontWeight: '700',
+  },
+
   // UserChirpsComponent.tsx
   userChirpsContainer: {
     flex: 1,
@@ -14,14 +51,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
-  // SingleChirpView
-  chirpContainer: {
-    flex: 1,
-  },
-
-  // ChirpItemComponent.tsx
+  // RepliesItemComponent.tsx
   chirpItem: {
-    flex: 0.2,
+    flex: 1,
     flexDirection: 'row',
     paddingLeft: 25,
     paddingRight: 25,
