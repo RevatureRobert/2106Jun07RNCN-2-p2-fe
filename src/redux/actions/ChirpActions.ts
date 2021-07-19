@@ -74,12 +74,11 @@ export const GetUsersChirps =
 
 // makes an api call that posts a chirp
 export const PostChirp = async (chirp: {}) => {
-  console.log(chirp);
   try {
     await axios.post('/chirps', chirp).catch((error) => console.log(error));
     return 'Chirp has been posted.';
   } catch (e) {
-    return 'Error: ' + e;
+    return 'Error addinc chirp: ' + e;
   }
 };
 
@@ -163,7 +162,8 @@ export const PostComment = async (
     await axios
       .put(`/chirps/${username}/${timestamp}/replies`, chirp)
       .catch((error) => console.log(error));
+    return 'Comment has been posted.';
   } catch (e) {
-    console.log(e);
+    return 'Error adding comment: ' + e;
   }
 };

@@ -50,7 +50,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
         <LoadingComponent />
       </>
     );
-  } else if (repliesState.replies && repliesState.replies[0].body) {
+  } else if (repliesState.replies && repliesState.replies.length > 0) {
     return (
       <FlatList
         showsVerticalScrollIndicator={false}

@@ -4,6 +4,7 @@ import styles from './repliesstyles';
 import { PostComment } from '../../redux/actions/ChirpActions';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
+import { useToast } from 'react-native-toast-notifications';
 
 interface Props {
   timestamp: string;
@@ -13,15 +14,18 @@ interface Props {
 const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
   const [inputState, setInputState] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth);
+  const toast = useToast();
 
-  function postComment() {
-    PostComment(timestamp, username, [
+  async function postComment() {
+    const comment = await PostComment(timestamp, username, [
       {
         username: currentUser.user ? currentUser.user.username : '',
         body: inputState,
         timestamp: Date.now().toString(),
       },
     ]);
+
+    toast.show(comment);
   }
 
   return (
