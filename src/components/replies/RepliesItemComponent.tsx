@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
+import { Storage } from 'aws-amplify';
 import styles from './repliesstyles';
 
 interface Props {
@@ -10,13 +11,30 @@ interface Props {
 
 // component that structures and defines the text per chirp in the list
 const RepliesItemComponent: React.FC<Props> = (Props) => {
+  const [image, setImage] = React.useState(null);
+
+  // get the user image
+  const getUserImg = async () => {
+    let filename = `${Props.username}/myimages`;
+    const signUrl: any = await Storage.get(filename);
+
+    setImage(signUrl);
+  };
+
+  React.useEffect(() => {
+    getUserImg();
+    return () => {
+      setImage(null);
+    };
+  }, []);
+
   // main return statement
   return (
     <View style={styles.chirpItem}>
       {/* user image */}
       <View>
         <Image
-          source={require('../../assets/defaultUserImage.png')}
+          source={{ uri: image as any }}
           style={{ width: 48, height: 48, borderRadius: 52 / 2 }}
         ></Image>
       </View>

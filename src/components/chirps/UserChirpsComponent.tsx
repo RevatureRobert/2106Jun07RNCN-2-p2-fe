@@ -28,11 +28,6 @@ const UserChirpsComponent: React.FC = () => {
     fetchData();
   };
 
-  // // calls fetchdata once to populate on component load
-  // React.useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   // gets all chirps by user from the store, sends it to ChirpItemComponent as props
   const chirpsState = useSelector((state: RootStore) => state.chirps);
   const renderItem = ({ item }: { item: any }) => (

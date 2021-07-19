@@ -35,6 +35,9 @@ const SigninComponent: React.FC = () => {
       if (error) {
         dispatch(setError(''));
       }
+      setUsername('');
+      setPassword('');
+      setLoading(false);
     };
   }, [error, dispatch]);
 
