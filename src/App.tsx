@@ -14,7 +14,15 @@ Amplify.configure({
     mandatorySignId: true,
     region: config.cognito.REGION,
     userPoolId: config.cognito.USER_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+    bucketName: config.storage.BUCKET,
+    identityPoolId: config.storage.IDENTITY_POOL_ID
+  },
+  Storage: {
+    bucket: config.storage.BUCKET,
+    // level: level,
+    region: config.storage.REGION,
+    identityPoolId: config.storage.IDENTITY_POOL_ID
   }
 });
 

@@ -12,7 +12,7 @@ import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../redux/store/store';
+import { RootStore } from '../../redux/store/store';
 import { Storage } from 'aws-amplify';
 // import Auth from 'aws-amplify';
 
@@ -100,11 +100,6 @@ export const UserSettingComponent: React.FC = () => {
         return error.response;
       });
   };
-
-  // const setLoading = (progress) => {
-  //   const calculated = parseInt((progress.loaded / progress.total) * 100);
-  //   updatePercentage(calculated); // due to s3 put function scoped
-  // };
 
   const downloadImage = (uri: any) => {
     Storage.get(uri)
