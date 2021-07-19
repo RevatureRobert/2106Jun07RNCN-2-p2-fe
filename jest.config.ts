@@ -7,7 +7,7 @@ module.exports = {
     projects: [
       withEnzyme(require('jest-expo/ios/jest-preset')),
       withEnzyme(require('jest-expo/android/jest-preset')),
-      withEnzyme(require('jest-expo/web/jest-preset')),
+      // withEnzyme(require('jest-expo/web/jest-preset')),
     ],
     preset: "jest-expo-enzyme",
     setupFiles: [

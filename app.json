@@ -27,7 +27,7 @@
       }
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/chirperIcon.png"
     }
   }
 }
