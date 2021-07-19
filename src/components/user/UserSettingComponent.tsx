@@ -51,8 +51,6 @@ export const UserSettingComponent: React.FC = () => {
   };
 
   const fetchImage = async () => {
-    // let imageKeys = await Storage.list('');
-    // console.log('IMAGESkEYS: ', imageKeys);
     let filename = `${currentUser?.username}/myimages`;
     const signUrl: any = await Storage.get(filename);
     // return signUrl;
