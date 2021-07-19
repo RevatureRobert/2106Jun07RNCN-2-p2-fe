@@ -50,23 +50,22 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
         <LoadingComponent />
       </>
     );
-  } else if (repliesState.replies && repliesState.replies.length > 0) {
+  } else {
     return (
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        data={repliesState.replies.sort((a, b) =>
+        data={repliesState.replies?.sort((a, b) =>
           Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
         )}
         renderItem={renderItem}
+        ListEmptyComponent={null}
         onRefresh={onRefresh}
         refreshing={isFetching}
         style={{ flex: 1 }}
         keyExtractor={(item) => item.timestamp}
       />
     );
-  } else {
-    return null;
   }
 };
 
