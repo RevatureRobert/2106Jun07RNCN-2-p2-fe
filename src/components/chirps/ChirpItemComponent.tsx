@@ -52,7 +52,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   }, []);
 
   // function for clicking on the like button
-  async function toggleLike() {
+  function toggleLike() {
     // checks if the chirp is liked, sets function to unlike when button is clicked, updates state
     if (likeState.isLiked === true) {
       setLikeState({

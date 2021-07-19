@@ -151,3 +151,19 @@ export const GetReplies =
       });
     }
   };
+
+// post replies
+export const PostComment = async (
+  timestamp: string,
+  username: string,
+  chirp: [{}]
+) => {
+  console.log(timestamp, username, chirp);
+  try {
+    await axios
+      .put(`/chirps/${username}/${timestamp}/replies`, chirp)
+      .catch((error) => console.log(error));
+  } catch (e) {
+    console.log(e);
+  }
+};
