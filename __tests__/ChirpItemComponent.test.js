@@ -19,14 +19,17 @@ describe('Testing ChirpsComponent', () => {
         const store = mockStore(testState);
         alert("store.getState() looks like: \n", store.getState());
         wrapper = mount(
-            <NavigationContainer>
+            <Provider store={store}>
+              <NavigationContainer>
                 <Stack.Navigator>
-                    <Stack.Screen 
-                        name='chirp'
-                        component={ChirpItemComponent}
-                    />
+                  <Stack.Screen name='chirp'>
+                    { () => {
+                      return (<ChirpItemComponent likes={['']}/>)
+                    }}
+                  </Stack.Screen>
                 </Stack.Navigator>
-            </NavigationContainer>
+              </NavigationContainer>
+            </Provider>
         );
         
         alert('wrapper looks like: \n', wrapper.debug());
