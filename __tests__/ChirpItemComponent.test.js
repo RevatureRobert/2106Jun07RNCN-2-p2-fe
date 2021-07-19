@@ -2,7 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux';
-import ChirpItemComponent from '../src/components/ChirpItemComponent'; 
+import ChirpItemComponent from '../src/components/chirps/ChirpItemComponent'; 
 import thunk from 'redux-thunk';
 import { testState } from '../src/shared/constants';
 import { alert } from '../src/shared/functions';
@@ -17,7 +17,7 @@ describe('Testing ChirpsComponent', () => {
 
     beforeEach( () => {
         const store = mockStore(testState);
-        // alert("store.getState() looks like: \n", store.getState());
+        alert("store.getState() looks like: \n", store.getState());
         wrapper = mount(
             <NavigationContainer>
                 <Stack.Navigator>
