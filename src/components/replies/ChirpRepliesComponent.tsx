@@ -56,7 +56,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         data={repliesState.replies?.sort((a, b) =>
-          Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+          Number(a.timestamp) > Number(b.timestamp) ? 1 : -1
         )}
         renderItem={renderItem}
         ListEmptyComponent={null}

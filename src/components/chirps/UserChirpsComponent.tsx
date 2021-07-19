@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetUsersChirps } from '../../redux/actions/ChirpActions';
+import { GetAllChirps } from '../../redux/actions/ChirpActions';
 import { RootStore } from '../../redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
@@ -18,9 +18,7 @@ const UserChirpsComponent: React.FC = () => {
 
   // gets all chirps by the current user from the db
   const fetchData = () => {
-    dispatch(
-      GetUsersChirps(currentUser?.username ? currentUser.username : ' ')
-    );
+    dispatch(GetAllChirps());
     setIsFetching(false);
   };
 
@@ -30,10 +28,10 @@ const UserChirpsComponent: React.FC = () => {
     fetchData();
   };
 
-  // calls fetchdata once to populate on component load
-  React.useEffect(() => {
-    fetchData();
-  }, []);
+  // // calls fetchdata once to populate on component load
+  // React.useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   // gets all chirps by user from the store, sends it to ChirpItemComponent as props
   const chirpsState = useSelector((state: RootStore) => state.chirps);
@@ -69,9 +67,11 @@ const UserChirpsComponent: React.FC = () => {
           <FlatList
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            data={chirpsState.chirps?.sort((a, b) =>
-              Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
-            )}
+            data={chirpsState.chirps
+              ?.sort((a, b) =>
+                Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+              )
+              .filter((user) => user.username === currentUser?.username)}
             renderItem={renderItem}
             onRefresh={onRefresh}
             refreshing={isFetching}
