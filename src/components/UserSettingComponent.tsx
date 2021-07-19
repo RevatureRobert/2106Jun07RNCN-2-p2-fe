@@ -12,7 +12,7 @@ import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
-import { RootStore } from '../Redux/store/store';
+import { RootStore } from '../redux/store/store';
 import { Storage } from 'aws-amplify';
 // import Auth from 'aws-amplify';
 

@@ -6,7 +6,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  Platform,
+  Platform
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -36,7 +36,7 @@ const CurrentUserBoxComponent: React.FC = () => {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            alignContent: 'center',
+            alignContent: 'center'
           }}
         >
           <MaterialCommunityIcons name='logout' size={18} color='#fff' />
@@ -62,34 +62,34 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
-          height: 5,
+          height: 5
         },
         shadowOpacity: 1,
-        shadowRadius: 3.84,
+        shadowRadius: 3.84
       },
       android: {
-        elevation: 5,
-      },
-    }),
+        elevation: 5
+      }
+    })
   },
 
   userImg: {
     height: 72,
-    borderRadius: 64,
+    borderRadius: 64
   },
 
   usernameText: {
     color: '#fff',
     fontWeight: '700',
     marginTop: 12,
-    fontSize: 18,
+    fontSize: 18
   },
 
   bioText: {
     color: '#fff',
     fontSize: 14,
     maxWidth: 200,
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   logOutBtn: {
@@ -97,15 +97,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: '#ff4242',
     borderRadius: 25,
-    width: 124,
+    width: 124
   },
 
   logOutText: {
     fontWeight: '700',
     color: '#fff',
     alignSelf: 'center',
-    paddingRight: 10,
-  },
+    paddingRight: 10
+  }
 });
 
 export default CurrentUserBoxComponent;

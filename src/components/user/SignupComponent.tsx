@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
   KeyboardAvoidingView,
-  Platform,
+  Platform
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -67,7 +67,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
     dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.',
+        bio: 'bio.'
       })
     );
 
@@ -87,7 +87,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
             source={require('../../assets/chirperIcon.png')}
             style={{
               height: 48,
-              marginBottom: 10,
+              marginBottom: 10
             }}
             resizeMode='contain'
           />
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   input: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   },
 
   loginBtn: {
@@ -154,18 +154,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#f3f3f3',
     flexDirection: 'row',
 
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
 
   loginText: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 22,
-  },
+    marginTop: 22
+  }
 });
 
 export default SignupComponent;

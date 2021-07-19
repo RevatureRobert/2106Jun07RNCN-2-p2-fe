@@ -9,7 +9,7 @@ import {
   StatusBar,
   Image,
   KeyboardAvoidingView,
-  Platform,
+  Platform
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../../redux/actions/AuthActions';
@@ -76,7 +76,7 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
           style={{
             height: 48,
             alignSelf: 'center',
-            marginBottom: 10,
+            marginBottom: 10
           }}
           resizeMode='contain'
         />
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   input: {
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   },
 
   loginBtn: {
@@ -131,18 +131,18 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
 
   loginText: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 22,
-  },
+    marginTop: 22
+  }
 });
 
 export default SigninComponent;

@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
     backgroundColor: '#141414',
-    overflow: 'hidden',
-  },
+    overflow: 'hidden'
+  }
 });
 
 export default UserChirpsComponent;

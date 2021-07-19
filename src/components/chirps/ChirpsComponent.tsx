@@ -47,7 +47,7 @@ const ChirpsComponent: React.FC = () => {
             body: '',
             timestamp: '',
             comments: [],
-            likes: [],
+            likes: []
           }}
         />
         <LoadingComponent />
@@ -63,7 +63,7 @@ const ChirpsComponent: React.FC = () => {
             body: '',
             timestamp: '',
             comments: [],
-            likes: [],
+            likes: []
           }}
         />
         <FlatList
@@ -85,29 +85,29 @@ const ChirpsComponent: React.FC = () => {
 const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
-    backgroundColor: '#111',
+    backgroundColor: '#111'
   },
 
   chirpContent: {
     paddingLeft: 20,
-    flex: 1,
+    flex: 1
   },
 
   chirpUser: {
     color: '#FFFFFF',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 16
   },
 
   chirpBody: {
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#FFFFFF'
   },
 
   chirpTimestamp: {
     fontSize: 12,
-    color: '#dfdfdf',
-  },
+    color: '#dfdfdf'
+  }
 });
 
 export default ChirpsComponent;
