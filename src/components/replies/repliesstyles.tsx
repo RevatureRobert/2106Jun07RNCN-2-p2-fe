@@ -41,16 +41,16 @@ const styles = StyleSheet.create({
   chirpUser: {
     color: '#f3f3f3',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 14,
   },
 
   chirpBody: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#ffffff',
   },
 
   chirpTimestamp: {
-    fontSize: 12,
+    fontSize: 10,
     color: '#e1e1e1',
   },
 });

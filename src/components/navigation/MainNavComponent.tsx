@@ -6,6 +6,7 @@ import MainView from '../MainView';
 import AddChirpView from '../addchirp/AddChirpView';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
+import SingleChirpView from '../chirps/SingleChirpView';
 
 // define stack screens
 type RootStackParamList = {
@@ -54,7 +55,7 @@ const MainNavComponent: React.FC = () => {
               options={{
                 gestureDirection: 'horizontal',
               }}
-              component={AddChirpView}
+              component={SingleChirpView}
             />
           </>
         ) : (

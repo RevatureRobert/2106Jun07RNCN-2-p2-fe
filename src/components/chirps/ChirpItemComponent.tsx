@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
 import styles from './chirpstyles';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   username: string;
@@ -26,6 +27,7 @@ interface Props {
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
   const [likeState, setLikeState] = React.useState({
@@ -82,7 +84,12 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
 
   // main return statement
   return (
-    <TouchableOpacity onPress={() => null} style={styles.chirpItem}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('chirp', Props);
+      }}
+      style={styles.chirpItem}
+    >
       {/* user image */}
       <View>
         <Image
@@ -112,7 +119,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         </Text>
         <Pressable
           onPress={toggleLike}
-          style={{ flex: 1, flexDirection: 'row', alignContent: 'center' }}
+          style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
         >
           <MaterialCommunityIcons
             name={likeState.icon}
@@ -120,9 +127,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
             size={20}
             style={{ paddingTop: 5 }}
           ></MaterialCommunityIcons>
-          <Text
-            style={{ color: '#e1e1e1', alignSelf: 'center', paddingLeft: 5 }}
-          >
+          <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
             {likeState.count}
           </Text>
         </Pressable>

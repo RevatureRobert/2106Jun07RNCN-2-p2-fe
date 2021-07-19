@@ -5,8 +5,13 @@ import {
   CHIRPS_FAIL,
   CHIRPS_LOADING,
   CHIRPS_SUCCESS,
-  CHIRPS_POST,
 } from '../types/ChirpActionsTypes';
+import {
+  RepliesActionTypes,
+  REPLIES_FAIL,
+  REPLIES_LOADING,
+  REPLIES_SUCCESS,
+} from '../types/RepliesActionTypes';
 
 // makes an api call that gets all chirps
 export const GetAllChirps =
@@ -116,7 +121,7 @@ export const LikeChirp = async (timestamp: string, username: string) => {
   }
 };
 
-// unlick chirp
+// unlike chirp
 export const UnlikeChirp = async (timestamp: string, username: string) => {
   try {
     await axios
@@ -126,3 +131,23 @@ export const UnlikeChirp = async (timestamp: string, username: string) => {
     console.log(e);
   }
 };
+
+// get replies
+export const GetReplies =
+  (timestamp: string, username: string) =>
+  async (dispatch: Dispatch<RepliesActionTypes>) => {
+    try {
+      dispatch({
+        type: REPLIES_LOADING,
+      });
+      const res = await axios.get(`/chirps/${username}/${timestamp}/replies`);
+      dispatch({
+        type: REPLIES_SUCCESS,
+        payload: res.data.Items[0].comments,
+      });
+    } catch (e) {
+      dispatch({
+        type: REPLIES_FAIL,
+      });
+    }
+  };

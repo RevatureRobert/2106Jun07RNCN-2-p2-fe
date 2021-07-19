@@ -59,8 +59,21 @@ const HeaderComponent: React.FC<Props> = (Props) => {
         </View>
       );
     // displays current logged in user and chirper logo
-    case 'userView':
-      return <></>;
+    case 'singleChirp':
+      return (
+        <View style={styles.headerContainer}>
+          <TouchableHighlight
+            underlayColor='#111'
+            onPress={() => navigation.goBack()}
+          >
+            <MaterialCommunityIcons
+              name='keyboard-backspace'
+              color='#fff'
+              size={24}
+            />
+          </TouchableHighlight>
+        </View>
+      );
     default:
       return (
         <View style={styles.headerContainer}>
