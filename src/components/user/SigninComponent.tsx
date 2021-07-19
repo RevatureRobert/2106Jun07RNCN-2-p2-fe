@@ -1,7 +1,5 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   Text,
@@ -15,38 +13,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../../redux/actions/AuthActions';
 import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
+import styles from './userstyles';
 
-type RootStackParamList = {
-  home: undefined;
-  compose: undefined;
-  chirp: undefined;
-  login: undefined;
-  signup: undefined;
-};
-
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'login'>;
-
-type ProfileScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'login'
->;
-
-type Props = {
-  route: ProfileScreenRouteProp;
-  navigation: ProfileScreenNavigationProp;
-};
-
-const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
+// main sign in component that shows when user isnt logged in
+const SigninComponent: React.FC = () => {
+  // defines username, password, and loading states for input
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  // gets error from state
   const { error } = useSelector((state: RootStore) => state.auth);
-
+  // init navigation and dispatch
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  // checks if there is an error with auth
   useEffect(() => {
     return () => {
       if (error) {
@@ -54,6 +37,8 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
       }
     };
   }, [error, dispatch]);
+
+  // log in button listener
   const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -62,15 +47,18 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
     console.log(password);
   };
 
+  // checks if component is loading, displays loadingcomponent
   if (loading === true) {
     return <LoadingComponent />;
   } else {
+    // returns sign in form
     return (
       <KeyboardAvoidingView
         style={styles.signInView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <StatusBar backgroundColor='#111111' barStyle='light-content' />
+        {/* chirper logo */}
         <Image
           source={require('../../assets/chirperLogo.png')}
           style={{
@@ -80,6 +68,7 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
           }}
           resizeMode='contain'
         />
+        {/* main form */}
         <TextInput
           placeholder='Username'
           placeholderTextColor='#dfdfdf'
@@ -93,6 +82,7 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
           onChangeText={(inputPassword) => setPassword(inputPassword)}
           style={styles.input}
         />
+        {/* log in button and sign up text */}
         <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
           <Text style={styles.loginText}>Log in</Text>
           <MaterialCommunityIcons name='chevron-right' size={18} />
@@ -104,45 +94,5 @@ const SigninComponent: React.FC<Props> = ({ route, navigation }) => {
     );
   }
 };
-
-const styles = StyleSheet.create({
-  signInView: {
-    backgroundColor: '#111',
-    padding: 15,
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-
-  input: {
-    color: '#fff',
-    borderWidth: 1,
-    borderColor: '#333',
-    marginTop: 5,
-    marginBottom: 5,
-    borderRadius: 15,
-    padding: 10,
-  },
-
-  loginBtn: {
-    padding: 15,
-    marginTop: 10,
-    borderRadius: 15,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-
-    justifyContent: 'space-between',
-  },
-
-  loginText: {
-    fontWeight: '700',
-  },
-
-  signInText: {
-    alignSelf: 'center',
-    color: '#dfdfdf',
-    marginTop: 10,
-  },
-});
 
 export default SigninComponent;
