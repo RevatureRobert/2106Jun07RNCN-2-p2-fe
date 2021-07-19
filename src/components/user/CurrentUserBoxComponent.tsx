@@ -28,7 +28,6 @@ const CurrentUserBoxComponent: React.FC = () => {
   const getUserImg = async () => {
     let filename = `${currentUser?.username}/myimages`;
     const signUrl: any = await Storage.get(filename);
-    // return signUrl;
 
     setImage(signUrl);
   };
