@@ -3,6 +3,7 @@ import ChirpsComponent from '../chirps/ChirpsComponent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserChirpsComponent from '../chirps/UserChirpsComponent';
+import { UserSettingComponent } from '../user/UserSettingComponent';
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();
@@ -19,8 +20,8 @@ const BottomNavComponent = () => {
           borderTopWidth: 0,
           borderBottomWidth: 0,
           marginBottom: 0,
-          height: 64,
-        },
+          height: 64
+        }
       }}
     >
       {/* all chirps feed */}
@@ -36,7 +37,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user profile */}
@@ -52,7 +53,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user settings */}
@@ -67,7 +68,21 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
+        }}
+      />
+      <Tab.Screen
+        name='gg'
+        component={UserSettingComponent}
+        options={{
+          tabBarLabel: 'gg',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='account-cog-outline'
+              color={color}
+              size={size}
+            />
+          )
         }}
       />
     </Tab.Navigator>

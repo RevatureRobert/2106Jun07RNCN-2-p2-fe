@@ -3,5 +3,10 @@
         "REGION":"us-east-2",
         "USER_POOL_ID":"us-east-2_cCO2yqEgF",
         "APP_CLIENT_ID":"3r81ik855t2dh2i94hbp8uicpd"
+    },
+    "storage": {
+        "BUCKET": "chirps-bucket-for-pics",
+        "IDENTITY_POOL_ID": "us-east-2:30220f62-733e-4c11-98c3-71427fcc0c44",
+        "REGION": "us-east-2"
     }
 }

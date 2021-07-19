@@ -4,7 +4,7 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight,
+  TouchableHighlight
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -41,7 +41,7 @@ const CurrentUserBoxComponent: React.FC = () => {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            alignContent: 'center',
+            alignContent: 'center'
           }}
         >
           <MaterialCommunityIcons name='logout' size={18} color='#fff' />

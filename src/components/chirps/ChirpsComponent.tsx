@@ -52,7 +52,7 @@ const ChirpsComponent: React.FC = () => {
           newChirp={{
             username: '',
             body: '',
-            timestamp: '',
+            timestamp: ''
           }}
         />
         <LoadingComponent />
@@ -67,7 +67,7 @@ const ChirpsComponent: React.FC = () => {
           newChirp={{
             username: '',
             body: '',
-            timestamp: '',
+            timestamp: ''
           }}
         />
         <FlatList

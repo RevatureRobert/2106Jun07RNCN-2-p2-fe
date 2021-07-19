@@ -8,8 +8,12 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
   KeyboardAvoidingView,
+<<<<<<< HEAD
+  Platform
+=======
   Platform,
   StatusBar,
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -56,7 +60,7 @@ const SignupComponent: React.FC = () => {
     dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.',
+        bio: 'bio.'
       })
     );
 
@@ -80,7 +84,7 @@ const SignupComponent: React.FC = () => {
             source={require('../../assets/chirperIcon.png')}
             style={{
               height: 48,
-              marginBottom: 10,
+              marginBottom: 10
             }}
             resizeMode='contain'
           />
@@ -123,4 +127,46 @@ const SignupComponent: React.FC = () => {
   }
 };
 
+<<<<<<< HEAD
+const styles = StyleSheet.create({
+  signInView: {
+    backgroundColor: '#141414',
+    padding: 15,
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
+
+  input: {
+    color: '#1b1b1b',
+    backgroundColor: '#222',
+    marginTop: 5,
+    marginBottom: 5,
+    borderRadius: 15,
+    padding: 10
+  },
+
+  loginBtn: {
+    padding: 15,
+    marginTop: 22,
+    borderRadius: 15,
+    backgroundColor: '#f3f3f3',
+    flexDirection: 'row',
+
+    justifyContent: 'space-between'
+  },
+
+  loginText: {
+    fontWeight: '700'
+  },
+
+  signInText: {
+    alignSelf: 'center',
+    color: '#dfdfdf',
+    marginTop: 22
+  }
+});
+
+=======
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default SignupComponent;
