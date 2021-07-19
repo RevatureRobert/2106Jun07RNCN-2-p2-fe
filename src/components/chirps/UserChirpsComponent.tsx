@@ -6,12 +6,17 @@ import { RootStore } from '../../redux/store/store';
 import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
 import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
+import styles from './chirpstyles';
 
+// component that holds a list of all chirps by a user
 const UserChirpsComponent: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
+
+  // gets the current user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
 
+  // gets all chirps by the current user from the db
   const fetchData = () => {
     dispatch(
       GetUsersChirps(currentUser?.username ? currentUser.username : ' ')
@@ -19,15 +24,18 @@ const UserChirpsComponent: React.FC = () => {
     setIsFetching(false);
   };
 
+  // refresh function when pulling down on flatlist
   const onRefresh = () => {
     setIsFetching(true);
     fetchData();
   };
 
+  // calls fetchdata once to populate on component load
   React.useEffect(() => {
     fetchData();
   }, []);
 
+  // gets all chirps by user from the store, sends it to ChirpItemComponent as props
   const chirpsState = useSelector((state: RootStore) => state.chirps);
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
@@ -40,22 +48,24 @@ const UserChirpsComponent: React.FC = () => {
     />
   );
 
+  // displays loading screen while chirps is fetching
   if (chirpsState.loading === true) {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
         <CurrentUserBoxComponent />
-        <View style={styles.chirpsContainer}>
+        <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
       </View>
     );
   } else {
+    // main view after loading, displays HeaderComponent and FlatList
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
         <CurrentUserBoxComponent />
-        <View style={styles.chirpsContainer}>
+        <View style={styles.userChirpsContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
@@ -73,6 +83,7 @@ const UserChirpsComponent: React.FC = () => {
   }
 };
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   chirpsContainer: {
     flex: 1,
@@ -81,4 +92,6 @@ const styles = StyleSheet.create({
   }
 });
 
+=======
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default UserChirpsComponent;

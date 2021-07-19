@@ -8,46 +8,37 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
   KeyboardAvoidingView,
+<<<<<<< HEAD
   Platform
+=======
+  Platform,
+  StatusBar,
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
 import { CreateUser } from '../../redux/actions/UserAPIActions';
 import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
+import styles from './userstyles';
 
-type RootStackParamList = {
-  home: undefined;
-  compose: undefined;
-  chirp: undefined;
-  login: undefined;
-  signup: undefined;
-};
-
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'signup'>;
-
-type ProfileScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'signup'
->;
-
-type Props = {
-  route: ProfileScreenRouteProp;
-  navigation: ProfileScreenNavigationProp;
-};
-
-const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
+// main sign out component that shows when user isnt logged in
+const SignupComponent: React.FC = () => {
+  // username, password, email, loading states
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
 
+  // init navigation and dispatch
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
+  // checks if there is an error withauth
   useEffect(() => {
     return () => {
       if (error) {
@@ -55,6 +46,8 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
       }
     };
   }, [error, dispatch]);
+
+  // sign up button listener
   const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -74,14 +67,18 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
     navigation.navigate('login');
   };
 
+  // checks if component is loading, displays loadingcomponent
   if (loading === true) {
     return <LoadingComponent />;
   } else {
+    // returns sign up form
     return (
       <KeyboardAvoidingView
         style={styles.signInView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
+        <StatusBar backgroundColor='#111111' barStyle='light-content' />
+        {/* chirper logo and text */}
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image
             source={require('../../assets/chirperIcon.png')}
@@ -95,6 +92,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
             Sign up for chirper
           </Text>
         </View>
+        {/* main form */}
         <TextInput
           placeholder='Username'
           placeholderTextColor='#dfdfdf'
@@ -114,7 +112,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
           onChangeText={(inputPassword) => setPassword(inputPassword)}
           style={styles.input}
         />
-        {/* </View> */}
+        {/* sign up button and login text */}
         <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
           <Text style={styles.loginText}>Sign up</Text>
           <MaterialCommunityIcons name='chevron-right' size={18} />
@@ -129,6 +127,7 @@ const SignupComponent: React.FC<Props> = ({ navigation, route }) => {
   }
 };
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   signInView: {
     backgroundColor: '#141414',
@@ -168,4 +167,6 @@ const styles = StyleSheet.create({
   }
 });
 
+=======
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default SignupComponent;

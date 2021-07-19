@@ -1,35 +1,44 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   View,
   Image,
   Text,
   TouchableHighlight,
+<<<<<<< HEAD
   Platform
+=======
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { logout } from '../../redux/actions/AuthActions';
+import styles from './userstyles';
 
+// current user box component, displays user info and log out button
 const CurrentUserBoxComponent: React.FC = () => {
+  // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const dispatch = useDispatch();
 
+  // log out function
   const logOutPress = () => {
     dispatch(logout());
   };
 
   return (
     <SafeAreaView style={styles.androidSafeArea}>
+      {/* user profile picture */}
       <Image
         source={require('../../assets/defaultUserImage.png')}
         style={styles.userImg}
         resizeMode='contain'
       ></Image>
+      {/* username and bio */}
       <Text style={styles.usernameText}>@{currentUser?.username}</Text>
       <Text style={styles.bioText}>Paranormal Investigator at Chirper 👻</Text>
+      {/* log out button */}
       <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
         <View
           style={{
@@ -47,6 +56,7 @@ const CurrentUserBoxComponent: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   androidSafeArea: {
     minHeight: 250,
@@ -108,4 +118,6 @@ const styles = StyleSheet.create({
   }
 });
 
+=======
+>>>>>>> 422c11c2294df6a34887c9e38b7a5b4c6fc6cbf5
 export default CurrentUserBoxComponent;
