@@ -137,6 +137,15 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
             {likeState.count}
           </Text>
+          <MaterialCommunityIcons
+            name='comment-outline'
+            color='#e1e1e1'
+            size={20}
+            style={{ paddingTop: 5, paddingLeft: 12 }}
+          ></MaterialCommunityIcons>
+          <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
+            {Props.comments.length}
+          </Text>
         </Pressable>
       </View>
       <View style={{ alignContent: 'center' }}>
