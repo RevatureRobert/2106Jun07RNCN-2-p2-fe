@@ -9,7 +9,7 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
+  StatusBar
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -56,7 +56,7 @@ const SignupComponent: React.FC = () => {
     dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.',
+        bio: 'bio.'
       })
     );
 
@@ -80,7 +80,7 @@ const SignupComponent: React.FC = () => {
             source={require('../../assets/chirperIcon.png')}
             style={{
               height: 48,
-              marginBottom: 10,
+              marginBottom: 10
             }}
             resizeMode='contain'
           />
@@ -94,6 +94,7 @@ const SignupComponent: React.FC = () => {
           placeholderTextColor='#dfdfdf'
           onChangeText={(inputName) => setUsername(inputName)}
           style={styles.input}
+          autoCapitalize='none'
         />
         <TextInput
           placeholder='Email'
