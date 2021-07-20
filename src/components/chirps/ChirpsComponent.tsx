@@ -32,8 +32,10 @@ const ChirpsComponent: React.FC = () => {
 
   // gets all chirps from the store, sends it to ChirpItemComponent as props
   const chirpsState = useSelector((state: RootStore) => state.chirps);
+
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
+      userImg={item.userImg}
       username={item.username}
       body={item.body}
       comments={item.comments}
@@ -50,9 +52,10 @@ const ChirpsComponent: React.FC = () => {
         <HeaderComponent
           currentView='allChirps'
           newChirp={{
+            userImg: '',
             username: '',
             body: '',
-            timestamp: ''
+            timestamp: '',
           }}
         />
         <LoadingComponent />
@@ -65,9 +68,10 @@ const ChirpsComponent: React.FC = () => {
         <HeaderComponent
           currentView='allChirps'
           newChirp={{
+            userImg: '',
             username: '',
             body: '',
-            timestamp: ''
+            timestamp: '',
           }}
         />
         <FlatList

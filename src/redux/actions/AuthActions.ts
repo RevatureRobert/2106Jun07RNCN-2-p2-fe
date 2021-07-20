@@ -27,6 +27,7 @@ export const signIn = (
         const userData: User = {
           username: res.getUsername(),
           password: data.password,
+          picture: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${res.getUsername()}/myimages`,
         };
         dispatch({
           type: SET_USER,

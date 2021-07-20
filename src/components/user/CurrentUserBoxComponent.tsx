@@ -16,7 +16,6 @@ import styles from './userstyles';
 // current user box component, displays user info and log out button
 const CurrentUserBoxComponent: React.FC = () => {
   // gets current logged in user from store
-  const [image, setImage] = React.useState(null);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const dispatch = useDispatch();
 
@@ -25,22 +24,11 @@ const CurrentUserBoxComponent: React.FC = () => {
     dispatch(logout());
   };
 
-  const getUserImg = async () => {
-    let filename = `${currentUser?.username}/myimages`;
-    const signUrl: any = await Storage.get(filename);
-
-    setImage(signUrl);
-  };
-
-  React.useEffect(() => {
-    getUserImg();
-  }, []);
-
   return (
     <SafeAreaView style={styles.androidSafeArea}>
       {/* user profile picture */}
       <Image
-        source={{ uri: image as any }}
+        source={{ uri: currentUser?.picture }}
         style={{ width: 72, height: 72, borderRadius: 72 / 2 }}
         // style={styles.userImg}
         // resizeMode='contain'

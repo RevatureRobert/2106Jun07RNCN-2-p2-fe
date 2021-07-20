@@ -38,6 +38,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
   const repliesState = useSelector((state: RootStore) => state.replies);
   const renderItem = ({ item }: { item: any }) => (
     <RepliesItemComponent
+      userImg={item.userImg}
       username={item.username}
       body={item.body}
       timestamp={item.timestamp}

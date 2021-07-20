@@ -12,6 +12,7 @@ import styles from './semanticstyles';
 interface Props {
   currentView: string;
   newChirp: {
+    userImg: string;
     username: string;
     body: string;
     timestamp: string;
@@ -27,15 +28,6 @@ const HeaderComponent: React.FC<Props> = (Props) => {
 
   // gets the current user from the store
   const user = useSelector((state: RootStore) => state.auth);
-  const [image, setImage] = React.useState(null);
-
-  // get the user image
-  const getUserImg = async () => {
-    let filename = `${user.user?.username}/myimages`;
-    const signUrl: any = await Storage.get(filename);
-
-    setImage(signUrl);
-  };
 
   // post chirp function for when in AddChirpView
   async function postChirp() {
@@ -43,13 +35,6 @@ const HeaderComponent: React.FC<Props> = (Props) => {
     toast.show(chirp);
     navigation.goBack();
   }
-
-  React.useEffect(() => {
-    getUserImg();
-    return () => {
-      setImage(null);
-    };
-  }, []);
 
   // checks currentView
   switch (Props.currentView) {
@@ -97,11 +82,11 @@ const HeaderComponent: React.FC<Props> = (Props) => {
         <View style={styles.headerContainer}>
           <View style={{ flexDirection: 'row' }}>
             <Image
-              source={{ uri: image as any }}
+              source={{ uri: user.user?.picture }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
             ></Image>
             <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>
-              @{user.user?.username}
+              Hello, @{user.user?.username}.
             </Text>
           </View>
           <Image

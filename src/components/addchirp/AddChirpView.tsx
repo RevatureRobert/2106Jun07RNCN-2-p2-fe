@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView
+  SafeAreaView,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -37,10 +37,11 @@ const AddChirpView: React.FC = () => {
           <HeaderComponent
             currentView='addChirp'
             newChirp={{
+              userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
               username: currentUser.user ? currentUser.user?.username : '',
               body: inputState,
               timestamp: Date.now().toString(),
-              media: imageURL
+              media: imageURL,
             }}
           />
           {/* main view for posting that includes user image and textbox */}
@@ -68,7 +69,7 @@ const AddChirpView: React.FC = () => {
               style={[
                 styles.Count,
                 inputState.length > 225 ? { color: '#D4B16A' } : null,
-                inputState.length > 281 ? { color: '#D46A6A' } : null
+                inputState.length > 281 ? { color: '#D46A6A' } : null,
               ]}
             >
               {inputState.length}/281

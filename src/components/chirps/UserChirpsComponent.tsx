@@ -32,6 +32,7 @@ const UserChirpsComponent: React.FC = () => {
   const chirpsState = useSelector((state: RootStore) => state.chirps);
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
+      userImg={item.userImg}
       username={item.username}
       body={item.body}
       likes={item.likes}

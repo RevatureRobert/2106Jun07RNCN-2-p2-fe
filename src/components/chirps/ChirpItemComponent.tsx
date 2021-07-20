@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Pressable
+  Pressable,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
+  userImg: string;
   username: string;
   body: string;
   comments: string[];
@@ -28,7 +29,6 @@ interface Props {
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
-  const [image, setImage] = React.useState(null);
   const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
@@ -36,21 +36,11 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     isLiked: false,
     icon: 'heart-outline',
     color: '#e1e1e1',
-    count: Props.likes.length - 1
+    count: Props.likes.length - 1,
   });
-
-  // get the user image
-  const getUserImg = async () => {
-    let filename = `${Props.username}/myimages`;
-    const signUrl: any = await Storage.get(filename);
-
-    setImage(signUrl);
-  };
 
   // checks if user has already liked the chirp
   React.useEffect(() => {
-    getUserImg();
-
     if (
       Props.likes.includes(currentUser?.username ? currentUser.username : '')
     ) {
@@ -58,13 +48,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length - 1
+        count: Props.likes.length - 1,
       });
     }
-
-    return () => {
-      setImage(null);
-    };
   }, []);
 
   // function for clicking on the like button
@@ -75,7 +61,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: Props.likes.length - 1
+        count: Props.likes.length - 1,
       });
 
       UnlikeChirp(
@@ -88,7 +74,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length
+        count: Props.likes.length,
       });
 
       LikeChirp(
@@ -109,7 +95,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={{ uri: image as any }}
+          source={{ uri: Props.userImg }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
@@ -125,7 +111,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
               height: 250,
               marginTop: 10,
               marginBottom: 10,
-              borderRadius: 15
+              borderRadius: 15,
             }}
             resizeMode='cover'
           />
@@ -137,7 +123,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           onPress={toggleLike}
           style={{
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <MaterialCommunityIcons

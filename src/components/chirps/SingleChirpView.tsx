@@ -9,6 +9,7 @@ import PostReplyComponent from '../replies/PostReplyComponent';
 interface Props {
   route: {
     params: {
+      userImg: string;
       username: string;
       body: string;
       comments: string[];
@@ -25,9 +26,10 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
     <SafeAreaView style={styles.chirpContainer}>
       <HeaderComponent
         currentView='singleChirp'
-        newChirp={{ username: '', body: '', timestamp: '' }}
+        newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
       />
       <ChirpItemComponent
+        userImg={route.params.userImg}
         username={route.params.username}
         body={route.params.body}
         timestamp={route.params.timestamp}
