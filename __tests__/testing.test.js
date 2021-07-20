@@ -24,12 +24,12 @@ describe('Experimenting with Ezynme in ReactNative', () => {
     /*
     bizarrely, find() tends to return duplicates. See following for similar 
     issue: https://github.com/enzymejs/enzyme/issues/1253. So, to remove the 
-    duplicate find, we just take the last() one. first() also works
+    duplicate find, we just take the last() one.
     */
     it('should find the text by testID', () => {
         const thing = wrapper.find( { testID: 'fuck-you' } ).last();
         alert('thing.debug() looks like: \n', thing.debug());
-        alert('thing.text() looks like: ', thing.text());
+        alert('thing.text() looks like: \n', thing.text());
         expect(thing.text()).toBe('fuck you');
     });
 

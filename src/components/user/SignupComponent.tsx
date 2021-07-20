@@ -9,11 +9,7 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-<<<<<<< HEAD
-  StatusBar,
-=======
   StatusBar
->>>>>>> dev-ref
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';

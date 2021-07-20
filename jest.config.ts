@@ -5,9 +5,9 @@ module.exports = {
     //Configure Enzyme (see https://npm.io/package/jest-expo-enzyme)
     //==========================================================================
     projects: [
-      withEnzyme(require('jest-expo/ios/jest-preset')),
+      // withEnzyme(require('jest-expo/ios/jest-preset')),
       withEnzyme(require('jest-expo/android/jest-preset')),
-      withEnzyme(require('jest-expo/web/jest-preset')),
+      // withEnzyme(require('jest-expo/web/jest-preset')),
     ],
     preset: "jest-expo-enzyme",
     setupFiles: [
