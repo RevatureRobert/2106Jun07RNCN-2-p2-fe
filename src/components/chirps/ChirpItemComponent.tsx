@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Pressable,
+  Pressable
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
@@ -34,7 +34,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     isLiked: false,
     icon: 'heart-outline',
     color: '#e1e1e1',
-    count: Props.likes.length - 1,
+    count: Props.likes.length - 1
   });
 
   // checks if user has already liked the chirp
@@ -46,7 +46,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length - 1,
+        count: Props.likes.length - 1
       });
     }
   }, []);
@@ -59,7 +59,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: Props.likes.length - 1,
+        count: Props.likes.length - 1
       });
 
       UnlikeChirp(
@@ -72,7 +72,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length,
+        count: Props.likes.length
       });
 
       LikeChirp(
@@ -102,14 +102,14 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {/* checks if chirp has an image */}
-        {Props.media ? (
+        {Props.media !== '' ? (
           <Image
             source={{ uri: Props.media }}
             style={{
               height: 250,
               marginTop: 10,
               marginBottom: 10,
-              borderRadius: 15,
+              borderRadius: 15
             }}
             resizeMode='cover'
           />
@@ -121,7 +121,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           onPress={toggleLike}
           style={{
             flexDirection: 'row',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <MaterialCommunityIcons

@@ -14,6 +14,7 @@ interface Props {
     username: string;
     body: string;
     timestamp: string;
+    media?: string;
   };
 }
 

@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
+  SafeAreaView
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import HeaderComponent from '../semantic/HeaderComponent';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './addchirpstyles';
+import { ImageUploadComponent } from './ImageUploadComponent';
 
 // the main screen for posting a new chirp
 const AddChirpView: React.FC = () => {
   // sets input state as a listener, gets current logged in user, sets placeholder dynamically
   const [inputState, setInputState] = React.useState('');
+  const [imageURL, setImageURL] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth);
   const placeholder = `Posting as @${currentUser.user?.username}`;
 
@@ -38,6 +40,7 @@ const AddChirpView: React.FC = () => {
               username: currentUser.user ? currentUser.user?.username : '',
               body: inputState,
               timestamp: Date.now().toString(),
+              media: imageURL
             }}
           />
           {/* main view for posting that includes user image and textbox */}
@@ -65,21 +68,16 @@ const AddChirpView: React.FC = () => {
               style={[
                 styles.Count,
                 inputState.length > 225 ? { color: '#D4B16A' } : null,
-                inputState.length > 281 ? { color: '#D46A6A' } : null,
+                inputState.length > 281 ? { color: '#D46A6A' } : null
               ]}
             >
               {inputState.length}/281
             </Text>
             {/* add image to chirp button */}
-            <TouchableOpacity>
-              <View>
-                <MaterialCommunityIcons
-                  name='image-outline'
-                  size={30}
-                  color='#e1e1e1'
-                />
-              </View>
-            </TouchableOpacity>
+            <ImageUploadComponent
+              imageURL={imageURL}
+              setImageURL={setImageURL}
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
