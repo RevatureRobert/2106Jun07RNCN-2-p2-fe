@@ -11,10 +11,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
+import { Storage } from 'aws-amplify';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
+  userImg: string;
   username: string;
   body: string;
   comments: string[];
@@ -52,7 +54,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   }, []);
 
   // function for clicking on the like button
-  async function toggleLike() {
+  function toggleLike() {
     // checks if the chirp is liked, sets function to unlike when button is clicked, updates state
     if (likeState.isLiked === true) {
       setLikeState({
@@ -93,7 +95,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={require('../../assets/defaultUserImage.png')}
+          source={{
+            uri: Props.userImg + '?' + new Date(),
+          }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
@@ -102,7 +106,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {/* checks if chirp has an image */}
-        {Props.media ? (
+        {Props.media && Props.media !== '' ? (
           <Image
             source={{ uri: Props.media }}
             style={{
@@ -122,6 +126,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            width: 50,
           }}
         >
           <MaterialCommunityIcons
@@ -132,6 +137,15 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           ></MaterialCommunityIcons>
           <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
             {likeState.count}
+          </Text>
+          <MaterialCommunityIcons
+            name='comment-outline'
+            color='#e1e1e1'
+            size={20}
+            style={{ paddingTop: 5, paddingLeft: 12 }}
+          ></MaterialCommunityIcons>
+          <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
+            {Props.comments.length}
           </Text>
         </Pressable>
       </View>

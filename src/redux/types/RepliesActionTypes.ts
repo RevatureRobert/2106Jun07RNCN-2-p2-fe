@@ -5,6 +5,7 @@ export const REPLIES_POST = 'REPLIES_POST';
 
 export type RepliesType = [
   {
+    userImg: string;
     username: string;
     body: string;
     timestamp: string;

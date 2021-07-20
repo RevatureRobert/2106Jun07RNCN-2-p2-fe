@@ -9,7 +9,11 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
+<<<<<<< HEAD
   StatusBar,
+=======
+  StatusBar
+>>>>>>> dev-ref
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -94,6 +98,7 @@ const SignupComponent: React.FC = () => {
           placeholderTextColor='#dfdfdf'
           onChangeText={(inputName) => setUsername(inputName)}
           style={styles.input}
+          autoCapitalize='none'
         />
         <TextInput
           placeholder='Email'

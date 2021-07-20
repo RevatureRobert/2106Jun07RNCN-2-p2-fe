@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
+import { Storage } from 'aws-amplify';
 import styles from './repliesstyles';
 
 interface Props {
+  userImg: string;
   username: string;
   body: string;
   timestamp: string;
@@ -16,7 +18,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={require('../../assets/defaultUserImage.png')}
+          source={{ uri: Props.userImg + '?' + new Date() }}
           style={{ width: 48, height: 48, borderRadius: 52 / 2 }}
         ></Image>
       </View>

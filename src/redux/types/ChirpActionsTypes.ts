@@ -5,6 +5,7 @@ export const CHIRPS_POST = 'CHIRPS_POST';
 
 export type ChirpsType = [
   {
+    userImg: string;
     username: string;
     body: string;
     timestamp: string;
@@ -15,6 +16,7 @@ export type ChirpsType = [
 ];
 
 export type Chirps = {
+  userImg: string;
   username: string;
   body: string;
   timestamp: string;

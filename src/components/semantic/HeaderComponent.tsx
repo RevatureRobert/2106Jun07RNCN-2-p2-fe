@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { Storage } from 'aws-amplify';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';
@@ -11,9 +12,11 @@ import styles from './semanticstyles';
 interface Props {
   currentView: string;
   newChirp: {
+    userImg: string;
     username: string;
     body: string;
     timestamp: string;
+    media?: string;
   };
 }
 
@@ -52,7 +55,9 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           <TouchableHighlight
             onPress={postChirp}
             style={styles.button}
-            disabled={Props.newChirp.body.length > 281}
+            disabled={
+              Props.newChirp.body.length > 281 || Props.newChirp.body.length < 1
+            }
           >
             <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>
@@ -79,11 +84,13 @@ const HeaderComponent: React.FC<Props> = (Props) => {
         <View style={styles.headerContainer}>
           <View style={{ flexDirection: 'row' }}>
             <Image
-              source={require('../../assets/defaultUserImage.png')}
+              source={{
+                uri: user.user?.picture + '?' + new Date(),
+              }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
             ></Image>
             <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>
-              @{user.user?.username}
+              Hello, @{user.user?.username}.
             </Text>
           </View>
           <Image

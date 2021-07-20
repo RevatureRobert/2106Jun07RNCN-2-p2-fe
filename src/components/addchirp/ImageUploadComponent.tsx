@@ -1,28 +1,15 @@
 import React, { useEffect } from 'react';
-import {
-  StyleSheet,
-  StatusBar,
-  View,
-  Image,
-  GestureResponderEvent,
-  Button,
-  Platform,
-} from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
-import { Storage } from 'aws-amplify';
-// import Auth from 'aws-amplify';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const UserSettingComponent: React.FC = () => {
+export const ImageUploadComponent: React.FC<any> = (props) => {
   const [image, setImage] = React.useState(null);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
-
-  useEffect(() => {
-    fetchImage();
-  }, []);
 
   useEffect(() => {
     (async () => {
@@ -44,18 +31,17 @@ export const UserSettingComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1,
+      quality: 1
     });
 
     handleImagePicked(result);
   };
 
-  const fetchImage = async () => {
-    let filename = `${currentUser?.username}/myimages`;
+  const fetchImage = async (filename: string) => {
     const signUrl: any = await Storage.get(filename);
-    // return signUrl;
 
     setImage(signUrl);
+    props.setImageURL(signUrl);
   };
 
   const handleImagePicked = async (pickerResult: any) => {
@@ -66,14 +52,11 @@ export const UserSettingComponent: React.FC = () => {
         return;
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
-        // const imageName = img.replace(/^.*[\\\/]/, '');
-        console.log('pickerResult:', pickerResult);
-        // let filename = `{user}/${Date.now()} + '.jpg'`;
-        let filename = `${user}/myimages`;
+        let filename = `${user}/pics/${Date.now()}`;
 
         const uploadUrl = await uploadImage(filename, img);
         downloadImage(uploadUrl);
-        fetchImage();
+        fetchImage(filename);
       }
     } catch (e) {
       console.log(e);
@@ -85,10 +68,7 @@ export const UserSettingComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg',
-      // progressCallback(progress: any) {
-      //   setLoading(progress);
-      // }
+      contentType: 'image/jpeg'
     })
       .then((response: any) => {
         return response.key;
@@ -117,12 +97,24 @@ export const UserSettingComponent: React.FC = () => {
         <View>
           <Image
             source={{ uri: image as any }}
-            style={{ width: 250, height: 250 }}
+            style={{ width: 50, height: 50 }}
           />
         </View>
       )}
-
-      <Button onPress={pickImage} title='Upload a profile picture' />
+      <View
+        style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}
+      >
+        <TouchableOpacity onPress={pickImage}>
+          <View>
+            <MaterialCommunityIcons
+              name='image-outline'
+              size={30}
+              color='#ccc'
+              onPress={pickImage}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
