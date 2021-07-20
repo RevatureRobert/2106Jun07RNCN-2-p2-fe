@@ -126,6 +126,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            width: 50,
           }}
         >
           <MaterialCommunityIcons
