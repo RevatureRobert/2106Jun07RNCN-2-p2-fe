@@ -69,20 +69,6 @@ const BottomNavComponent = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name='gg'
-        component={UserSettingComponent}
-        options={{
-          tabBarLabel: 'gg',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name='account-cog-outline'
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
 };

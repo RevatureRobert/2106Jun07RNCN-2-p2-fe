@@ -55,7 +55,9 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           <TouchableHighlight
             onPress={postChirp}
             style={styles.button}
-            disabled={Props.newChirp.body.length > 281}
+            disabled={
+              Props.newChirp.body.length > 281 || Props.newChirp.body.length < 1
+            }
           >
             <Text style={styles.buttonText}>Post</Text>
           </TouchableHighlight>
@@ -82,7 +84,9 @@ const HeaderComponent: React.FC<Props> = (Props) => {
         <View style={styles.headerContainer}>
           <View style={{ flexDirection: 'row' }}>
             <Image
-              source={{ uri: user.user?.picture }}
+              source={{
+                uri: user.user?.picture + '?' + new Date(),
+              }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
             ></Image>
             <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>

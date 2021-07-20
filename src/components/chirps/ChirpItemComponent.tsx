@@ -95,7 +95,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={{ uri: Props.userImg }}
+          source={{
+            uri: Props.userImg + '?' + new Date(),
+          }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
