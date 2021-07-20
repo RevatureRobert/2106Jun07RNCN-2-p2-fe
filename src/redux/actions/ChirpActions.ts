@@ -4,13 +4,13 @@ import {
   ChirpsActionsTypes,
   CHIRPS_FAIL,
   CHIRPS_LOADING,
-  CHIRPS_SUCCESS,
+  CHIRPS_SUCCESS
 } from '../types/ChirpActionsTypes';
 import {
   RepliesActionTypes,
   REPLIES_FAIL,
   REPLIES_LOADING,
-  REPLIES_SUCCESS,
+  REPLIES_SUCCESS
 } from '../types/RepliesActionTypes';
 
 // makes an api call that gets all chirps
@@ -18,16 +18,16 @@ export const GetAllChirps =
   () => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING,
+        type: CHIRPS_LOADING
       });
-      const res = await axios.get('/chirps');
+      const res = await axios.get('/chirps', { data: undefined });
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items,
+        payload: res.data.Items
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL,
+        type: CHIRPS_FAIL
       });
     }
   };
@@ -37,17 +37,17 @@ export const GetChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING,
+        type: CHIRPS_LOADING
       });
 
       const res = await axios.get(`/chirps/${timestamp}`);
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items,
+        payload: res.data.Items
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL,
+        type: CHIRPS_FAIL
       });
     }
   };
@@ -57,17 +57,17 @@ export const GetUsersChirps =
   (username: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING,
+        type: CHIRPS_LOADING
       });
 
       const res = await axios.get(`/chirps/${username}`);
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items,
+        payload: res.data.Items
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL,
+        type: CHIRPS_FAIL
       });
     }
   };
@@ -87,7 +87,7 @@ export const DeleteChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING,
+        type: CHIRPS_LOADING
       });
 
       await axios
@@ -95,7 +95,7 @@ export const DeleteChirp =
         .then((res) => {
           dispatch({
             type: CHIRPS_SUCCESS,
-            payload: res.data,
+            payload: res.data
           });
           console.log(res);
         })
@@ -104,7 +104,7 @@ export const DeleteChirp =
         });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL,
+        type: CHIRPS_FAIL
       });
     }
   };
@@ -137,16 +137,16 @@ export const GetReplies =
   async (dispatch: Dispatch<RepliesActionTypes>) => {
     try {
       dispatch({
-        type: REPLIES_LOADING,
+        type: REPLIES_LOADING
       });
       const res = await axios.get(`/chirps/${username}/${timestamp}/replies`);
       dispatch({
         type: REPLIES_SUCCESS,
-        payload: res.data.Items[0].comments,
+        payload: res.data.Items[0].comments
       });
     } catch (e) {
       dispatch({
-        type: REPLIES_FAIL,
+        type: REPLIES_FAIL
       });
     }
   };
