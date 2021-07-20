@@ -41,7 +41,6 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
     const signUrl: any = await Storage.get(filename);
 
     setImage(signUrl);
-    props.setImageURL(signUrl);
   };
 
   const handleImagePicked = async (pickerResult: any) => {
@@ -57,6 +56,10 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
         const uploadUrl = await uploadImage(filename, img);
         downloadImage(uploadUrl);
         fetchImage(filename);
+        props.setImageURL(
+          'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/' +
+            filename
+        );
       }
     } catch (e) {
       console.log(e);
