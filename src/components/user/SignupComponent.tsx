@@ -94,6 +94,7 @@ const SignupComponent: React.FC = () => {
           placeholderTextColor='#dfdfdf'
           onChangeText={(inputName) => setUsername(inputName)}
           style={styles.input}
+          autoCapitalize='none'
         />
         <TextInput
           placeholder='Email'
