@@ -18,7 +18,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={{ uri: Props.userImg }}
+          source={{ uri: Props.userImg + '?' + new Date() }}
           style={{ width: 48, height: 48, borderRadius: 52 / 2 }}
         ></Image>
       </View>
