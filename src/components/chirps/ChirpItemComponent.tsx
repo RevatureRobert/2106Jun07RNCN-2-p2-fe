@@ -61,6 +61,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         count: Props.likes.length - 1,
       });
     }
+
+    return () => {
+      setImage(null);
+    };
   }, []);
 
   // function for clicking on the like button
