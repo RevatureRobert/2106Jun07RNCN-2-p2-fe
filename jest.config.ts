@@ -7,7 +7,7 @@ module.exports = {
     projects: [
       withEnzyme(require('jest-expo/ios/jest-preset')),
       withEnzyme(require('jest-expo/android/jest-preset')),
-      // withEnzyme(require('jest-expo/web/jest-preset')),
+      withEnzyme(require('jest-expo/web/jest-preset')),
     ],
     preset: "jest-expo-enzyme",
     setupFiles: [
@@ -18,16 +18,16 @@ module.exports = {
     //==========================================================================
     //configure Jest coverage report
     //==========================================================================
-    collectCoverage: true,
-    collectCoverageFrom: [
-        "./src/**/*.{ts, tsx}",
-    ],
-    coverageDirectory: 'coverage',
-    coverageThreshold: {
-      global: {
-        statements: 30,
-      }
-    },
+    // collectCoverage: true,
+    // collectCoverageFrom: [
+    //     "./src/**/*.{ts, tsx}",
+    // ],
+    // coverageDirectory: 'coverage',
+    // coverageThreshold: {
+    //   global: {
+    //     statements: 30,
+    //   }
+    // },
     
     //==========================================================================
     //miscellaneous 
