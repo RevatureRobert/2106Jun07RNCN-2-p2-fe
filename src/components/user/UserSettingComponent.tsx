@@ -6,7 +6,7 @@ import {
   Image,
   GestureResponderEvent,
   Button,
-  Platform
+  Platform,
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
@@ -44,7 +44,7 @@ export const UserSettingComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1
+      quality: 1,
     });
 
     handleImagePicked(result);
@@ -85,7 +85,7 @@ export const UserSettingComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg'
+      contentType: 'image/jpeg',
       // progressCallback(progress: any) {
       //   setLoading(progress);
       // }

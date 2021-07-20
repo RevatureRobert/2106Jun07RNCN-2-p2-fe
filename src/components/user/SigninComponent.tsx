@@ -7,7 +7,7 @@ import {
   StatusBar,
   Image,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../../redux/actions/AuthActions';
@@ -35,6 +35,9 @@ const SigninComponent: React.FC = () => {
       if (error) {
         dispatch(setError(''));
       }
+      setUsername('');
+      setPassword('');
+      setLoading(false);
     };
   }, [error, dispatch]);
 
@@ -64,7 +67,7 @@ const SigninComponent: React.FC = () => {
           style={{
             height: 48,
             alignSelf: 'center',
-            marginBottom: 10
+            marginBottom: 10,
           }}
           resizeMode='contain'
         />

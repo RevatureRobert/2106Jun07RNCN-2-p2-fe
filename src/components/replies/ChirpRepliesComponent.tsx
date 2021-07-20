@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RepliesItemComponent from './RepliesItemComponent';
 import { RootStore } from '../../redux/store/store';
@@ -36,7 +36,6 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
 
   // gets all chirps from the store, sends it to ChirpItemComponent as props
   const repliesState = useSelector((state: RootStore) => state.replies);
-  console.log(repliesState.replies);
   const renderItem = ({ item }: { item: any }) => (
     <RepliesItemComponent
       username={item.username}
@@ -51,23 +50,22 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
         <LoadingComponent />
       </>
     );
-  } else if (repliesState.replies && repliesState.replies[0].body) {
+  } else {
     return (
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        data={repliesState.replies.sort((a, b) =>
-          Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+        data={repliesState.replies?.sort((a, b) =>
+          Number(a.timestamp) > Number(b.timestamp) ? 1 : -1
         )}
         renderItem={renderItem}
+        ListEmptyComponent={null}
         onRefresh={onRefresh}
         refreshing={isFetching}
         style={{ flex: 1 }}
         keyExtractor={(item) => item.timestamp}
       />
     );
-  } else {
-    return <Text>No replies bruv</Text>;
   }
 };
 

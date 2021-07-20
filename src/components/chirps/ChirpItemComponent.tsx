@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
+import { Storage } from 'aws-amplify';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -27,6 +28,7 @@ interface Props {
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const [image, setImage] = React.useState(null);
   const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
@@ -37,8 +39,18 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     count: Props.likes.length - 1
   });
 
+  // get the user image
+  const getUserImg = async () => {
+    let filename = `${Props.username}/myimages`;
+    const signUrl: any = await Storage.get(filename);
+
+    setImage(signUrl);
+  };
+
   // checks if user has already liked the chirp
   React.useEffect(() => {
+    getUserImg();
+
     if (
       Props.likes.includes(currentUser?.username ? currentUser.username : '')
     ) {
@@ -52,7 +64,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   }, []);
 
   // function for clicking on the like button
-  async function toggleLike() {
+  function toggleLike() {
     // checks if the chirp is liked, sets function to unlike when button is clicked, updates state
     if (likeState.isLiked === true) {
       setLikeState({
@@ -93,7 +105,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <View>
         <Image
-          source={require('../../assets/defaultUserImage.png')}
+          source={{ uri: image as any }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
