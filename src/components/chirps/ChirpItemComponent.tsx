@@ -114,7 +114,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {/* checks if chirp has an image */}
-        {Props.media !== '' ? (
+        {Props.media && Props.media !== '' ? (
           <Image
             source={{ uri: Props.media }}
             style={{
