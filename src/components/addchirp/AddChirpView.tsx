@@ -47,7 +47,7 @@ const AddChirpView: React.FC = () => {
           {/* main view for posting that includes user image and textbox */}
           <View style={styles.AddChirpContent}>
             <Image
-              source={require('../../assets/defaultUserImage.png')}
+              source={{ uri: currentUser.user?.picture }}
               style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
             ></Image>
             <TextInput
