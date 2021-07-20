@@ -46,8 +46,6 @@ const SigninComponent: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     dispatch(signIn({ username, password }, () => setLoading(false)));
-    console.log(username);
-    console.log(password);
   };
 
   // checks if component is loading, displays loadingcomponent
