@@ -33,6 +33,7 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         timestamp={route.params.timestamp}
         likes={route.params.likes}
         comments={route.params.comments}
+        media={route.params.media}
       />
       <PostReplyComponent
         timestamp={route.params.timestamp}
