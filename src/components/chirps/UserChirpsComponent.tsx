@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, SafeAreaView, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../../redux/actions/ChirpActions';
 import { RootStore } from '../../redux/store/store';
@@ -7,7 +7,7 @@ import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
 import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
 import styles from './chirpstyles';
-import { TabRouter } from '@react-navigation/native';
+
 import HeaderComponent from '../semantic/HeaderComponent';
 import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
 
@@ -72,7 +72,7 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
   } else {
     // main view after loading, displays HeaderComponent and FlatList
     return (
-      <View style={{ backgroundColor: '#141414', flex: 1 }}>
+      <SafeAreaView style={{ backgroundColor: '#141414', flex: 1 }}>
         <HeaderComponent
           currentView='singleChirp'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
@@ -98,7 +98,7 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
           />
         </View>
         <AddChirpBtnComponent />
-      </View>
+      </SafeAreaView>
     );
   }
 };
