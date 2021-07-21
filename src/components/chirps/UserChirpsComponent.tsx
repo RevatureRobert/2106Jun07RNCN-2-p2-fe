@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, SafeAreaView, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../../redux/actions/ChirpActions';
 import { RootStore } from '../../redux/store/store';
@@ -8,13 +8,22 @@ import LoadingComponent from '../semantic/LoadingComponent';
 import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
 import styles from './chirpstyles';
 
+import HeaderComponent from '../semantic/HeaderComponent';
+import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
+
+interface Props {
+  route: {
+    params: {
+      username: string;
+      currentUser: string;
+    };
+  };
+}
+
 // component that holds a list of all chirps by a user
-const UserChirpsComponent: React.FC = () => {
+const UserChirpsComponent: React.FC<Props> = ({ route }) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
-
-  // gets the current user
-  const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   // gets all chirps by the current user from the db
   const fetchData = () => {
@@ -46,8 +55,15 @@ const UserChirpsComponent: React.FC = () => {
   if (chirpsState.loading === true) {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
+        <HeaderComponent
+          currentView='singleChirp'
+          newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+        />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent />
+        <CurrentUserBoxComponent
+          username={route.params.username}
+          currentUser={route.params.currentUser}
+        />
         <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
@@ -56,9 +72,16 @@ const UserChirpsComponent: React.FC = () => {
   } else {
     // main view after loading, displays HeaderComponent and FlatList
     return (
-      <View style={{ backgroundColor: '#141414', flex: 1 }}>
+      <SafeAreaView style={{ backgroundColor: '#141414', flex: 1 }}>
+        <HeaderComponent
+          currentView='singleChirp'
+          newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+        />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent />
+        <CurrentUserBoxComponent
+          username={route.params.username}
+          currentUser={route.params.currentUser}
+        />
         <View style={styles.userChirpsContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -67,14 +90,15 @@ const UserChirpsComponent: React.FC = () => {
               ?.sort((a, b) =>
                 Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
               )
-              .filter((user) => user.username === currentUser?.username)}
+              .filter((user) => user.username === route.params.username)}
             renderItem={renderItem}
             onRefresh={onRefresh}
             refreshing={isFetching}
             keyExtractor={(item) => item.timestamp}
           />
         </View>
-      </View>
+        <AddChirpBtnComponent />
+      </SafeAreaView>
     );
   }
 };

@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet,
-  StatusBar,
   View,
   Image,
-  GestureResponderEvent,
-  Button,
-  Platform
+  Text,
+  SafeAreaView,
+  TouchableOpacity
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
@@ -15,16 +13,17 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Storage } from 'aws-amplify';
 import { UserBioComponent } from './UserBioComponent';
+import styles from './userstyles';
+import DeleteAccModal from '../semantic/DeleteAccModal';
+import HeaderComponent from '../semantic/HeaderComponent';
 
 export const UserSettingComponent: React.FC = () => {
   const [image, setImage] = React.useState(null);
+  const [isModalVisible, setModalVisible] = React.useState(false);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   useEffect(() => {
     fetchImage();
-  }, []);
-
-  useEffect(() => {
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -66,7 +65,6 @@ export const UserSettingComponent: React.FC = () => {
         return;
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
-        console.log('pickerResult:', pickerResult);
         let filename = `${user}/myimages`;
 
         const uploadUrl = await uploadImage(filename, img);
@@ -107,22 +105,38 @@ export const UserSettingComponent: React.FC = () => {
   };
 
   return (
-    <View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#141414' }}>
+      <HeaderComponent
+        currentView='settings'
+        newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+      />
+
       <View>
         {image && (
-          <View>
+          <View style={styles.userSettingView}>
             <Image
               source={{ uri: image as any }}
-              style={{ width: 250, height: 250 }}
+              style={styles.userSettingImg}
             />
+            <TouchableOpacity style={styles.updatePicBtn} onPress={pickImage}>
+              <Text style={styles.updatePicText}>Edit picture</Text>
+            </TouchableOpacity>
           </View>
         )}
-
-        <Button onPress={pickImage} title='Upload a profile picture' />
       </View>
       <View>
         <UserBioComponent />
       </View>
-    </View>
+      <TouchableOpacity
+        style={styles.deleteUserBtn}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.deleteUserText}>Delete account</Text>
+      </TouchableOpacity>
+      <DeleteAccModal
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+      />
+    </SafeAreaView>
   );
 };

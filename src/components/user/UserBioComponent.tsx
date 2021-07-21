@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TextInput, Text, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import { Auth } from 'aws-amplify';
+<<<<<<< HEAD
 import AWS from 'aws-sdk';
 const cognito = new AWS.CognitoIdentityServiceProvider();
 import config from '../../../src/cognitoConfig.json';
@@ -11,6 +12,9 @@ import { Storage } from 'aws-amplify';
 import { useSelector } from 'react-redux';
 
 AWS.config.region = 'us-east-2';
+=======
+import styles from './userstyles';
+>>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
 
 export const UserBioComponent: React.FC = () => {
   const [bioText, setBioText] = React.useState('');
@@ -41,6 +45,7 @@ export const UserBioComponent: React.FC = () => {
     let user = currentUser?.username;
 
     try {
+<<<<<<< HEAD
       let bio = `${user}/mybio`;
 
       await uploadBio(bio, bioText);
@@ -66,6 +71,14 @@ export const UserBioComponent: React.FC = () => {
     Storage.get(text)
       .then((result: any) => setBioText(result))
       .catch((err) => console.log(err));
+=======
+      const currentUserInfo = await Auth.currentUserInfo();
+      const currentBio = currentUserInfo.attributes['custom:bio'];
+      return currentBio;
+    } catch (error) {
+      console.log(error);
+    }
+>>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
   };
 
   //   const updateUserBio = async () => {
@@ -99,35 +112,21 @@ export const UserBioComponent: React.FC = () => {
     setBioText(val);
   };
   return (
-    <View>
+    <View style={styles.updateBioView}>
       <View>
-        <Text>Update your bio</Text>
+        <Text style={styles.updateBioText}>Update bio</Text>
         <TextInput
-          multiline={true}
+          multiline={false}
           // numberOfLines={6}
           onChangeText={changeBioHandler}
           value={bioText}
           style={styles.input}
+          returnKeyType='done'
         />
       </View>
-      <Button title='Update ' onPress={updateUserBio} />
+      <TouchableOpacity style={styles.updateBioBtn} onPress={updateUserBio}>
+        <Text style={styles.updateBioBtnText}>Update</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-export const styles = StyleSheet.create({
-  input: {
-    color: '#f3f3f3',
-    padding: 25,
-    borderWidth: 1,
-    backgroundColor: '#1b1b1b',
-    marginLeft: 12,
-    borderColor: '#1b1b1b',
-    textAlign: 'left',
-    borderRadius: 15,
-    textAlignVertical: 'top',
-    fontSize: 16,
-    flex: 1,
-    paddingTop: 25
-  }
-});

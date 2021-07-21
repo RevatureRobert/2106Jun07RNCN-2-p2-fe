@@ -7,6 +7,7 @@ import ChirpItemComponent from '../chirps/ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
 import styles from './chirpstyles';
+import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
 
 // component that holds a list of all the chirps
 const ChirpsComponent: React.FC = () => {
@@ -81,10 +82,12 @@ const ChirpsComponent: React.FC = () => {
             Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
           )}
           renderItem={renderItem}
+          ListEmptyComponent={null}
           onRefresh={onRefresh}
           refreshing={isFetching}
           keyExtractor={(item) => item.timestamp}
         />
+        <AddChirpBtnComponent />
       </View>
     );
   }
