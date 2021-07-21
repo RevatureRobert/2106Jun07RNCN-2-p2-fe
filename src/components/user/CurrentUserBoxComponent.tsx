@@ -5,7 +5,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -22,6 +22,7 @@ const CurrentUserBoxComponent: React.FC = () => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
+  const [textBio, setTextBio] = React.useState('');
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -48,7 +49,7 @@ const CurrentUserBoxComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1,
+      quality: 1
     });
 
     handleImagePicked(result);
@@ -87,7 +88,7 @@ const CurrentUserBoxComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg',
+      contentType: 'image/jpeg'
       // progressCallback(progress: any) {
       //   setLoading(progress);
       // }
@@ -139,7 +140,7 @@ const CurrentUserBoxComponent: React.FC = () => {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            alignContent: 'center',
+            alignContent: 'center'
           }}
         >
           <MaterialCommunityIcons name='logout' size={18} color='#fff' />
