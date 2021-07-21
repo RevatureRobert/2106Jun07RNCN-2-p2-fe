@@ -21,8 +21,8 @@ const BottomNavComponent = () => {
           borderTopWidth: 0,
           borderBottomWidth: 0,
           marginBottom: 0,
-          height: 64,
-        },
+          height: 64
+        }
       }}
     >
       {/* all chirps feed */}
@@ -37,7 +37,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user profile */}
@@ -52,13 +52,13 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user settings */}
       <Tab.Screen
         name='Settings'
-        component={ChirpsComponent}
+        component={UserSettingComponent}
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => (
@@ -67,7 +67,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
     </Tab.Navigator>

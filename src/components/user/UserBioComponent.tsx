@@ -13,6 +13,7 @@ export const UserBioComponent: React.FC = () => {
     });
     setBioText('');
   };
+  // function to get updated bio
   const getBio = async () => {
     try {
       const currentUserInfo = await Auth.currentUserInfo();
