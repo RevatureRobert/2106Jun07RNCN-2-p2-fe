@@ -8,11 +8,13 @@ import LoadingComponent from '../semantic/LoadingComponent';
 import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
 import styles from './chirpstyles';
 import { TabRouter } from '@react-navigation/native';
+import HeaderComponent from '../semantic/HeaderComponent';
 
 interface Props {
   route: {
     params: {
       username: string;
+      currentUser: string;
     };
   };
 }
@@ -52,8 +54,15 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
   if (chirpsState.loading === true) {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
+        <HeaderComponent
+          currentView='singleChirp'
+          newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+        />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent username={route.params.username} />
+        <CurrentUserBoxComponent
+          username={route.params.username}
+          currentUser={route.params.currentUser}
+        />
         <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
@@ -63,8 +72,15 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
     // main view after loading, displays HeaderComponent and FlatList
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
+        <HeaderComponent
+          currentView='singleChirp'
+          newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+        />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent username={route.params.username} />
+        <CurrentUserBoxComponent
+          username={route.params.username}
+          currentUser={route.params.currentUser}
+        />
         <View style={styles.userChirpsContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}

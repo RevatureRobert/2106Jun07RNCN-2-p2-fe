@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
 
   // CurrentUserBoxComponent.tsx
   androidSafeArea: {
-    minHeight: 250,
+    minHeight: 220,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#1e1e1e',
     borderRadius: 25,
     margin: 12,
     marginBottom: 0,
-    marginTop: -64,
+    marginTop: -90,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
