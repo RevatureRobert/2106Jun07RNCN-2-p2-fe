@@ -26,8 +26,8 @@ const BottomNavComponent = () => {
           borderTopWidth: 0,
           borderBottomWidth: 0,
           marginBottom: 0,
-          height: 64,
-        },
+          height: 64
+        }
       }}
     >
       {/* all chirps feed */}
@@ -42,7 +42,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user profile */}
@@ -53,8 +53,8 @@ const BottomNavComponent = () => {
             route={{
               params: {
                 username: currentUser ? currentUser.username : '',
-                currentUser: currentUser ? currentUser?.username : '',
-              },
+                currentUser: currentUser ? currentUser?.username : ''
+              }
             }}
           />
         )}
@@ -66,7 +66,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user settings */}
@@ -81,7 +81,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
     </Tab.Navigator>
