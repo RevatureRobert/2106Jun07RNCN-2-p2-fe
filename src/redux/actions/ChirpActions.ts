@@ -140,7 +140,6 @@ export const PostComment = async (
   username: string,
   chirp: [{}]
 ) => {
-  console.log(timestamp, username, chirp);
   try {
     await axios
       .put(`/chirps/${username}/${timestamp}/replies`, chirp)
@@ -148,5 +147,21 @@ export const PostComment = async (
     return 'Comment has been posted.';
   } catch (e) {
     return 'Error adding comment: ' + e;
+  }
+};
+
+// delete comment
+export const DeleteComment = async (
+  timestamp: string,
+  username: string,
+  cmttimestamp: string
+) => {
+  try {
+    await axios
+      .delete(`/chirps/${username}/${timestamp}/replies/${cmttimestamp}`)
+      .catch((error) => console.log(error));
+    return 'Comment has been deleted.';
+  } catch (e) {
+    return 'Error deleting comment: ' + e;
   }
 };

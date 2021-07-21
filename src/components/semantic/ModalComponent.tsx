@@ -1,30 +1,40 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { DeleteChirp } from '../../redux/actions/ChirpActions';
+import { DeleteChirp, DeleteComment } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
 import Modal from 'react-native-modal';
 import styles from './semanticstyles';
 
 interface Props {
+  modalType: string;
   isModalVisible: boolean;
   setModalVisible: any;
   chirpUser: string;
   chirpTimestamp: string;
+  cmtTimestamp: string;
   currentUser: any;
 }
 
 const ModalComponent: React.FC<Props> = ({
+  modalType,
   isModalVisible,
   setModalVisible,
   chirpUser,
   chirpTimestamp,
+  cmtTimestamp,
   currentUser,
 }) => {
   const toast = useToast();
+  let modalMessage;
 
-  async function deleteChirp() {
-    const del = await DeleteChirp(chirpTimestamp, chirpUser);
+  async function deleteFunc() {
+    let del = 'How did you get this message to appear?';
+    if (modalType === 'chirp') {
+      del = await DeleteChirp(chirpTimestamp, chirpUser);
+    } else if (modalType === 'comment') {
+      del = await DeleteComment(chirpTimestamp, chirpUser, cmtTimestamp);
+    }
     setModalVisible(false);
     toast.show(del);
   }
@@ -54,7 +64,7 @@ const ModalComponent: React.FC<Props> = ({
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.confirmButton}
-                onPress={deleteChirp}
+                onPress={deleteFunc}
               >
                 <MaterialCommunityIcons
                   name='delete-outline'

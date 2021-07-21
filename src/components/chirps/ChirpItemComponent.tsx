@@ -95,11 +95,13 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       style={styles.chirpItem}
     >
       <ModalComponent
+        modalType='chirp'
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
         currentUser={currentUser?.username}
         chirpUser={Props.username}
         chirpTimestamp={Props.timestamp}
+        cmtTimestamp=''
       />
       {/* user image */}
       <View>
