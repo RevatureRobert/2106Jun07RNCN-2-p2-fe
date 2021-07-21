@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
 import ModalComponent from '../semantic/ModalComponent';
-import { Storage } from 'aws-amplify';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,7 +24,6 @@ interface Props {
   media?: string;
   timestamp: string;
 }
-
 // component that structures and defines the text per chirp in the list
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
@@ -104,14 +102,18 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         cmtTimestamp=''
       />
       {/* user image */}
-      <View>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('user', { username: Props.username });
+        }}
+      >
         <Image
           source={{
             uri: Props.userImg,
           }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
-      </View>
+      </Pressable>
       {/* main chirp content, displays username, chirp body, timestamp, and like button */}
       <View style={styles.chirpContent}>
         <Text style={styles.chirpUser}>@{Props.username}</Text>
