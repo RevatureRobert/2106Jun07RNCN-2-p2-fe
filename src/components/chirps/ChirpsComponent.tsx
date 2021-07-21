@@ -81,6 +81,7 @@ const ChirpsComponent: React.FC = () => {
             Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
           )}
           renderItem={renderItem}
+          ListEmptyComponent={null}
           onRefresh={onRefresh}
           refreshing={isFetching}
           keyExtractor={(item) => item.timestamp}

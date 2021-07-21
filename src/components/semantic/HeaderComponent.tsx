@@ -79,6 +79,32 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           </TouchableHighlight>
         </View>
       );
+    case 'settings':
+      return (
+        <View style={styles.headerContainer}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              style={{
+                color: '#fff',
+                paddingLeft: 8,
+                fontWeight: '700',
+                fontSize: 18,
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+              }}
+            >
+              Settings
+            </Text>
+          </View>
+        </View>
+      );
     default:
       return (
         <View style={styles.headerContainer}>

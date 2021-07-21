@@ -7,12 +7,14 @@ import AddChirpView from '../addchirp/AddChirpView';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import SingleChirpView from '../chirps/SingleChirpView';
+import UserChirpsComponent from '../chirps/UserChirpsComponent';
 
 // define stack screens
 type RootStackParamList = {
   home: undefined;
   compose: undefined;
   chirp: undefined;
+  user: undefined;
   login: undefined;
   signup: undefined;
 };
@@ -56,6 +58,14 @@ const MainNavComponent: React.FC = () => {
                 gestureDirection: 'horizontal',
               }}
               component={SingleChirpView}
+            />
+            {/* single chirp view */}
+            <Stack.Screen
+              name='user'
+              options={{
+                gestureDirection: 'horizontal',
+              }}
+              component={UserChirpsComponent}
             />
           </>
         ) : (
