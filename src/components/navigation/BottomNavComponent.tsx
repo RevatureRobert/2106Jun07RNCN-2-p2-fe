@@ -51,7 +51,10 @@ const BottomNavComponent = () => {
         children={() => (
           <UserChirpsComponent
             route={{
-              params: { username: currentUser ? currentUser.username : '' }
+              params: {
+                username: currentUser ? currentUser.username : '',
+                currentUser: currentUser ? currentUser?.username : ''
+              }
             }}
           />
         )}

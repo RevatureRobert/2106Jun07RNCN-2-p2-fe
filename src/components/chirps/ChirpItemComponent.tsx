@@ -104,7 +104,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       {/* user image */}
       <Pressable
         onPress={() => {
-          navigation.navigate('user', { username: Props.username });
+          navigation.navigate('user', {
+            username: Props.username,
+            currentUser: currentUser?.username,
+          });
         }}
       >
         <Image
