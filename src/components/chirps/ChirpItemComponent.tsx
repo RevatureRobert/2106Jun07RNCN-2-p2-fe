@@ -11,10 +11,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
+import ModalComponent from '../semantic/ModalComponent';
+import { Storage } from 'aws-amplify';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
+  userImg: string;
   username: string;
   body: string;
   comments: string[];
@@ -27,6 +30,7 @@ interface Props {
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const [isModalVisible, setModalVisible] = React.useState(false);
   const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
@@ -90,10 +94,21 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       }}
       style={styles.chirpItem}
     >
+      <ModalComponent
+        modalType='chirp'
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+        currentUser={currentUser?.username}
+        chirpUser={Props.username}
+        chirpTimestamp={Props.timestamp}
+        cmtTimestamp=''
+      />
       {/* user image */}
       <View>
         <Image
-          source={require('../../assets/defaultUserImage.png')}
+          source={{
+            uri: Props.userImg + '?' + new Date(),
+          }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </View>
@@ -102,7 +117,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {/* checks if chirp has an image */}
-        {Props.media ? (
+        {Props.media && Props.media !== '' ? (
           <Image
             source={{ uri: Props.media }}
             style={{
@@ -122,6 +137,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            width: 50,
           }}
         >
           <MaterialCommunityIcons
@@ -133,15 +149,27 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
             {likeState.count}
           </Text>
+          <MaterialCommunityIcons
+            name='comment-outline'
+            color='#e1e1e1'
+            size={20}
+            style={{ paddingTop: 5, paddingLeft: 12 }}
+          ></MaterialCommunityIcons>
+          <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
+            {Props.comments.length}
+          </Text>
         </Pressable>
       </View>
-      <View style={{ alignContent: 'center' }}>
+      <Pressable
+        style={{ alignContent: 'center' }}
+        onPress={() => setModalVisible(true)}
+      >
         <MaterialCommunityIcons
           name='dots-horizontal'
           size={20}
           color={'#ededed'}
         />
-      </View>
+      </Pressable>
     </TouchableOpacity>
   );
 };

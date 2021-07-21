@@ -35,6 +35,9 @@ const SigninComponent: React.FC = () => {
       if (error) {
         dispatch(setError(''));
       }
+      setUsername('');
+      setPassword('');
+      setLoading(false);
     };
   }, [error, dispatch]);
 
@@ -72,6 +75,7 @@ const SigninComponent: React.FC = () => {
           placeholderTextColor='#dfdfdf'
           onChangeText={(inputName) => setUsername(inputName)}
           style={styles.input}
+          autoCapitalize='none'
         />
         <TextInput
           placeholder='Password'

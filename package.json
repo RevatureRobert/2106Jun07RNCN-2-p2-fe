@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe",
   "license": "Unlicensed",
+  "proxy": "https://zf6x12e535.execute-api.us-east-2.amazonaws.com/prod",
   "contributors": [
     "Caleb Sword",
     "Marc Skwarczynski",
@@ -37,6 +38,7 @@
     "react-dom": "16.14.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-modal": "^12.0.2",
     "react-native-modals": "^0.22.3",
     "react-native-pixel-perfect": "^1.0.2",
     "react-native-reanimated": "~2.2.0",

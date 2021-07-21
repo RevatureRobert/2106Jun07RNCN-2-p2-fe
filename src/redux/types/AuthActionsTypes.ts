@@ -8,6 +8,7 @@ export const SET_VERIFICATION = 'SET_VERIFICATION';
 export interface User {
   username: string;
   password: string;
+  picture?: string;
   email?: string;
   bio?: string;
 }

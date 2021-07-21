@@ -19,6 +19,7 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
   async function postComment() {
     const comment = await PostComment(timestamp, username, [
       {
+        userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
         username: currentUser.user ? currentUser.user.username : '',
         body: inputState,
         timestamp: Date.now().toString(),

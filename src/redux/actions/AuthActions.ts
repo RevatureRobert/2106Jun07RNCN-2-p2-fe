@@ -26,14 +26,18 @@ export const signIn = (
       if (res) {
         const userData: User = {
           username: res.getUsername(),
+<<<<<<< HEAD
           password: data.password
+=======
+          password: data.password,
+          picture: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${res.getUsername()}/myimages`
+>>>>>>> 1e9173ede849d7e1e4cbe7583e370f88c7273e60
         };
         dispatch({
           type: SET_USER,
           payload: userData
         });
       }
-      console.log('LOOK: ', res);
     } catch (err) {
       onError();
       dispatch(setError(err.message));
