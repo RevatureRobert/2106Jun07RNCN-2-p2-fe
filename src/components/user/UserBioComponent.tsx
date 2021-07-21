@@ -33,11 +33,12 @@ export const UserBioComponent: React.FC = () => {
       <View>
         <Text style={styles.updateBioText}>Update bio</Text>
         <TextInput
-          multiline={true}
+          multiline={false}
           // numberOfLines={6}
           onChangeText={changeBioHandler}
           value={bioText}
           style={styles.input}
+          returnKeyType='done'
         />
       </View>
       <TouchableOpacity style={styles.updateBioBtn} onPress={updateUserBio}>
