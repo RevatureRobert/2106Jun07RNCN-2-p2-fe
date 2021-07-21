@@ -40,7 +40,79 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
 
-  // SignupComponent.tsx
+  // UserSettingComponent.tsx
+  userSettingView: {
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#1e1e1e',
+  },
+
+  userSettingImg: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+
+  updatePicBtn: {
+    width: 150,
+    alignSelf: 'center',
+    padding: 10,
+    marginTop: 15,
+    backgroundColor: '#f3f3f3',
+    borderRadius: 25,
+  },
+
+  updatePicText: {
+    fontWeight: '700',
+    color: '#141414',
+    textAlign: 'center',
+  },
+
+  deleteUserBtn: {
+    width: 150,
+    alignSelf: 'center',
+    padding: 10,
+    marginTop: 15,
+    backgroundColor: '#141414',
+    borderColor: '#ff4242',
+    borderWidth: 2,
+    borderRadius: 25,
+  },
+
+  deleteUserText: {
+    fontWeight: '700',
+    color: '#ff4242',
+    textAlign: 'center',
+  },
+
+  // UserBioComponent.tsx
+  updateBioView: {
+    padding: 25,
+    borderBottomWidth: 1,
+    borderColor: '#1e1e1e',
+  },
+
+  updateBioText: {
+    color: '#f4f4f4',
+    fontWeight: '700',
+  },
+
+  updateBioBtn: {
+    width: 100,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+    marginTop: 6,
+  },
+
+  updateBioBtnText: {
+    color: '#141414',
+    fontWeight: '700',
+    textAlign: 'center',
+  },
 
   // CurrentUserBoxComponent.tsx
   androidSafeArea: {
