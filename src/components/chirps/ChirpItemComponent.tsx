@@ -53,6 +53,60 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     }
   }, []);
 
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+  const unformattedTimestamp = new Date(Number(Props.timestamp));
+  let hours = 0;
+  let ampm = 'AM';
+  (() => {
+    if (unformattedTimestamp.getHours() === 0) {
+      hours = 12;
+      ampm = 'AM';
+    } else if (
+      unformattedTimestamp.getHours() > 0 &&
+      unformattedTimestamp.getHours() < 12
+    ) {
+      hours = unformattedTimestamp.getHours();
+      ampm = 'AM';
+    } else if (unformattedTimestamp.getHours() === 12) {
+      hours = 12;
+      ampm = 'PM';
+    } else if (unformattedTimestamp.getHours() > 12) {
+      hours = unformattedTimestamp.getHours() - 12;
+      ampm = 'PM';
+    }
+  })();
+
+  const formattedTimestamp =
+    days[unformattedTimestamp.getDay()] +
+    ' ' +
+    unformattedTimestamp.getDate().toString() +
+    ' ' +
+    months[unformattedTimestamp.getMonth()] +
+    ' ' +
+    unformattedTimestamp.getFullYear().toString() +
+    ' at ' +
+    hours.toString() +
+    ':' +
+    unformattedTimestamp.getMinutes().toString().padStart(2, '0') +
+    ':' +
+    unformattedTimestamp.getSeconds().toString().padStart(2, '0') +
+    ' ' +
+    ampm;
+
   // function for clicking on the like button
   function toggleLike() {
     // checks if the chirp is liked, sets function to unlike when button is clicked, updates state
@@ -134,9 +188,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
             resizeMode='cover'
           />
         ) : null}
-        <Text style={styles.chirpTimestamp}>
-          {new Date(Number(Props.timestamp)).toString()}
-        </Text>
+        <Text style={styles.chirpTimestamp}>{formattedTimestamp}</Text>
         <Pressable
           onPress={toggleLike}
           style={{
