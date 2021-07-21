@@ -71,6 +71,15 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const logOutPress = () => {
     dispatch(logout());
   };
+  const fetchText = async () => {
+    let user = username;
+
+    let bio = `${user}/mybio`;
+    const signUrl: any = await Storage.get(bio);
+    // return signUrl;
+
+    setBio(signUrl);
+  };
 
   return (
     <SafeAreaView style={styles.androidSafeArea}>

@@ -35,13 +35,44 @@ export const UserBioComponent: React.FC = () => {
     let user = currentUser?.username;
 
     try {
-      const currentUserInfo = await Auth.currentUserInfo();
-      const currentBio = currentUserInfo.attributes['custom:bio'];
-      return currentBio;
-    } catch (error) {
-      console.log(error);
-    }
+      let bio = `${user}/mybio`;
+
+      await uploadBio(bio, bioText);
+      setBioText('');
+      //   downloadText(textUrl);
+    } catch (error) {}
   };
+  const uploadBio = (text: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(text, content, {
+      level: 'public',
+      contentType: 'text/plain'
+    })
+      .then((response: any) => {
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error.response;
+      });
+  };
+  const downloadText = (text: any) => {
+    Storage.get(text)
+      .then((result: any) => setBioText(result))
+      .catch((err) => console.log(err));
+  };
+
+  //   const updateUserBio = async () => {
+  //     let user = currentUser?.username;
+
+  //     try {
+  //       const currentUserInfo = await Auth.currentUserInfo();
+  //       const currentBio = currentUserInfo.attributes['custom:bio'];
+  //       return currentBio;
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
   //   const updateUserBio = async () => {
   //     const user = await Auth.currentAuthenticatedUser();
