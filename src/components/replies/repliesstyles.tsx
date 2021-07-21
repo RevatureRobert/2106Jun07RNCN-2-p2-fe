@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 
   postReplyComponent: {
     flexDirection: 'row',
+    backgroundColor: '#141414',
     borderColor: '#1b1b1b',
     borderBottomWidth: 1,
     padding: 12,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
 
   // RepliesItemComponent.tsx
   chirpItem: {
-    flex: 1,
+    flexShrink: 1,
     flexDirection: 'row',
     paddingLeft: 25,
     paddingRight: 25,
