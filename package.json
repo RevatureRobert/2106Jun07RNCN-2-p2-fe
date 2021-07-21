@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe",
   "license": "Unlicensed",
+  "proxy": "https://zf6x12e535.execute-api.us-east-2.amazonaws.com/prod",
   "contributors": [
     "Caleb Sword",
     "Marc Skwarczynski",

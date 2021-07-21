@@ -20,7 +20,7 @@ export const GetAllChirps =
       dispatch({
         type: CHIRPS_LOADING,
       });
-      const res = await axios.get('/chirps');
+      const res = await axios.get('/chirps', { data: undefined });
       dispatch({
         type: CHIRPS_SUCCESS,
         payload: res.data.Items,
