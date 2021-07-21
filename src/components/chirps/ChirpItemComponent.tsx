@@ -84,6 +84,66 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     }
   }
 
+  // Setting up days/months arrays for use in timestamps.
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  // Get the timestamp and store for manipulation
+  const unformattedTimestamp = new Date(Number(Props.timestamp));
+
+  // Create hours and ampm variables and set them using an anonymous function
+  let hours = 0;
+  let ampm = 'AM';
+  (() => {
+    if (unformattedTimestamp.getHours() === 0) {
+      hours = 12;
+      ampm = 'AM';
+    } else if (
+      unformattedTimestamp.getHours() > 0 &&
+      unformattedTimestamp.getHours() < 12
+    ) {
+      hours = unformattedTimestamp.getHours();
+      ampm = 'AM';
+    } else if (unformattedTimestamp.getHours() === 12) {
+      hours = 12;
+      ampm = 'PM';
+    } else if (unformattedTimestamp.getHours() > 12) {
+      hours = unformattedTimestamp.getHours() - 12;
+      ampm = 'PM';
+    }
+  })();
+
+  // Actually create formatted timestamp: Day Date Month Year at Time (12 hr)
+  const formattedTimestamp =
+    days[unformattedTimestamp.getDay()] +
+    ' ' +
+    unformattedTimestamp.getDate().toString() +
+    ' ' +
+    months[unformattedTimestamp.getMonth()] +
+    ' ' +
+    unformattedTimestamp.getFullYear().toString() +
+    ' at ' +
+    hours.toString() +
+    ':' +
+    unformattedTimestamp.getMinutes().toString().padStart(2, '0') +
+    ':' +
+    unformattedTimestamp.getSeconds().toString().padStart(2, '0') +
+    ' ' +
+    ampm;
+
   // main return statement
   return (
     <TouchableOpacity
@@ -134,9 +194,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
             resizeMode='cover'
           />
         ) : null}
-        <Text style={styles.chirpTimestamp}>
-          {new Date(Number(Props.timestamp)).toString()}
-        </Text>
+        <Text style={styles.chirpTimestamp}>{formattedTimestamp}</Text>
         <Pressable
           onPress={toggleLike}
           style={{
