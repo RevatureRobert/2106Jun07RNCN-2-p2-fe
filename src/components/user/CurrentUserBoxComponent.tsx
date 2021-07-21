@@ -26,11 +26,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
-<<<<<<< HEAD
-  const [textBio, setTextBio] = React.useState('');
-=======
   const [bio, setBio] = React.useState(null);
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
   const dispatch = useDispatch();
 
   // function to get updated bio
@@ -63,19 +59,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
     })();
   }, []);
 
-<<<<<<< HEAD
-  const pickImage = async (e: any) => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      aspect: [4, 3],
-      quality: 1
-    });
-
-    handleImagePicked(result);
-  };
-
-=======
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
   const fetchImage = async () => {
     let filename = `${username}/myimages`;
     const signUrl: any = await Storage.get(filename);
@@ -84,60 +67,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
     setImage(signUrl);
   };
 
-<<<<<<< HEAD
-  const handleImagePicked = async (pickerResult: any) => {
-    let user = currentUser?.username;
-    try {
-      if (pickerResult.cancelled) {
-        alert('Upload cancelled');
-        return;
-      } else {
-        const img = await fetchImageFromUri(pickerResult.uri);
-        console.log('pickerResult:', pickerResult);
-        let filename = `${user}/myimages`;
-
-        const uploadUrl = await uploadImage(filename, img);
-        downloadImage(uploadUrl);
-        fetchImage();
-      }
-    } catch (e) {
-      console.log(e);
-      alert('Upload failed');
-    }
-  };
-
-  const uploadImage = (filename: any, img: any) => {
-    Auth.currentCredentials();
-    return Storage.put(filename, img, {
-      level: 'public',
-      contentType: 'image/jpeg'
-      // progressCallback(progress: any) {
-      //   setLoading(progress);
-      // }
-    })
-      .then((response: any) => {
-        return response.key;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error.response;
-      });
-  };
-
-  const downloadImage = (uri: any) => {
-    Storage.get(uri)
-      .then((result: any) => setImage(result))
-      .catch((err) => console.log(err));
-  };
-
-  const fetchImageFromUri = async (uri: any) => {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    return blob;
-  };
-
-=======
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
   // log out function
   const logOutPress = () => {
     dispatch(logout());
@@ -156,21 +85,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
       <Text style={styles.usernameText}>@{username}</Text>
       <Text style={styles.bioText}>{bio}</Text>
       {/* log out button */}
-<<<<<<< HEAD
-      <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            alignContent: 'center'
-          }}
-        >
-          <MaterialCommunityIcons name='logout' size={18} color='#fff' />
-          <Text style={styles.logOutText}> Log out</Text>
-        </View>
-      </TouchableHighlight>
-=======
       {currentUser?.username === username ? (
         <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
           <View
@@ -178,7 +92,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center',
+              alignContent: 'center'
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />
@@ -186,7 +100,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
           </View>
         </TouchableHighlight>
       ) : null}
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
     </SafeAreaView>
   );
 };

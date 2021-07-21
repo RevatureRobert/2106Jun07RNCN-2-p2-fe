@@ -1,20 +1,10 @@
 import React from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import { Auth } from 'aws-amplify';
-<<<<<<< HEAD
-import AWS from 'aws-sdk';
-const cognito = new AWS.CognitoIdentityServiceProvider();
-import config from '../../../src/cognitoConfig.json';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/actions/AuthActions';
+import styles from './userstyles';
+import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Storage } from 'aws-amplify';
-import { useSelector } from 'react-redux';
-
-AWS.config.region = 'us-east-2';
-=======
-import styles from './userstyles';
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
 
 export const UserBioComponent: React.FC = () => {
   const [bioText, setBioText] = React.useState('');
@@ -45,40 +35,12 @@ export const UserBioComponent: React.FC = () => {
     let user = currentUser?.username;
 
     try {
-<<<<<<< HEAD
-      let bio = `${user}/mybio`;
-
-      await uploadBio(bio, bioText);
-      setBioText('');
-      //   downloadText(textUrl);
-    } catch (error) {}
-  };
-  const uploadBio = (text: any, content: any) => {
-    Auth.currentCredentials();
-    return Storage.put(text, content, {
-      level: 'public',
-      contentType: 'text/plain'
-    })
-      .then((response: any) => {
-        return response;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error.response;
-      });
-  };
-  const downloadText = (text: any) => {
-    Storage.get(text)
-      .then((result: any) => setBioText(result))
-      .catch((err) => console.log(err));
-=======
       const currentUserInfo = await Auth.currentUserInfo();
       const currentBio = currentUserInfo.attributes['custom:bio'];
       return currentBio;
     } catch (error) {
       console.log(error);
     }
->>>>>>> 33152b5a8d36a55f6ec1254d95d0234e28995906
   };
 
   //   const updateUserBio = async () => {
