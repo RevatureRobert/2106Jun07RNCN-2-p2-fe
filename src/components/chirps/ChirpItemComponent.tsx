@@ -139,8 +139,6 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     hours.toString() +
     ':' +
     unformattedTimestamp.getMinutes().toString().padStart(2, '0') +
-    ':' +
-    unformattedTimestamp.getSeconds().toString().padStart(2, '0') +
     ' ' +
     ampm;
 
