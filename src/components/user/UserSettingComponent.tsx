@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet,
-  StatusBar,
   View,
   Image,
   Text,
   SafeAreaView,
-  GestureResponderEvent,
-  Button,
-  Platform,
   TouchableOpacity,
 } from 'react-native';
 import Constants from 'expo-constants';
@@ -18,8 +13,6 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Storage } from 'aws-amplify';
 import { UserBioComponent } from './UserBioComponent';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/actions/AuthActions';
 import styles from './userstyles';
 import DeleteAccModal from '../semantic/DeleteAccModal';
 import HeaderComponent from '../semantic/HeaderComponent';
@@ -28,7 +21,6 @@ export const UserSettingComponent: React.FC = () => {
   const [image, setImage] = React.useState(null);
   const [isModalVisible, setModalVisible] = React.useState(false);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchImage();
@@ -111,23 +103,6 @@ export const UserSettingComponent: React.FC = () => {
     const response = await fetch(uri);
     const blob = await response.blob();
     return blob;
-  };
-
-  const deleteCurrentUser = () => {
-    Auth.currentAuthenticatedUser()
-      .then((user) => {
-        dispatch(logout());
-        user.deleteUser((err: any, result: any) => {
-          if (err) {
-            console.log('User deletion error: ' + err);
-            return;
-          }
-          console.log('User deletion result: ' + result);
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
   };
 
   return (
