@@ -4,8 +4,8 @@ import { mount } from 'enzyme'
 import { Provider } from 'react-redux';
 import ChirpsComponent from '../src/components/ChirpsComponent'; 
 import thunk from 'redux-thunk';
-import { testState } from '../src/shared/constants';
-import { alert } from '../src/shared/functions';
+import { testState } from '../../../src/shared/constants';
+import { alert } from '../../../src/shared/functions';
 
 describe('Testing ChirpsComponent', () => {
     
