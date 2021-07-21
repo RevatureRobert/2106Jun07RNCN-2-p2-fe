@@ -12,13 +12,16 @@ import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { logout } from '../../redux/actions/AuthActions';
 import Constants from 'expo-constants';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
-import { Storage } from 'aws-amplify';
 import styles from './userstyles';
 
+interface Props {
+  username: string;
+}
+
 // current user box component, displays user info and log out button
-const CurrentUserBoxComponent: React.FC = () => {
+const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
@@ -55,7 +58,7 @@ const CurrentUserBoxComponent: React.FC = () => {
   };
 
   const fetchImage = async () => {
-    let filename = `${currentUser?.username}/myimages`;
+    let filename = `${username}/myimages`;
     const signUrl: any = await Storage.get(filename);
     // return signUrl;
 
@@ -130,7 +133,7 @@ const CurrentUserBoxComponent: React.FC = () => {
         ></Image>
       </TouchableOpacity>
       {/* username and bio */}
-      <Text style={styles.usernameText}>@{currentUser?.username}</Text>
+      <Text style={styles.usernameText}>@{username}</Text>
       <Text style={styles.bioText}>{currentUser?.bio}</Text>
       {/* log out button */}
       <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>

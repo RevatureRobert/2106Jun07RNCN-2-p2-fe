@@ -7,14 +7,20 @@ import ChirpItemComponent from './ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
 import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
 import styles from './chirpstyles';
+import { TabRouter } from '@react-navigation/native';
+
+interface Props {
+  route: {
+    params: {
+      username: string;
+    };
+  };
+}
 
 // component that holds a list of all chirps by a user
-const UserChirpsComponent: React.FC = () => {
+const UserChirpsComponent: React.FC<Props> = ({ route }) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
-
-  // gets the current user
-  const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   // gets all chirps by the current user from the db
   const fetchData = () => {
@@ -47,7 +53,7 @@ const UserChirpsComponent: React.FC = () => {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent />
+        <CurrentUserBoxComponent username={route.params.username} />
         <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
@@ -58,7 +64,7 @@ const UserChirpsComponent: React.FC = () => {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.2 }}></View>
-        <CurrentUserBoxComponent />
+        <CurrentUserBoxComponent username={route.params.username} />
         <View style={styles.userChirpsContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -67,7 +73,7 @@ const UserChirpsComponent: React.FC = () => {
               ?.sort((a, b) =>
                 Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
               )
-              .filter((user) => user.username === currentUser?.username)}
+              .filter((user) => user.username === route.params.username)}
             renderItem={renderItem}
             onRefresh={onRefresh}
             refreshing={isFetching}

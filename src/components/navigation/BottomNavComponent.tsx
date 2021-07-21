@@ -4,11 +4,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserChirpsComponent from '../chirps/UserChirpsComponent';
 import { UserSettingComponent } from '../user/UserSettingComponent';
+import { useSelector } from 'react-redux';
+import { RootStore } from '../../redux/store/store';
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();
 
 const BottomNavComponent = () => {
+  // gets the current user
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
+
   return (
     <Tab.Navigator
       initialRouteName='Feed'
@@ -42,7 +47,13 @@ const BottomNavComponent = () => {
       {/* user profile */}
       <Tab.Screen
         name='Profile'
-        component={UserChirpsComponent}
+        children={() => (
+          <UserChirpsComponent
+            route={{
+              params: { username: currentUser ? currentUser.username : '' },
+            }}
+          />
+        )}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
@@ -57,7 +68,7 @@ const BottomNavComponent = () => {
       {/* user settings */}
       <Tab.Screen
         name='Settings'
-        component={ChirpsComponent}
+        component={UserSettingComponent}
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => (
