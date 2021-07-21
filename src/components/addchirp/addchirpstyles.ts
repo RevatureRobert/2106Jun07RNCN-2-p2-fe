@@ -74,9 +74,6 @@ export const styles = StyleSheet.create({
     marginRight: 15,
     marginBottom: 15,
     borderRadius: 100 / 2,
-    ...Platform.select({
-      ios: { marginBottom: 100 },
-    }),
   },
 
   buttonsContainer: {
