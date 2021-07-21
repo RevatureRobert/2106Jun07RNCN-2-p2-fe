@@ -4,12 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserChirpsComponent from '../chirps/UserChirpsComponent';
 import { UserSettingComponent } from '../user/UserSettingComponent';
-<<<<<<< HEAD
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
-=======
 import { UserBioComponent } from '../user/UserBioComponent';
->>>>>>> b4886e189735fbc3d5b420209f51ae60110ea935
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();
@@ -54,7 +51,7 @@ const BottomNavComponent = () => {
         children={() => (
           <UserChirpsComponent
             route={{
-              params: { username: currentUser ? currentUser.username : '' },
+              params: { username: currentUser ? currentUser.username : '' }
             }}
           />
         )}
