@@ -6,7 +6,7 @@ import {
   Image,
   GestureResponderEvent,
   Button,
-  Platform,
+  Platform
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
@@ -14,7 +14,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Storage } from 'aws-amplify';
-// import Auth from 'aws-amplify';
+import { UserBioComponent } from './UserBioComponent';
 
 export const UserSettingComponent: React.FC = () => {
   const [image, setImage] = React.useState(null);
@@ -44,7 +44,7 @@ export const UserSettingComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1,
+      quality: 1
     });
 
     handleImagePicked(result);
@@ -66,9 +66,7 @@ export const UserSettingComponent: React.FC = () => {
         return;
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
-        // const imageName = img.replace(/^.*[\\\/]/, '');
         console.log('pickerResult:', pickerResult);
-        // let filename = `{user}/${Date.now()} + '.jpg'`;
         let filename = `${user}/myimages`;
 
         const uploadUrl = await uploadImage(filename, img);
@@ -85,10 +83,7 @@ export const UserSettingComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg',
-      // progressCallback(progress: any) {
-      //   setLoading(progress);
-      // }
+      contentType: 'image/jpeg'
     })
       .then((response: any) => {
         return response.key;
@@ -113,16 +108,21 @@ export const UserSettingComponent: React.FC = () => {
 
   return (
     <View>
-      {image && (
-        <View>
-          <Image
-            source={{ uri: image as any }}
-            style={{ width: 250, height: 250 }}
-          />
-        </View>
-      )}
+      <View>
+        {image && (
+          <View>
+            <Image
+              source={{ uri: image as any }}
+              style={{ width: 250, height: 250 }}
+            />
+          </View>
+        )}
 
-      <Button onPress={pickImage} title='Upload a profile picture' />
+        <Button onPress={pickImage} title='Upload a profile picture' />
+      </View>
+      <View>
+        <UserBioComponent />
+      </View>
     </View>
   );
 };
