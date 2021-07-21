@@ -84,14 +84,15 @@ export const PostChirp = async (chirp: {}) => {
 
 // makes an api call that deletes a chirp
 export const DeleteChirp =
-  (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
+  (timestamp: string, username: string) =>
+  async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
         type: CHIRPS_LOADING,
       });
 
       await axios
-        .delete(`/chirps/${timestamp}`)
+        .delete(`/chirps/${username}/${timestamp}`)
         .then((res) => {
           dispatch({
             type: CHIRPS_SUCCESS,

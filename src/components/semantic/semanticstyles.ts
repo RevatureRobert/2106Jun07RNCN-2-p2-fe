@@ -36,6 +36,73 @@ const styles = StyleSheet.create({
     height: 48,
     alignSelf: 'center',
   },
+
+  // ModalComponent.tsx
+  modalView: {
+    height: 72,
+  },
+
+  modal: {
+    backgroundColor: '#141414',
+    height: 220,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+
+  deadBirdImg: {
+    height: 92,
+    width: 92,
+  },
+
+  deleteText: {
+    alignSelf: 'center',
+    color: '#fff',
+    fontWeight: '700',
+  },
+
+  modalButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignContent: 'center',
+    paddingTop: 12,
+  },
+
+  confirmButton: {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#ff4242',
+    borderRadius: 50,
+    padding: 8,
+    marginLeft: 6,
+    width: 100,
+    flex: 0.3,
+    flexDirection: 'row',
+  },
+
+  confirmText: {
+    color: '#f3f3f3',
+    fontWeight: '700',
+  },
+
+  cancelButton: {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#f3f3f3',
+    borderRadius: 50,
+    padding: 8,
+    marginRight: 6,
+    width: 100,
+    flex: 0.3,
+  },
+
+  cancelText: {
+    color: '#f3f3f3',
+    fontWeight: '700',
+  },
 });
 
 export default styles;

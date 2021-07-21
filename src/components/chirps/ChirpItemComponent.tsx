@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
+import ModalComponent from '../semantic/ModalComponent';
 import { Storage } from 'aws-amplify';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
@@ -29,6 +30,7 @@ interface Props {
 const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const [isModalVisible, setModalVisible] = React.useState(false);
   const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
@@ -92,6 +94,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       }}
       style={styles.chirpItem}
     >
+      <ModalComponent
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+      />
       {/* user image */}
       <View>
         <Image
@@ -149,13 +155,16 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           </Text>
         </Pressable>
       </View>
-      <View style={{ alignContent: 'center' }}>
+      <Pressable
+        style={{ alignContent: 'center' }}
+        onPress={() => setModalVisible(true)}
+      >
         <MaterialCommunityIcons
           name='dots-horizontal'
           size={20}
           color={'#ededed'}
         />
-      </View>
+      </Pressable>
     </TouchableOpacity>
   );
 };
