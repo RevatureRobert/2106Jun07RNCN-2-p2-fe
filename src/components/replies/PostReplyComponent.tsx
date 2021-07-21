@@ -5,6 +5,7 @@ import { PostComment } from '../../redux/actions/ChirpActions';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
+import { Keyboard } from 'react-native';
 
 interface Props {
   timestamp: string;
@@ -26,6 +27,8 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
       },
     ]);
 
+    Keyboard.dismiss();
+    setInputState('');
     toast.show(comment);
   }
 

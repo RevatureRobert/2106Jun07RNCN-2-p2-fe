@@ -34,7 +34,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
       <View>
         <Image
           source={{ uri: Props.userImg }}
-          style={{ width: 48, height: 48, borderRadius: 52 / 2 }}
+          style={{ width: 40, height: 40, borderRadius: 40 / 2 }}
         ></Image>
       </View>
       {/* main chirp content, displays username, chirp body, timestamp, and like button */}
