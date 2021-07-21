@@ -83,32 +83,14 @@ export const PostChirp = async (chirp: {}) => {
 };
 
 // makes an api call that deletes a chirp
-export const DeleteChirp =
-  (timestamp: string, username: string) =>
-  async (dispatch: Dispatch<ChirpsActionsTypes>) => {
-    try {
-      dispatch({
-        type: CHIRPS_LOADING,
-      });
-
-      await axios
-        .delete(`/chirps/${username}/${timestamp}`)
-        .then((res) => {
-          dispatch({
-            type: CHIRPS_SUCCESS,
-            payload: res.data,
-          });
-          console.log(res);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } catch (e) {
-      dispatch({
-        type: CHIRPS_FAIL,
-      });
-    }
-  };
+export const DeleteChirp = async (timestamp: string, username: string) => {
+  try {
+    await axios.delete(`/chirps/${username}/${timestamp}`);
+    return 'Chirp has been deleted';
+  } catch (e) {
+    return 'Error deleting chirp: ' + e;
+  }
+};
 
 // like a chirp
 export const LikeChirp = async (timestamp: string, username: string) => {

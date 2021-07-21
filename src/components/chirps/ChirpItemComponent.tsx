@@ -97,6 +97,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       <ModalComponent
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
+        currentUser={currentUser?.username}
+        chirpUser={Props.username}
+        chirpTimestamp={Props.timestamp}
       />
       {/* user image */}
       <View>
