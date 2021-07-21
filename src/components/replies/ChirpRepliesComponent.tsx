@@ -36,12 +36,15 @@ const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
 
   // gets all chirps from the store, sends it to ChirpItemComponent as props
   const repliesState = useSelector((state: RootStore) => state.replies);
+  const currentUser = useSelector((state: RootStore) => state.auth);
   const renderItem = ({ item }: { item: any }) => (
     <RepliesItemComponent
       userImg={item.userImg}
       username={item.username}
       body={item.body}
       timestamp={item.timestamp}
+      chirpTimestamp={timestamp}
+      currentUser={currentUser.user ? currentUser.user?.username : ''}
     />
   );
 

@@ -4,13 +4,13 @@ import {
   ChirpsActionsTypes,
   CHIRPS_FAIL,
   CHIRPS_LOADING,
-  CHIRPS_SUCCESS
+  CHIRPS_SUCCESS,
 } from '../types/ChirpActionsTypes';
 import {
   RepliesActionTypes,
   REPLIES_FAIL,
   REPLIES_LOADING,
-  REPLIES_SUCCESS
+  REPLIES_SUCCESS,
 } from '../types/RepliesActionTypes';
 
 // makes an api call that gets all chirps
@@ -18,16 +18,16 @@ export const GetAllChirps =
   () => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING
+        type: CHIRPS_LOADING,
       });
       const res = await axios.get('/chirps', { data: undefined });
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items
+        payload: res.data.Items,
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL
+        type: CHIRPS_FAIL,
       });
     }
   };
@@ -37,17 +37,17 @@ export const GetChirp =
   (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING
+        type: CHIRPS_LOADING,
       });
 
       const res = await axios.get(`/chirps/${timestamp}`);
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items
+        payload: res.data.Items,
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL
+        type: CHIRPS_FAIL,
       });
     }
   };
@@ -57,17 +57,17 @@ export const GetUsersChirps =
   (username: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
     try {
       dispatch({
-        type: CHIRPS_LOADING
+        type: CHIRPS_LOADING,
       });
 
       const res = await axios.get(`/chirps/${username}`);
       dispatch({
         type: CHIRPS_SUCCESS,
-        payload: res.data.Items
+        payload: res.data.Items,
       });
     } catch (e) {
       dispatch({
-        type: CHIRPS_FAIL
+        type: CHIRPS_FAIL,
       });
     }
   };
@@ -83,31 +83,14 @@ export const PostChirp = async (chirp: {}) => {
 };
 
 // makes an api call that deletes a chirp
-export const DeleteChirp =
-  (timestamp: string) => async (dispatch: Dispatch<ChirpsActionsTypes>) => {
-    try {
-      dispatch({
-        type: CHIRPS_LOADING
-      });
-
-      await axios
-        .delete(`/chirps/${timestamp}`)
-        .then((res) => {
-          dispatch({
-            type: CHIRPS_SUCCESS,
-            payload: res.data
-          });
-          console.log(res);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } catch (e) {
-      dispatch({
-        type: CHIRPS_FAIL
-      });
-    }
-  };
+export const DeleteChirp = async (timestamp: string, username: string) => {
+  try {
+    await axios.delete(`/chirps/${username}/${timestamp}`);
+    return 'Chirp has been deleted';
+  } catch (e) {
+    return 'Error deleting chirp: ' + e;
+  }
+};
 
 // like a chirp
 export const LikeChirp = async (timestamp: string, username: string) => {
@@ -137,16 +120,16 @@ export const GetReplies =
   async (dispatch: Dispatch<RepliesActionTypes>) => {
     try {
       dispatch({
-        type: REPLIES_LOADING
+        type: REPLIES_LOADING,
       });
       const res = await axios.get(`/chirps/${username}/${timestamp}/replies`);
       dispatch({
         type: REPLIES_SUCCESS,
-        payload: res.data.Items[0].comments
+        payload: res.data.Items[0].comments,
       });
     } catch (e) {
       dispatch({
-        type: REPLIES_FAIL
+        type: REPLIES_FAIL,
       });
     }
   };
@@ -157,7 +140,6 @@ export const PostComment = async (
   username: string,
   chirp: [{}]
 ) => {
-  console.log(timestamp, username, chirp);
   try {
     await axios
       .put(`/chirps/${username}/${timestamp}/replies`, chirp)
@@ -165,5 +147,21 @@ export const PostComment = async (
     return 'Comment has been posted.';
   } catch (e) {
     return 'Error adding comment: ' + e;
+  }
+};
+
+// delete comment
+export const DeleteComment = async (
+  timestamp: string,
+  username: string,
+  cmttimestamp: string
+) => {
+  try {
+    await axios
+      .delete(`/chirps/${username}/${timestamp}/replies/${cmttimestamp}`)
+      .catch((error) => console.log(error));
+    return 'Comment has been deleted.';
+  } catch (e) {
+    return 'Error deleting comment: ' + e;
   }
 };
