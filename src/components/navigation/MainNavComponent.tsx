@@ -30,8 +30,6 @@ const MainNavComponent: React.FC = () => {
       screenOptions={{
         cardStyle: {
           backgroundColor: '#111',
-          display: 'flex',
-          justifyContent: 'center',
         },
       }}
     >
