@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
     right: 0,
     overflow: 'hidden',
     marginRight: 15,
-    marginBottom: 75,
+    marginBottom: 15,
     borderRadius: 100 / 2,
     ...Platform.select({
       ios: { marginBottom: 100 },

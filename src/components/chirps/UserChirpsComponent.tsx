@@ -9,6 +9,7 @@ import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
 import styles from './chirpstyles';
 import { TabRouter } from '@react-navigation/native';
 import HeaderComponent from '../semantic/HeaderComponent';
+import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
 
 interface Props {
   route: {
@@ -96,6 +97,7 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
             keyExtractor={(item) => item.timestamp}
           />
         </View>
+        <AddChirpBtnComponent />
       </View>
     );
   }

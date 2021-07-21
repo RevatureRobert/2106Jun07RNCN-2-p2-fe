@@ -8,7 +8,7 @@ const MainView: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor='#1b1b1b' barStyle='light-content' />
       <BottomNavComponent />
-      <AddChirpBtnComponent />
+      {/* <AddChirpBtnComponent /> */}
     </SafeAreaView>
   );
 };
