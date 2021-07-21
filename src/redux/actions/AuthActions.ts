@@ -10,7 +10,7 @@ import {
   SET_VERIFICATION,
   SET_USER,
   SIGN_OUT,
-  User,
+  User
 } from '../types/AuthActionsTypes';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from 'amazon-cognito-identity-js';
@@ -26,11 +26,11 @@ export const signIn = (
       if (res) {
         const userData: User = {
           username: res.getUsername(),
-          password: data.password,
+          password: data.password
         };
         dispatch({
           type: SET_USER,
-          payload: userData,
+          payload: userData
         });
       }
       console.log('LOOK: ', res);
@@ -67,7 +67,7 @@ export const getVerification = (): ThunkAction<
 > => {
   return async (dispatch) => {
     dispatch({
-      type: SET_VERIFICATION,
+      type: SET_VERIFICATION
     });
   };
 };
@@ -83,7 +83,7 @@ export const logout = (): ThunkAction<
       dispatch(setLoading(true));
       await Auth.signOut();
       dispatch({
-        type: SIGN_OUT,
+        type: SIGN_OUT
       });
     } catch (error) {
       dispatch(setLoading(false));
