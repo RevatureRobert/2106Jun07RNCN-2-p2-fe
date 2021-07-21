@@ -10,7 +10,7 @@ export const UserBioComponent: React.FC = () => {
     const user = await Auth.currentAuthenticatedUser();
 
     await Auth.updateUserAttributes(user, {
-      'custom:bio': bioText,
+      'custom:bio': bioText
     });
     setBioText('');
   };
@@ -19,7 +19,6 @@ export const UserBioComponent: React.FC = () => {
     try {
       const currentUserInfo = await Auth.currentUserInfo();
       const currentBio = currentUserInfo.attributes['custom:bio'];
-      console.log('MY BIO: ', currentBio);
       return currentBio;
     } catch (error) {
       console.log(error);
