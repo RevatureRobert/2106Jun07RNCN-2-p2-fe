@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Pressable } from 'react-native';
+import { View, Image, Pressable, Text } from 'react-native';
 import Modal from 'react-native-modal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -7,12 +7,16 @@ interface Props {
   isModalVisible: boolean;
   setModalVisible: any;
   imgUrl: any;
+  username: string;
+  body: string;
 }
 
 const ImageViewModal: React.FC<Props> = ({
   isModalVisible,
   setModalVisible,
   imgUrl,
+  username,
+  body,
 }) => {
   return (
     <View>
@@ -36,6 +40,10 @@ const ImageViewModal: React.FC<Props> = ({
               height: undefined,
             }}
           />
+          <Text style={{ color: '#f4f4f4', fontWeight: '700' }}>
+            @{username}
+          </Text>
+          <Text style={{ color: '#f4f4f4' }}>{body}</Text>
         </View>
       </Modal>
     </View>

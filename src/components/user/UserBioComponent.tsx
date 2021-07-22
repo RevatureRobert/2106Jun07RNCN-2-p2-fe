@@ -69,14 +69,12 @@ export const UserBioComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(text, content, {
       level: 'public',
-      contentType: 'text/plain'
+      contentType: 'text/plain',
     })
       .then((response: any) => {
         return response.key;
-        console.log(response);
       })
       .catch((error) => {
-        console.log(error);
         return error.response;
       });
   };
@@ -147,7 +145,7 @@ export const UserBioComponent: React.FC = () => {
             styles.updateBioCount,
             bioText.length > 0 ? { color: '#B1D46A' } : null,
             bioText.length > 100 ? { color: '#D4B16A' } : null,
-            bioText.length > 150 ? { color: '#D46A6A' } : null
+            bioText.length > 150 ? { color: '#D46A6A' } : null,
           ]}
         >
           {bioText.length}/150

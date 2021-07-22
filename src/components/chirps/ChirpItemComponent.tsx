@@ -183,6 +183,8 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isModalVisible={isImgModalVisible}
         setModalVisible={setImgModalVisible}
         imgUrl={Props.media}
+        username={Props.username}
+        body={Props.body}
       />
     </TouchableOpacity>
   );

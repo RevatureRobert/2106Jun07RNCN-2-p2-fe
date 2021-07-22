@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   // ChirpsComponent.tsx
   chirpsContainer: {
     flex: 1,
-    backgroundColor: '#111'
+    backgroundColor: '#111',
   },
 
   // PostReplyComponent.tsx
@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#1b1b1b',
     borderColor: '#1b1b1b',
     textAlign: 'left',
+    marginRight: 10,
     borderRadius: 15,
     marginLeft: 5,
-    marginRight: 12,
     textAlignVertical: 'center',
     fontSize: 14,
-    flex: 1
+    flex: 1,
   },
 
   postReplyComponent: {
@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#141414',
     borderColor: '#1b1b1b',
     borderBottomWidth: 1,
-    padding: 12
+    justifyContent: 'center',
+    padding: 12,
   },
 
   postReplyButton: {
@@ -36,31 +37,32 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    width: 72,
-    borderRadius: 25
+    height: 35,
+    width: 75,
+    borderRadius: 25,
   },
 
   postReplyCount: {
     color: '#ddd',
-    textAlign: 'right',
-    alignSelf: 'stretch',
-    height: 40,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlignVertical: 'center',
     width: 45,
-    marginRight: 10,
     fontSize: 10,
-    fontVariant: ['tabular-nums']
+    paddingLeft: 10,
+    fontVariant: ['tabular-nums'],
   },
 
   postReplyButtonText: {
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
   // UserChirpsComponent.tsx
   userChirpsContainer: {
     flex: 1,
     backgroundColor: '#141414',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   // RepliesItemComponent.tsx
@@ -73,29 +75,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#141414',
     borderBottomWidth: 1,
     borderBottomColor: '#1b1b1b',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   chirpContent: {
     paddingLeft: 20,
-    flex: 1
+    flex: 1,
   },
 
   chirpUser: {
     color: '#f3f3f3',
     fontWeight: '700',
-    fontSize: 14
+    fontSize: 14,
   },
 
   chirpBody: {
     fontSize: 14,
-    color: '#ffffff'
+    color: '#ffffff',
   },
 
   chirpTimestamp: {
     fontSize: 10,
-    color: '#e1e1e1'
-  }
+    color: '#e1e1e1',
+  },
 });
 
 export default styles;

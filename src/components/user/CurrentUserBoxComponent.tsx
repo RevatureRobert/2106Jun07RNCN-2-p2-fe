@@ -5,7 +5,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -70,12 +70,10 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
 
     // setBio(re);
     return Storage.get(bio)
-      .then((data) => {
-        console.log('data from S3: ', data);
+      .then((data: any) => {
         fetch(data)
           .then((r) => r.text())
           .then((text) => {
-            console.log('text: ', text);
             setBio(text);
           })
           .catch((e) => console.log('error fetching text: ', e));
@@ -104,7 +102,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center'
+              alignContent: 'center',
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />
