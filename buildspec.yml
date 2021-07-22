@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+  EXPO_USERNAME: marcski55
+
 phases:
   install:
     runetime-versions:
@@ -7,6 +11,8 @@ phases:
     commands:
       - echo Installing expo ...
       - npm install --global expo-cli
+      - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --output text)
+      - npx expo login --non-interactive -u ${EXPO_USERNAME}
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
