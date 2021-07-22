@@ -26,12 +26,12 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
-  const [bio, setBio] = React.useState(null);
+  const [bio, setBio] = React.useState('null');
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     fetchImage();
-    fetchText();
+    // fetchText();
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -59,16 +59,28 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const logOutPress = () => {
     dispatch(logout());
   };
-  const fetchText = async () => {
-    let user = username;
 
-    let userBio = `${user}/mybio`;
-    const signUrl: any = await Storage.get(userBio);
-    // return signUrl;
+  const fetchText = () => {
+    let bio = `${username}/mybio`;
+    // const signUrl: any = await Storage.get(bio);
+    // const res: any = await fetch(signUrl);
+    // const re: any = res.text();
 
-    console.log(signUrl);
-    setBio(signUrl);
+    // // // return signUrl;
+
+    // setBio(re);
+    return Storage.get(bio)
+      .then((data: any) => {
+        fetch(data)
+          .then((r) => r.text())
+          .then((text) => {
+            setBio(text);
+          })
+          .catch((e) => console.log('error fetching text: ', e));
+      })
+      .catch((err) => console.log('error fetching from S3', err));
   };
+  fetchText();
 
   return (
     <SafeAreaView style={styles.androidSafeArea}>

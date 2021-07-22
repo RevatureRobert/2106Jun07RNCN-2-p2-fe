@@ -1,14 +1,28 @@
 import React from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Keyboard,
+} from 'react-native';
 import { Auth } from 'aws-amplify';
 import styles from './userstyles';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
+import { useToast } from 'react-native-toast-notifications';
 import { Storage } from 'aws-amplify';
 
 export const UserBioComponent: React.FC = () => {
   const [bioText, setBioText] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const toast = useToast();
+
+  //   React.useEffect(() => {
+  //     fetchText().then((t) => {
+  //       console.log(t);
+  //     });
+  //   });
 
   //   let dispatch = useDispatch();
 
@@ -21,15 +35,32 @@ export const UserBioComponent: React.FC = () => {
   //     setBioText('');
   //   };
 
-  const fetchText = async () => {
-    let user = currentUser?.username;
+  //   const fetchText = () => {
+  //     Auth.currentCredentials();
 
-    let bio = `${user}/mybio`;
-    const signUrl: any = await Storage.get(bio);
-    // return signUrl;
+  //     // let user = currentUser?.username;
 
-    setBioText(signUrl);
-  };
+  //     let bio = `${currentUser?.username}/mybio`;
+  //     // const signUrl: any = await Storage.get(bio);
+  //     // const res: any = await (await fetch(signUrl)).text();
+
+  //     // // return signUrl;
+
+  //     // setBioText(res);
+  //     Storage.get(bio)
+  //       .then((data) => {
+  //         console.log('data from S3: ', data);
+  //         fetch(data)
+  //           .then((r) => r.text())
+  //           .then((text) => {
+  //             console.log('text: ', text);
+  //           })
+  //           .catch((e) => console.log('error fetching text: ', e));
+  //       })
+  //       .catch((err) => console.log('error fetching from S3', err));
+  //   };
+
+  //   console.log(fetchText());
 
   const updateUserBio = async () => {
     let user = currentUser?.username;
@@ -39,6 +70,8 @@ export const UserBioComponent: React.FC = () => {
 
       await uploadBio(bio, bioText);
       setBioText('');
+      Keyboard.dismiss();
+      toast.show('Bio has been updated.');
       //   downloadText(textUrl);
     } catch (error) {}
   };
@@ -46,21 +79,20 @@ export const UserBioComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(text, content, {
       level: 'public',
-      contentType: 'text/plain'
+      contentType: 'text/plain',
     })
       .then((response: any) => {
-        return response;
+        return response.key;
       })
       .catch((error) => {
-        console.log(error);
         return error.response;
       });
   };
-  const downloadText = (text: any) => {
-    Storage.get(text)
-      .then((result: any) => setBioText(result))
-      .catch((err) => console.log(err));
-  };
+  //   const downloadText = (text: any) => {
+  //     Storage.get(text)
+  //       .then((result: any) => setBioText(result))
+  //       .catch((err) => console.log(err));
+  //   };
 
   //   const updateUserBio = async () => {
   //     let user = currentUser?.username;
@@ -123,7 +155,7 @@ export const UserBioComponent: React.FC = () => {
             styles.updateBioCount,
             bioText.length > 0 ? { color: '#B1D46A' } : null,
             bioText.length > 100 ? { color: '#D4B16A' } : null,
-            bioText.length > 150 ? { color: '#D46A6A' } : null
+            bioText.length > 150 ? { color: '#D46A6A' } : null,
           ]}
         >
           {bioText.length}/150
