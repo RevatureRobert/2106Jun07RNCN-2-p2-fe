@@ -23,8 +23,8 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
         userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
         username: currentUser.user ? currentUser.user.username : '',
         body: inputState,
-        timestamp: Date.now().toString()
-      }
+        timestamp: Date.now().toString(),
+      },
     ]);
 
     Keyboard.dismiss();
@@ -45,23 +45,25 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
         }}
         value={inputState}
       />
-      <Text
-        style={[
-          styles.postReplyCount,
-          inputState.length > 0 ? { color: '#B1D46A' } : null,
-          inputState.length > 100 ? { color: '#D4B16A' } : null,
-          inputState.length > 150 ? { color: '#D46A6A' } : null
-        ]}
-      >
-        {inputState.length}/150
-      </Text>
-      <TouchableHighlight
-        style={styles.postReplyButton}
-        onPress={postComment}
-        disabled={inputState.length > 150 || inputState.length < 1}
-      >
-        <Text style={styles.postReplyButtonText}>Post</Text>
-      </TouchableHighlight>
+      <View style={{ justifyContent: 'space-evenly', flex: 0.3 }}>
+        <TouchableHighlight
+          style={styles.postReplyButton}
+          onPress={postComment}
+          disabled={inputState.length > 150 || inputState.length < 1}
+        >
+          <Text style={styles.postReplyButtonText}>Post</Text>
+        </TouchableHighlight>
+        <Text
+          style={[
+            styles.postReplyCount,
+            inputState.length > 0 ? { color: '#B1D46A' } : null,
+            inputState.length > 100 ? { color: '#D4B16A' } : null,
+            inputState.length > 150 ? { color: '#D46A6A' } : null,
+          ]}
+        >
+          {inputState.length}/150
+        </Text>
+      </View>
     </View>
   );
 };

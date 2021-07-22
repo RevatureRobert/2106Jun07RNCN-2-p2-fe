@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Pressable
+  Pressable,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import ModalComponent from '../semantic/ModalComponent';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 import { formatTimestamp } from '../../shared/functions';
+import ImageViewModal from '../semantic/ImageViewModal';
 
 interface Props {
   userImg: string;
@@ -30,6 +31,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [isModalVisible, setModalVisible] = React.useState(false);
+  const [isImgModalVisible, setImgModalVisible] = React.useState(false);
   const navigation = useNavigation();
 
   // default state for liking to be used to update when liking/unliking a chirp
@@ -37,7 +39,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     isLiked: false,
     icon: 'heart-outline',
     color: '#e1e1e1',
-    count: Props.likes.length - 1
+    count: Props.likes.length - 1,
   });
 
   // checks if user has already liked the chirp
@@ -49,7 +51,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length - 1
+        count: Props.likes.length - 1,
       });
     }
   }, []);
@@ -62,7 +64,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: Props.likes.length - 1
+        count: Props.likes.length - 1,
       });
 
       UnlikeChirp(
@@ -75,7 +77,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length
+        count: Props.likes.length,
       });
 
       LikeChirp(
@@ -93,27 +95,18 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       }}
       style={styles.chirpItem}
     >
-      <ModalComponent
-        modalType='chirp'
-        isModalVisible={isModalVisible}
-        setModalVisible={setModalVisible}
-        currentUser={currentUser?.username}
-        chirpUser={Props.username}
-        chirpTimestamp={Props.timestamp}
-        cmtTimestamp=''
-      />
       {/* user image */}
       <Pressable
         onPress={() => {
           navigation.navigate('user', {
             username: Props.username,
-            currentUser: currentUser?.username
+            currentUser: currentUser?.username,
           });
         }}
       >
         <Image
           source={{
-            uri: Props.userImg
+            uri: Props.userImg,
           }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
@@ -124,16 +117,17 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpBody}>{Props.body}</Text>
         {/* checks if chirp has an image */}
         {Props.media && Props.media !== '' ? (
-          <Image
-            source={{ uri: Props.media }}
-            style={{
-              height: 250,
-              marginTop: 10,
-              marginBottom: 10,
-              borderRadius: 15
-            }}
-            resizeMode='cover'
-          />
+          <Pressable onPress={() => setImgModalVisible(true)}>
+            <Image
+              source={{ uri: Props.media }}
+              style={{
+                height: 250,
+                marginTop: 10,
+                marginBottom: 10,
+                borderRadius: 15,
+              }}
+            />
+          </Pressable>
         ) : null}
         <Text style={styles.chirpTimestamp}>
           {formatTimestamp(new Date(Number(Props.timestamp)))}
@@ -143,7 +137,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            width: 50
+            width: 50,
           }}
         >
           <MaterialCommunityIcons
@@ -176,6 +170,22 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           color={'#ededed'}
         />
       </Pressable>
+      <ModalComponent
+        modalType='chirp'
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+        currentUser={currentUser?.username}
+        chirpUser={Props.username}
+        chirpTimestamp={Props.timestamp}
+        cmtTimestamp=''
+      />
+      <ImageViewModal
+        isModalVisible={isImgModalVisible}
+        setModalVisible={setImgModalVisible}
+        imgUrl={Props.media}
+        username={Props.username}
+        body={Props.body}
+      />
     </TouchableOpacity>
   );
 };
