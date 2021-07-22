@@ -9,7 +9,6 @@ module.exports = {
       withEnzyme(require('jest-expo/android/jest-preset')),
       // withEnzyme(require('jest-expo/web/jest-preset')),
     ],
-    preset: "jest-expo-enzyme",
     setupFiles: [
       '<rootDir>/__tests__/test-setup.js',
       "<rootDir>/__tests__/mocks/test-shim.js",

@@ -1,3 +1,5 @@
+import { ShallowWrapper } from "enzyme";
+
 /**
  * Prints console.log(message, value) only if environment variable ALERT is set 
  * to 'on'.
@@ -16,3 +18,15 @@ export function alert(message:string, value:any){
         }  
     }
 }
+
+export function diveLikeCrazy(numberOfDives:number, shallow:ShallowWrapper){
+    const display = shallow.debug();
+    if (numberOfDives<=0){
+      console.log('Dive 0: \n', display);
+    }
+    else {
+      console.log(`Dive ${numberOfDives}: \n`, display);
+      numberOfDives--;
+      diveLikeCrazy(numberOfDives, shallow.dive());
+    }
+  }
