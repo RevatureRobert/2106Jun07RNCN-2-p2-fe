@@ -96,14 +96,6 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
 
   return (
     <View>
-      {image && (
-        <View>
-          <Image
-            source={{ uri: image as any }}
-            style={{ width: 50, height: 50 }}
-          />
-        </View>
-      )}
       <View
         style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}
       >
@@ -118,6 +110,15 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
           </View>
         </TouchableOpacity>
       </View>
+      {image && (
+        <View>
+          <Image
+            source={{ uri: image as any }}
+            style={{ width: 100, height: undefined, flex: 1 }}
+            resizeMode='contain'
+          />
+        </View>
+      )}
     </View>
   );
 };
