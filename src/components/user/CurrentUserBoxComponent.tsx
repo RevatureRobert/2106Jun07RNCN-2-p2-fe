@@ -5,7 +5,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -31,11 +31,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
 
   React.useEffect(() => {
     fetchImage();
-<<<<<<< HEAD
     // fetchText();
-=======
-    fetchText();
->>>>>>> b0b05f1bec9e02cbd0f6926a226988913e99b719
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -108,7 +104,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center',
+              alignContent: 'center'
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />
