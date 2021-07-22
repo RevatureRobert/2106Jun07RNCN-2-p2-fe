@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-  EXPO_USERNAME: marcski55
+    EXPO_USERNAME: marcski55
 
 phases:
   install:
