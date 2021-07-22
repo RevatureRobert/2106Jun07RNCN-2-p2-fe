@@ -15,19 +15,18 @@ export function alert(message: string, value: any) {
     } else {
       console.log(message);
     }
+  }
 }
 
 export function diveLikeCrazy(numberOfDives:number, shallow:ShallowWrapper){
-    const display = shallow.debug();
-    if (numberOfDives<=0){
-      console.log('Dive 0: \n', display);
-    }
-    else {
-      console.log(`Dive ${numberOfDives}: \n`, display);
-      numberOfDives--;
-      diveLikeCrazy(numberOfDives, shallow.dive());
-    }
+  const display = shallow.debug();
+  if (numberOfDives<=0){
+    console.log('Dive 0: \n', display);
   }
+  else {
+    console.log(`Dive ${numberOfDives}: \n`, display);
+    numberOfDives--;
+    diveLikeCrazy(numberOfDives, shallow.dive());
   }
 }
 
