@@ -5,7 +5,7 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -29,21 +29,13 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const [bio, setBio] = React.useState('null');
   const dispatch = useDispatch();
 
-  // function to get updated bio
-  const getBio = async () => {
-    try {
-      const currentUserInfo = await Auth.currentUserInfo();
-      const currentBio = currentUserInfo.attributes['custom:bio'];
-      console.log('MY BIO: ', currentBio);
-      setBio(currentBio);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
     fetchImage();
+<<<<<<< HEAD
     // fetchText();
+=======
+    fetchText();
+>>>>>>> b0b05f1bec9e02cbd0f6926a226988913e99b719
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -116,7 +108,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center'
+              alignContent: 'center',
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />

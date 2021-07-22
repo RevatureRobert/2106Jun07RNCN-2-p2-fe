@@ -141,9 +141,25 @@ export const UserBioComponent: React.FC = () => {
           returnKeyType='done'
         />
       </View>
-      <TouchableOpacity style={styles.updateBioBtn} onPress={updateUserBio}>
-        <Text style={styles.updateBioBtnText}>Update</Text>
-      </TouchableOpacity>
+      <View>
+        <Text
+          style={[
+            styles.updateBioCount,
+            bioText.length > 0 ? { color: '#B1D46A' } : null,
+            bioText.length > 100 ? { color: '#D4B16A' } : null,
+            bioText.length > 150 ? { color: '#D46A6A' } : null
+          ]}
+        >
+          {bioText.length}/150
+        </Text>
+        <TouchableOpacity
+          style={styles.updateBioBtn}
+          onPress={updateUserBio}
+          disabled={bioText.length > 150 || bioText.length < 1}
+        >
+          <Text style={styles.updateBioBtnText}>Update</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

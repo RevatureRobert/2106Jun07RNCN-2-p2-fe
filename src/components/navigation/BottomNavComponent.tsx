@@ -30,10 +30,11 @@ const BottomNavComponent = () => {
           height: 64,
           ...Platform.select({
             ios: {
-              padding: 15,
-            },
-          }),
-        },
+              padding: 10,
+              height: 75
+            }
+          })
+        }
       }}
     >
       {/* all chirps feed */}
@@ -48,7 +49,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user profile */}
@@ -59,8 +60,8 @@ const BottomNavComponent = () => {
             route={{
               params: {
                 username: currentUser ? currentUser.username : '',
-                currentUser: currentUser ? currentUser?.username : '',
-              },
+                currentUser: currentUser ? currentUser?.username : ''
+              }
             }}
           />
         )}
@@ -72,7 +73,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
       {/* user settings */}
@@ -87,7 +88,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          ),
+          )
         }}
       />
     </Tab.Navigator>
