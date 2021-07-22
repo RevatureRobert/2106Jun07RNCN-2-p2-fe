@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
 
-import SingleChirpView from '../../../src/components/chirps/SingleChirpView';
+import UserChirpsComponent from '../../../src/components/chirps/UserChirpsComponent';
 import ChirpItemComponent from '../../../src/components/chirps/ChirpItemComponent';
 import PostReplyComponent from '../../../src/components/replies/PostReplyComponent';
 import ChirpRepliesComponent from '../../../src/components/replies/ChirpRepliesComponent';
@@ -12,22 +12,11 @@ import HeaderComponent from '../../../src/components/semantic/HeaderComponent';
 
 let wrapper;
 
-const route = { 
-    params: {
-        userImg: '',
-        username: 'dummyUser',
-        body: 'chirpBody',
-        comments: [],
-        likes: [''],
-        media: '',
-        timestamp: Date.now().toString(),
-    },
-};
 const component = () => {
-    return <SingleChirpView route={route}/>
+    return <UserChirpsComponent/>
 };
 
-describe('Testing SingleChirpView', () => {
+describe('Testing UserChirpsComponent', () => {
     beforeEach( () => {
         wrapper = mount(nestedHell(testState, component));
     });
