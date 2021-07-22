@@ -1,20 +1,27 @@
-Project:
-  Type: AWS::CodeBuild::Project
-  Properties:
-    Name: Chirper-React-Native
-    Description: Not_A_Twitter_Clone™️
-    ServiceRole: arn:aws:iam::962062657753:role/service-role/codebuild-Chirper-React-Native-service-role
-    Artifacts:
-      Type: no_artifacts
-    Environment:
-      Type: LINUX_CONTAINER
-      ComputeType: BUILD_GENERAL1_SMALL
-      Image: aws/codebuild/amazonlinux2-x86_64-standard:3.0
-      # EnvironmentVariables:
-      # - Name: varName
-      #   Type: varType
-      #   Value: varValue
-    Source:
-      Location: https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe.git
-      Type: GITHUB
-    TimeoutInMinutes: 60
+version: 0.2
+
+phases:
+  install:
+    runetime-versions:
+      nodejs: 14.x
+    commands:
+      - echo Installing expo ...
+      - npm install --global expo-cli
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install --legacy-peer-deps
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the actual code
+      - expo publish
+      - expo build:web
+      - expo build:android --no-wait
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Android build status can be checked at https://expo.dev/
+artifacts:
+  files:
+    - web-build/**/*
