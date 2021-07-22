@@ -5,6 +5,7 @@ import { PostComment } from '../../redux/actions/ChirpActions';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
+import { Keyboard } from 'react-native';
 
 interface Props {
   timestamp: string;
@@ -22,10 +23,12 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
         userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
         username: currentUser.user ? currentUser.user.username : '',
         body: inputState,
-        timestamp: Date.now().toString(),
-      },
+        timestamp: Date.now().toString()
+      }
     ]);
 
+    Keyboard.dismiss();
+    setInputState('');
     toast.show(comment);
   }
 
@@ -42,7 +45,21 @@ const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
         }}
         value={inputState}
       />
-      <TouchableHighlight style={styles.postReplyButton} onPress={postComment}>
+      <Text
+        style={[
+          styles.postReplyCount,
+          inputState.length > 0 ? { color: '#B1D46A' } : null,
+          inputState.length > 100 ? { color: '#D4B16A' } : null,
+          inputState.length > 150 ? { color: '#D46A6A' } : null
+        ]}
+      >
+        {inputState.length}/150
+      </Text>
+      <TouchableHighlight
+        style={styles.postReplyButton}
+        onPress={postComment}
+        disabled={inputState.length > 150 || inputState.length < 1}
+      >
         <Text style={styles.postReplyButtonText}>Post</Text>
       </TouchableHighlight>
     </View>

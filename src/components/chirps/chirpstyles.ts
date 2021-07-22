@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   // ChirpItemComponent.tsx
   chirpItem: {
     flexDirection: 'row',
+    flexShrink: 1,
     paddingLeft: 25,
     paddingRight: 25,
     paddingTop: 15,

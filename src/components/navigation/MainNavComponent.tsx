@@ -28,7 +28,9 @@ const MainNavComponent: React.FC = () => {
     <Stack.Navigator
       headerMode='none'
       screenOptions={{
-        cardStyle: { backgroundColor: '#111' },
+        cardStyle: {
+          backgroundColor: '#111',
+        },
       }}
     >
       {

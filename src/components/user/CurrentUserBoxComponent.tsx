@@ -29,21 +29,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const [bio, setBio] = React.useState(null);
   const dispatch = useDispatch();
 
-  // function to get updated bio
-  const getBio = async () => {
-    try {
-      const currentUserInfo = await Auth.currentUserInfo();
-      const currentBio = currentUserInfo.attributes['custom:bio'];
-      console.log('MY BIO: ', currentBio);
-      setBio(currentBio);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
     fetchImage();
-    getBio();
+    fetchText();
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -70,6 +58,16 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // log out function
   const logOutPress = () => {
     dispatch(logout());
+  };
+  const fetchText = async () => {
+    let user = username;
+
+    let userBio = `${user}/mybio`;
+    const signUrl: any = await Storage.get(userBio);
+    // return signUrl;
+
+    console.log(signUrl);
+    setBio(signUrl);
   };
 
   return (

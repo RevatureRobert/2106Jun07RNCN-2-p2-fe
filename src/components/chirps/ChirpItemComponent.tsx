@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Pressable,
+  Pressable
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
@@ -14,6 +14,7 @@ import { LikeChirp, UnlikeChirp } from '../../redux/actions/ChirpActions';
 import ModalComponent from '../semantic/ModalComponent';
 import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
+import { formatTimestamp } from '../../shared/functions';
 
 interface Props {
   userImg: string;
@@ -36,7 +37,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
     isLiked: false,
     icon: 'heart-outline',
     color: '#e1e1e1',
-    count: Props.likes.length - 1,
+    count: Props.likes.length - 1
   });
 
   // checks if user has already liked the chirp
@@ -48,7 +49,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length - 1,
+        count: Props.likes.length - 1
       });
     }
   }, []);
@@ -61,7 +62,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: Props.likes.length - 1,
+        count: Props.likes.length - 1
       });
 
       UnlikeChirp(
@@ -74,7 +75,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length,
+        count: Props.likes.length
       });
 
       LikeChirp(
@@ -106,13 +107,13 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         onPress={() => {
           navigation.navigate('user', {
             username: Props.username,
-            currentUser: currentUser?.username,
+            currentUser: currentUser?.username
           });
         }}
       >
         <Image
           source={{
-            uri: Props.userImg,
+            uri: Props.userImg
           }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
@@ -129,20 +130,20 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
               height: 250,
               marginTop: 10,
               marginBottom: 10,
-              borderRadius: 15,
+              borderRadius: 15
             }}
             resizeMode='cover'
           />
         ) : null}
         <Text style={styles.chirpTimestamp}>
-          {new Date(Number(Props.timestamp)).toLocaleString()}
+          {formatTimestamp(new Date(Number(Props.timestamp)))}
         </Text>
         <Pressable
           onPress={toggleLike}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            width: 50,
+            width: 50
           }}
         >
           <MaterialCommunityIcons

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, SafeAreaView, View } from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native';
 import styles from './chirpstyles';
 import ChirpItemComponent from './ChirpItemComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
@@ -37,14 +37,18 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         comments={route.params.comments}
         media={route.params.media}
       />
-      <PostReplyComponent
-        timestamp={route.params.timestamp}
-        username={route.params.username}
-      />
       <ChirpRepliesComponent
         username={route.params.username}
         timestamp={route.params.timestamp}
       />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <PostReplyComponent
+          timestamp={route.params.timestamp}
+          username={route.params.username}
+        />
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

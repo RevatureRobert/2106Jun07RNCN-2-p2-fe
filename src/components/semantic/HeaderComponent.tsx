@@ -89,10 +89,20 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               alignItems: 'center',
             }}
           >
+            <TouchableHighlight
+              underlayColor='#111'
+              onPress={() => navigation.goBack()}
+            >
+              <MaterialCommunityIcons
+                name='keyboard-backspace'
+                color='#fff'
+                size={24}
+              />
+            </TouchableHighlight>
             <Text
               style={{
                 color: '#fff',
-                paddingLeft: 8,
+                paddingRight: 15,
                 fontWeight: '700',
                 fontSize: 18,
                 alignSelf: 'center',
