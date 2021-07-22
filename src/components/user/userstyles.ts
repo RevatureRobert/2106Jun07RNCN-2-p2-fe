@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 25,
     alignSelf: 'flex-end',
-    marginTop: 6,
+    marginTop: 15,
   },
 
   updateBioBtnText: {
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
     color: '#ddd',
     textAlign: 'right',
     alignSelf: 'flex-end',
-    height: 40,
     width: 45,
     marginRight: 10,
     marginTop: 5,
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
 
   // CurrentUserBoxComponent.tsx
   androidSafeArea: {
-    minHeight: 210,
+    minHeight: 200,
     width: 320,
     alignSelf: 'center',
     alignItems: 'center',
@@ -139,6 +138,8 @@ const styles = StyleSheet.create({
     margin: 12,
     marginBottom: 0,
     marginTop: -90,
+    paddingTop: 10,
+    paddingBottom: 10,
     ...Platform.select({
       ios: {
         shadowColor: '#000',

@@ -1,14 +1,22 @@
 import React from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Keyboard,
+} from 'react-native';
 import { Auth } from 'aws-amplify';
 import styles from './userstyles';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
+import { useToast } from 'react-native-toast-notifications';
 import { Storage } from 'aws-amplify';
 
 export const UserBioComponent: React.FC = () => {
   const [bioText, setBioText] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth.user);
+  const toast = useToast();
 
   //   React.useEffect(() => {
   //     fetchText().then((t) => {
@@ -62,6 +70,8 @@ export const UserBioComponent: React.FC = () => {
 
       await uploadBio(bio, bioText);
       setBioText('');
+      Keyboard.dismiss();
+      toast.show('Bio has been updated.');
       //   downloadText(textUrl);
     } catch (error) {}
   };
