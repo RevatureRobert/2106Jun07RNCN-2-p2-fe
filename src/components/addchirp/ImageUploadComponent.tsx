@@ -31,7 +31,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1,
+      quality: 1
     });
 
     handleImagePicked(result);
@@ -52,6 +52,9 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
         let filename = `${user}/pics/${Date.now()}`;
+        props.setImageURL(
+          'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/paddedPreloader.gif'
+        );
 
         const uploadUrl = await uploadImage(filename, img);
         downloadImage(uploadUrl);
@@ -71,7 +74,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg',
+      contentType: 'image/jpeg'
     })
       .then((response: any) => {
         return response.key;
@@ -100,7 +103,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          marginTop: 5,
+          marginTop: 5
         }}
       >
         <TouchableOpacity onPress={pickImage}>
