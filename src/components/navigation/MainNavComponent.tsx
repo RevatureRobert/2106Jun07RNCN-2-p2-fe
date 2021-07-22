@@ -24,6 +24,11 @@ const MainNavComponent: React.FC = () => {
   const Stack = createStackNavigator<RootStackParamList>();
   const user = useSelector((state: RootStore) => state.auth);
 
+  //============================================================================
+  //DEBUGGING
+  const state_ = useSelector((state: RootStore) => state);
+  console.log(state_);
+  //============================================================================
   return (
     <Stack.Navigator
       headerMode='none'

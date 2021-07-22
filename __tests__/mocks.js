@@ -1,4 +1,4 @@
-import { chirpItem } from '../../src/components/chirps/chirpstyles';
+import { chirpItem } from '../src/components/chirps/chirpstyles';
 
 export const styles = {
     chirpUser: {},

@@ -8,6 +8,7 @@ import LoadingComponent from '../semantic/LoadingComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
 import styles from './chirpstyles';
 import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
+import { navItem } from 'aws-amplify';
 
 // component that holds a list of all the chirps
 const ChirpsComponent: React.FC = () => {

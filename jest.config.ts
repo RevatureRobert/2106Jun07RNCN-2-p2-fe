@@ -11,7 +11,7 @@ module.exports = {
     ],
     setupFiles: [
       '<rootDir>/__tests__/test-setup.js',
-      "<rootDir>/__tests__/mocks/test-shim.js",
+      // "<rootDir>/__tests__/mocks/test-shim.js",
     ],
 
     //==========================================================================
@@ -32,7 +32,8 @@ module.exports = {
     //miscellaneous 
     //==========================================================================
     transform: {
-      "^.+\\.(ts|tsx)$": "ts-jest"
+      "^.+\\.(ts|tsx)$": "ts-jest",
+      "\\.js$": "<rootDir>/node_modules/babel-jest",
     },
 
     /*//if you include next line, add import { defaults } from 'jest-config';

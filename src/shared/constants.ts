@@ -1,82 +1,148 @@
-import {
-  User as IUser,
-  AuthState as IAuth,
-  SET_ERROR,
-  SET_SUCCESS
-} from '../redux/types/AuthActionsTypes';
-import { UserAPI as IUserAPI } from '../redux/types/UserAPIActionsTypes';
+interface IAuthUser {
+  password: string;
+  picture: string;
+  username: string;
+}
+
+interface IAuth {
+  authenticated: boolean;
+  error: string;
+  loading: boolean;
+  needVerification: boolean;
+  success: string;
+  user: IAuthUser;
+}
+
+interface IChirp {
+  likes: string[];
+  media: string;
+  timestamp: string;
+  comments: Comment[]
+  username: string;
+}
+
+interface IComment {
+  body: string;
+  timestamp: string;
+  userImg: string;
+  username: string;
+}
+
+interface IChirps {
+  chirps: Chirp[];
+  loading: boolean;
+}
+
+interface IReplies {
+  loading: boolean;
+}
+
+interface IUser {
+  loading: boolean;
+}
+
+class Replies implements IReplies {
+  loading: boolean;
+  constructor(loading:boolean = false){
+    this.loading = loading;
+  }
+}
 
 class User implements IUser {
-  username: string;
-  password: string;
-  email: string;
-  bio: string;
+  loading: boolean;
 
-  constructor(
-    usr: string,
-    pass: string = '',
-    email: string = '',
-    bio: string = ''
-  ) {
-    this.username = usr;
-    this.password = pass;
-    this.email = email;
-    this.bio = bio;
+  constructor(loading:boolean = false) {
+    this.loading = loading;
   }
 }
 
-const defaultBio = 'Go to settings to change your bio';
-class UserAPI implements IUserAPI {
+class Comment implements IComment {
+  body: string;
+  timestamp: string;
+  userImg: string;
   username: string;
-  bio: string;
-  following: string[];
 
   constructor(
-    username: string,
-    bio: string = defaultBio,
-    following: string[] = []
-  ) {
+    body: string = 'commentBody', 
+    timestamp: string = Date.now().toString(), 
+    userImg: string = '', 
+    username: string = 'dummyUser'
+  ){
+    this.body = body;
+    this.timestamp = timestamp;
+    this.userImg = userImg;
     this.username = username;
-    this.bio = bio;
-    this.following = following;
   }
 }
 
-const defaultTimestamp = '1234567890';
-const defaultBody = 'This is a test chirp';
-class Chirp {
+class Chirp implements IChirp {
   username: string;
   body: string;
   timestamp: string;
   likes: any[];
+  media: string;
+  comments: Comment[];
 
   constructor(
-    username: string,
-    body: string = defaultBody,
-    timestamp: string = defaultTimestamp,
-    likes: any[] = []
+    username: string = 'dummyUser',
+    body: string = 'chirpBody',
+    timestamp: string = Date.now().toString(),
+    likes: any[] = [],
+    media: string = '',
+    comments: Comment[] = [new Comment()]
   ) {
     this.username = username;
     this.body = body;
     this.timestamp = timestamp;
     this.likes = likes;
+    this.media = media;
+    this.comments = comments;
+  }
+}
+
+class Chirps implements IChirps {
+  chirps: Chirp[];
+  loading: boolean;
+
+  constructor(
+    chirps: Chirp[] = [new Chirp()],
+    loading: boolean = false
+  ){
+    this.chirps = chirps;
+    this.loading = loading;
+  }
+}
+
+class AuthUser implements IAuthUser {
+  password: string;
+  picture: string;
+  username: string;
+
+  constructor(
+    password: string = '@Test000',
+    picture: string = '',
+    username: string = 'dummyUser'
+  ){
+    this.password = password;
+    this.picture = picture;
+    this.username = username;
   }
 }
 
 class Auth implements IAuth {
-  user: User;
   authenticated: boolean;
-  needVerification: boolean;
-  loading: boolean;
   error: string;
+  loading: boolean;
+  needVerification: boolean;
   success: string;
+  user: AuthUser;
   constructor(
-    user: User,
+    user: AuthUser = new AuthUser(),
     authenticated: boolean = true,
     needVerification: boolean = false,
     loading: boolean = false,
-    error: string = SET_ERROR,
-    success: string = SET_SUCCESS
+    error: string = 'SET_ERROR',
+    success: string = 'SET_SUCCESS'
   ) {
     this.user = user;
     this.authenticated = authenticated;
@@ -87,75 +153,37 @@ class Auth implements IAuth {
   }
 }
 
-class State {
-  user: User;
-  chirps: Chirp[];
+interface IState {
   auth: Auth;
-  userChirp: Chirp;
+  chirps: Chirps;
+  replies: Replies;
+  user: User;
+}
+
+export class State implements IState{
+  auth: Auth;
+  chirps: Chirps;
+  replies: Replies;
+  user: User;
 
   constructor(
-    user: User = new User('dummyUser'),
-    chirps: Chirp[] = [],
-    auth: Auth = new Auth(new User('dummyUser')),
-    userChirp: Chirp = new Chirp('dummyUser')
-  ) {
-    this.user = user;
-    this.chirps = chirps;
+    auth: Auth = new Auth(),
+    chirps: Chirps = new Chirps(),
+    replies: Replies = new Replies(),
+    user: User = new User()
+  ){
     this.auth = auth;
-    this.userChirp = userChirp;
+    this.chirps = chirps;
+    this.replies = replies;
+    this.user = user;
   }
+  
 }
 
 export const testState = new State();
 
-export const fileMock = 'test-file-stub';
-export const styleMock = {};
-
-//Old testState, will probably be deprecated
-export const testStateOld = {
-  chirps: [
-    {
-      username: 'dummyUser1',
-      body: 'this is a chirp1',
-      timestamp: '12345678901',
-      likes: 'why is likes a string?1',
-      comments: 'this is a comment1'
-    },
-    {
-      username: 'dummyUser2',
-      body: 'this is a chirp2',
-      timestamp: '12345678902',
-      likes: 'why is likes a string?2',
-      comments: 'this is a comment2'
-    }
-  ],
-  user: {
-    username: 'My username',
-    bio: 'My bio'
-  },
-  auth: {
-    user: {
-      username: 'myusername',
-      bio: 'My bio'
-    },
-    authenticated: true,
-    needVerification: false,
-    loading: false,
-    error: 'ERROR',
-    success: 'SUCCESS',
-    userChirp: {
-      username: 'dummyUser4',
-      body: 'this is a chirp4',
-      timestamp: '12345678904',
-      likes: 'why is likes a string?4',
-      comments: 'this is a comment4'
-    }
-  },
-  userChirp: {
-    username: 'dummyUser3',
-    body: 'this is a chirp3',
-    timestamp: '12345678903',
-    likes: 'why is likes a string?3',
-    comments: 'this is a comment3'
-  }
-};
+const _auth = new Auth();
+const _chirps = new Chirps([new Chirp()], true);
+const _replies = new Replies();
+const _user = new User(); 
+export const testStateChirpsLoading = new State(_auth, _chirps, _replies, _user);

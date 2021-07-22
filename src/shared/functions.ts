@@ -18,18 +18,6 @@ export function alert(message: string, value: any) {
   }
 }
 
-export function diveLikeCrazy(numberOfDives:number, shallow:ShallowWrapper){
-  const display = shallow.debug();
-  if (numberOfDives<=0){
-    console.log('Dive 0: \n', display);
-  }
-  else {
-    console.log(`Dive ${numberOfDives}: \n`, display);
-    numberOfDives--;
-    diveLikeCrazy(numberOfDives, shallow.dive());
-  }
-}
-
 export function formatTimestamp(unformattedTimestamp: Date): string {
   // Setting up days/months arrays for use in timestamps.
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -86,4 +74,23 @@ export function formatTimestamp(unformattedTimestamp: Date): string {
     ' ' +
     ampm
   );
+}
+
+/**
+ * Repeatedly dive through a shallow render and print the result each time.
+ * For debugging.
+ * 
+ * @param numberOfDives - number of dives to perform
+ * @param shallow - a ShallowWrapper object (the return of Enzyme.shallow())
+ */
+export function diveLikeCrazy(numberOfDives:number, shallow:ShallowWrapper){
+  const display = shallow.debug();
+  if (numberOfDives<=0){
+    console.log('Dive 0: \n', display);
+  }
+  else {
+    console.log(`Dive ${numberOfDives}: \n`, display);
+    numberOfDives--;
+    diveLikeCrazy(numberOfDives, shallow.dive());
+  }
 }
