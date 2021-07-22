@@ -26,7 +26,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
-  const [bio, setBio] = React.useState(null);
+  const [bio, setBio] = React.useState('null');
   const dispatch = useDispatch();
 
   // function to get updated bio
@@ -43,7 +43,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
 
   React.useEffect(() => {
     fetchImage();
-    getBio();
+    // fetchText();
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -71,15 +71,30 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const logOutPress = () => {
     dispatch(logout());
   };
-  const fetchText = async () => {
-    let user = username;
 
-    let bio = `${user}/mybio`;
-    const signUrl: any = await Storage.get(bio);
-    // return signUrl;
+  const fetchText = () => {
+    let bio = `${username}/mybio`;
+    // const signUrl: any = await Storage.get(bio);
+    // const res: any = await fetch(signUrl);
+    // const re: any = res.text();
 
-    setBio(signUrl);
+    // // // return signUrl;
+
+    // setBio(re);
+    return Storage.get(bio)
+      .then((data) => {
+        console.log('data from S3: ', data);
+        fetch(data)
+          .then((r) => r.text())
+          .then((text) => {
+            console.log('text: ', text);
+            setBio(text);
+          })
+          .catch((e) => console.log('error fetching text: ', e));
+      })
+      .catch((err) => console.log('error fetching from S3', err));
   };
+  fetchText();
 
   return (
     <SafeAreaView style={styles.androidSafeArea}>
