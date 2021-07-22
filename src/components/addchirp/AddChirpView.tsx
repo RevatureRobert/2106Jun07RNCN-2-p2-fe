@@ -50,6 +50,7 @@ const AddChirpView: React.FC = () => {
               source={{ uri: currentUser.user?.picture }}
               style={{ width: 48, height: 48, borderRadius: 72 / 2 }}
             ></Image>
+
             <TextInput
               multiline={true}
               style={styles.input}
@@ -63,22 +64,51 @@ const AddChirpView: React.FC = () => {
               value={inputState}
             />
           </View>
+          <View
+            style={{ flexDirection: 'row-reverse', alignContent: 'center' }}
+          >
+            <View
+              style={{
+                flexDirection: 'column',
+                marginRight: 25,
+                marginTop: 10,
+              }}
+            >
+              <Text
+                style={[
+                  styles.Count,
+                  inputState.length > 225 ? { color: '#D4B16A' } : null,
+                  inputState.length > 281 ? { color: '#D46A6A' } : null,
+                ]}
+              >
+                {inputState.length}/281
+              </Text>
+              <ImageUploadComponent
+                imageURL={imageURL}
+                setImageURL={setImageURL}
+              />
+            </View>
+            {imageURL !== '' && (
+              <View style={{ flex: 1 }}>
+                <Image
+                  source={{ uri: imageURL as any }}
+                  style={{
+                    height: 100,
+                    marginTop: 10,
+                    borderRadius: 25,
+                  }}
+                  resizeMode='contain'
+                />
+              </View>
+            )}
+          </View>
           {/* counter for length of input */}
           <View style={styles.BottomLine}>
-            <Text
-              style={[
-                styles.Count,
-                inputState.length > 225 ? { color: '#D4B16A' } : null,
-                inputState.length > 281 ? { color: '#D46A6A' } : null,
-              ]}
-            >
-              {inputState.length}/281
-            </Text>
             {/* add image to chirp button */}
-            <ImageUploadComponent
+            {/* <ImageUploadComponent
               imageURL={imageURL}
               setImageURL={setImageURL}
-            />
+            /> */}
           </View>
         </View>
       </KeyboardAvoidingView>

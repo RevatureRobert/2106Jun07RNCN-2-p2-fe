@@ -31,7 +31,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1
+      quality: 1,
     });
 
     handleImagePicked(result);
@@ -71,7 +71,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg'
+      contentType: 'image/jpeg',
     })
       .then((response: any) => {
         return response.key;
@@ -97,7 +97,11 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
   return (
     <View>
       <View
-        style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 5,
+        }}
       >
         <TouchableOpacity onPress={pickImage}>
           <View>
@@ -110,7 +114,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-      {image && (
+      {/* {image && (
         <View>
           <Image
             source={{ uri: image as any }}
@@ -118,7 +122,7 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
             resizeMode='contain'
           />
         </View>
-      )}
+      )} */}
     </View>
   );
 };
