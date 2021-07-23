@@ -52,6 +52,9 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
         let filename = `${user}/pics/${Date.now()}`;
+        props.setImageURL(
+          'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/paddedPreloader.gif'
+        );
 
         const uploadUrl = await uploadImage(filename, img);
         downloadImage(uploadUrl);
@@ -96,16 +99,12 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
 
   return (
     <View>
-      {image && (
-        <View>
-          <Image
-            source={{ uri: image as any }}
-            style={{ width: 50, height: 50 }}
-          />
-        </View>
-      )}
       <View
-        style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 5
+        }}
       >
         <TouchableOpacity onPress={pickImage}>
           <View>
@@ -118,6 +117,15 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
           </View>
         </TouchableOpacity>
       </View>
+      {/* {image && (
+        <View>
+          <Image
+            source={{ uri: image as any }}
+            style={{ width: 100, height: undefined, flex: 1 }}
+            resizeMode='contain'
+          />
+        </View>
+      )} */}
     </View>
   );
 };
