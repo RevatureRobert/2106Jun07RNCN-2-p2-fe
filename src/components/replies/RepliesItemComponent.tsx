@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Storage } from 'aws-amplify';
 import ModalComponent from '../semantic/ModalComponent';
+import { useNavigation } from '@react-navigation/native';
 import styles from './repliesstyles';
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
 // component that structures and defines the text per chirp in the list
 const RepliesItemComponent: React.FC<Props> = (Props) => {
   const [isModalVisible, setModalVisible] = React.useState(false);
+  const navigation = useNavigation();
 
   // main return statement
   return (
@@ -31,12 +33,19 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
         cmtTimestamp={Props.timestamp}
       />
       {/* user image */}
-      <View>
+      <Pressable
+        onPress={() =>
+          navigation.navigate('user', {
+            username: Props.username,
+            currentUser: Props.currentUser,
+          })
+        }
+      >
         <Image
           source={{ uri: Props.userImg }}
           style={{ width: 40, height: 40, borderRadius: 40 / 2 }}
         ></Image>
-      </View>
+      </Pressable>
       {/* main chirp content, displays username, chirp body, timestamp, and like button */}
       <View style={styles.chirpContent}>
         <Text style={styles.chirpUser}>@{Props.username}</Text>
