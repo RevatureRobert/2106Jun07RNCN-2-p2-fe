@@ -8,13 +8,10 @@ phases:
   install:
     runetime-versions:
       nodejs: 14.x
-      java: 8
     commands:
       - echo Installing global dependencies...
-      - npm install --global expo-cli sharp-cli turtle-cli
+      - npm install --global expo-cli sharp-cli
       - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
-      - export EXPO_ANDROID_KEY_PASSWORD=$(aws ssm get-parameter --name "expo-android-key-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
-      - export EXPO_ANDROID_KEYSTORE_PASSWORD=$(aws ssm get-parameter --name "expo-android-keystore-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
       - npx expo login --non-interactive -u ${EXPO_USERNAME}
   pre_build:
     commands:
@@ -27,7 +24,7 @@ phases:
       - echo Compiling the actual code
       - expo publish
       - expo build:web
-      - turtle build:android --keystore-path /path/to/your/keystore.jks
+      - expo build:android -t apk --no-wait
   post_build:
     commands:
       - echo Build completed on `date`
