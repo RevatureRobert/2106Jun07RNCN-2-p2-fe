@@ -43,6 +43,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
         }
       }
     })();
+    return function cleanup(){
+      setImage(null);
+    }
   }, []);
 
   const fetchImage = async () => {
