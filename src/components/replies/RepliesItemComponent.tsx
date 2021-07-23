@@ -42,7 +42,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
         }
       >
         <Image
-          source={{ uri: Props.userImg }}
+          source={{ uri: Props.userImg + '?' + Date.now() }}
           style={{ width: 40, height: 40, borderRadius: 40 / 2 }}
         ></Image>
       </Pressable>
