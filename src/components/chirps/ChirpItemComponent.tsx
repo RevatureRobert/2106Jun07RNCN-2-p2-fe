@@ -105,8 +105,9 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       >
         <Image
           source={{
-            uri: Props.userImg,
-          }}
+            uri: Props.userImg  + '?' + Date.now().toString(),  
+            cache: 'reload',
+            headers: {Pragma: 'no-cache'}}}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </Pressable>
@@ -118,9 +119,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         {Props.media && Props.media !== '' ? (
           <Pressable onPress={() => setImgModalVisible(true)}>
             <Image
-              source={{ uri: Props.media + '?' + Date.now().toString(),  
-              cache: 'reload',
-              headers: {Pragma: 'no-cache'}}}
+              source={{ uri: Props.media}}
               style={{
                 height: 250,
                 marginTop: 10,
