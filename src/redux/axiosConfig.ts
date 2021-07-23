@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://zf6x12e535.execute-api.us-east-2.amazonaws.com/prod/',
+  baseURL: 'https://tyder0c89e.execute-api.us-east-2.amazonaws.com/Prod',
 });
