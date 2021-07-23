@@ -19,6 +19,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
+import { Storage, Auth } from 'aws-amplify';
 
 // main sign out component that shows when user isnt logged in
 const SignupComponent: React.FC = () => {
@@ -27,6 +28,8 @@ const SignupComponent: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
+
   // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
 
