@@ -138,8 +138,16 @@ const SignupComponent: React.FC = () => {
         {/* chirper logo and text */}
         <View
           style={{
-            flexDirection: Platform.OS === 'web' ? null : 'row',
-            alignItems: Platform.OS === 'web' ? null : 'center'
+            ...Platform.select({
+              ios: {
+                flexDirection: 'row',
+                alignItems: 'center'
+              },
+              android: {
+                flexDirection: 'row',
+                alignItems: 'center'
+              }
+            })
           }}
         >
           <Image
@@ -155,7 +163,11 @@ const SignupComponent: React.FC = () => {
               color: '#fff',
               fontSize: 22,
               fontWeight: '700',
-              textAlign: Platform.OS === 'web' ? 'center' : null
+              ...Platform.select({
+                web: {
+                  textAlign: 'center'
+                }
+              })
             }}
           >
             Sign up for chirper

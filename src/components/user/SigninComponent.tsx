@@ -65,8 +65,15 @@ const SigninComponent: React.FC = () => {
           source={require('../../assets/chirperLogo.png')}
           style={{
             height: 48,
-            alignSelf: Platform.OS === 'web' ? null : 'center',
-            marginBottom: 10
+            marginBottom: 10,
+            ...Platform.select({
+              ios: {
+                alignSelf: 'center'
+              },
+              android: {
+                alignSelf: 'center'
+              }
+            })
           }}
           resizeMode='contain'
         />
