@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
-import { Storage } from 'aws-amplify';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';

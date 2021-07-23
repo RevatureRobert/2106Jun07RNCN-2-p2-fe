@@ -1,8 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { DeleteChirp, DeleteComment } from '../../redux/actions/ChirpActions';
-import { useToast } from 'react-native-toast-notifications';
 import { Auth } from 'aws-amplify';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/AuthActions';

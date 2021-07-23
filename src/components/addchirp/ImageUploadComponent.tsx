@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth, Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
@@ -117,15 +117,6 @@ export const ImageUploadComponent: React.FC<any> = (props) => {
           </View>
         </TouchableOpacity>
       </View>
-      {/* {image && (
-        <View>
-          <Image
-            source={{ uri: image as any }}
-            style={{ width: 100, height: undefined, flex: 1 }}
-            resizeMode='contain'
-          />
-        </View>
-      )} */}
     </View>
   );
 };
