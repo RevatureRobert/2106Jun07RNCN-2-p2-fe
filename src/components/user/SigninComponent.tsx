@@ -16,6 +16,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
+import { Storage, Auth } from 'aws-amplify';
 
 // main sign in component that shows when user isnt logged in
 const SigninComponent: React.FC = () => {
@@ -23,6 +24,9 @@ const SigninComponent: React.FC = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
+
   // gets error from state
   const { error } = useSelector((state: RootStore) => state.auth);
   // init navigation and dispatch
@@ -35,17 +39,76 @@ const SigninComponent: React.FC = () => {
       if (error) {
         dispatch(setError(''));
       }
+      // uploadDefaultPicture();
       setUsername('');
       setPassword('');
       setLoading(false);
     };
   }, [error, dispatch]);
 
+  // const fetchImage = async () => {
+  //   let filename = `${username}/myimages`;
+  //   const signUrl: any = await Storage.get(filename);
+  //   return signUrl;
+
+  //   // setImage(signUrl);
+  // };
+
+  const fetchImage = () => {
+    let img = '';
+
+    return Storage.get(img)
+      .then((data: any) => {
+        fetch(data)
+          .then((r) => r.blob())
+          .then((image) => {
+            return image;
+          })
+          .catch((e) => console.log('error fetching text: ', e));
+      })
+      .catch((err) => console.log('error fetching from S3', err));
+  };
+
+  const uploadDefaultPicture = async () => {
+    // let user = currentUser?.username;
+
+    try {
+      let bioText = fetchImage();
+      let bio = `${username}/myimages`;
+      await uploadBio(bio, bioText);
+    } catch (error) {}
+  };
+
+  const uploadDefaultBio = async () => {
+    // let user = currentUser?.username;
+
+    try {
+      let bioText = 'Please update your bio';
+      let bio = `${username}/mybio`;
+      console.log('BIO TEXT: ', bio);
+      await uploadBio(bio, bioText);
+    } catch (error) {}
+  };
+
+  const uploadBio = (file: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(file, content)
+      .then((response: any) => {
+        return response.key;
+      })
+
+      .catch((error) => {
+        return error.response;
+      });
+  };
+
   // log in button listener
   const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
     setLoading(true);
     dispatch(signIn({ username, password }, () => setLoading(false)));
+    uploadDefaultBio();
+    uploadDefaultPicture();
   };
 
   // checks if component is loading, displays loadingcomponent
