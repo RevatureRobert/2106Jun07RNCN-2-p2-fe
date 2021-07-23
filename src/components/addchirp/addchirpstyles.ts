@@ -1,11 +1,11 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   // AddChirpView.tsx
   AddChirpViewContainer: {
     color: '#f3f3f3',
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
 
   AddChirpContent: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     paddingRight: 25,
     paddingTop: 25,
     paddingBottom: 0,
-    marginBottom: 0,
+    marginBottom: 0
   },
 
   input: {
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     textAlignVertical: 'top',
     fontSize: 16,
     flex: 1,
-    paddingTop: 25,
+    paddingTop: 25
   },
 
   BottomLine: {
@@ -42,20 +42,20 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: 90,
     marginRight: 30,
-    paddingTop: 5,
+    paddingTop: 5
   },
 
   Count: {
-    color: '#e1e1e1',
+    color: '#e1e1e1'
   },
 
   MainContainer: {
     flex: 1,
-    backgroundColor: '#141414',
+    backgroundColor: '#141414'
   },
 
   keyboardAvoidingView: {
-    flex: 1,
+    flex: 1
   },
 
   // AddChirpBtnComponent.tsx
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: 15,
     marginBottom: 15,
-    borderRadius: 100 / 2,
+    borderRadius: 100 / 2
   },
 
   buttonsContainer: {
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     textAlign: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   button: {
@@ -89,8 +89,8 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     color: '#FFF',
-    alignSelf: 'center',
-  },
+    alignSelf: 'center'
+  }
 });
 
 export default styles;

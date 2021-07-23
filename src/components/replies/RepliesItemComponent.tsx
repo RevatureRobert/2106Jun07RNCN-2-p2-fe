@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Storage } from 'aws-amplify';
 import ModalComponent from '../semantic/ModalComponent';
 import { useNavigation } from '@react-navigation/native';
 import styles from './repliesstyles';
+import { formatTimestamp } from '../../shared/functions';
 
 interface Props {
   userImg: string;
@@ -37,7 +37,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
         onPress={() =>
           navigation.navigate('user', {
             username: Props.username,
-            currentUser: Props.currentUser,
+            currentUser: Props.currentUser
           })
         }
       >
@@ -51,7 +51,7 @@ const RepliesItemComponent: React.FC<Props> = (Props) => {
         <Text style={styles.chirpUser}>@{Props.username}</Text>
         <Text style={styles.chirpBody}>{Props.body}</Text>
         <Text style={styles.chirpTimestamp}>
-          {new Date(Number(Props.timestamp)).toLocaleString()}
+          {formatTimestamp(new Date(Number(Props.timestamp)))}
         </Text>
       </View>
       <Pressable
