@@ -11,7 +11,7 @@ phases:
     commands:
       - echo Installing expo ...
       - npm install --global expo-cli
-      - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --output text)
+      - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
       - npx expo login --non-interactive -u ${EXPO_USERNAME}
   pre_build:
     commands:
