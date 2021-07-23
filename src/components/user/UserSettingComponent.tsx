@@ -52,7 +52,6 @@ export const UserSettingComponent: React.FC = () => {
   const fetchImage = async () => {
     let filename = `${currentUser?.username}/myimages`;
     const signUrl: any = await Storage.get(filename);
-    // return signUrl;
 
     setImage(signUrl);
   };
@@ -101,8 +100,7 @@ export const UserSettingComponent: React.FC = () => {
 
   const fetchImageFromUri = async (uri: any) => {
     const response = await fetch(uri);
-    const blob = await response.blob();
-    return blob;
+    return response.blob();
   };
 
   return (

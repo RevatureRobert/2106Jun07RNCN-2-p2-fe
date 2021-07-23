@@ -6,12 +6,11 @@ import {
   TouchableOpacity,
   Keyboard
 } from 'react-native';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import styles from './userstyles';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
-import { Storage } from 'aws-amplify';
 
 export const UserBioComponent: React.FC = () => {
   const [bioText, setBioText] = React.useState('');
@@ -28,7 +27,6 @@ export const UserBioComponent: React.FC = () => {
       setBioText('');
       Keyboard.dismiss();
       toast.show('Bio has been updated.');
-      //   downloadText(textUrl);
     } catch (error) {}
   };
   const uploadBio = (text: any, content: any) => {
@@ -54,7 +52,6 @@ export const UserBioComponent: React.FC = () => {
         <Text style={styles.updateBioText}>Update bio</Text>
         <TextInput
           multiline={false}
-          // numberOfLines={6}
           onChangeText={changeBioHandler}
           value={bioText}
           style={styles.input}

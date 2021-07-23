@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet,
   TextInput,
   Text,
   View,
@@ -28,7 +27,6 @@ const SignupComponent: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const currentUser = useSelector((state: RootStore) => state.auth.user);
 
   // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
@@ -49,8 +47,7 @@ const SignupComponent: React.FC = () => {
   // helper function called from uploadDefaultPicture()
   const fetchImageFromUri = async (uri: any) => {
     const response = await fetch(uri);
-    const blob = await response.blob();
-    return blob;
+    return response.blob();
   };
 
   // upload default Profile picture on Signup
@@ -62,7 +59,9 @@ const SignupComponent: React.FC = () => {
       const img = await fetchImageFromUri(filename);
       await uploadPic(bioPicFile, img);
       console.log('bioPicF:', bioPicFile);
-    } catch (error) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // helper function called from uploadDefaultPicture()
@@ -76,20 +75,20 @@ const SignupComponent: React.FC = () => {
         return response.key;
       })
 
-      .catch((error) => {
-        return error.response;
+      .catch((err) => {
+        return err.response;
       });
   };
 
   const uploadDefaultBio = async () => {
-    // let user = currentUser?.username;
-
     try {
       let bioText = 'Please update your bio';
       let bio = `${username}/mybio`;
 
       await uploadBio(bio, bioText);
-    } catch (error) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const uploadBio = (file: any, content: any) => {
@@ -99,8 +98,8 @@ const SignupComponent: React.FC = () => {
         return response.key;
       })
 
-      .catch((error) => {
-        return error.response;
+      .catch((err) => {
+        return err.response;
       });
   };
 
