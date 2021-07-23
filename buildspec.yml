@@ -31,4 +31,6 @@ phases:
       - echo Android build status can be checked at https://expo.dev/
 artifacts:
   files:
-    - web-build/**/*
+    - './**/*'
+  base-directory: web-build
+  name: chirper
