@@ -7,7 +7,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 12
     commands:
       - echo Installing global dependencies...
       - npm install --global --unsafe-perm sharp-cli expo-cli
