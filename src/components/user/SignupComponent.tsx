@@ -78,7 +78,12 @@ const SignupComponent: React.FC = () => {
       >
         <StatusBar backgroundColor='#111111' barStyle='light-content' />
         {/* chirper logo and text */}
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View
+          style={{
+            flexDirection: Platform.OS === 'web' ? null : 'row',
+            alignItems: Platform.OS === 'web' ? null : 'center'
+          }}
+        >
           <Image
             source={require('../../assets/chirperIcon.png')}
             style={{
@@ -87,7 +92,14 @@ const SignupComponent: React.FC = () => {
             }}
             resizeMode='contain'
           />
-          <Text style={{ color: '#fff', fontSize: 22, fontWeight: '700' }}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 22,
+              fontWeight: '700',
+              textAlign: Platform.OS === 'web' ? 'center' : null
+            }}
+          >
             Sign up for chirper
           </Text>
         </View>
