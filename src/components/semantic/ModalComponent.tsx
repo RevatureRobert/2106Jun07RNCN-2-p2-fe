@@ -31,9 +31,9 @@ const ModalComponent: React.FC<Props> = ({
   async function deleteFunc() {
     let del = 'How did you get this message to appear?';
     if (modalType === 'chirp') {
-      del = await DeleteChirp(chirpTimestamp, chirpUser);
+      del = await DeleteChirp(chirpTimestamp);
     } else if (modalType === 'comment') {
-      del = await DeleteComment(chirpTimestamp, chirpUser, cmtTimestamp);
+      del = await DeleteComment(chirpTimestamp, cmtTimestamp);
     }
     setModalVisible(false);
     toast.show(del);

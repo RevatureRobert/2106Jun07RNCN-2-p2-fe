@@ -4,7 +4,7 @@ import {
   StatusBar,
   SafeAreaView,
   Platform,
-  View,
+  View
 } from 'react-native';
 import AddChirpBtnComponent from './addchirp/AddChirpBtnComponent';
 import BottomNavComponent from './navigation/BottomNavComponent';
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: 'hidden',
     ...Platform.select({
-      android: { paddingTop: 0 },
-    }),
-  },
+      android: { paddingTop: 0 }
+    })
+  }
 });
 
 export default MainView;

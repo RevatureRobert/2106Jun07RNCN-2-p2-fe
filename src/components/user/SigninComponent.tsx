@@ -23,6 +23,7 @@ const SigninComponent: React.FC = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+
   // gets error from state
   const { error } = useSelector((state: RootStore) => state.auth);
   // init navigation and dispatch
@@ -35,6 +36,7 @@ const SigninComponent: React.FC = () => {
       if (error) {
         dispatch(setError(''));
       }
+      // uploadDefaultPicture();
       setUsername('');
       setPassword('');
       setLoading(false);
@@ -64,7 +66,7 @@ const SigninComponent: React.FC = () => {
           source={require('../../assets/chirperLogo.png')}
           style={{
             height: 48,
-            alignSelf: 'center',
+            alignSelf: Platform.OS === 'web' ? null : 'center',
             marginBottom: 10
           }}
           resizeMode='contain'

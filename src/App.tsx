@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Store } from './redux/store/store';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import Amplify from 'aws-amplify';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
@@ -35,8 +35,24 @@ function App() {
           textStyle={{ color: '#000' }}
           offset={50}
         >
-          <View style={{ backgroundColor: '#111', flex: 1 }}>
-            <MainNavComponent />
+          {/* Wrapper view added for background color on web. */}
+          <View
+            style={{
+              backgroundColor: '#111',
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: '#111',
+                flex: 1,
+                maxWidth: Platform.OS === 'web' ? 450 : null
+              }}
+            >
+              <MainNavComponent />
+            </View>
           </View>
         </ToastProvider>
       </NavigationContainer>

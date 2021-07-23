@@ -19,6 +19,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
+import { Storage, Auth } from 'aws-amplify';
 
 // main sign out component that shows when user isnt logged in
 const SignupComponent: React.FC = () => {
@@ -27,6 +28,8 @@ const SignupComponent: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const currentUser = useSelector((state: RootStore) => state.auth.user);
+
   // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
 
@@ -42,6 +45,64 @@ const SignupComponent: React.FC = () => {
       }
     };
   }, [error, dispatch]);
+
+  // helper function called from uploadDefaultPicture()
+  const fetchImageFromUri = async (uri: any) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // upload default Profile picture on Signup
+  const uploadDefaultPicture = async () => {
+    try {
+      let bioPicFile = `${username}/myimages`;
+      let filename =
+        'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/defaultUserImage.jpg';
+      const img = await fetchImageFromUri(filename);
+      await uploadPic(bioPicFile, img);
+      console.log('bioPicF:', bioPicFile);
+    } catch (error) {}
+  };
+
+  // helper function called from uploadDefaultPicture()
+  const uploadPic = (file: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(file, content, {
+      level: 'public',
+      contentType: 'image/jpeg'
+    })
+      .then((response: any) => {
+        return response.key;
+      })
+
+      .catch((error) => {
+        return error.response;
+      });
+  };
+
+  const uploadDefaultBio = async () => {
+    // let user = currentUser?.username;
+
+    try {
+      let bioText = 'Please update your bio';
+      let bio = `${username}/mybio`;
+
+      await uploadBio(bio, bioText);
+    } catch (error) {}
+  };
+
+  const uploadBio = (file: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(file, content)
+      .then((response: any) => {
+        return response.key;
+      })
+
+      .catch((error) => {
+        return error.response;
+      });
+  };
 
   // sign up button listener
   const onSubmitData = (e: GestureResponderEvent) => {
@@ -59,7 +120,8 @@ const SignupComponent: React.FC = () => {
         bio: 'bio.'
       })
     );
-
+    uploadDefaultBio();
+    uploadDefaultPicture();
     navigation.navigate('login');
   };
 
@@ -75,7 +137,12 @@ const SignupComponent: React.FC = () => {
       >
         <StatusBar backgroundColor='#111111' barStyle='light-content' />
         {/* chirper logo and text */}
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View
+          style={{
+            flexDirection: Platform.OS === 'web' ? null : 'row',
+            alignItems: Platform.OS === 'web' ? null : 'center'
+          }}
+        >
           <Image
             source={require('../../assets/chirperIcon.png')}
             style={{
@@ -84,7 +151,14 @@ const SignupComponent: React.FC = () => {
             }}
             resizeMode='contain'
           />
-          <Text style={{ color: '#fff', fontSize: 22, fontWeight: '700' }}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 22,
+              fontWeight: '700',
+              textAlign: Platform.OS === 'web' ? 'center' : null
+            }}
+          >
             Sign up for chirper
           </Text>
         </View>
