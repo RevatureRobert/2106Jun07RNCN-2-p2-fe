@@ -1,3 +1,5 @@
+const defaultUserImg = 'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/defaultpicture.png';
+
 interface IAuthUser {
   password: string;
   picture: string;
@@ -65,8 +67,8 @@ class Comment implements IComment {
   constructor(
     body: string = 'commentBody', 
     timestamp: string = Date.now().toString(), 
-    userImg: string = '', 
-    username: string = 'dummyUser'
+    userImg: string = defaultUserImg, 
+    username: string = 'dummyuser'
   ){
     this.body = body;
     this.timestamp = timestamp;
@@ -84,7 +86,7 @@ class Chirp implements IChirp {
   comments: Comment[];
 
   constructor(
-    username: string = 'dummyUser',
+    username: string = 'dummyuser',
     body: string = 'chirpBody',
     timestamp: string = Date.now().toString(),
     likes: any[] = [],
@@ -120,8 +122,8 @@ class AuthUser implements IAuthUser {
 
   constructor(
     password: string = '@Test000',
-    picture: string = '',
-    username: string = 'dummyUser'
+    picture: string = defaultUserImg,
+    username: string = 'dummyuser'
   ){
     this.password = password;
     this.picture = picture;
