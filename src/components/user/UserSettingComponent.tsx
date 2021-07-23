@@ -65,6 +65,7 @@ export const UserSettingComponent: React.FC = () => {
         return;
       } else {
         const img = await fetchImageFromUri(pickerResult.uri);
+        console.log(img);
         let filename = `${user}/myimages`;
 
         const uploadUrl = await uploadImage(filename, img);
