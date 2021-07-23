@@ -12,10 +12,10 @@ function withExtras(config: configObj){
 module.exports = {
     //==========================================================================
     // Configure Enzyme (see https://npm.io/package/jest-expo-enzyme)
-    // see link before configObj declaration as well
+    // see link in comment before configObj declaration as well
     //==========================================================================
     projects: [
-      withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
+      // withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
       withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),
       // withExtras(withEnzyme(require('jest-expo/web/jest-preset')) as configObj),
     ],
