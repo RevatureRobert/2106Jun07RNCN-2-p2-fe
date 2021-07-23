@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Storage } from 'aws-amplify';
 import ModalComponent from '../semantic/ModalComponent';
 import { useNavigation } from '@react-navigation/native';
 import styles from './repliesstyles';

@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, TextInput, TouchableHighlight, Text } from 'react-native';
+import { View, TextInput, TouchableHighlight, Text, Keyboard } from 'react-native';
 import styles from './repliesstyles';
 import { PostComment } from '../../redux/actions/ChirpActions';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
-import { Keyboard } from 'react-native';
 
 interface Props {
   timestamp: string;
