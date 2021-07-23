@@ -28,7 +28,6 @@ export const UserBioComponent: React.FC = () => {
       setBioText('');
       Keyboard.dismiss();
       toast.show('Bio has been updated.');
-      //   downloadText(textUrl);
     } catch (error) {}
   };
   const uploadBio = (text: any, content: any) => {
@@ -54,7 +53,6 @@ export const UserBioComponent: React.FC = () => {
         <Text style={styles.updateBioText}>Update bio</Text>
         <TextInput
           multiline={false}
-          // numberOfLines={6}
           onChangeText={changeBioHandler}
           value={bioText}
           style={styles.input}
