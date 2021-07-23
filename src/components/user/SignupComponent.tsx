@@ -46,6 +46,64 @@ const SignupComponent: React.FC = () => {
     };
   }, [error, dispatch]);
 
+  // helper function called from uploadDefaultPicture()
+  const fetchImageFromUri = async (uri: any) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // upload default Profile picture on Signup
+  const uploadDefaultPicture = async () => {
+    try {
+      let bioPicFile = `${username}/myimages`;
+      let filename =
+        'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/defaultUserImage.jpg';
+      const img = await fetchImageFromUri(filename);
+      await uploadPic(bioPicFile, img);
+      console.log('bioPicF:', bioPicFile);
+    } catch (error) {}
+  };
+
+  // helper function called from uploadDefaultPicture()
+  const uploadPic = (file: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(file, content, {
+      level: 'public',
+      contentType: 'image/jpeg'
+    })
+      .then((response: any) => {
+        return response.key;
+      })
+
+      .catch((error) => {
+        return error.response;
+      });
+  };
+
+  const uploadDefaultBio = async () => {
+    // let user = currentUser?.username;
+
+    try {
+      let bioText = 'Please update your bio';
+      let bio = `${username}/mybio`;
+
+      await uploadBio(bio, bioText);
+    } catch (error) {}
+  };
+
+  const uploadBio = (file: any, content: any) => {
+    Auth.currentCredentials();
+    return Storage.put(file, content)
+      .then((response: any) => {
+        return response.key;
+      })
+
+      .catch((error) => {
+        return error.response;
+      });
+  };
+
   // sign up button listener
   const onSubmitData = (e: GestureResponderEvent) => {
     e.preventDefault();
@@ -62,7 +120,8 @@ const SignupComponent: React.FC = () => {
         bio: 'bio.'
       })
     );
-
+    uploadDefaultBio();
+    uploadDefaultPicture();
     navigation.navigate('login');
   };
 

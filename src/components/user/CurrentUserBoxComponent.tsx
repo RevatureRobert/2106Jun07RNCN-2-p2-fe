@@ -50,7 +50,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const fetchImage = async () => {
     let filename = `${username}/myimages`;
     const signUrl: any = await Storage.get(filename);
-    // return signUrl;
 
     setImage(signUrl);
   };
