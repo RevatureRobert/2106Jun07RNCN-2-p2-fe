@@ -48,7 +48,9 @@ function App() {
               style={{
                 backgroundColor: '#111',
                 flex: 1,
-                maxWidth: Platform.OS === 'web' ? 450 : null
+                ...Platform.select({
+                  web: { maxWidth: 450 }
+                })
               }}
             >
               <MainNavComponent />

@@ -76,7 +76,7 @@ export const UnlikeChirp = async (timestamp: string, username: string) => {
 
 // get replies
 export const GetReplies =
-  (timestamp: string, username: string) =>
+  (timestamp: string) =>
   async (dispatch: Dispatch<RepliesActionTypes>) => {
     try {
       dispatch({
