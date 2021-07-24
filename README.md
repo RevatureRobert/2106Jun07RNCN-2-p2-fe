@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RevatureRobert_2106Jun07RNCN-2-p2-fe&metric=alert_status)](https://sonarcloud.io/dashboard?id=RevatureRobert_2106Jun07RNCN-2-p2-fe)
 # Chirper
 
 NOTE: This repo only contains the front-end of our project. The API used can be found at [RevatureRobert/2106Jun07RNCN-2-p2-be](https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-be).
