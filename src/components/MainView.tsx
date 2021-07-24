@@ -6,7 +6,6 @@ import {
   Platform,
   View
 } from 'react-native';
-import AddChirpBtnComponent from './addchirp/AddChirpBtnComponent';
 import BottomNavComponent from './navigation/BottomNavComponent';
 
 const MainView: React.FC = () => {

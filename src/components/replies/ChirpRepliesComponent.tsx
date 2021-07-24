@@ -5,22 +5,20 @@ import RepliesItemComponent from './RepliesItemComponent';
 import { RootStore } from '../../redux/store/store';
 import { GetReplies } from '../../redux/actions/ChirpActions';
 import LoadingComponent from '../semantic/LoadingComponent';
-import { Text } from 'react-native';
-import PostReplyComponent from './PostReplyComponent';
 
 interface Props {
   username: string;
   timestamp: string;
 }
 
-const ChirpRepliesComponent: React.FC<Props> = ({ username, timestamp }) => {
+const ChirpRepliesComponent: React.FC<Props> = ({ timestamp }) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
   // gets all chirps from the db
   const fetchData = () => {
     setIsFetching(false);
-    dispatch(GetReplies(timestamp, username));
+    dispatch(GetReplies(timestamp));
   };
 
   // refresh function when pulling down on flatlist

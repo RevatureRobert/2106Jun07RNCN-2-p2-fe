@@ -4,15 +4,14 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight,
-  TouchableOpacity
+  TouchableHighlight
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { logout } from '../../redux/actions/AuthActions';
 import Constants from 'expo-constants';
-import { Auth, Storage } from 'aws-amplify';
+import { Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import styles from './userstyles';
 
@@ -31,7 +30,6 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
 
   React.useEffect(() => {
     fetchImage();
-    // fetchText();
     (async () => {
       if (Constants.platform?.ios) {
         const cameraRollStatus =
@@ -45,6 +43,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
         }
       }
     })();
+    return function cleanup(){
+      setImage(null);
+    }
   }, []);
 
   const fetchImage = async () => {
@@ -60,9 +61,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   };
 
   const fetchText = () => {
-    let bio = `${username}/mybio`;
+    let mybio = `${username}/mybio`;
 
-    return Storage.get(bio)
+    return Storage.get(mybio)
       .then((data: any) => {
         fetch(data)
           .then((r) => r.text())

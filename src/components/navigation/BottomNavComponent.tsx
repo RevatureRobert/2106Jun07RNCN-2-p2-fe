@@ -7,7 +7,6 @@ import { UserSettingComponent } from '../user/UserSettingComponent';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Platform } from 'react-native';
-import { UserBioComponent } from '../user/UserBioComponent';
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();

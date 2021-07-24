@@ -1,19 +1,16 @@
 import React from 'react';
 import {
   View,
-  StyleSheet,
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
+  SafeAreaView
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import HeaderComponent from '../semantic/HeaderComponent';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './addchirpstyles';
 import { ImageUploadComponent } from './ImageUploadComponent';
 
@@ -41,7 +38,7 @@ const AddChirpView: React.FC = () => {
               username: currentUser.user ? currentUser.user?.username : '',
               body: inputState,
               timestamp: Date.now().toString(),
-              media: imageURL,
+              media: imageURL
             }}
           />
           {/* main view for posting that includes user image and textbox */}
@@ -71,14 +68,14 @@ const AddChirpView: React.FC = () => {
               style={{
                 flexDirection: 'column',
                 marginRight: 25,
-                marginTop: 10,
+                marginTop: 10
               }}
             >
               <Text
                 style={[
                   styles.Count,
                   inputState.length > 225 ? { color: '#D4B16A' } : null,
-                  inputState.length > 281 ? { color: '#D46A6A' } : null,
+                  inputState.length > 281 ? { color: '#D46A6A' } : null
                 ]}
               >
                 {inputState.length}/281
@@ -95,20 +92,12 @@ const AddChirpView: React.FC = () => {
                   style={{
                     height: 100,
                     marginTop: 10,
-                    borderRadius: 25,
+                    borderRadius: 25
                   }}
                   resizeMode='contain'
                 />
               </View>
             )}
-          </View>
-          {/* counter for length of input */}
-          <View style={styles.BottomLine}>
-            {/* add image to chirp button */}
-            {/* <ImageUploadComponent
-              imageURL={imageURL}
-              setImageURL={setImageURL}
-            /> */}
           </View>
         </View>
       </KeyboardAvoidingView>

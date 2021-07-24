@@ -26,7 +26,6 @@ const ModalComponent: React.FC<Props> = ({
   currentUser,
 }) => {
   const toast = useToast();
-  let modalMessage;
 
   async function deleteFunc() {
     let del = 'How did you get this message to appear?';
