@@ -1,8 +1,6 @@
 import 'react-native';
 import 'jest-enzyme';
 import 'react-native-gesture-handler/jestSetup';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
 
 //==============================================================================
 // Mock native modules
@@ -15,71 +13,28 @@ jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 // jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
-  Reanimated.default.call = () => {
-    /* you get warnings with an empty function unless you write a comment */
-  };
+  Reanimated.default.call = () => {/*no-op*/};
   return Reanimated;
 });
 
 
 //==============================================================================
-// Ensure a dom environment is loaded for enzyme
-// see https://stackoverflow.com/a/46897553
+// Normally, you need to ensure a dom environment is loaded for enzyme
+//    (see https://stackoverflow.com/a/46897553)
+// But the use of withEnzyme() in jest.config.ts does this for us
 //==============================================================================
-const { JSDOM } = require('jsdom');
-
-const jsdom = new JSDOM(
-  '<!doctype html><html><body></body></html>',
-  {url: 'http://localhost/'}
-);
-const { window } = jsdom;
-
-function copyProps(src, target) {
-  Object.defineProperties(target, {
-    ...Object.getOwnPropertyDescriptors(src),
-    ...Object.getOwnPropertyDescriptors(target),
-  });
-}
-
-global.window = window;
-global.document = window.document;
-global.navigator = {
-  userAgent: 'node.js',
-};
-copyProps(window, global);
-
 
 //==============================================================================
-// Mock AWS Cognito CognitoIdentityServiceProvider with Jest
-// see https://stackoverflow.com/a/65823015
+// Almost certainly unncecessary, but mock fetch requests
+//    (see https://www.leighhalliday.com/mock-fetch-jest)
 //==============================================================================
-// jest.mock('aws-sdk', () => {
-//   return {
-//     CognitoIdentityServiceProvider: class {
-//       adminInitiateAuth() {
-//         return this;
-//       }
-
-//       promise() {
-//         return Promise.resolve(mockResponse);
-//       }
-//     }
-//   }
-// });
-
-//mock fetch requests (see https://www.leighhalliday.com/mock-fetch-jest)
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
   })
 );
 
-// import ConsoleLogger from 'node_modules/@aws-amplify/core/src/Logger/ConsoleLogger';
-// ConsoleLogger._log() = jest.fn().mockImplementation(
-//    () => {/*no-op*/}
-// );
-  // The mock for `call` immediately calls the callback which is incorrect
-  // So we override it with a no-op
-  Reanimated.default.call = () => {/*comment*/};
-
- Enzyme.configure({ adapter: new Adapter() });
+//==============================================================================
+// Normally, you need to configure an Enzyme adapter, but withEnzyme does that 
+// for us
+//==============================================================================

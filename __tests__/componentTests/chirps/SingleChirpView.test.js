@@ -34,22 +34,22 @@ describe('Testing SingleChirpView', () => {
 
     it('renders a SafeAreaView', () => {
         const wrap = wrapper.find(SafeAreaView);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders a ChirpItemComponent in SafeAreaView', () => {
         const wrap = wrapper.find(SafeAreaView).find(ChirpItemComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders a HeaderComponent in SafeAreaView', () => {
         const wrap = wrapper.find(SafeAreaView).find(HeaderComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders a ChirpRepliesComponent in SafeAreaView', () => {
         const wrap = wrapper.find(SafeAreaView).find(ChirpRepliesComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders a PostReplyComponent in KeyboardAvoidingView in SafeAreaView', () => {
@@ -57,6 +57,6 @@ describe('Testing SingleChirpView', () => {
             .find(SafeAreaView)
             .find(KeyboardAvoidingView)
             .find(PostReplyComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 });

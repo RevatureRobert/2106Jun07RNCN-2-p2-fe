@@ -123,6 +123,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
                 uri: user.user?.picture + '?' + new Date(),
               }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
+              testID='pfp'
             ></Image>
             <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>
               Hello, @{user.user?.username}.

@@ -87,7 +87,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
       ></Image>
       {/* username and bio */}
       <Text style={styles.usernameText}>@{username}</Text>
-      <Text style={styles.bioText}>{bio}</Text>
+      <Text testID='bio' style={styles.bioText}>{bio}</Text>
       {/* log out button */}
       {currentUser?.username === username ? (
         <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>

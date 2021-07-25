@@ -1,5 +1,3 @@
-import userReducer from "../redux/reducers/UserReducer";
-
 const defaultUserImg = 'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/defaultpicture.png';
 
 interface IAuthUser {
@@ -11,7 +9,6 @@ class AuthUser implements IAuthUser {
   password: string;
   picture: string;
   username: string;
-
   constructor(
     password: string = '@Test000',
     picture: string = defaultUserImg,
@@ -63,6 +60,7 @@ interface IChirp {
   timestamp: string;
   comments: Comment[]
   username: string;
+  body: string;
 }
 class Chirp implements IChirp {
   username: string;
@@ -71,7 +69,6 @@ class Chirp implements IChirp {
   likes: any[];
   media: string;
   comments: Comment[];
-
   constructor(
     username: string = 'dummyuser',
     body: string = 'chirpBody',
@@ -101,7 +98,6 @@ class Comment implements IComment {
   timestamp: string;
   userImg: string;
   username: string;
-
   constructor(
     body: string = 'commentBody', 
     timestamp: string = Date.now().toString(), 
@@ -123,7 +119,6 @@ interface IChirps {
 class Chirps implements IChirps {
   chirps: Chirp[];
   loading: boolean;
-
   constructor(
     chirps: Chirp[] = [new Chirp()],
     loading: boolean = false
@@ -146,7 +141,6 @@ class Reply implements IReply {
   body: string;
   timestamp: string;
   likes: string[];
-
   constructor(
     userImg: string = defaultUserImg,
     username: string = 'dummyuser',
@@ -185,7 +179,6 @@ interface IUser {
 }
 class User implements IUser {
   loading: boolean;
-
   constructor(loading:boolean = false) {
     this.loading = loading;
   }
@@ -203,7 +196,6 @@ export class State implements IState{
   chirps: Chirps;
   replies: Replies;
   user: User;
-
   constructor(
     auth: Auth = new Auth(),
     chirps: Chirps = new Chirps(),
