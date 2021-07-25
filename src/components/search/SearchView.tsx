@@ -6,9 +6,7 @@ import { RootStore } from '../../redux/store/store';
 import ChirpItemComponent from '../chirps/ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from '../chirps/chirpstyles';
-
 import HeaderComponent from '../semantic/HeaderComponent';
-import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
 
 // component that holds a list of all chirps by a user
 const SearchView: React.FC = () => {
@@ -49,6 +47,8 @@ const SearchView: React.FC = () => {
         <HeaderComponent
           currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
         <View style={styles.userChirpsContainer}>
