@@ -81,7 +81,7 @@ const ModalComponent: React.FC<Props> = ({
               style={styles.deadBirdImg}
             />
             <Text style={styles.deleteText}>
-              There are no actions for this chirp.
+              {`Users cannot delete a ${modalType} written by another user.`} 
             </Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity

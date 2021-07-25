@@ -86,6 +86,22 @@ const BottomNavComponent = () => {
           ),
         }}
       />
+      {/* all chirps feed */}
+      <Tab.Screen
+        name='Feed'
+        component={ChirpsComponent}
+        options={{
+          tabBarLabel: 'Feed',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='home-outline'
+              color={color}
+              size={size}
+            />
+          )
+        }}
+      />
+      
       {/* user settings */}
       <Tab.Screen
         name='Settings'

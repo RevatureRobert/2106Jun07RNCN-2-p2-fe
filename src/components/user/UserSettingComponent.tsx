@@ -114,6 +114,7 @@ export const UserSettingComponent: React.FC = () => {
         {image && (
           <View style={styles.userSettingView}>
             <Image
+              testID='pfp'
               source={{ uri: image as any }}
               style={styles.userSettingImg}
             />
