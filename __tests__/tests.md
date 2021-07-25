@@ -170,3 +170,25 @@
   ]
 }
 ```
+
+# Redux
+
+```
+{
+  transform: {
+    '^.+\\.(js|ts|tsx)$': 'babel-jest',
+    '^.+\\.(bmp|gif|jpg|jpeg|mp4|png|psd|svg|webp|ttf|otf|m4v|mov|mp4|mpeg|mpg|webm|aac|aiff|caf|m4a|mp3|wav|html|pdf|obj)$': 'C:\\Users\\Bigmo\\Revature\\2106RNCN-2-p2-fe\\node_modules\\jest-expo\\src\\preset\\assetFileTransformer.js'
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(jest-)?react-native|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)'  
+  ],
+  displayName: { name: 'redux', color: 'purple' },
+  testMatch: [
+    '**/__tests__/**/*test_.[jt]s?(x)',
+  ],
+  moduleFileExtensions: [
+    'ts',             'tsx',
+    'js',             'jsx',
+  ],
+}
+```
