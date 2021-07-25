@@ -7,6 +7,7 @@ import { useToast } from 'react-native-toast-notifications';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import styles from './semanticstyles';
+import { TextInput } from 'react-native-gesture-handler';
 
 interface Props {
   currentView: string;
@@ -17,6 +18,8 @@ interface Props {
     timestamp: string;
     media?: string;
   };
+  searchValue?: string;
+  setSearchValue?: any;
 }
 
 // main header component, displayed on top of app
@@ -76,6 +79,32 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               size={24}
             />
           </TouchableHighlight>
+        </View>
+      );
+    case 'search':
+      return (
+        <View style={styles.headerContainer}>
+          <TouchableHighlight
+            underlayColor='#111'
+            onPress={() => navigation.goBack()}
+          >
+            <MaterialCommunityIcons
+              name='keyboard-backspace'
+              color='#fff'
+              size={24}
+            />
+          </TouchableHighlight>
+          <TextInput
+            style={styles.input}
+            placeholder='Search by username or chirp'
+            placeholderTextColor='#e1e1e1'
+            // inputState has to be redeclared as a prop for some reason.
+            // eslint-disable-next-line
+            onChangeText={(input: string) => {
+              Props.setSearchValue(input);
+            }}
+            value={Props.searchValue}
+          />
         </View>
       );
     case 'settings':
