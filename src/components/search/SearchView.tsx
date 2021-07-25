@@ -77,8 +77,12 @@ const SearchView: React.FC = () => {
                 )
                 .filter(
                   (user) =>
-                    user.body.includes(searchValue) ||
-                    user.username.includes(searchValue)
+                    user.body
+                      .toLocaleLowerCase()
+                      .includes(searchValue.toLocaleLowerCase()) ||
+                    user.username
+                      .toLowerCase()
+                      .includes(searchValue.toLocaleLowerCase())
                 )}
               renderItem={renderItem}
               onRefresh={onRefresh}
