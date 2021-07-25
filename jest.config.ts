@@ -15,7 +15,7 @@ module.exports = {
     // see link in comment before configObj declaration as well
     //==========================================================================
     projects: [
-      withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
+      // withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
       withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),
     ],
 
@@ -24,7 +24,13 @@ module.exports = {
     //==========================================================================
     collectCoverage: true,
     collectCoverageFrom: [
-        "./src/**/*.{ts, tsx}",
+      './src/**/*.{ts, tsx}',
+      '!./src/redux/axiosConfig.ts',
+      '!./src/redux/store/store.ts',
+    ],
+    coveragePathIgnorePatterns: [
+      'axiosConfig',
+      'redux/store',
     ],
     coverageDirectory: 'coverage',
     coverageThreshold: {
