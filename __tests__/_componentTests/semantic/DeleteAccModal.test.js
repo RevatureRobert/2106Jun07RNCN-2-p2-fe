@@ -31,7 +31,7 @@ describe('Testing DeleteAccModal', () => {
             wrapper.find(Modal).findWhere(
                 node => node.prop('onBackdropPress') !== undefined
             ).length
-        ).toBeGreaterThan(1);
+        ).toBeGreaterThan(0);
     });
 
     describe('all components must have Modal as ancestor', () => {
@@ -48,7 +48,7 @@ describe('Testing DeleteAccModal', () => {
                 wrapper.find(TouchableOpacity).findWhere( node => 
                     node.prop('onPress') !== undefined
                 ).find(Text).length
-            ).toBe(2);
+            ).toBeGreaterThan(1);
         });
     });
 });

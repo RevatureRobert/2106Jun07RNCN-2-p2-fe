@@ -28,10 +28,10 @@ describe('Testing BottomNavComponent', () => {
     });
 
     it('Has a tab navigator initialized to some screen', () => {
-        wrap = wrapper.findWhere((node) => node.prop('initialRouteName') !== undefined);
+        const wrap = wrapper.findWhere((node) => node.prop('initialRouteName') !== undefined);
         expect(wrapper
             .findWhere((node) => node.prop('name') === wrap.prop('initialRouteName'))
             .length
-        ).toBe(1);
+        ).toBeGreaterThan(0);
     });
 });

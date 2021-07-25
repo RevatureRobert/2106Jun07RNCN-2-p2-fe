@@ -28,7 +28,7 @@ describe('Testing ChirpRepliesComponent when replies are loading', () => {
 
     it('renders a loading screen', () => {
         const wrap = wrapper.find(LoadingComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('does not render FlatList', () => {
@@ -50,7 +50,7 @@ describe('Testing ChirpRepliesComponent when replies have loaded', () => {
 
     it('renders a FlatList', () => {
         const wrap = wrapper.find(FlatList);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('FlatList contains replies from store', () => {

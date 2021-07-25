@@ -24,7 +24,7 @@ describe('Testing UserChirpsComponent when chirps are loading', () => {
             .find(View)
             .find(TouchableHighlight)
             .find(MaterialCommunityIcons);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('button can be pressed', () => {

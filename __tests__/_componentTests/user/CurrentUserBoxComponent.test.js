@@ -76,11 +76,12 @@ describe('If user is viewing some other user\'s profile', () => {
             ).length
         ).toBeGreaterThan(0);
     });
-
-    it('displays bio', () => {
+    
+    it('displays user\'s bio', () => {
+        const expectedValue = 'bio'
         expect(
             wrapper.findWhere(node => 
-                node.prop('testID') === 'bio'
+                node.prop('testID') === expectedValue
             ).length
         ).toBeGreaterThan(0);
     });

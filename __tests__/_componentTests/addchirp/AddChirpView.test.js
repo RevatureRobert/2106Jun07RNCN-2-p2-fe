@@ -24,14 +24,14 @@ describe('Testing UserChirpsComponent when chirps are loading', () => {
             .find(SafeAreaView)
             .find(KeyboardAvoidingView)
             .find(HeaderComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('shows pfp of loggedin user', () => {
         const wrap = wrapper
             .find( { source: {uri: testState.auth.user.picture} } )
             .last();
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     })
 
     it('renders text box that responds to input', () => {

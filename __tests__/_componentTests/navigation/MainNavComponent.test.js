@@ -18,7 +18,7 @@ it('MainNavComponent has a tab navigator initialized to some screen', () => {
     expect(wrapper
         .findWhere((node) => node.prop('name') === wrap.prop('initialRouteName'))
         .length
-    ).toBe(1);
+    ).toBeGreaterThan(0);
 });
 
 it('renders conditionally based on whether user is logged in', () => {

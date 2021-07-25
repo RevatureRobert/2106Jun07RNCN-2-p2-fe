@@ -70,7 +70,7 @@ describe('Testing UserChirpsComponent after chirps have loaded', () => {
 
     it('renders HeaderComponent in SafeAreaView', () => {
         const wrap = wrapper.find(HeaderComponent)
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders View as colored box in SafeAreaView', () => {
@@ -78,17 +78,17 @@ describe('Testing UserChirpsComponent after chirps have loaded', () => {
             .find(View)
             .find( {style: { backgroundColor: '#1b1b1b', flex: 0.2 }} )
             .last()
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders AddChirpBtnComponent in SafeAreaView', () => {
         const wrap = wrapper.find(AddChirpBtnComponent)
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders FlatList in SafeAreaView', () => {
         const wrap = wrapper.find(FlatList)
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('does not render LoadingComponent', () => {

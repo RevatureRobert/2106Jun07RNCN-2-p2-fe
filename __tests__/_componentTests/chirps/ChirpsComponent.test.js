@@ -37,7 +37,7 @@ describe('If chirps have loaded', () => {
 
     it('renders FlatList', () => {
         const wrap = wrapper.find(FlatList);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('does not render LoadingComponent', () => {
@@ -47,7 +47,7 @@ describe('If chirps have loaded', () => {
 
     it('renders AddChirpBtnComponent', () => {
         const wrap = wrapper.find(AddChirpBtnComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     })
 
     it('FlatList contains chirps from store', () => {

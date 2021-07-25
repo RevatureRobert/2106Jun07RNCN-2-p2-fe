@@ -9,6 +9,7 @@ import { nestedHell, findAndShallowRender } from '../../testFunctions';
 import LoadingComponent from '../../../src/components/semantic/LoadingComponent';
 
 let wrapper;
+let wrap;
 let username = 'dummyuser'
 let timestamp = Date.now().toString();
 

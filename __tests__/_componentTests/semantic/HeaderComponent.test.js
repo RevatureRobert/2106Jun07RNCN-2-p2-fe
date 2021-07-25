@@ -44,7 +44,7 @@ describe('Testing default Header', () => {
     it('displays chirper logo', () => {
         expect(wrapper.findWhere( node =>
             node.prop('source') === chirperLogo
-        ).length).toBe(2);
+        ).length).toBeGreaterThan(0);
     });
 
     it('displays username as text', () => {

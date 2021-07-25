@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 
 import LoadingComponent from '../../../src/components/semantic/LoadingComponent';
 
-preloader = require('../../../src/assets/preloader.gif');
+const preloader = require('../../../src/assets/preloader.gif');
 
 it('renders preloader.gif', () => {
     const wrapper = mount(<LoadingComponent/>);
