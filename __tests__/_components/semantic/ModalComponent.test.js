@@ -3,7 +3,6 @@ import  { Text } from 'react-native';
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ModalComponent from '../../../src/components/semantic/ModalComponent';
 

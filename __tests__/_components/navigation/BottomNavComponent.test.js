@@ -1,19 +1,9 @@
 import React from 'react';
-import  { Text, TextInput, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
-import { nestedHell, findAndShallowRender } from '../../testFunctions';
-import { mockEvent } from '../../mocks';
+import { nestedHell } from '../../testFunctions';
 
 import BottomNavComponent from '../../../src/components/navigation/BottomNavComponent';
-import HeaderComponent from '../../../src/components/semantic/HeaderComponent';
-import AddChirpBtnComponent from '../../../src/components/addchirp/AddChirpBtnComponent';
-
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 let wrapper;

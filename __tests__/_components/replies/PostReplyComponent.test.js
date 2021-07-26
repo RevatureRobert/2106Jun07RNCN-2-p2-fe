@@ -1,12 +1,9 @@
 import React from 'react';
-import  { FlatList } from 'react-native';
 import { mount } from 'enzyme'
 import PostReplyComponent from '../../../src/components/replies/PostReplyComponent'; 
-import { testState, testStateRepliesLoading } from '../../../src/shared/constants';
+import { testState } from '../../../src/shared/constants';
 import { mockEvent } from '../../mocks';
-import { nestedHell, findAndShallowRender } from '../../testFunctions';
-
-import LoadingComponent from '../../../src/components/semantic/LoadingComponent';
+import { nestedHell } from '../../testFunctions';
 
 let wrapper;
 let wrap;

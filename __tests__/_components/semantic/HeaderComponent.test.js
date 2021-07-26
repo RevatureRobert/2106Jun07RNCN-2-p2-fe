@@ -1,5 +1,4 @@
 import React from 'react';
-import  { TouchableOpacity } from 'react-native';
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
