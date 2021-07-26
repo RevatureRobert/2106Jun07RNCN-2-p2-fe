@@ -55,7 +55,10 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             onPress={postChirp}
             style={styles.button}
             disabled={
-              Props.newChirp.body.length > 281 || Props.newChirp.body.length < 1
+              Props.newChirp.body.length > 281 ||
+              Props.newChirp.body.length < 1 ||
+              Props.newChirp.media ===
+                'https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/default/paddedPreloader.gif'
             }
           >
             <Text style={styles.buttonText}>Post</Text>
@@ -85,7 +88,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             style={{
               flexDirection: 'row',
               alignContent: 'center',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <TouchableHighlight
@@ -106,7 +109,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
                 fontSize: 18,
                 alignSelf: 'center',
                 textAlign: 'center',
-                flex: 1,
+                flex: 1
               }}
             >
               Settings
@@ -120,7 +123,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           <View style={{ flexDirection: 'row' }}>
             <Image
               source={{
-                uri: user.user?.picture + '?' + new Date(),
+                uri: user.user?.picture + '?' + new Date()
               }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
             ></Image>
