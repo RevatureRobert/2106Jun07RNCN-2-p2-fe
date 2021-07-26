@@ -17,7 +17,8 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install --legacy-peer-deps
-      - echo Congifuring Android Build...
+      - echo Testing...
+      - npm run test
   build:
     commands:
       - echo Build started on `date`
