@@ -35,26 +35,22 @@ describe('Testing UserChirpsComponent when chirps are loading', () => {
 
     it('renders HeaderComponent in View', () => {
         const wrap = wrapper.find(View).find(HeaderComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders View to make a colored box', () => {
-        const wrap = wrapper
-            .find(View)
-            .find( {style: { backgroundColor: '#1b1b1b', flex: 0.2 }} )
-            .last(); //finding by props always returns duplicates because Enzyme is dogshit
-        expect(wrap.length).toBe(1);
-        //could remove .last() and use .toBe(2)
+        const wrap = wrapper.findWhere(node => node.prop('testID') === 'box')
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders CurrentUserBoxComponent', () => {
         const wrap = wrapper = wrapper.find(CurrentUserBoxComponent);
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('renders LoadingComponent in View', () => {
         const wrap = wrapper.find(View).find(LoadingComponent)
-        expect(wrap.length).toBe(1);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('does not render FlatList', () => {
@@ -74,10 +70,7 @@ describe('Testing UserChirpsComponent after chirps have loaded', () => {
     });
 
     it('renders View as colored box in SafeAreaView', () => {
-        const wrap = wrapper
-            .find(View)
-            .find( {style: { backgroundColor: '#1b1b1b', flex: 0.2 }} )
-            .last()
+        const wrap = wrapper.findWhere(node => node.prop('testID') === 'box')
         expect(wrap.length).toBeGreaterThan(0);
     });
 
