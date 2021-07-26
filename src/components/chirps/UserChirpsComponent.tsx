@@ -59,7 +59,7 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
           currentView='singleChirp'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
         />
-        <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
+        <View testID='box' style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
         <CurrentUserBoxComponent
           username={route.params.username}
           currentUser={route.params.currentUser}
@@ -77,7 +77,7 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
           currentView='singleChirp'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
         />
-        <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
+        <View testID='box' style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
         <CurrentUserBoxComponent
           username={route.params.username}
           currentUser={route.params.currentUser}
