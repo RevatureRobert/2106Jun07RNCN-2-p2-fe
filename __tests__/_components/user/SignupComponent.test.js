@@ -22,7 +22,7 @@ describe('Testing SignupComponent', () => {
         wrapper = mount( nestedHell(testState, component) );
     });
 
-    it('displays text box to input username that listens for changeText', () => {
+    it('displays text box to register username that listens for changeText', () => {
         expect(
             wrapper.findWhere( node => 
                 node.prop('onChangeText') !== undefined
@@ -33,7 +33,7 @@ describe('Testing SignupComponent', () => {
         ).toBeGreaterThan(0);
     });
 
-    it('displays text box to input password that listens for changeText', () => {
+    it('displays text box to register password that listens for changeText', () => {
         expect(
             wrapper.findWhere( node => 
                 node.prop('onChangeText') !== undefined
@@ -44,7 +44,7 @@ describe('Testing SignupComponent', () => {
         ).toBeGreaterThan(0);
     });
 
-    it('displays text box to input email that listens for changeText', () => {
+    it('displays text box to register email that listens for changeText', () => {
         expect(
             wrapper.findWhere( node => 
                 node.prop('onChangeText') !== undefined
