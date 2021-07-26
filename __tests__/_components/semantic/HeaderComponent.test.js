@@ -6,9 +6,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import HeaderComponent from '../../../src/components/semantic/HeaderComponent';
 
-chirperLogo = require('../../../src/assets/chirperLogo.png');
+const chirperLogo = require('../../../src/assets/chirperLogo.png');
 
 let wrapper;
+let wrap;
 
 const newChirp = {
     userImg: testState.auth.user.picture,
@@ -74,15 +75,13 @@ describe('Testing singleChirp Header', () => {
         wrapper = mount( nestedHell(testState, component('singleChirp')) );
     });
 
-        it('displays back button that listens for press', () => {
-            expect(
-                wrapper.findWhere( node => 
-                    node.prop('onPress') !== undefined
-                )
-                .find(MaterialCommunityIcons)
-                .length
-            ).toBe(1);
-        });
+    it('displays back button that listens for press', () => {
+        wrap = wrapper.findWhere( node => 
+            node.prop('onPress') !== undefined
+        )
+        .find(MaterialCommunityIcons)
+        expect(wrap.length).toBe(1);
+    });
 });
 
 describe('Testing settings Header', () => {
@@ -91,13 +90,11 @@ describe('Testing settings Header', () => {
     });
 
     it('displays back button that listens for press', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onPress') !== undefined
-            )
-            .find(MaterialCommunityIcons)
-            .length
-        ).toBe(1);
+        wrap = wrapper.findWhere( node => 
+            node.prop('onPress') !== undefined
+        )
+        .find(MaterialCommunityIcons)
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('displays text that says \'Settings\'', () => {

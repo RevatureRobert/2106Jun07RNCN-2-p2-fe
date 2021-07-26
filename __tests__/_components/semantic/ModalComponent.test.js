@@ -7,12 +7,13 @@ import { nestedHell } from '../../testFunctions';
 import ModalComponent from '../../../src/components/semantic/ModalComponent';
 
 let wrapper;
+let wrap;
 
 const isModalVisible = true;
 const setModalVisible = () => {/*no-op*/};
 const chirpUser = 'theywhochirped'
-chirpTimestamp = Date.now().toString();
-cmtTimestamp = Date.now().toString()
+const chirpTimestamp = Date.now().toString();
+const cmtTimestamp = Date.now().toString()
 
 const component = (modalType, currentUser = chirpUser) => {
     return () => { return (
@@ -58,11 +59,10 @@ describe('Testing ModalComponent when user cannnot delete chirp/comment', () => 
     });
 
     it('displays message telling user chirp/comment cannot be deleted', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onPress') === undefined
-            ).find(Text).length
-        ).toBeGreaterThan(0);
+        wrap = wrapper.findWhere( node => 
+            node.prop('onPress') === undefined
+        ).find(Text);
+        expect(wrap.length).toBeGreaterThan(0);
     });
 
     it('has a text box that listens for press that allows user to escape modal view', () => {

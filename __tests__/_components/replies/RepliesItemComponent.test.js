@@ -10,6 +10,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ModalComponent from '../../../src/components/semantic/ModalComponent';
 
 let wrapper;
+let wrap;
 
 const component = () => {
     return (
@@ -34,7 +35,7 @@ describe('Testing RepliesItemComponent', () => {
     });
 
     it('displays the pfp of the loggedIn user', () => {
-        const wrap = wrapper.find({
+        wrap = wrapper.find({
             style: { width: 40, height: 40, borderRadius: 40 / 2 }
         });
         expect(wrap.length).toBeGreaterThan(0);
@@ -61,11 +62,10 @@ describe('Testing RepliesItemComponent', () => {
     });
 
     it('displays the chirp body as text', () => {
-        expect(
-                wrapper.someWhere( node => 
-                    node.text().includes(testState.chirps.chirps[0].username)
-                )
-        ).toBe(true);
+        wrap = wrapper.someWhere( node => 
+            node.text().includes(testState.chirps.chirps[0].username)
+        );
+        expect(wrap).toBe(true);
     });
 
     it('displays the reply timestamp as text', () => {
