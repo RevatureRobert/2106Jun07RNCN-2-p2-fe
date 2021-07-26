@@ -24,7 +24,6 @@ export const UserBioComponent: React.FC = () => {
       let bio = `${user}/mybio`;
 
       await uploadBio(bio, bioText);
-      setBioText('');
       Keyboard.dismiss();
       toast.show('Bio has been updated.');
     } catch (error) {}
