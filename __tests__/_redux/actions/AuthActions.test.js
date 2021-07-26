@@ -37,16 +37,6 @@ describe('testing signIn', () => {
         setError: mockSetError,
     }));
     
-    const goodSignInData = {
-        username: 'dummyuser',
-        password: '@Test000',
-    }
-
-    const badSignInData = {
-        username: 'doesnotexist',
-        password: '@Test000',
-    }
-
     const mockOnError = jest.fn(() => { /*no-op*/});
     
     beforeEach( () => {
