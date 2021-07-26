@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { shallow } from 'Enzyme';
+import { shallow } from 'enzyme';
 
 export const nestedHell = (state, callback, screenName = 'testScreen') => {
     const mockStore = configureStore([thunk]);
