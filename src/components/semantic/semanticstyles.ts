@@ -13,6 +13,21 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
 
+  input: {
+    color: '#f3f3f3',
+    padding: 15,
+    borderWidth: 1,
+    backgroundColor: '#141414',
+    borderColor: '#1b1b1b',
+    textAlign: 'left',
+    borderRadius: 15,
+    marginLeft: 10,
+    marginBottom: 4,
+    textAlignVertical: 'center',
+    fontSize: 14,
+    flex: 1,
+  },
+
   button: {
     backgroundColor: '#f3f3f3',
     padding: 8,

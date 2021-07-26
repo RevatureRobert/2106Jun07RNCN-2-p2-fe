@@ -23,7 +23,7 @@ const MainNavComponent: React.FC = () => {
   // creates stack navigator and gets current user
   const Stack = createStackNavigator<RootStackParamList>();
   const user = useSelector((state: RootStore) => state.auth);
-
+  
   return (
     <Stack.Navigator
       headerMode='none'

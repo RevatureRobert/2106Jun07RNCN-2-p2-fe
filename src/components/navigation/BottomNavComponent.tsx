@@ -7,6 +7,7 @@ import { UserSettingComponent } from '../user/UserSettingComponent';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Platform } from 'react-native';
+import SearchView from '../search/SearchView';
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();
@@ -30,12 +31,46 @@ const BottomNavComponent = () => {
           ...Platform.select({
             ios: {
               padding: 10,
-              height: 75
-            }
-          })
-        }
+              height: 75,
+            },
+          }),
+        },
       }}
     >
+      <Tab.Screen
+        name='Search'
+        component={SearchView}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='magnify' color={color} size={size} />
+          ),
+        }}
+      />
+      {/* user profile */}
+      <Tab.Screen
+        name='Profile'
+        children={() => (
+          <UserChirpsComponent
+            route={{
+              params: {
+                username: currentUser ? currentUser.username : '',
+                currentUser: currentUser ? currentUser?.username : '',
+              },
+            }}
+          />
+        )}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name='account-outline'
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
       {/* all chirps feed */}
       <Tab.Screen
         name='Feed'
@@ -51,30 +86,7 @@ const BottomNavComponent = () => {
           )
         }}
       />
-      {/* user profile */}
-      <Tab.Screen
-        name='Profile'
-        children={() => (
-          <UserChirpsComponent
-            route={{
-              params: {
-                username: currentUser ? currentUser.username : '',
-                currentUser: currentUser ? currentUser?.username : ''
-              }
-            }}
-          />
-        )}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name='account-outline'
-              color={color}
-              size={size}
-            />
-          )
-        }}
-      />
+      
       {/* user settings */}
       <Tab.Screen
         name='Settings'
@@ -83,11 +95,11 @@ const BottomNavComponent = () => {
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name='account-cog-outline'
+              name='tune-vertical'
               color={color}
               size={size}
             />
-          )
+          ),
         }}
       />
     </Tab.Navigator>

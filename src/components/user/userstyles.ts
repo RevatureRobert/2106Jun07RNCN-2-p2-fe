@@ -128,18 +128,16 @@ const styles = StyleSheet.create({
 
   // CurrentUserBoxComponent.tsx
   androidSafeArea: {
-    minHeight: 200,
-    width: 320,
+    width: 325,
     alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#1e1e1e',
     borderRadius: 25,
     margin: 12,
     marginBottom: 0,
-    marginTop: -90,
-    paddingTop: 10,
-    paddingBottom: 10,
+    marginTop: -60,
+    paddingTop: 20,
+    paddingBottom: 20,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -157,14 +155,19 @@ const styles = StyleSheet.create({
   },
 
   userImg: {
-    height: 72,
-    borderRadius: 64,
+    height: 92,
+    width: 92,
+    borderRadius: 46,
+    marginTop: -65, 
+    borderWidth: 2,
+    borderColor: '#1b1b1b',
+    backgroundColor: '#1b1b1b'
   },
 
   usernameText: {
     color: '#fff',
     fontWeight: '700',
-    marginTop: 12,
+    marginTop: 4,
     fontSize: 18,
   },
 
