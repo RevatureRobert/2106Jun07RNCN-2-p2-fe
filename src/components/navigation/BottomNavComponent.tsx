@@ -7,6 +7,7 @@ import { UserSettingComponent } from '../user/UserSettingComponent';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { Platform } from 'react-native';
+import SearchView from '../search/SearchView';
 
 // creates the tab navigator
 const Tab = createBottomTabNavigator();
@@ -30,10 +31,10 @@ const BottomNavComponent = () => {
           ...Platform.select({
             ios: {
               padding: 10,
-              height: 75
-            }
-          })
-        }
+              height: 75,
+            },
+          }),
+        },
       }}
     >
       {/* all chirps feed */}
@@ -48,7 +49,17 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          )
+          ),
+        }}
+      />
+      <Tab.Screen
+        name='Search'
+        component={SearchView}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name='magnify' color={color} size={size} />
+          ),
         }}
       />
       {/* user profile */}
@@ -59,8 +70,8 @@ const BottomNavComponent = () => {
             route={{
               params: {
                 username: currentUser ? currentUser.username : '',
-                currentUser: currentUser ? currentUser?.username : ''
-              }
+                currentUser: currentUser ? currentUser?.username : '',
+              },
             }}
           />
         )}
@@ -72,7 +83,7 @@ const BottomNavComponent = () => {
               color={color}
               size={size}
             />
-          )
+          ),
         }}
       />
       {/* user settings */}
@@ -83,11 +94,11 @@ const BottomNavComponent = () => {
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name='account-cog-outline'
+              name='tune-vertical'
               color={color}
               size={size}
             />
-          )
+          ),
         }}
       />
     </Tab.Navigator>

@@ -3,26 +3,15 @@ import { View, SafeAreaView, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../../redux/actions/ChirpActions';
 import { RootStore } from '../../redux/store/store';
-import ChirpItemComponent from './ChirpItemComponent';
+import ChirpItemComponent from '../chirps/ChirpItemComponent';
 import LoadingComponent from '../semantic/LoadingComponent';
-import CurrentUserBoxComponent from '../user/CurrentUserBoxComponent';
-import styles from './chirpstyles';
-
+import styles from '../chirps/chirpstyles';
 import HeaderComponent from '../semantic/HeaderComponent';
-import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
-
-interface Props {
-  route: {
-    params: {
-      username: string;
-      currentUser: string;
-    };
-  };
-}
 
 // component that holds a list of all chirps by a user
-const UserChirpsComponent: React.FC<Props> = ({ route }) => {
+const SearchView: React.FC = () => {
   const [isFetching, setIsFetching] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState('');
   const dispatch = useDispatch();
 
   // gets all chirps by the current user from the db
@@ -56,14 +45,12 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
     return (
       <View style={{ backgroundColor: '#141414', flex: 1 }}>
         <HeaderComponent
-          currentView='singleChirp'
+          currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
-        <View testID='box' style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
-        <CurrentUserBoxComponent
-          username={route.params.username}
-          currentUser={route.params.currentUser}
-        />
+        <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
         <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
@@ -74,33 +61,39 @@ const UserChirpsComponent: React.FC<Props> = ({ route }) => {
     return (
       <SafeAreaView style={{ backgroundColor: '#141414', flex: 1 }}>
         <HeaderComponent
-          currentView='singleChirp'
+          currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
-        />
-        <View testID='box' style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
-        <CurrentUserBoxComponent
-          username={route.params.username}
-          currentUser={route.params.currentUser}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
         <View style={styles.userChirpsContainer}>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            data={chirpsState.chirps
-              ?.sort((a, b) =>
-                Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
-              )
-              .filter((user) => user.username === route.params.username)}
-            renderItem={renderItem}
-            onRefresh={onRefresh}
-            refreshing={isFetching}
-            keyExtractor={(item) => item.timestamp}
-          />
+          {searchValue != '' ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              data={chirpsState.chirps
+                ?.sort((a, b) =>
+                  Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
+                )
+                .filter(
+                  (user) =>
+                    user.body
+                      .toLocaleLowerCase()
+                      .includes(searchValue.toLocaleLowerCase()) ||
+                    user.username
+                      .toLowerCase()
+                      .includes(searchValue.toLocaleLowerCase())
+                )}
+              renderItem={renderItem}
+              onRefresh={onRefresh}
+              refreshing={isFetching}
+              keyExtractor={(item) => item.timestamp}
+            />
+          ) : null}
         </View>
-        <AddChirpBtnComponent />
       </SafeAreaView>
     );
   }
 };
 
-export default UserChirpsComponent;
+export default SearchView;

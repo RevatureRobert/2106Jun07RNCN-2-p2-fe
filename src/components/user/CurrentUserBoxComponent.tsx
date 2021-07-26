@@ -14,6 +14,7 @@ import Constants from 'expo-constants';
 import { Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import styles from './userstyles';
+import ImageViewModal from '../semantic/ImageViewModal';
 
 interface Props {
   username: string;
@@ -81,13 +82,13 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
       {/* user profile picture */}
       <Image
         source={{ uri: image as any }}
-        style={{ width: 72, height: 72, borderRadius: 72 / 2 }}
+        style={styles.userImg}
         // style={styles.userImg}
         // resizeMode='contain'
       ></Image>
       {/* username and bio */}
       <Text style={styles.usernameText}>@{username}</Text>
-      <Text style={styles.bioText}>{bio}</Text>
+      <Text testID='bio' style={styles.bioText}>{bio}</Text>
       {/* log out button */}
       {currentUser?.username === username ? (
         <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
