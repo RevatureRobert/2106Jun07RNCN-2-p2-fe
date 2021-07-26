@@ -50,9 +50,7 @@ describe('Testing SigninComponent', () => {
                 node.prop('onPress') !== undefined
             )
             .findWhere( node => 
-                node.text().toLowerCase().includes('sign up') ||
-                node.text().toLowerCase().includes('signup') ||
-                node.text().toLowerCase().includes('sign-up')
+                node.text().toLowerCase().includes('sign up')
             ).length
         ).toBeGreaterThan(0);
     });
@@ -63,8 +61,7 @@ describe('Testing SigninComponent', () => {
                 node.prop('onPress') !== undefined
             )
             .findWhere( node => 
-                node.text().toLowerCase().includes('log in') ||
-                node.text().toLowerCase().includes('login')
+                node.text().toLowerCase().includes('log in')
             ).length
         ).toBeGreaterThan(0);
     });
