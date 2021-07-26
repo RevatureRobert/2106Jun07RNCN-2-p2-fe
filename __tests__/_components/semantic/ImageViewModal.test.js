@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import ImageViewModal from '../../../src/components/semantic/ImageViewModal';
 
-chirperLogo = require('../../../src/assets/chirperLogo.png');
+const chirperLogo = require('../../../src/assets/chirperLogo.png');
 
 let wrapper;
 

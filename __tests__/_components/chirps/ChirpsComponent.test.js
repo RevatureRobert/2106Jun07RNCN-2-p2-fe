@@ -57,7 +57,8 @@ describe('If chirps have loaded', () => {
         const byTimestamp = (a, b) => 
             Number(a.timestamp) < Number(b.timestamp) ? 1 : -1
         
-        expect(wrap.props().data).toBe(arrOfTestChirps.sort(byTimestamp));
+        const expectedArr = arrOfTestChirps.sort(byTimestamp);
+        expect(wrap.props().data).toBe(expectedArr);
     });
 
     it('Flatlist responds to onRefresh event', () => {
