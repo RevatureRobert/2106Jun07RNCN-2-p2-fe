@@ -22,26 +22,16 @@ describe('Testing SignupComponent', () => {
         wrapper = mount( nestedHell(testState, component) );
     });
 
-    it('displays text box to register username that listens for changeText', () => {
+    it('displays text boxes to register username and password', () => {
         expect(
             wrapper.findWhere( node => 
                 node.prop('onChangeText') !== undefined
             )
             .findWhere( node => 
-                node.prop('placeholder').toLowerCase() === 'username'
-            ).length
-        ).toBeGreaterThan(0);
-    });
-
-    it('displays text box to register password that listens for changeText', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onChangeText') !== undefined
-            )
-            .findWhere( node => 
+                node.prop('placeholder').toLowerCase() === 'username' || 
                 node.prop('placeholder').toLowerCase() === 'password'
             ).length
-        ).toBeGreaterThan(0);
+        ).toBeGreaterThan(1);
     });
 
     it('displays text box to register email that listens for changeText', () => {
