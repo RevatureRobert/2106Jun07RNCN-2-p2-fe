@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, FlatList } from 'react-native';
+import { View, SafeAreaView, FlatList, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllChirps } from '../../redux/actions/ChirpActions';
 import { RootStore } from '../../redux/store/store';
@@ -47,10 +47,8 @@ const SearchView: React.FC = () => {
         <HeaderComponent
           currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
-          searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
-        <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
         <View style={styles.userChirpsContainer}>
           <LoadingComponent />
         </View>
@@ -63,7 +61,6 @@ const SearchView: React.FC = () => {
         <HeaderComponent
           currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
-          searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
         <View style={styles.userChirpsContainer}>
@@ -87,6 +84,19 @@ const SearchView: React.FC = () => {
               renderItem={renderItem}
               onRefresh={onRefresh}
               refreshing={isFetching}
+              ListEmptyComponent={
+                <Text
+                  style={{
+                    flex: 1,
+                    color: '#e1e1e1',
+                    alignSelf: 'center',
+                    textAlignVertical: 'center',
+                    paddingTop: 250,
+                  }}
+                >
+                  No results
+                </Text>
+              }
               keyExtractor={(item) => item.timestamp}
             />
           ) : null}

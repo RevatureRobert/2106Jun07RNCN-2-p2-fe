@@ -2,12 +2,15 @@ import { withEnzyme } from 'jest-expo-enzyme';
 
 //see https://github.com/expo/expo/issues/10211#issuecomment-699967834
 type configObj = {
+  setupFiles: any;
   setupFilesAfterEnv: any,
   testMatch: any,
   testPathIgnorePatterns: any,
+  moduleNameMapper: any;
 }
 function withExtras(config: configObj){
   config.setupFilesAfterEnv.push('<rootDir>/__tests__/test-setup.js');
+  // config.testMatch = ['<rootDir>/__tests__/_components/semantic/ImageViewModal.test.js'];
   return config;
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import {
   SafeAreaView,
   View,
-  Image,
   Pressable,
+  Image,
   Text,
   Platform
 } from 'react-native';
