@@ -4,7 +4,7 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 import { Auth, Storage } from 'aws-amplify';
 import styles from './userstyles';
@@ -24,6 +24,7 @@ export const UserBioComponent: React.FC = () => {
       let bio = `${user}/mybio`;
 
       await uploadBio(bio, bioText);
+      setBioText('');
       Keyboard.dismiss();
       toast.show('Bio has been updated.');
     } catch (error) {}
@@ -32,7 +33,7 @@ export const UserBioComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(text, content, {
       level: 'public',
-      contentType: 'text/plain',
+      contentType: 'text/plain'
     })
       .then((response: any) => {
         return response.key;
@@ -83,7 +84,7 @@ export const UserBioComponent: React.FC = () => {
             styles.updateBioCount,
             bioText.length > 0 ? { color: '#B1D46A' } : null,
             bioText.length > 100 ? { color: '#D4B16A' } : null,
-            bioText.length > 150 ? { color: '#D46A6A' } : null,
+            bioText.length > 150 ? { color: '#D46A6A' } : null
           ]}
         >
           {bioText.length}/150
