@@ -4,7 +4,7 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -14,7 +14,6 @@ import Constants from 'expo-constants';
 import { Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import styles from './userstyles';
-import ImageViewModal from '../semantic/ImageViewModal';
 
 interface Props {
   username: string;
@@ -44,9 +43,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
         }
       }
     })();
-    return function cleanup(){
+    return () => {
       setImage(null);
-    }
+    };
   }, []);
 
   const fetchImage = async () => {
@@ -58,6 +57,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
 
   // log out function
   const logOutPress = () => {
+    setImage(null);
     dispatch(logout());
   };
 
@@ -88,7 +88,9 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
       ></Image>
       {/* username and bio */}
       <Text style={styles.usernameText}>@{username}</Text>
-      <Text testID='bio' style={styles.bioText}>{bio}</Text>
+      <Text testID='bio' style={styles.bioText}>
+        {bio}
+      </Text>
       {/* log out button */}
       {currentUser?.username === username ? (
         <TouchableHighlight style={styles.logOutBtn} onPress={logOutPress}>
@@ -97,7 +99,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center'
+              alignContent: 'center',
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />

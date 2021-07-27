@@ -18,13 +18,13 @@ interface Props {
     timestamp: string;
     media?: string;
   };
-  searchValue?: string;
   setSearchValue?: any;
 }
 
 // main header component, displayed on top of app
 const HeaderComponent: React.FC<Props> = (Props) => {
   // initializes navigation and toast library
+  const [inputState, setInputState] = React.useState('');
   const navigation = useNavigation();
   const toast = useToast();
 
@@ -36,6 +36,10 @@ const HeaderComponent: React.FC<Props> = (Props) => {
     const chirp = await PostChirp(Props.newChirp);
     toast.show(chirp);
     navigation.goBack();
+  }
+
+  function searchBtn() {
+    Props.setSearchValue(inputState);
   }
 
   // checks currentView
@@ -87,16 +91,6 @@ const HeaderComponent: React.FC<Props> = (Props) => {
     case 'search':
       return (
         <View style={styles.headerContainer}>
-          <TouchableHighlight
-            underlayColor='#111'
-            onPress={() => navigation.goBack()}
-          >
-            <MaterialCommunityIcons
-              name='keyboard-backspace'
-              color='#fff'
-              size={24}
-            />
-          </TouchableHighlight>
           <TextInput
             style={styles.input}
             placeholder='Search by username or chirp'
@@ -104,10 +98,24 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             // inputState has to be redeclared as a prop for some reason.
             // eslint-disable-next-line
             onChangeText={(input: string) => {
-              Props.setSearchValue(input);
+              setInputState(input);
             }}
-            value={Props.searchValue}
+            value={inputState}
           />
+          <TouchableHighlight
+            underlayColor='#f3f3f3'
+            onPress={() => searchBtn()}
+            style={{
+              marginBottom: 4,
+              backgroundColor: '#f3f3f3',
+              padding: 6,
+              borderRadius: 32,
+              alignItems: 'center',
+              width: 64,
+            }}
+          >
+            <MaterialCommunityIcons name='magnify' color='#141414' size={20} />
+          </TouchableHighlight>
         </View>
       );
     case 'settings':
@@ -117,7 +125,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             style={{
               flexDirection: 'row',
               alignContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}
           >
             <TouchableHighlight
@@ -138,7 +146,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
                 fontSize: 18,
                 alignSelf: 'center',
                 textAlign: 'center',
-                flex: 1
+                flex: 1,
               }}
             >
               Settings
@@ -152,18 +160,20 @@ const HeaderComponent: React.FC<Props> = (Props) => {
           <View style={{ flexDirection: 'row' }}>
             <Image
               source={{
-                uri: user.user?.picture + '?' + new Date()
+                uri: user.user?.picture + '?' + new Date(),
               }}
               style={{ width: 24, height: 24, borderRadius: 24 / 2 }}
               testID='pfp'
             ></Image>
-            <Text style={{ color: '#fff', paddingLeft: 8, fontWeight: 'bold' }}>
-              Hello, @{user.user?.username}.
+            <Text
+              style={{ color: '#e1e1e1', paddingLeft: 8, fontWeight: 'bold' }}
+            >
+              @{user.user?.username}
             </Text>
           </View>
           <Image
             source={require('../../assets/chirperLogo.png')}
-            style={{ width: 90, height: 24 }}
+            style={{ width: 90, height: 22 }}
           />
         </View>
       );

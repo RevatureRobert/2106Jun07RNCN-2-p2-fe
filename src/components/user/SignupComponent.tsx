@@ -8,7 +8,7 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -69,7 +69,7 @@ const SignupComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(file, content, {
       level: 'public',
-      contentType: 'image/jpeg'
+      contentType: 'image/jpeg',
     })
       .then((response: any) => {
         return response.key;
@@ -116,7 +116,7 @@ const SignupComponent: React.FC = () => {
     dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.'
+        bio: 'bio.',
       })
     );
     uploadDefaultBio();
@@ -141,20 +141,24 @@ const SignupComponent: React.FC = () => {
             ...Platform.select({
               ios: {
                 flexDirection: 'row',
-                alignItems: 'center'
+                alignItems: 'center',
+                justifyContent: 'center',
               },
               android: {
                 flexDirection: 'row',
-                alignItems: 'center'
-              }
-            })
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
+            }),
           }}
         >
           <Image
             source={require('../../assets/chirperIcon.png')}
             style={{
               height: 48,
-              marginBottom: 10
+              width: 48,
+              marginBottom: 10,
+              marginRight: 10,
             }}
             resizeMode='contain'
           />
@@ -163,11 +167,12 @@ const SignupComponent: React.FC = () => {
               color: '#fff',
               fontSize: 22,
               fontWeight: '700',
+              marginBottom: 10,
               ...Platform.select({
                 web: {
-                  textAlign: 'center'
-                }
-              })
+                  textAlign: 'center',
+                },
+              }),
             }}
           >
             Sign up for chirper

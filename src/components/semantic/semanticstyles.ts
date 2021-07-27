@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     height: 55,
     flexDirection: 'row',
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
 
   input: {
@@ -21,40 +21,40 @@ const styles = StyleSheet.create({
     borderColor: '#1b1b1b',
     textAlign: 'left',
     borderRadius: 15,
-    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 4,
     textAlignVertical: 'center',
     fontSize: 14,
-    flex: 1
+    flex: 1,
   },
 
   button: {
     backgroundColor: '#f3f3f3',
     padding: 8,
     width: 80,
-    borderRadius: 50
+    borderRadius: 50,
   },
 
   buttonText: {
     textAlign: 'center',
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
   // LoadingComponent.tsx
   loadingView: {
     flex: 1,
     backgroundColor: '#141414',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   loadingImg: {
     height: 48,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 
   // ModalComponent.tsx
   modalView: {
-    height: 72
+    height: 72,
   },
 
   modal: {
@@ -62,26 +62,26 @@ const styles = StyleSheet.create({
     height: 220,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25
+    borderRadius: 25,
   },
 
   deadBirdImg: {
     height: 92,
-    width: 92
+    width: 92,
   },
 
   deleteText: {
     alignSelf: 'center',
     color: '#fff',
     fontWeight: '700',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   modalButtons: {
     flexDirection: 'row',
     alignItems: 'center',
     alignContent: 'center',
-    paddingTop: 12
+    paddingTop: 12,
   },
 
   confirmButton: {
@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     width: 100,
     flex: 0.3,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   confirmText: {
     color: '#f3f3f3',
-    fontWeight: '700'
+    fontWeight: '700',
   },
 
   cancelButton: {
@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
     padding: 8,
     marginRight: 6,
     width: 100,
-    flex: 0.3
+    flex: 0.3,
   },
 
   cancelText: {
     color: '#f3f3f3',
-    fontWeight: '700'
-  }
+    fontWeight: '700',
+  },
 });
 
 export default styles;

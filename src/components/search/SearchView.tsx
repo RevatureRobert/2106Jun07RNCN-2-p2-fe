@@ -47,7 +47,6 @@ const SearchView: React.FC = () => {
         <HeaderComponent
           currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
-          searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
         <View style={{ backgroundColor: '#1b1b1b', flex: 0.15 }}></View>
@@ -63,7 +62,6 @@ const SearchView: React.FC = () => {
         <HeaderComponent
           currentView='search'
           newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
-          searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
         <View style={styles.userChirpsContainer}>
