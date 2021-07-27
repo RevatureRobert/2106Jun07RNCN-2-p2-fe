@@ -9,16 +9,15 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
-      - echo Installing global dependencies...
+      - echo Installing dependencies...
       - npm install --global --unsafe-perm sharp-cli expo-cli
-      - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
-      - npx expo login --non-interactive -u ${EXPO_USERNAME}
+      - npm install --legacy-peer-deps
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install --legacy-peer-deps
       - echo Testing...
       - npm run test
+      - export EXPO_CLI_PASSWORD=$(aws ssm get-parameter --name "expo-cli-password" --region "us-east-2" --query 'Parameter.Value' --with-decryption --output text)
+      - npx expo login --non-interactive -u ${EXPO_USERNAME}
   build:
     commands:
       - echo Build started on `date`
