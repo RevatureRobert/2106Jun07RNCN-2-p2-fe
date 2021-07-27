@@ -110,7 +110,10 @@ export const UserSettingComponent: React.FC = () => {
         currentView='settings'
         newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
       />
-      <ScrollView>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <View>
           {image && (
             <View style={styles.userSettingView}>

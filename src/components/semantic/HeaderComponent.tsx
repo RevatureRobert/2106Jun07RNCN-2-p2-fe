@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import styles from './semanticstyles';
 import { TextInput } from 'react-native-gesture-handler';
+import SvgUri from 'expo-svg-uri';
 
 interface Props {
   currentView: string;
@@ -171,9 +172,14 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               @{user.user?.username}
             </Text>
           </View>
-          <Image
-            source={require('../../assets/chirperLogo.png')}
-            style={{ width: 90, height: 22 }}
+          <SvgUri
+            source={require('../../assets/svg/chirperIcon.svg')}
+            style={{
+              width: 100,
+              height: 100,
+              marginLeft: 200,
+              marginTop: 6,
+            }}
           />
         </View>
       );
