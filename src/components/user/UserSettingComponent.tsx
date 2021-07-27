@@ -4,7 +4,8 @@ import {
   Image,
   Text,
   SafeAreaView,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth } from 'aws-amplify';
@@ -43,7 +44,7 @@ export const UserSettingComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1
+      quality: 1,
     });
 
     handleImagePicked(result);
@@ -81,7 +82,7 @@ export const UserSettingComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg'
+      contentType: 'image/jpeg',
     })
       .then((response: any) => {
         return response.key;
@@ -109,34 +110,36 @@ export const UserSettingComponent: React.FC = () => {
         currentView='settings'
         newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
       />
-
-      <View>
-        {image && (
-          <View style={styles.userSettingView}>
-            <Image
-              testID='pfp'
-              source={{ uri: image as any }}
-              style={styles.userSettingImg}
-            />
-            <TouchableOpacity style={styles.updatePicBtn} onPress={pickImage}>
-              <Text style={styles.updatePicText}>Edit picture</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      </View>
-      <View>
-        <UserBioComponent />
-      </View>
-      <TouchableOpacity
-        style={styles.deleteUserBtn}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.deleteUserText}>Delete account</Text>
-      </TouchableOpacity>
-      <DeleteAccModal
-        isModalVisible={isModalVisible}
-        setModalVisible={setModalVisible}
-      />
+      <ScrollView>
+        <View>
+          {image && (
+            <View style={styles.userSettingView}>
+              <Image
+                testID='pfp'
+                source={{ uri: image as any }}
+                style={styles.userSettingImg}
+              />
+              <Text style={styles.usernameText}>@{currentUser?.username}</Text>
+              <TouchableOpacity style={styles.updatePicBtn} onPress={pickImage}>
+                <Text style={styles.updatePicText}>Edit picture</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+        <View>
+          <UserBioComponent />
+        </View>
+        <TouchableOpacity
+          style={styles.deleteUserBtn}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.deleteUserText}>Delete account</Text>
+        </TouchableOpacity>
+        <DeleteAccModal
+          isModalVisible={isModalVisible}
+          setModalVisible={setModalVisible}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

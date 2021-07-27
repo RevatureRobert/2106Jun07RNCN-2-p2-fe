@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
   // UserSettingComponent.tsx
   userSettingView: {
-    height: 200,
+    height: 225,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
 
   updatePicBtn: {
-    width: 150,
+    width: 125,
     alignSelf: 'center',
     padding: 10,
     marginTop: 15,
@@ -158,10 +158,10 @@ const styles = StyleSheet.create({
     height: 92,
     width: 92,
     borderRadius: 46,
-    marginTop: -65, 
+    marginTop: -65,
     borderWidth: 2,
     borderColor: '#1b1b1b',
-    backgroundColor: '#1b1b1b'
+    backgroundColor: '#1b1b1b',
   },
 
   usernameText: {
