@@ -11,7 +11,6 @@ type configObj = {
 
 function withExtras(config: configObj){
   config.setupFilesAfterEnv.push('<rootDir>/__tests__/test-setup.js');
-  config.testMatch = ['<rootDir>/__tests__/_components/chirps/addChirpBtnComponent.test.js'];
   return config;
 }
 

@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
 import Modal from 'react-native-modal';
+import { Auth } from 'aws-amplify';
 
 import DeleteAccModal from '../../../src/components/semantic/DeleteAccModal';
 
@@ -50,5 +51,29 @@ describe('Testing DeleteAccModal', () => {
                 ).find(Text).length
             ).toBeGreaterThan(1);
         });
+
+        it('the first pressable message can execute its event handler', () => {
+            let wrap = wrapper.find(TouchableOpacity);
+            wrap = wrap.first();
+            
+            const event = 'onPress';
+            const eventHandler = jest.spyOn(wrap.props(), event);
+            wrap.props()[event]();
+            expect(eventHandler).toHaveBeenCalled();
+        })
+
+        it('the last pressable message can execute its event handler', () => {
+            let wrap = wrapper.find(TouchableOpacity);
+            wrap = wrap.last();
+
+            jest.spyOn(Auth, 'currentAuthenticatedUser').mockImplementation( () => {
+                return  Promise.resolve({ deleteUser: () => {/*no-op*/} });
+            })
+            
+            const event = 'onPress';
+            const eventHandler = jest.spyOn(wrap.props(), event);
+            wrap.props()[event]();
+            expect(eventHandler).toHaveBeenCalled();
+        })
     });
 });
