@@ -1,24 +1,41 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
-import { nestedHell, findAndShallowRender } from '../../testFunctions';
-import { mockEvent } from '../../mocks';
+import { nestedHell } from '../../testFunctions';
+
+import { Storage } from 'aws-amplify'
+import * as ImagePicker from 'expo-image-picker';
 
 import { ImageUploadComponent } from '../../../src/components/addchirp/ImageUploadComponent';
 
 const component = () => {
-    return (<ImageUploadComponent/>);
+    return (<ImageUploadComponent setImageURL={ () => {/*no-op*/} }/>);
 }
 
-it('displays icon that responds to press event', () => {
+it('displays icon that responds to press even', async () => {
+    //mock libraries used by eventHandler 
+    jest.spyOn(Storage, 'get').mockImplementation( () => {
+        return Promise.resolve( {} );
+    });
+    jest.spyOn(Storage, 'put').mockImplementation( () => {
+        return Promise.resolve( {uri: ''} );
+    });
+    jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockImplementation( () => {
+        return ({ uri: '' })
+    });
+    jest.spyOn(global, 'fetch').mockImplementation( () => {
+        const func = () => { return ( {} ) };
+        return Promise.resolve( {blob: func} );
+    });
+
     const wrapper = mount(nestedHell(testState, component));
-    const wrap = findAndShallowRender(wrapper, TouchableOpacity);
-    const containsIcon = wrap.find(MaterialCommunityIcons).length === 1;
-    if( wrap.props().hasOwnProperty('onPress') && containsIcon){
-        wrap.setProps( {onPress: mockEvent} );
-        wrap.simulate('press');
+    let wrap = wrapper.find(TouchableOpacity);
+    if (wrap.length > 1) {
+        wrap = wrap.last();
     }
-    expect(mockEvent).toHaveBeenCalled();
+
+    const eventHandler = jest.spyOn(wrap.props(), 'onPress');
+    wrap.props().onPress();
+    expect(eventHandler).toHaveBeenCalled();
 });

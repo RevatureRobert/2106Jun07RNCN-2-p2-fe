@@ -9,14 +9,25 @@ import { nestedHell, findAndShallowRender } from '../../testFunctions';
 import LoadingComponent from '../../../src/components/semantic/LoadingComponent';
 
 let wrapper;
-let username = 'dummyuser'
-let timestamp = Date.now().toString();
+
+const userImg = '';
+const username = 'dummyuser';
+const body = 'chirpBody';
+const comments = [];
+const likes = [''];
+const media = '';
+const timestamp = Date.now().toString();
 
 const component = () => {
     return (
         <ChirpRepliesComponent 
-            username = {username}
-            timestamp = {timestamp}
+            userImg={userImg} 
+            username={username}
+            body={body}
+            comments={comments}
+            likes={likes}
+            media={media}
+            timestamp={timestamp}
         />
     );
 }
@@ -35,7 +46,6 @@ describe('Testing ChirpRepliesComponent when replies are loading', () => {
         const wrap = wrapper.find(FlatList);
         expect(wrap.length).toBe(0);
     });
-
 });
 
 describe('Testing ChirpRepliesComponent when replies have loaded', () => {

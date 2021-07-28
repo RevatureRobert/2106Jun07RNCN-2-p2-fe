@@ -1,7 +1,6 @@
 import React from 'react';
 import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native';
 import styles from './chirpstyles';
-import ChirpItemComponent from './ChirpItemComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
 import ChirpRepliesComponent from '../replies/ChirpRepliesComponent';
 import PostReplyComponent from '../replies/PostReplyComponent';
@@ -28,7 +27,7 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         currentView='singleChirp'
         newChirp={{ userImg: '', username: '', body: '', timestamp: '' }}
       />
-      <ChirpItemComponent
+      <ChirpRepliesComponent
         userImg={route.params.userImg}
         username={route.params.username}
         body={route.params.body}
@@ -36,10 +35,6 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         likes={route.params.likes}
         comments={route.params.comments}
         media={route.params.media}
-      />
-      <ChirpRepliesComponent
-        username={route.params.username}
-        timestamp={route.params.timestamp}
       />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
