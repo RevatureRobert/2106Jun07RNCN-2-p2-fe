@@ -5,20 +5,26 @@ import RepliesItemComponent from './RepliesItemComponent';
 import { RootStore } from '../../redux/store/store';
 import { GetReplies } from '../../redux/actions/ChirpActions';
 import LoadingComponent from '../semantic/LoadingComponent';
+import ChirpItemComponent from '../chirps/ChirpItemComponent';
 
 interface Props {
+  userImg: string;
   username: string;
+  body: string;
+  comments: string[];
+  likes: string[];
+  media?: string;
   timestamp: string;
 }
 
-const ChirpRepliesComponent: React.FC<Props> = ({ timestamp }) => {
+const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
   // gets all chirps from the db
   const fetchData = () => {
     setIsFetching(false);
-    dispatch(GetReplies(timestamp));
+    dispatch(GetReplies(Props.timestamp));
   };
 
   // refresh function when pulling down on flatlist
@@ -41,7 +47,7 @@ const ChirpRepliesComponent: React.FC<Props> = ({ timestamp }) => {
       username={item.username}
       body={item.body}
       timestamp={item.timestamp}
-      chirpTimestamp={timestamp}
+      chirpTimestamp={Props.timestamp}
       currentUser={currentUser.user ? currentUser.user?.username : ''}
     />
   );
@@ -66,6 +72,17 @@ const ChirpRepliesComponent: React.FC<Props> = ({ timestamp }) => {
         refreshing={isFetching}
         style={{ flex: 1 }}
         keyExtractor={(item) => item.timestamp}
+        ListHeaderComponent={
+          <ChirpItemComponent
+            userImg={Props.userImg}
+            username={Props.username}
+            body={Props.body}
+            timestamp={Props.timestamp}
+            likes={Props.likes}
+            comments={Props.comments}
+            media={Props.media}
+          />
+        }
       />
     );
   }
