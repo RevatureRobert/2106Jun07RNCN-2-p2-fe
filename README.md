@@ -95,7 +95,7 @@ Post a new chirp by using the floating "Add Chirp" (pencil) button.
 
 - View a single user's chirps by tapping their profile pic.
 <p align="center">
-<img alt="Profile Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.43.37.png" height="500" />
+<img alt="Profile Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2013.35.02.png" height="500" />
 </p>
 
 - Reply to a chirp by tapping a chirp.
@@ -111,7 +111,7 @@ Post a new chirp by using the floating "Add Chirp" (pencil) button.
 
 - See all your chirps or logout by tapping the profile icon.
 <p align="center">
-<img alt="Profile Screen w/ Logout" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.16.png" height="500" />
+<img alt="Profile Screen w/ Logout" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2013.45.11.png" height="500" />
 </p>
 
 - Change your profile pic, bio, or delete your account on the settings screen.
