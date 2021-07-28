@@ -4,7 +4,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
-import { mockEvent } from '../../mocks';
 
 import AddChirpBtnComponent from '../../../src/components/addchirp/AddChirpBtnComponent';
 
@@ -28,12 +27,14 @@ describe('Testing UserChirpsComponent when chirps are loading', () => {
     });
 
     it('button can be pressed', () => {
-        const wrap = wrapper.find(View).find(TouchableHighlight);
-        const w = shallow(wrap.getElement());
-        if( w.props().hasOwnProperty('onPress') ){
-            w.setProps( {onPress: mockEvent} );
-            w.simulate('press');
+        let wrap = wrapper.find(TouchableHighlight);
+        if (wrap.length > 1) {
+            wrap = wrap.last();
         }
-        expect(mockEvent).toHaveBeenCalled();
+
+        const event = 'onPress';
+        const eventHandler = jest.spyOn(wrap.props(), event);
+        wrap.props()[event]();
+        expect(eventHandler).toHaveBeenCalled();
     });
 });

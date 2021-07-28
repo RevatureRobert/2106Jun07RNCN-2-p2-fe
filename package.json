@@ -11,13 +11,12 @@
     "Daguinson Fleurantin"
   ],
   "scripts": {
-    "start": "cross-env ALERT=off expo start",
-    "start-v": "cross-env ALERT=on expo start",
-    "test": "cross-env ALERT=off jest --detectOpenHandles --silent",
-    "test-v": "cross-env ALERT=on jest --detectOpenHandles",
-    "android": "cross-env ALERT=off expo start --android",
-    "ios": "cross-env ALERT=off expo start --ios",
-    "web": "cross-env ALERT=off expo start --web",
+    "start": "expo start",
+    "test": "jest --detectOpenHandles --silent",
+    "test-v": "jest --detectOpenHandles",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
