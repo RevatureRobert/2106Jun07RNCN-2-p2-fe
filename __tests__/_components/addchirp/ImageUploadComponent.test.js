@@ -22,3 +22,14 @@ it('displays icon that responds to press event', () => {
     }
     expect(mockEvent).toHaveBeenCalled();
 });
+
+it('displays icon that responds to press event, but better', () => {
+    const wrapper = mount(nestedHell(testState, component));
+    const wrap = findAndShallowRender(wrapper, TouchableOpacity);
+    const containsIcon = wrap.find(MaterialCommunityIcons).length === 1;
+    if( wrap.props().hasOwnProperty('onPress') && containsIcon){
+        wrap.setProps( {onPress: mockEvent} );
+        wrap.simulate('press');
+    }
+    expect(mockEvent).toHaveBeenCalled();
+});
