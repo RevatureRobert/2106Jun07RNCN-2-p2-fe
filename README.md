@@ -1,9 +1,10 @@
 <h1><img src ="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/339c19c006bcdfbe6a9ec45d644dc6422bc647e0/src/assets/chirperLogo.png" alt="Chirper" width="350"></h1>
 
 ![Written in React Native](https://img.shields.io/badge/LANGUAGE-REACT%20NATIVE-blue?style=for-the-badge&logo=react)
-![CI/CD by AWS CodePipeline](https://img.shields.io/badge/CI%2FCD-AWS%20CODEPIPELINE-orange?style=for-the-badge&logo=amazonaws)
+![Managed by Expo](https://img.shields.io/badge/MANAGED%20BY-EXPO-purple?style=for-the-badge&logo=expo)
+![CI/CD by AWS CodePipeline](https://img.shields.io/badge/CI%2FCD-CODEPIPELINE-orange?style=for-the-badge&logo=amazonaws)
 
-![Works on Web](https://img.shields.io/badge/DEVELOPED%20FOR-WEB-darkviolet?style=for-the-badge&logo=safari)
+![Works on Web](https://img.shields.io/badge/DEVELOPED%20FOR-WEB-black?style=for-the-badge&logo=safari)
 ![Works on iOS](https://img.shields.io/cocoapods/p/ios?label=DEVELOPED%20FOR&logo=APPLE&style=for-the-badge)
 ![Works on Android](https://img.shields.io/badge/DEVELOPED%20FOR-ANDROID-green?style=for-the-badge&logo=android)
 
@@ -78,38 +79,44 @@ To Deploy:
 
 ## Usage
 
-- Create a new user.
-
-![Signup Screen]()
-
-- Login using new username and password after verifying your email.
-
-![Login Screen]()
+- Create a new user. Login using new username and password after verifying your email.
+<p align="center">
+<img alt="Signup Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.30.56.png" height="500" />
+<img alt="Login Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.32.04.png" height="500" />
+</p>
 
 - View chirps on the home screen.
-  Post a new chirp by using the floating "Add Chirp" (pencil) button.
-
-![Main Screen]()
+Post a new chirp by using the floating "Add Chirp" (pencil) button.
+<p align="center">
+<img alt="Main Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.32.56.png" height="500" />
+<img alt="Add Chirp Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.33.png" height="500" />
+</p>
 
 - View a single user's chirps by tapping their profile pic.
-
-![Profile Screen]()
+<p align="center">
+<img alt="Profile Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.43.37.png" height="500" />
+</p>
 
 - Reply to a chirp by tapping a chirp.
-
-![Single Chirp Screen]()
+<p align="center">
+<img alt="Single Chirp Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.36.45.png" height="500" />
+</p>
 
 - Search by username or chirp with the magnifying glass.
-
-![Search Screen]()
+<p align="center">
+<img alt="Search Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.03.png" height="500" />
+<img alt="Search Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.09.png" height="500" />
+</p>
 
 - See all your chirps or logout by tapping the profile icon.
-
-![Profile Screen w/ logout]()
+<p align="center">
+<img alt="Profile Screen w/ Logout" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.16.png" height="500" />
+</p>
 
 - Change your profile pic, bio, or delete your account on the settings screen.
-
-![Settings Screen]()
+<p align="center">
+<img alt="Settings Screen" src="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/main/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2012%20-%202021-07-28%20at%2012.33.21.png" height="500" />
+</p>
 
 ## Contributors
 
@@ -120,6 +127,6 @@ To Deploy:
 
 ## License
 
-[![MIT](https://img.shields.io/github/license/RevatureRobert/2106Jun07RNCN-2-p2-fe?style=for-the-badge)](https://github.com/dague00/chirp-react/blob/7393fbcd4c13a442eb6f197e7069fc5948fbcbbd/LICENSE)
+[![MIT](https://img.shields.io/github/license/RevatureRobert/2106Jun07RNCN-2-p2-fe?style=for-the-badge)](https://github.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/blob/1367e28ae4fb68562872aec65e60a1a4b100454a/LICENSE.txt)
 
 ![Built with Love](https://forthebadge.com/images/badges/built-with-love.svg)
