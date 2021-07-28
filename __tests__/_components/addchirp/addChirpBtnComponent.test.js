@@ -28,12 +28,21 @@ describe('Testing UserChirpsComponent when chirps are loading', () => {
     });
 
     it('button can be pressed', () => {
-        const wrap = wrapper.find(View).find(TouchableHighlight);
-        const w = shallow(wrap.getElement());
-        if( w.props().hasOwnProperty('onPress') ){
-            w.setProps( {onPress: mockEvent} );
-            w.simulate('press');
+        // const wrap = wrapper.find(View).find(TouchableHighlight);
+        // const w = shallow(wrap.getElement());
+        // if( w.props().hasOwnProperty('onPress') ){
+        //     w.setProps( {onPress: mockEvent} );
+        //     w.simulate('press');
+        // }
+        // expect(mockEvent).toHaveBeenCalled();
+
+        let wrap = wrapper.find(TouchableHighlight);
+        if (wrap.length > 1) {
+            wrap = wrap.last();
         }
-        expect(mockEvent).toHaveBeenCalled();
+
+        const eventHandler = jest.spyOn(wrap.props(), 'onRefresh');
+        wrap.props().onRefresh();
+        expect(eventHandler).toHaveBeenCalled();
     });
 });
