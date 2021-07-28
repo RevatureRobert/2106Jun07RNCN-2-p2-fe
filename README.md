@@ -35,6 +35,9 @@ This project is written in React Native intialized with Expo, written with unit 
 - React Redux
 - Expo
 - Jest (w/ Enzyme)
+- AWS S3
+- AWS CodePipeline
+- AWS Cognito
 
 ## Features
 
