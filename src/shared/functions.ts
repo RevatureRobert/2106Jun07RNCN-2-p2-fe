@@ -1,5 +1,3 @@
-import { ShallowWrapper } from "enzyme";
-
 export function formatTimestamp(unformattedTimestamp: Date): string {
   // Setting up days/months arrays for use in timestamps.
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

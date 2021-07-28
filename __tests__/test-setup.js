@@ -19,16 +19,6 @@ jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 
 //==============================================================================
-// Almost certainly unncecessary
-//    (see https://www.leighhalliday.com/mock-fetch-jest)
-//==============================================================================
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
-  })
-);
-
-//==============================================================================
 // Normally, you need to configure an Enzyme adapter, but withEnzyme does that 
 // for us
 //==============================================================================
