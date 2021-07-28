@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableHighlight, Platform } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';
@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import styles from './semanticstyles';
 import { TextInput } from 'react-native-gesture-handler';
-import SvgUri from 'expo-svg-uri';
 
 interface Props {
   currentView: string;
