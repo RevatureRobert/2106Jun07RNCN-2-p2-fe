@@ -149,6 +149,11 @@ const SignupComponent: React.FC = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
               },
+              web: {
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
             }),
           }}
         >

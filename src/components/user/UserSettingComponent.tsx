@@ -8,11 +8,10 @@ import {
   ScrollView,
 } from 'react-native';
 import Constants from 'expo-constants';
-import { Auth } from 'aws-amplify';
+import { Auth, Storage } from 'aws-amplify';
 import * as ImagePicker from 'expo-image-picker';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
-import { Storage } from 'aws-amplify';
 import { UserBioComponent } from './UserBioComponent';
 import styles from './userstyles';
 import DeleteAccModal from '../semantic/DeleteAccModal';
@@ -44,7 +43,7 @@ export const UserSettingComponent: React.FC = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
     });
 
     handleImagePicked(result);

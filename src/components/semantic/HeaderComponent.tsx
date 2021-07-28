@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { View, Text, Image, TouchableHighlight, Platform } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';
@@ -172,11 +172,11 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               @{user.user?.username}
             </Text>
           </View>
-          <SvgUri
-            source={require('../../assets/svg/chirperIcon.svg')}
+          <Image
+            source={require('../../assets/chirperIcon.png')}
             style={{
-              width: 100,
-              height: 100,
+              width: 24,
+              height: 24,
               marginLeft: 200,
               marginTop: 6,
             }}
