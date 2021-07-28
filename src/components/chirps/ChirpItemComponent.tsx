@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -50,7 +44,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length - 1,
+        count: likeState.count,
       });
     }
   }, []);
@@ -63,7 +57,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: Props.likes.length - 1,
+        count: likeState.count - 1,
       });
 
       UnlikeChirp(
@@ -76,7 +70,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: Props.likes.length,
+        count: likeState.count + 1,
       });
 
       LikeChirp(
@@ -105,9 +99,10 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
       >
         <Image
           source={{
-            uri: Props.userImg  + '?' + Date.now().toString(),  
+            uri: Props.userImg + '?' + Date.now().toString(),
             cache: 'reload',
-            headers: {Pragma: 'no-cache'}}}
+            headers: { Pragma: 'no-cache' },
+          }}
           style={{ width: 52, height: 52, borderRadius: 52 / 2 }}
         ></Image>
       </Pressable>
@@ -119,7 +114,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         {Props.media && Props.media !== '' ? (
           <Pressable onPress={() => setImgModalVisible(true)}>
             <Image
-              source={{ uri: Props.media}}
+              source={{ uri: Props.media }}
               style={{
                 height: 250,
                 marginTop: 10,
