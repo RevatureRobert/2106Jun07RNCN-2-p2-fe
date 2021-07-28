@@ -11,13 +11,13 @@ type configObj = {
 
 function withExtras(config: configObj){
   config.setupFilesAfterEnv.push('<rootDir>/__tests__/test-setup.js');
-  config.testMatch = ['<rootDir>/__tests__/_components/search/SearchView.test.js'];
+  // config.testMatch = ['<rootDir>/__tests__/_components/shared/functions.test.js'];
   return config;
 }
 
 module.exports = {
   projects: [
-    // withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
+    withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
     withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),
   ],
   collectCoverage: true,

@@ -9,11 +9,11 @@ import styles from '../chirps/chirpstyles';
 import HeaderComponent from '../semantic/HeaderComponent';
 
 interface Props {
-  testValue: any;
+  testValue?: any;
 }
 
 // component that holds a list of all chirps by a user
-const SearchView: React.FC<Props> = (props: Props) => {
+const SearchView: React.FC<Props> = (props: Props = {testValue: ''}) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState(props.testValue || '');
   const dispatch = useDispatch();
