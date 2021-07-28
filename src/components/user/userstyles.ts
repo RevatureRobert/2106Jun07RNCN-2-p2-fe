@@ -165,14 +165,14 @@ const styles = StyleSheet.create({
   },
 
   usernameText: {
-    color: '#fff',
+    color: '#f3f3f3',
     fontWeight: '700',
     marginTop: 4,
     fontSize: 18,
   },
 
   bioText: {
-    color: '#fff',
+    color: '#e1e1e1',
     fontSize: 14,
     maxWidth: 200,
     textAlign: 'center',
