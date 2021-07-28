@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   input: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   },
 
   loginBtn: {
@@ -27,17 +27,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
 
   loginText: {
-    fontWeight: '700',
+    fontWeight: '700'
   },
 
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 22,
+    marginTop: 22
   },
 
   // UserSettingComponent.tsx
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '#1e1e1e',
+    borderColor: '#1e1e1e'
   },
 
   userSettingImg: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 50
   },
 
   updatePicBtn: {
@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 15,
     backgroundColor: '#f3f3f3',
-    borderRadius: 25,
+    borderRadius: 25
   },
 
   updatePicText: {
     fontWeight: '700',
     color: '#141414',
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   deleteUserBtn: {
@@ -78,26 +78,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#141414',
     borderColor: '#ff4242',
     borderWidth: 2,
-    borderRadius: 25,
+    borderRadius: 25
   },
 
   deleteUserText: {
     fontWeight: '700',
     color: '#ff4242',
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   // UserBioComponent.tsx
   updateBioView: {
     padding: 25,
     borderBottomWidth: 1,
-    borderColor: '#1e1e1e',
+    borderColor: '#1e1e1e'
   },
 
   updateBioText: {
     color: '#f4f4f4',
     fontWeight: '700',
-    marginLeft: 10,
+    marginLeft: 10
   },
 
   updateBioBtn: {
@@ -106,13 +106,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 25,
     alignSelf: 'flex-end',
-    marginTop: 15,
+    marginTop: 15
   },
 
   updateBioBtnText: {
     color: '#141414',
     fontWeight: '700',
-    textAlign: 'center',
+    textAlign: 'center'
   },
 
   updateBioCount: {
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 5,
     fontSize: 10,
-    fontVariant: ['tabular-nums'],
+    fontVariant: ['tabular-nums']
   },
 
   // CurrentUserBoxComponent.tsx
@@ -136,22 +136,20 @@ const styles = StyleSheet.create({
     margin: 12,
     marginBottom: 0,
     marginTop: -60,
-    paddingTop: 20,
-    paddingBottom: 20,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
-          height: 5,
+          height: 2
         },
-        shadowOpacity: 1,
-        shadowRadius: 3.84,
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62
       },
       android: {
-        elevation: 5,
-      },
-    }),
+        elevation: 5
+      }
+    })
   },
 
   userImg: {
@@ -161,14 +159,14 @@ const styles = StyleSheet.create({
     marginTop: -65,
     borderWidth: 2,
     borderColor: '#1b1b1b',
-    backgroundColor: '#1b1b1b',
+    backgroundColor: '#1b1b1b'
   },
 
   usernameText: {
     color: '#f3f3f3',
     fontWeight: '700',
     marginTop: 4,
-    fontSize: 18,
+    fontSize: 18
   },
 
   bioText: {
@@ -176,22 +174,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     maxWidth: 200,
     textAlign: 'center',
+    marginBottom: 10
   },
 
   logOutBtn: {
     padding: 10,
-    marginTop: 10,
     backgroundColor: '#ff4242',
     borderRadius: 25,
     width: 124,
+    marginBottom: 10
   },
 
   logOutText: {
     fontWeight: '700',
     color: '#fff',
     alignSelf: 'center',
-    paddingRight: 10,
-  },
+    paddingRight: 10
+  }
 });
 
 export default styles;

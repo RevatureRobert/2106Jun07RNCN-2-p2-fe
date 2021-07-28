@@ -4,7 +4,7 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight,
+  TouchableHighlight
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -25,7 +25,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   // gets current logged in user from store
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [image, setImage] = React.useState(null);
-  const [bio, setBio] = React.useState('null');
+  const [bio, setBio] = React.useState(' ');
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -99,7 +99,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center',
+              alignContent: 'center'
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />

@@ -1,6 +1,6 @@
 <h1><img src ="https://raw.githubusercontent.com/RevatureRobert/2106Jun07RNCN-2-p2-fe/339c19c006bcdfbe6a9ec45d644dc6422bc647e0/src/assets/chirperLogo.png" alt="Chirper" width="350"></h1>
 
-![Written in React Native](https://img.shields.io/badge/LANGUAGE-REACT%20NATIVE-blue?style=for-the-badge&logo=react)
+![Written in React Native](https://img.shields.io/badge/LANGUAGE-REACT%20NATIVE%20%28TYPESCRIPT%29-blue?style=for-the-badge&logo=react)
 ![Managed by Expo](https://img.shields.io/badge/MANAGED%20BY-EXPO-purple?style=for-the-badge&logo=expo)
 ![CI/CD by AWS CodePipeline](https://img.shields.io/badge/CI%2FCD-CODEPIPELINE-orange?style=for-the-badge&logo=amazonaws)
 
@@ -31,7 +31,8 @@ This project is written in React Native intialized with Expo, written with unit 
 
 ## Technologies Used
 
-- ReactNative in TypeScript
+- React Native in TypeScript
+- React Redux
 - Expo
 - Jest (w/ Enzyme)
 
