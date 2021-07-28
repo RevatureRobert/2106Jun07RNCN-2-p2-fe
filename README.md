@@ -25,7 +25,7 @@
 
 ## Project Description
 
-The front end for Chirper, a social media site for registered users to post "Chirps" as well as like and reply to other user's Chirps. Users can follow other users so that they only see Chirps from users they follow. The application can be run as a mobile app (iOS or Android) or as a web application.
+The front end for Chirper, a social media application for registered users to post "Chirps" as well as like and reply to other users' Chirps. The application can be run as a mobile app (iOS or Android) or as a web application.
 
 This project is written in React Native intialized with Expo, written with unit tests using Jest and Enzyme.
 
@@ -38,7 +38,7 @@ This project is written in React Native intialized with Expo, written with unit 
 
 ## Features
 
-- Users can signup and validate their own emails.
+- Users can signup and validate their own emails
 - Users can login
 - Users can logout of the application when finished
 - Users can post new chirps
@@ -50,13 +50,14 @@ This project is written in React Native intialized with Expo, written with unit 
 - Users can set their bio
 - Users can change profile pictures
 - Users can see others' bios
+- Users can delete their chirps, comments, and accounts
 
 To-do list:
 
-- Users can upload videos to chirps
-- Users can enter age/birthday
-- Users can have a separate display name from their username
-- Users can follow other users specifically instead of following all.
+- Users should be able to upload videos to chirps
+- Users should be able to enter age/birthday
+- Users should be able to have a separate display name from their username
+- Users should be able to follow other users specifically instead of following all
 
 ## Getting Started
 
