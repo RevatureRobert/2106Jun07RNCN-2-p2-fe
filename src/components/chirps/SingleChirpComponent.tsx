@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, Image, LogBox, Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -9,6 +9,9 @@ import styles from './chirpstyles';
 import { useNavigation } from '@react-navigation/native';
 import { formatTimestamp } from '../../shared/functions';
 import ImageViewModal from '../semantic/ImageViewModal';
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 interface Props {
   userImg: string;
@@ -18,47 +21,27 @@ interface Props {
   likes: string[];
   media?: string;
   timestamp: string;
+  likeState: any;
+  setLikeState: any;
 }
 
 // component that structures and defines the text per chirp in the list
-const ChirpItemComponent: React.FC<Props> = (Props) => {
+const SingleChirpComponent: React.FC<Props> = (Props) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [isModalVisible, setModalVisible] = React.useState(false);
   const [isImgModalVisible, setImgModalVisible] = React.useState(false);
   const navigation = useNavigation();
 
-  // default state for liking to be used to update when liking/unliking a chirp
-  const [likeState, setLikeState] = React.useState({
-    isLiked: false,
-    icon: 'heart-outline',
-    color: '#e1e1e1',
-    count: Props.likes.length - 1,
-  });
-
-  // checks if user has already liked the chirp
-  React.useEffect(() => {
-    if (
-      Props.likes.includes(currentUser?.username ? currentUser.username : '')
-    ) {
-      setLikeState({
-        isLiked: true,
-        icon: 'heart',
-        color: '#f42f42',
-        count: likeState.count,
-      });
-    }
-  }, []);
-
   // function for clicking on the like button
   function toggleLike() {
     // checks if the chirp is liked, sets function to unlike when button is clicked, updates state
-    if (likeState.isLiked === true) {
-      setLikeState({
+    if (Props.likeState.isLiked === true) {
+      Props.setLikeState({
         isLiked: false,
         icon: 'heart-outline',
         color: '#e1e1e1',
-        count: likeState.count - 1,
+        count: Props.likeState.count - 1,
       });
 
       UnlikeChirp(
@@ -66,12 +49,12 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         currentUser?.username ? currentUser.username : ''
       );
       // checks if the chirp is not liked, sets function to unlike when button is clicked, updates state
-    } else if (likeState.isLiked === false) {
-      setLikeState({
+    } else if (Props.likeState.isLiked === false) {
+      Props.setLikeState({
         isLiked: true,
         icon: 'heart',
         color: '#f42f42',
-        count: likeState.count + 1,
+        count: Props.likeState.count + 1,
       });
 
       LikeChirp(
@@ -83,21 +66,7 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
 
   // main return statement
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('chirp', {
-          userImg: Props.userImg,
-          username: Props.username,
-          body: Props.body,
-          comments: Props.comments,
-          likes: Props.likes,
-          media: Props.media,
-          timestamp: Props.timestamp,
-          likeState: likeState,
-        });
-      }}
-      style={styles.chirpItem}
-    >
+    <View style={styles.chirpItem}>
       {/* user image */}
       <Pressable
         onPress={() => {
@@ -146,13 +115,13 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
           }}
         >
           <MaterialCommunityIcons
-            name={likeState.icon}
-            color={likeState.color}
+            name={Props.likeState.icon}
+            color={Props.likeState.color}
             size={20}
             style={{ paddingTop: 5 }}
           ></MaterialCommunityIcons>
           <Text style={{ color: '#e1e1e1', paddingLeft: 5 }}>
-            {likeState.count}
+            {Props.likeState.count}
           </Text>
           <MaterialCommunityIcons
             name='comment-outline'
@@ -191,8 +160,8 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         username={Props.username}
         body={Props.body}
       />
-    </TouchableOpacity>
+    </View>
   );
 };
 
-export default ChirpItemComponent;
+export default SingleChirpComponent;

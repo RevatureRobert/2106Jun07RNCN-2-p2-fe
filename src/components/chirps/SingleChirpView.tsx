@@ -15,6 +15,7 @@ interface Props {
       likes: string[];
       media?: string;
       timestamp: string;
+      likeState: any;
     };
   };
 }
@@ -35,6 +36,7 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
         likes={route.params.likes}
         comments={route.params.comments}
         media={route.params.media}
+        likeState={route.params.likeState}
       />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
