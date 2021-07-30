@@ -19,7 +19,7 @@ const component = (imageInit = null) => {
     });
 }
 
-// Mock all imported custom React Native components
+// Mock allReact components imported in UserSettingComponent
 //  see https://thoughtbot.com/blog/mocking-react-components-with-jest
 jest.mock('../../../src/components/semantic/DeleteAccModal', () => {
     return ({
@@ -52,21 +52,19 @@ deleteAccModal prop isModalVisible is modified when "delete account" is pressed
 
 describe('Testing UserSettingComponent', () => {
     beforeEach( () => {
-        // Mock API calls so the screen isn't flooded with warnings
-        jest.spyOn(ImagePicker, 'requestMediaLibraryPermissionsAsync').mockImplementation( () => {
-            return Promise.resolve( {status: 'granted'} );
-        });
-        jest.spyOn(ImagePicker, 'requestCameraPermissionsAsync').mockImplementation( () => {
-            return Promise.resolve( {status: 'granted'} );
-        });
-        jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockImplementation( () => {
-            return Promise.resolve( {uri: 'someURI'} );
-        });
-        jest.spyOn(Storage, 'get').mockResolvedValue('someURI');
-        jest.spyOn(Storage, 'put').mockResolvedValue( {key: 'someURI'} );
-        jest.spyOn(global, 'fetch').mockImplementation( () => {
-            return Promise.resolve( {blob: jest.fn()} );
-        });
+        // Mock API calls so console isn't flooded with warnings
+        jest.spyOn(ImagePicker, 'requestMediaLibraryPermissionsAsync')
+            .mockResolvedValue( {status: 'granted'} );
+        jest.spyOn(ImagePicker, 'requestCameraPermissionsAsync')
+            .mockResolvedValue( {status: 'granted'} );
+        jest.spyOn(ImagePicker, 'launchImageLibraryAsync')
+            .mockResolvedValue( {uri: 'someURI'} );
+        jest.spyOn(Storage, 'get')
+            .mockResolvedValue('someURI');
+        jest.spyOn(Storage, 'put')
+            .mockResolvedValue( {key: 'someURI'} );
+        jest.spyOn(global, 'fetch')
+            .mockResolvedValue( {blob: jest.fn()} );
         jest.spyOn(Auth, 'currentCredentials').mockImplementation( () => {
            /*no-op*/
         });

@@ -29,7 +29,6 @@ const comments = [];
 const likes = [''];
 const media = 'media';
 const timestamp = Date.now().toString();
-
 const setLikeState = () => {/*no-op*/};
 
 const component = (isLiked = false) => {
