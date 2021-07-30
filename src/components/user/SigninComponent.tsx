@@ -16,6 +16,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
+import passwordValidator from 'password-validator';
 
 // main sign in component that shows when user isnt logged in
 const SigninComponent: React.FC = () => {
@@ -23,6 +24,51 @@ const SigninComponent: React.FC = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+
+  const [isPassValid, setIsPassValid] = React.useState(false);
+  const [isUserValid, setIsUserValid] = React.useState(false);
+
+  const checkPass = (attemptedPass: string) => {
+    const schema = new passwordValidator();
+    schema
+      .is()
+      .min(8)
+      .is()
+      .max(30)
+      .has()
+      .digits()
+      .has()
+      .lowercase()
+      .has()
+      .uppercase()
+      .has()
+      .symbols()
+      .has()
+      .not()
+      .spaces();
+    setIsPassValid(schema.validate(attemptedPass) as boolean);
+  };
+
+  const checkName = async (attemptedName: string) => {
+    const schema = new passwordValidator();
+    schema
+      .is()
+      .min(3)
+      .is()
+      .max(30)
+      .has()
+      .lowercase()
+      .has()
+      .not()
+      .uppercase()
+      .has()
+      .not()
+      .symbols()
+      .has()
+      .not()
+      .spaces();
+    setIsUserValid(schema.validate(attemptedName) as boolean);
+  };
 
   // gets error from state
   const { error } = useSelector((state: RootStore) => state.auth);
@@ -79,21 +125,37 @@ const SigninComponent: React.FC = () => {
         />
         {/* main form */}
         <TextInput
-          placeholder='Username'
+          placeholder='Username (lowercase, numbers only)'
           placeholderTextColor='#dfdfdf'
-          onChangeText={(inputName) => setUsername(inputName)}
-          style={styles.input}
+          onChangeText={(inputName) => {
+            setUsername(inputName);
+            checkName(inputName);
+          }}
+          style={{
+            ...styles.input,
+            color: isUserValid ? '#71FF97' : '#FF5555'
+          }}
           autoCapitalize='none'
         />
         <TextInput
           placeholder='Password'
           placeholderTextColor='#dfdfdf'
           secureTextEntry={true}
-          onChangeText={(inputPassword) => setPassword(inputPassword)}
-          style={styles.input}
+          onChangeText={(inputPassword) => {
+            setPassword(inputPassword);
+            checkPass(inputPassword);
+          }}
+          style={{
+            ...styles.input,
+            color: isPassValid ? '#71FF97' : '#FF5555'
+          }}
         />
         {/* log in button and sign up text */}
-        <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
+        <TouchableOpacity
+          onPress={onSubmitData}
+          style={styles.loginBtn}
+          disabled={!isPassValid || !isUserValid}
+        >
           <Text style={styles.loginText}>Log in</Text>
           <MaterialCommunityIcons name='chevron-right' size={18} />
         </TouchableOpacity>

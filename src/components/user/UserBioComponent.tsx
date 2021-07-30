@@ -4,7 +4,7 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import { Auth, Storage } from 'aws-amplify';
 import styles from './userstyles';
@@ -12,8 +12,17 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
 
-export const UserBioComponent: React.FC = () => {
-  const [bioText, setBioText] = React.useState('');
+interface PropType {
+  bioTextInit?: string;
+}
+
+const defaultProp = {
+  bioTextInit: '',
+}
+
+export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultProp) => {
+  const [bioText, setBioText] = React.useState(Props.bioTextInit || '');
+  const [currentBio, setCurrentBio] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const toast = useToast();
 
@@ -33,9 +42,10 @@ export const UserBioComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(text, content, {
       level: 'public',
-      contentType: 'text/plain'
+      contentType: 'text/plain',
     })
       .then((response: any) => {
+        fetchText();
         return response.key;
       })
       .catch((error) => {
@@ -55,7 +65,7 @@ export const UserBioComponent: React.FC = () => {
         fetch(data)
           .then((r) => r.text())
           .then((text) => {
-            setBioText(text);
+            setCurrentBio(text);
           })
           .catch((e) => console.log('error fetching text: ', e));
       })
@@ -72,6 +82,8 @@ export const UserBioComponent: React.FC = () => {
         <Text style={styles.updateBioText}>Update bio</Text>
         <TextInput
           multiline={false}
+          placeholder={currentBio}
+          placeholderTextColor='#e1e1e1'
           onChangeText={changeBioHandler}
           value={bioText}
           style={styles.input}
@@ -84,7 +96,7 @@ export const UserBioComponent: React.FC = () => {
             styles.updateBioCount,
             bioText.length > 0 ? { color: '#B1D46A' } : null,
             bioText.length > 100 ? { color: '#D4B16A' } : null,
-            bioText.length > 150 ? { color: '#D46A6A' } : null
+            bioText.length > 150 ? { color: '#D46A6A' } : null,
           ]}
         >
           {bioText.length}/150

@@ -2,6 +2,7 @@ export const REPLIES_LOADING = 'REPLIES_LOADING';
 export const REPLIES_FAIL = 'REPLIES_FAIL';
 export const REPLIES_SUCCESS = 'REPLIES_SUCCESS';
 export const REPLIES_POST = 'REPLIES_POST';
+export const REPLIES_DELETE = 'REPLIES_DELETE';
 
 export type RepliesType = [
   {
@@ -30,12 +31,4 @@ export interface RepliesSuccess {
   payload: RepliesType;
 }
 
-export interface RepliesPost {
-  type: typeof REPLIES_POST;
-}
-
-export type RepliesActionTypes =
-  | RepliesLoading
-  | RepliesFail
-  | RepliesSuccess
-  | RepliesPost;
+export type RepliesActionTypes = RepliesLoading | RepliesFail | RepliesSuccess;

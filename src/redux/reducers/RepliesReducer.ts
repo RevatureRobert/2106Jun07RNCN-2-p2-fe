@@ -4,6 +4,8 @@ import {
   REPLIES_FAIL,
   REPLIES_LOADING,
   REPLIES_SUCCESS,
+  REPLIES_DELETE,
+  REPLIES_POST,
 } from '../types/RepliesActionTypes';
 
 interface DefaultStateI {

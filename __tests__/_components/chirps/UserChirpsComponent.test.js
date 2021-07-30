@@ -110,4 +110,12 @@ describe('Testing UserChirpsComponent after chirps have loaded', () => {
         wrap.simulate('refresh');
         expect(mockEvent).toHaveBeenCalled();
     });
+
+    it('FlatList has functional refresh event handler', async () => {
+        const wrap = wrapper.find(FlatList);
+        const event = 'onRefresh';
+        const mockEventHandler = jest.spyOn(wrap.props(), event);
+        await wrap.prop(event)();
+        expect(mockEventHandler).toHaveBeenCalled();
+    });
 });

@@ -1,34 +1,42 @@
 import React from 'react';
-import { View, TextInput, TouchableHighlight, Text, Keyboard } from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableHighlight,
+  Text,
+  Keyboard,
+} from 'react-native';
 import styles from './repliesstyles';
 import { PostComment } from '../../redux/actions/ChirpActions';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
 
 interface Props {
   timestamp: string;
-  username: string;
 }
 
-const PostReplyComponent: React.FC<Props> = ({ timestamp, username }) => {
+const PostReplyComponent: React.FC<Props> = ({ timestamp }) => {
   const [inputState, setInputState] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth);
+  const dispatch = useDispatch();
   const toast = useToast();
 
   async function postComment() {
-    const comment = await PostComment(timestamp, username, [
-      {
-        userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
-        username: currentUser.user ? currentUser.user.username : '',
-        body: inputState,
-        timestamp: Date.now().toString(),
-      },
-    ]);
+    dispatch(
+      PostComment(timestamp, [
+        {
+          userImg: `https://chirps-bucket-for-pics.s3.us-east-2.amazonaws.com/public/${currentUser.user?.username}/myimages`,
+          username: currentUser.user ? currentUser.user.username : '',
+          body: inputState,
+          timestamp: Date.now().toString(),
+        },
+      ])
+    );
 
     Keyboard.dismiss();
     setInputState('');
-    toast.show(comment);
+    toast.show('Comment has been posted.');
   }
 
   return (

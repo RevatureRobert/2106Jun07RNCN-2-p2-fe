@@ -1,5 +1,3 @@
-import 'react-native';
-import 'jest-enzyme';
 import 'react-native-gesture-handler/jestSetup';
 
 //==============================================================================

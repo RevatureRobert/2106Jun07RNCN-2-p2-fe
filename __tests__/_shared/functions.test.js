@@ -1,4 +1,4 @@
-import { formatTimestamp } from '../../../src/shared/functions';
+import { formatTimestamp } from '../../src/shared/functions';
 
 /*
 Return should be a string like:

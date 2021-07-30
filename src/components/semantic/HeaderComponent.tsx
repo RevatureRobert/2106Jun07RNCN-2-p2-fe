@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from '@react-navigation/native';
 import { PostChirp } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import styles from './semanticstyles';
 import { TextInput } from 'react-native-gesture-handler';
@@ -26,15 +26,16 @@ const HeaderComponent: React.FC<Props> = (Props) => {
   // initializes navigation and toast library
   const [inputState, setInputState] = React.useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const toast = useToast();
 
   // gets the current user from the store
   const user = useSelector((state: RootStore) => state.auth);
 
   // post chirp function for when in AddChirpView
-  async function postChirp() {
-    const chirp = await PostChirp(Props.newChirp);
-    toast.show(chirp);
+  function postChirp() {
+    dispatch(PostChirp(Props.newChirp));
+    toast.show('Chirp has been added.');
     navigation.goBack();
   }
 
@@ -103,7 +104,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             value={inputState}
           />
           <TouchableHighlight
-            underlayColor='#f3f3f3'
+            underlayColor='#1b1b1b'
             onPress={() => searchBtn()}
             style={{
               marginBottom: 4,
@@ -178,6 +179,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               height: 24,
               marginLeft: 200,
               marginTop: 6,
+              marginBottom: 8,
             }}
           />
         </View>

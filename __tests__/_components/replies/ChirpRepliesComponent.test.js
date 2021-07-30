@@ -10,6 +10,25 @@ import LoadingComponent from '../../../src/components/semantic/LoadingComponent'
 
 let wrapper;
 
+// mock imported functions
+jest.mock('../../../src/components/chirps/SingleChirpComponent', () => {
+    return ({
+        __esModule: true,
+        default: () => {
+            return <>{/*Mocked SingleChirpComponent.*/}</>
+        },
+    });
+});
+
+jest.mock('../../../src/components/semantic/LoadingComponent', () => {
+    return ({
+        __esModule: true,
+        default: () => {
+            return <></>
+        },
+    });
+});
+
 const userImg = '';
 const username = 'dummyuser';
 const body = 'chirpBody';
@@ -17,6 +36,12 @@ const comments = [];
 const likes = [''];
 const media = '';
 const timestamp = Date.now().toString();
+const likeState = {
+    count: 1,
+    isLiked: false,
+    icon: 'heart-outline',
+    color: 'blue',
+}; 
 
 const component = () => {
     return (
@@ -28,6 +53,7 @@ const component = () => {
             likes={likes}
             media={media}
             timestamp={timestamp}
+            likeState={likeState}
         />
     );
 }
