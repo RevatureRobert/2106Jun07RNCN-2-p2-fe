@@ -57,11 +57,7 @@ describe('Testing UserBioComponent', () => {
             const func = () => { return Promise.resolve('string') };
             return Promise.resolve( {text: func} );
         });
-        jest.spyOn(Storage, 'get').mockImplementation( () => {
-            return Promise.resolve({
-                key: "key",
-            });
-        });
+        jest.spyOn(Storage, 'get').mockResolvedValue( {key: "key"} );
         const mockEventHandler = jest.spyOn(wrap.props(), event);
         await wrap.prop(event)();
         expect(mockEventHandler).toHaveBeenCalled();
@@ -73,7 +69,7 @@ describe('Testing UserBioComponent', () => {
         });
         jest.spyOn(Storage, 'put').mockImplementation( () => {
             return Promise.resolve({
-                key: "key",
+                key: "someKey",
             });
         });
         jest.spyOn(global, 'fetch').mockImplementation( () => {
@@ -82,7 +78,7 @@ describe('Testing UserBioComponent', () => {
         });
         jest.spyOn(Storage, 'get').mockImplementation( () => {
             return Promise.resolve({
-                key: "key",
+                key: "aKey",
             });
         });
         let wrap = wrapper.find(TextInput);
@@ -96,7 +92,7 @@ describe('Testing UserBioComponent', () => {
 it('Users cannot post bio if it is too long', () => {
     let str = '';
     for(let i=0; i<200; i++){
-        str = str += 'a';
+        str += 'a';
     }
     wrapper = mount( nestedHell(testState, component(str)) );
     const wrap = wrapper.find(TouchableOpacity);
