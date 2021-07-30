@@ -92,7 +92,6 @@ describe('Testing ChirpItemComponent', () => {
     const temp = wrapper.find(TouchableOpacity);
     const wrap = shallow(temp.length < 2 ? temp.getElement() : temp.get(0));
     wrap.setProps( {onPress: mockEvent} );
-    console.log(wrap.props())
     wrap.simulate('press');
     expect(mockEvent).toHaveBeenCalled();
   });
