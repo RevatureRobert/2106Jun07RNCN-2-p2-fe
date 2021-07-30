@@ -4,7 +4,7 @@ import {
   View,
   Image,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -28,6 +28,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
   const [bio, setBio] = React.useState(' ');
   const dispatch = useDispatch();
 
+  // gets the current user's profile picture
   React.useEffect(() => {
     fetchImage();
     (async () => {
@@ -43,6 +44,8 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
         }
       }
     })();
+
+    // cleanup function
     return () => {
       setImage(null);
     };
@@ -99,7 +102,7 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              alignContent: 'center'
+              alignContent: 'center',
             }}
           >
             <MaterialCommunityIcons name='logout' size={18} color='#fff' />

@@ -35,16 +35,6 @@ const chirpsReducer = (
         loading: false,
         chirps: action.payload,
       };
-    case CHIRPS_DELETE:
-      return {
-        loading: false,
-        chirps: action.payload,
-      };
-    case CHIRPS_POST:
-      return {
-        loading: false,
-        chirps: action.payload,
-      };
     default:
       return state;
   }

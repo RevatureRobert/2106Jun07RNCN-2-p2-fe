@@ -28,13 +28,17 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
   const [isImgModalVisible, setImgModalVisible] = React.useState(false);
   const navigation = useNavigation();
 
-  // default state for liking to be used to update when liking/unliking a chirp
-  const [likeState, setLikeState] = React.useState({
+  // set initial state for likes
+  //  cant use redux on this one because we need a different one for each chirp
+  const initialLikeState = {
     isLiked: false,
     icon: 'heart-outline',
     color: '#e1e1e1',
     count: Props.likes.length - 1,
-  });
+  };
+
+  // default state for liking to be used to update when liking/unliking a chirp
+  const [likeState, setLikeState] = React.useState(initialLikeState);
 
   // checks if user has already liked the chirp
   React.useEffect(() => {
@@ -48,6 +52,11 @@ const ChirpItemComponent: React.FC<Props> = (Props) => {
         count: likeState.count,
       });
     }
+
+    // cleanup function
+    return () => {
+      setLikeState(initialLikeState);
+    };
   }, []);
 
   // function for clicking on the like button
