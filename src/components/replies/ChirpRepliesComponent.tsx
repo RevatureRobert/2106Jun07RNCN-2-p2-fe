@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { GetReplies } from '../../redux/actions/ChirpActions';
 import RepliesItemComponent from './RepliesItemComponent';
 import { RootStore } from '../../redux/store/store';
-import { GetReplies } from '../../redux/actions/ChirpActions';
 import LoadingComponent from '../semantic/LoadingComponent';
 import SingleChirpComponent from '../chirps/SingleChirpComponent';
 
-interface Props {
+interface IProps {
   userImg: string;
   username: string;
   body: string;
@@ -18,7 +18,7 @@ interface Props {
   likeState: any;
 }
 
-const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
+const ChirpRepliesComponent: React.FC<IProps> = (Props: IProps) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -43,6 +43,7 @@ const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
   const repliesState = useSelector((state: RootStore) => state.replies);
   const [likeState, setLikeState] = React.useState(Props.likeState);
   const currentUser = useSelector((state: RootStore) => state.auth);
+
   const renderItem = ({ item }: { item: any }) => (
     <RepliesItemComponent
       userImg={item.userImg}

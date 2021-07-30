@@ -13,7 +13,7 @@ LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
 ]);
 
-interface Props {
+interface IProps {
   userImg: string;
   username: string;
   body: string;
@@ -26,7 +26,7 @@ interface Props {
 }
 
 // component that structures and defines the text per chirp in the list
-const SingleChirpComponent: React.FC<Props> = (Props) => {
+const SingleChirpComponent: React.FC<IProps> = (Props: IProps) => {
   // gets current logged in user
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const [isModalVisible, setModalVisible] = React.useState(false);

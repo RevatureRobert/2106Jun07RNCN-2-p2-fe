@@ -1,6 +1,7 @@
 import React from 'react';
 import { KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native';
 import styles from './chirpstyles';
+
 import HeaderComponent from '../semantic/HeaderComponent';
 import ChirpRepliesComponent from '../replies/ChirpRepliesComponent';
 import PostReplyComponent from '../replies/PostReplyComponent';
@@ -41,10 +42,7 @@ const SingleChirpView: React.FC<Props> = ({ route }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <PostReplyComponent
-          timestamp={route.params.timestamp}
-          username={route.params.username}
-        />
+        <PostReplyComponent timestamp={route.params.timestamp} />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

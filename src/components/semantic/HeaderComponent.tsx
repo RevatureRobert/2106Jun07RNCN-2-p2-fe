@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { PostChirp } from '../../redux/actions/ChirpActions';
+import { GetAllChirps, PostChirp } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import styles from './semanticstyles';
 import { TextInput } from 'react-native-gesture-handler';
@@ -26,6 +26,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
   // initializes navigation and toast library
   const [inputState, setInputState] = React.useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const toast = useToast();
 
   // gets the current user from the store
@@ -33,8 +34,8 @@ const HeaderComponent: React.FC<Props> = (Props) => {
 
   // post chirp function for when in AddChirpView
   async function postChirp() {
-    const chirp = await PostChirp(Props.newChirp);
-    toast.show(chirp);
+    dispatch(PostChirp(Props.newChirp));
+    toast.show('Chirp has been added.');
     navigation.goBack();
   }
 

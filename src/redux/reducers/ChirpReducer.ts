@@ -4,6 +4,8 @@ import {
   CHIRPS_FAIL,
   CHIRPS_LOADING,
   CHIRPS_SUCCESS,
+  CHIRPS_POST,
+  CHIRPS_DELETE,
 } from '../types/ChirpActionsTypes';
 
 interface DefaultStateI {
@@ -29,6 +31,16 @@ const chirpsReducer = (
         loading: true,
       };
     case CHIRPS_SUCCESS:
+      return {
+        loading: false,
+        chirps: action.payload,
+      };
+    case CHIRPS_DELETE:
+      return {
+        loading: false,
+        chirps: action.payload,
+      };
+    case CHIRPS_POST:
       return {
         loading: false,
         chirps: action.payload,
