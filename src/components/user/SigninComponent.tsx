@@ -18,6 +18,8 @@ import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
 import passwordValidator from 'password-validator';
+import ValidationIconComponent from './ValidationIconComponent';
+import { validate } from './validate';
 
 // main sign in component that shows when user isnt logged in
 const SigninComponent: React.FC = () => {
@@ -28,48 +30,6 @@ const SigninComponent: React.FC = () => {
 
   const [isPassValid, setIsPassValid] = React.useState(false);
   const [isUserValid, setIsUserValid] = React.useState(false);
-
-  const checkPass = (attemptedPass: string) => {
-    const schema = new passwordValidator();
-    schema
-      .is()
-      .min(8)
-      .is()
-      .max(30)
-      .has()
-      .digits()
-      .has()
-      .lowercase()
-      .has()
-      .uppercase()
-      .has()
-      .symbols()
-      .has()
-      .not()
-      .spaces();
-    setIsPassValid(schema.validate(attemptedPass) as boolean);
-  };
-
-  const checkName = async (attemptedName: string) => {
-    const schema = new passwordValidator();
-    schema
-      .is()
-      .min(3)
-      .is()
-      .max(30)
-      .has()
-      .lowercase()
-      .has()
-      .not()
-      .uppercase()
-      .has()
-      .not()
-      .symbols()
-      .has()
-      .not()
-      .spaces();
-    setIsUserValid(schema.validate(attemptedName) as boolean);
-  };
 
   // gets error from state
   const { error } = useSelector((state: RootStore) => state.auth);
@@ -137,26 +97,12 @@ const SigninComponent: React.FC = () => {
             placeholderTextColor='#dfdfdf'
             onChangeText={(inputName) => {
               setUsername(inputName);
-              checkName(inputName);
+              setIsUserValid(validate(inputName, 'username'));
             }}
             style={styles.input}
             autoCapitalize='none'
           />
-          {isUserValid ? (
-            <MaterialCommunityIcons
-              name='check'
-              color='#71FF97'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name='close'
-              color='#FF5555'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          )}
+          <ValidationIconComponent field={username} valid={isUserValid} />
         </View>
         <View
           style={{
@@ -171,25 +117,11 @@ const SigninComponent: React.FC = () => {
             secureTextEntry={true}
             onChangeText={(inputPassword) => {
               setPassword(inputPassword);
-              checkPass(inputPassword);
+              setIsPassValid(validate(inputPassword, 'password'));
             }}
             style={styles.input}
           />
-          {isPassValid ? (
-            <MaterialCommunityIcons
-              name='check'
-              color='#71FF97'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name='close'
-              color='#FF5555'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          )}
+          <ValidationIconComponent field={password} valid={isPassValid} />
         </View>
         {/* log in button and sign up text */}
         <TouchableOpacity
