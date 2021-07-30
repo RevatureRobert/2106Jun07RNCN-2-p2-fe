@@ -1,6 +1,6 @@
 import React from 'react';
 import  { Text, TouchableOpacity } from 'react-native';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
 import Modal from 'react-native-modal';
@@ -38,7 +38,7 @@ describe('Testing DeleteAccModal', () => {
     describe('all components must have Modal as ancestor', () => {
         beforeEach( () => {
             wrapper = wrapper.find(Modal);
-        })
+        });
 
         it('displays at least 3 messages (i.e., are you sure?, delete, cancel)', () => {
             expect(wrapper.find(Text).length).toBeGreaterThan(2);
@@ -60,20 +60,33 @@ describe('Testing DeleteAccModal', () => {
             const eventHandler = jest.spyOn(wrap.props(), event);
             wrap.props()[event]();
             expect(eventHandler).toHaveBeenCalled();
-        })
+        });
 
-        it('the last pressable message can execute its event handler', () => {
+        it('the second pressable message can execute its event handler', async () => {
             let wrap = wrapper.find(TouchableOpacity);
             wrap = wrap.last();
 
             jest.spyOn(Auth, 'currentAuthenticatedUser').mockImplementation( () => {
-                return  Promise.resolve({ deleteUser: () => {/*no-op*/} });
+                return Promise.resolve({ 
+                    deleteUser: (callback) => {
+                        callback(undefined, 'user delete successfully mocked');
+                        callback('user delete error successfully mocked', undefined);
+                    }
+                });
             })
             
             const event = 'onPress';
             const eventHandler = jest.spyOn(wrap.props(), event);
-            wrap.props()[event]();
+            await wrap.props()[event]();
             expect(eventHandler).toHaveBeenCalled();
-        })
+        });
+
+        it('the backdrop, when pressed, makes the modal component invisible', () => {
+            wrap = shallow(wrapper.getElement());
+            const event = 'onBackdropPress';
+            wrap.props()[event]();
+            wrap.update();
+            expect(wrap.props().isVisible).toBeFalsy();
+        });
     });
 });

@@ -17,8 +17,16 @@ import styles from './userstyles';
 import DeleteAccModal from '../semantic/DeleteAccModal';
 import HeaderComponent from '../semantic/HeaderComponent';
 
-export const UserSettingComponent: React.FC = () => {
-  const [image, setImage] = React.useState(null);
+interface PropType {
+  imageInit?: any;
+}
+
+const defaultProp = {
+  imageInit: null,
+};
+
+export const UserSettingComponent: React.FC<PropType> = (Props:PropType = defaultProp) => {
+  const [image, setImage] = React.useState(Props.imageInit || null);
   const [isModalVisible, setModalVisible] = React.useState(false);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
 

@@ -1,7 +1,10 @@
-import React from 'react';
+import React from 'react'
+import { Text, TouchableOpacity } from 'react-native'
 import { mount } from 'enzyme';
 import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
+import { Auth, Storage } from 'aws-amplify';
+import * as ImagePicker from 'expo-image-picker';
 
 import { UserBioComponent } from '../../../src/components/user/UserBioComponent';
 import DeleteAccModal from '../../../src/components/semantic/DeleteAccModal';
@@ -10,20 +13,64 @@ import { UserSettingComponent } from '../../../src/components/user/UserSettingCo
 
 let wrapper;
 
-const component = () => {
-    return <UserSettingComponent/>
+const component = (imageInit = null) => {
+    return ( () => {
+        return <UserSettingComponent imageInit={imageInit}/>
+    });
 }
+
+// Mock all imported custom React Native components
+//  see https://thoughtbot.com/blog/mocking-react-components-with-jest
+jest.mock('../../../src/components/semantic/DeleteAccModal', () => {
+    return ({
+        __esModule: true,
+        default: () => {
+            return <></>
+        },
+    });
+});
+jest.mock('../../../src/components/semantic/HeaderComponent', () => {
+    return ({
+        __esModule: true,
+        default: () => {
+            return <></>;
+        },
+    });
+});
+jest.mock('../../../src/components/user/UserBioComponent', () => {
+    return ({
+        UserBioComponent: () => {
+            return <></>;
+        },
+    });
+});
 
 /*
 TO-DO:
-conditionally renders pfp picture
-conditionally renders "edit picture"
 deleteAccModal prop isModalVisible is modified when "delete account" is pressed
 */
 
 describe('Testing UserSettingComponent', () => {
     beforeEach( () => {
-        wrapper = mount( nestedHell(testState, component) );
+        // Mock API calls so the screen isn't flooded with warnings
+        jest.spyOn(ImagePicker, 'requestMediaLibraryPermissionsAsync').mockImplementation( () => {
+            return Promise.resolve( {status: 'granted'} );
+        });
+        jest.spyOn(ImagePicker, 'requestCameraPermissionsAsync').mockImplementation( () => {
+            return Promise.resolve( {status: 'granted'} );
+        });
+        jest.spyOn(ImagePicker, 'launchImageLibraryAsync').mockImplementation( () => {
+            return Promise.resolve( {uri: 'someURI'} );
+        });
+        jest.spyOn(Storage, 'get').mockResolvedValue('someURI');
+        jest.spyOn(Storage, 'put').mockResolvedValue( {key: 'someURI'} );
+        jest.spyOn(global, 'fetch').mockImplementation( () => {
+            return Promise.resolve( {blob: jest.fn()} );
+        });
+        jest.spyOn(Auth, 'currentCredentials').mockImplementation( () => {
+            () => {/*no-op*/}
+        });
+        wrapper = mount( nestedHell(testState, component('d')) );
     });
 
     it('renders HeaderComponent', () => {
@@ -34,14 +81,25 @@ describe('Testing UserSettingComponent', () => {
         expect(wrapper.find(UserBioComponent).length).toBeGreaterThan(0);
     });
 
-    it('renders text for deleting account that listens for press', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.text().toLowerCase().includes('delete')
-            )
-            .length
-        )
-        .toBeGreaterThan(0);
+    it('a component for editing pfp, and a component for deleting the account, that listen for press)', () => {
+        const wrap = wrapper.find(TouchableOpacity)
+        expect(wrap.length).toBeGreaterThan(1);
+    });
+
+    it('the first touchable component has a functioning event handler', async () => {
+        const wrap = wrapper.find(TouchableOpacity).at(0);
+        const event = 'onPress';
+        mockEventHandler = jest.spyOn(wrap.props(), event);
+        await wrap.prop(event)();
+        expect(mockEventHandler).toHaveBeenCalled();
+    });
+
+    it('the secobd touchable component has a functioning event handler', async () => {
+        const wrap = wrapper.find(TouchableOpacity).at(1);
+        const event = 'onPress';
+        mockEventHandler = jest.spyOn(wrap.props(), event);
+        await wrap.prop(event)();
+        expect(mockEventHandler).toHaveBeenCalled();
     });
 
     it('renders DeleteAccModal', () => {

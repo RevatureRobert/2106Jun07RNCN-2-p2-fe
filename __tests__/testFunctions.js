@@ -1,11 +1,31 @@
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { Text } from 'react-native';
 import configureStore from 'redux-mock-store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { shallow } from 'enzyme';
 
-export const nestedHell = (state, callback, screenName = 'testScreen') => {
+
+/**
+ * Wraps a component in the necessary wrappers to account for Redux and React 
+ * Navigation.
+ * 
+ * Future implementation may use createTestProps() to give a navigate prop 
+ * instead of wrapping the component in three extra screens
+ * 
+ * @param {*} state - an object representing the initial state store 
+ * @param {*} component - The component to render, or a function that returns JSX
+ * @param {*} screenName - (OPTIONAL) the name of Stack.Screen
+ * @param {*} screenName2 - (OPTIONAL) the name of nearby Stack.Screen you can navigate to (mock navigate.navigate())
+ * @returns a ReactWrapper containing the JSX returned by `component` wrapped in a store provider and the components needed for React Navigation
+ */
+export const nestedHell = (
+    state, 
+    component, 
+    screenName = 'testScreen1', 
+    screenName2 = 'testScreen2',
+) => {
     const mockStore = configureStore([thunk]);
     const store = mockStore(state);
     const Stack = createStackNavigator();
@@ -14,7 +34,16 @@ export const nestedHell = (state, callback, screenName = 'testScreen') => {
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name={screenName}>
-                        {callback}
+                        {component}
+                    </Stack.Screen>
+                    <Stack.Screen name={screenName2}>
+                        { () => {
+                            return (
+                                <>
+                                    <Text>{screenName2}</Text>
+                                </>
+                            );
+                        }}
                     </Stack.Screen>
                 </Stack.Navigator>
             </NavigationContainer>
@@ -22,11 +51,26 @@ export const nestedHell = (state, callback, screenName = 'testScreen') => {
     )
 };
 
+/**
+ * Uses Enzyme's find() method to find a component and render the result.
+ * 
+ * @param {*} wrapper - a ReactWrapper or ShallowWrapper object
+ * @param {*} findQuery - the argument to find()
+ * @param {*} i - (OPTIONAL) if find returns multiple nodes, grab the nth node
+ * @returns 
+ */
 export const findAndShallowRender = (wrapper, findQuery, i=0) => {
     const temp = wrapper.find(findQuery);
     return shallow(temp.length < 2 ? temp.getElement() : temp.get(i));
 }
 
+/**
+ * Wrap component in a store provider with a mocked store.
+ * 
+ * @param {*} initialState - initial state store
+ * @param {*} Component - component to wrap in store provider
+ * @returns 
+ */
 export const wrapInStoreProvider = (initialState, Component) => {
     const mockStore = configureStore([thunk]);
     const store = mockStore(initialState);
@@ -50,16 +94,3 @@ export const createTestProps = (props_) => ({
     },
     ...props_
 });
-
-// see https://thoughtbot.com/blog/mocking-react-components-with-jest
-export const mockComponent = (filepath) => {
-  console.log(typeof filepath);
-  jest.mock(filepath, () => {
-    return ({
-      __esModule: true,
-      default: () => {
-        return <></>
-      },
-    });
-  });
-}

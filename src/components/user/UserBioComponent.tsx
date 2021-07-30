@@ -12,8 +12,16 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
 import { useToast } from 'react-native-toast-notifications';
 
-export const UserBioComponent: React.FC = () => {
-  const [bioText, setBioText] = React.useState('');
+interface PropType {
+  bioTextInit?: string;
+};
+
+const defaultProp = {
+  bioTextInit: '',
+}
+
+export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultProp) => {
+  const [bioText, setBioText] = React.useState(Props.bioTextInit || '');
   const currentUser = useSelector((state: RootStore) => state.auth.user);
   const toast = useToast();
 
