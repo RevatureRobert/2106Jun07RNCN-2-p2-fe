@@ -2,6 +2,7 @@ export const CHIRPS_LOADING = 'CHIRPS_LOADING';
 export const CHIRPS_FAIL = 'CHIRPS_FAIL';
 export const CHIRPS_SUCCESS = 'CHIRPS_SUCCESS';
 export const CHIRPS_POST = 'CHIRPS_POST';
+export const CHIRPS_DELETE = 'CHIRPS_DELETE';
 
 export type ChirpsType = [
   {
@@ -40,10 +41,17 @@ export interface ChirpsSuccess {
 
 export interface ChirpsPost {
   type: typeof CHIRPS_POST;
+  payload: ChirpsType;
+}
+
+export interface ChirpsDelete {
+  type: typeof CHIRPS_DELETE;
+  payload: ChirpsType;
 }
 
 export type ChirpsActionsTypes =
   | ChirpsLoading
   | ChirpsFail
   | ChirpsSuccess
-  | ChirpsPost;
+  | ChirpsPost
+  | ChirpsDelete;

@@ -4,6 +4,8 @@ import {
   REPLIES_FAIL,
   REPLIES_LOADING,
   REPLIES_SUCCESS,
+  REPLIES_DELETE,
+  REPLIES_POST,
 } from '../types/RepliesActionTypes';
 
 interface DefaultStateI {
@@ -29,6 +31,16 @@ const repliesReducer = (
         loading: true,
       };
     case REPLIES_SUCCESS:
+      return {
+        loading: false,
+        replies: action.payload,
+      };
+    case REPLIES_POST:
+      return {
+        loading: false,
+        replies: action.payload,
+      };
+    case REPLIES_DELETE:
       return {
         loading: false,
         replies: action.payload,

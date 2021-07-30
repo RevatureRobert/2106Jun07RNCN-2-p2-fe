@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Store } from '../../redux/store/store';
-import { View, Platform } from 'react-native';
+import { View, Platform, ImageBackground } from 'react-native';
 import Amplify from 'aws-amplify';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { ToastProvider } from 'react-native-toast-notifications';
@@ -35,7 +35,9 @@ function RootNavComponent() {
           offset={50}
         >
           {/* Wrapper view added for background color on web. */}
-          <View
+          <ImageBackground
+            source={require('../../assets/chirper-web-background.jpg')}
+            resizeMode='cover'
             style={{
               backgroundColor: '#111',
               flex: 1,
@@ -54,7 +56,7 @@ function RootNavComponent() {
             >
               <MainNavComponent />
             </View>
-          </View>
+          </ImageBackground>
         </ToastProvider>
       </NavigationContainer>
     </Provider>

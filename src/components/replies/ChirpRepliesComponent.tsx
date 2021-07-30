@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { GetReplies } from '../../redux/actions/ChirpActions';
 import RepliesItemComponent from './RepliesItemComponent';
 import { RootStore } from '../../redux/store/store';
-import { GetReplies } from '../../redux/actions/ChirpActions';
 import LoadingComponent from '../semantic/LoadingComponent';
-import ChirpItemComponent from '../chirps/ChirpItemComponent';
+import SingleChirpComponent from '../chirps/SingleChirpComponent';
 
-interface Props {
+interface IProps {
   userImg: string;
   username: string;
   body: string;
@@ -15,9 +15,10 @@ interface Props {
   likes: string[];
   media?: string;
   timestamp: string;
+  likeState: any;
 }
 
-const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
+const ChirpRepliesComponent: React.FC<IProps> = (Props: IProps) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -40,7 +41,9 @@ const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
 
   // gets all chirps from the store, sends it to ChirpItemComponent as props
   const repliesState = useSelector((state: RootStore) => state.replies);
+  const [likeState, setLikeState] = React.useState(Props.likeState);
   const currentUser = useSelector((state: RootStore) => state.auth);
+
   const renderItem = ({ item }: { item: any }) => (
     <RepliesItemComponent
       userImg={item.userImg}
@@ -73,7 +76,7 @@ const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
         style={{ flex: 1 }}
         keyExtractor={(item) => item.timestamp}
         ListHeaderComponent={
-          <ChirpItemComponent
+          <SingleChirpComponent
             userImg={Props.userImg}
             username={Props.username}
             body={Props.body}
@@ -81,6 +84,8 @@ const ChirpRepliesComponent: React.FC<Props> = (Props: Props) => {
             likes={Props.likes}
             comments={Props.comments}
             media={Props.media}
+            likeState={likeState}
+            setLikeState={setLikeState}
           />
         }
       />
