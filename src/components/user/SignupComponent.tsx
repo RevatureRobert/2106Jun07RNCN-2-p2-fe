@@ -8,7 +8,8 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-  StatusBar
+  StatusBar,
+  ScrollView
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -26,8 +27,8 @@ interface PropType {
 }
 
 const defaultProp = {
-  loading: false,
-}
+  loading: false
+};
 
 // main sign out component that shows when user isnt logged in
 const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
@@ -245,52 +246,113 @@ const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
           </Text>
         </View>
         {/* main form */}
-        <TextInput
-          placeholder='Username (3+ char: lowercase, numbers only)'
-          placeholderTextColor='#dfdfdf'
-          onChangeText={(inputName) => {
-            setUsername(inputName);
-            checkName(inputName);
-          }}
+        <View
           style={{
-            ...styles.input,
-            color: isUserValid ? '#71FF97' : '#FF5555'
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center'
           }}
-          autoCapitalize='none'
-          autoCorrect={false}
-        />
-        <TextInput
-          placeholder='Email (will send email to confirm)'
-          placeholderTextColor='#dfdfdf'
-          onChangeText={(inputEmail) => {
-            setEmail(inputEmail);
-            checkEmail(inputEmail);
-          }}
+        >
+          <TextInput
+            placeholder='Username (3+ char: lowercase, numbers)'
+            placeholderTextColor='#dfdfdf'
+            onChangeText={(inputName) => {
+              setUsername(inputName);
+              checkName(inputName);
+            }}
+            style={styles.input}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+          {isUserValid ? (
+            <MaterialCommunityIcons
+              name='check'
+              color='#71FF97'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name='close'
+              color='#FF5555'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          )}
+        </View>
+        <View
           style={{
-            ...styles.input,
-            color: isEmailValid ? '#71FF97' : '#FF5555'
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center'
           }}
-          autoCapitalize='none'
-          autoCorrect={false}
-        />
-        <TextInput
-          placeholder='Password (see below)'
-          placeholderTextColor='#dfdfdf'
-          secureTextEntry={true}
-          onChangeText={(inputPassword) => {
-            setPassword(inputPassword);
-            checkPass(inputPassword);
-          }}
+        >
+          <TextInput
+            placeholder='Email (will send email to confirm)'
+            placeholderTextColor='#dfdfdf'
+            onChangeText={(inputEmail) => {
+              setEmail(inputEmail);
+              checkEmail(inputEmail);
+            }}
+            style={styles.input}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+          {isEmailValid ? (
+            <MaterialCommunityIcons
+              name='check'
+              color='#71FF97'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name='close'
+              color='#FF5555'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          )}
+        </View>
+        <View
           style={{
-            ...styles.input,
-            color: isPassValid ? '#71FF97' : '#FF5555'
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center'
           }}
-          autoCorrect={false}
-          autoCapitalize='none'
-        />
+        >
+          <TextInput
+            placeholder='Password (see below)'
+            placeholderTextColor='#dfdfdf'
+            secureTextEntry={true}
+            onChangeText={(inputPassword) => {
+              setPassword(inputPassword);
+              checkPass(inputPassword);
+            }}
+            style={styles.input}
+            autoCorrect={false}
+            autoCapitalize='none'
+          />
+          {isPassValid ? (
+            <MaterialCommunityIcons
+              name='check'
+              color='#71FF97'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name='close'
+              color='#FF5555'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          )}
+        </View>
         <Text style={styles.signInText}>
-          Password must be 8+ characters with at least one of each: capital
-          letter, lowercase letter, number, symbol
+          {
+            'Password must be 8+ characters\n with at least one of each:\n capital letter, lowercase letter, number, symbol'
+          }
         </Text>
         {/* sign up button and login text */}
         <TouchableOpacity

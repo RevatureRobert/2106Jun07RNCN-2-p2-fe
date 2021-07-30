@@ -7,7 +7,8 @@ import {
   StatusBar,
   Image,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  View
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signIn } from '../../redux/actions/AuthActions';
@@ -124,32 +125,72 @@ const SigninComponent: React.FC = () => {
           resizeMode='contain'
         />
         {/* main form */}
-        <TextInput
-          placeholder='Username (lowercase, numbers only)'
-          placeholderTextColor='#dfdfdf'
-          onChangeText={(inputName) => {
-            setUsername(inputName);
-            checkName(inputName);
-          }}
+        <View
           style={{
-            ...styles.input,
-            color: isUserValid ? '#71FF97' : '#FF5555'
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center'
           }}
-          autoCapitalize='none'
-        />
-        <TextInput
-          placeholder='Password'
-          placeholderTextColor='#dfdfdf'
-          secureTextEntry={true}
-          onChangeText={(inputPassword) => {
-            setPassword(inputPassword);
-            checkPass(inputPassword);
-          }}
+        >
+          <TextInput
+            placeholder='Username (lowercase, numbers)'
+            placeholderTextColor='#dfdfdf'
+            onChangeText={(inputName) => {
+              setUsername(inputName);
+              checkName(inputName);
+            }}
+            style={styles.input}
+            autoCapitalize='none'
+          />
+          {isUserValid ? (
+            <MaterialCommunityIcons
+              name='check'
+              color='#71FF97'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name='close'
+              color='#FF5555'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          )}
+        </View>
+        <View
           style={{
-            ...styles.input,
-            color: isPassValid ? '#71FF97' : '#FF5555'
+            flexDirection: 'row',
+            alignContent: 'center',
+            justifyContent: 'center'
           }}
-        />
+        >
+          <TextInput
+            placeholder='Password'
+            placeholderTextColor='#dfdfdf'
+            secureTextEntry={true}
+            onChangeText={(inputPassword) => {
+              setPassword(inputPassword);
+              checkPass(inputPassword);
+            }}
+            style={styles.input}
+          />
+          {isPassValid ? (
+            <MaterialCommunityIcons
+              name='check'
+              color='#71FF97'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name='close'
+              color='#FF5555'
+              size={25}
+              style={{ paddingLeft: 5, alignSelf: 'center' }}
+            />
+          )}
+        </View>
         {/* log in button and sign up text */}
         <TouchableOpacity
           onPress={onSubmitData}

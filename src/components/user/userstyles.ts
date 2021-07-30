@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     borderRadius: 15,
-    padding: 10
+    padding: 10,
+    width: '85%'
   },
 
   loginBtn: {
@@ -27,7 +28,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    width: '95%',
+    alignSelf: 'center'
   },
 
   loginText: {
@@ -37,7 +40,9 @@ const styles = StyleSheet.create({
   signInText: {
     alignSelf: 'center',
     color: '#dfdfdf',
-    marginTop: 22
+    marginTop: 22,
+    width: '90%',
+    textAlign: 'center'
   },
 
   // UserSettingComponent.tsx
