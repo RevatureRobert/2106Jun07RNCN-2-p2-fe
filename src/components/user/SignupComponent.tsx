@@ -8,7 +8,7 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
+  StatusBar
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/core';
 import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
 import { Storage, Auth } from 'aws-amplify';
+import passwordValidator from 'password-validator';
 
 // main sign out component that shows when user isnt logged in
 const SignupComponent: React.FC = () => {
@@ -27,6 +28,58 @@ const SignupComponent: React.FC = () => {
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+
+  // Form validation states
+  const [isPassValid, setIsPassValid] = React.useState(false);
+  const [isUserValid, setIsUserValid] = React.useState(false);
+  const [isEmailValid, setIsEmailValid] = React.useState(false);
+
+  const checkPass = (attemptedPass: string) => {
+    const schema = new passwordValidator();
+    schema
+      .is()
+      .min(8)
+      .is()
+      .max(30)
+      .has()
+      .digits()
+      .has()
+      .lowercase()
+      .has()
+      .uppercase()
+      .has()
+      .symbols()
+      .has()
+      .not()
+      .spaces();
+    setIsPassValid(schema.validate(attemptedPass) as boolean);
+  };
+
+  const checkName = async (attemptedName: string) => {
+    const schema = new passwordValidator();
+    schema
+      .is()
+      .min(3)
+      .is()
+      .max(30)
+      .has()
+      .lowercase()
+      .has()
+      .not()
+      .uppercase()
+      .has()
+      .not()
+      .symbols()
+      .has()
+      .not()
+      .spaces();
+    setIsUserValid(schema.validate(attemptedName) as boolean);
+  };
+
+  const checkEmail = (attemptedEmail: string) => {
+    const regex = /^\S+@\S+\.\S+$/;
+    setIsEmailValid(regex.test(attemptedEmail));
+  };
 
   // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
@@ -69,7 +122,7 @@ const SignupComponent: React.FC = () => {
     Auth.currentCredentials();
     return Storage.put(file, content, {
       level: 'public',
-      contentType: 'image/jpeg',
+      contentType: 'image/jpeg'
     })
       .then((response: any) => {
         return response.key;
@@ -116,7 +169,7 @@ const SignupComponent: React.FC = () => {
     dispatch(
       CreateUser({
         username: username,
-        bio: 'bio.',
+        bio: 'bio.'
       })
     );
     uploadDefaultBio();
@@ -142,19 +195,19 @@ const SignupComponent: React.FC = () => {
               ios: {
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'center'
               },
               android: {
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'center'
               },
               web: {
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
-              },
-            }),
+                justifyContent: 'center'
+              }
+            })
           }}
         >
           <Image
@@ -163,7 +216,7 @@ const SignupComponent: React.FC = () => {
               height: 48,
               width: 48,
               marginBottom: 10,
-              marginRight: 10,
+              marginRight: 10
             }}
             resizeMode='contain'
           />
@@ -175,9 +228,9 @@ const SignupComponent: React.FC = () => {
               marginBottom: 10,
               ...Platform.select({
                 web: {
-                  textAlign: 'center',
-                },
-              }),
+                  textAlign: 'center'
+                }
+              })
             }}
           >
             Sign up for chirper
@@ -185,27 +238,58 @@ const SignupComponent: React.FC = () => {
         </View>
         {/* main form */}
         <TextInput
-          placeholder='Username'
+          placeholder='Username (3+ char: lowercase, numbers only)'
           placeholderTextColor='#dfdfdf'
-          onChangeText={(inputName) => setUsername(inputName)}
-          style={styles.input}
+          onChangeText={(inputName) => {
+            setUsername(inputName);
+            checkName(inputName);
+          }}
+          style={{
+            ...styles.input,
+            color: isUserValid ? '#71FF97' : '#FF5555'
+          }}
           autoCapitalize='none'
+          autoCorrect={false}
         />
         <TextInput
-          placeholder='Email'
+          placeholder='Email (will send email to confirm)'
           placeholderTextColor='#dfdfdf'
-          onChangeText={(inputEmail) => setEmail(inputEmail)}
-          style={styles.input}
+          onChangeText={(inputEmail) => {
+            setEmail(inputEmail);
+            checkEmail(inputEmail);
+          }}
+          style={{
+            ...styles.input,
+            color: isEmailValid ? '#71FF97' : '#FF5555'
+          }}
+          autoCapitalize='none'
+          autoCorrect={false}
         />
         <TextInput
-          placeholder='Password'
+          placeholder='Password (see below)'
           placeholderTextColor='#dfdfdf'
           secureTextEntry={true}
-          onChangeText={(inputPassword) => setPassword(inputPassword)}
-          style={styles.input}
+          onChangeText={(inputPassword) => {
+            setPassword(inputPassword);
+            checkPass(inputPassword);
+          }}
+          style={{
+            ...styles.input,
+            color: isPassValid ? '#71FF97' : '#FF5555'
+          }}
+          autoCorrect={false}
+          autoCapitalize='none'
         />
+        <Text style={styles.signInText}>
+          Password must be 8+ characters with at least one of each: capital
+          letter, lowercase letter, number, symbol
+        </Text>
         {/* sign up button and login text */}
-        <TouchableOpacity onPress={onSubmitData} style={styles.loginBtn}>
+        <TouchableOpacity
+          onPress={onSubmitData}
+          style={styles.loginBtn}
+          disabled={!isPassValid || !isUserValid || !isEmailValid}
+        >
           <Text style={styles.loginText}>Sign up</Text>
           <MaterialCommunityIcons name='chevron-right' size={18} />
         </TouchableOpacity>
