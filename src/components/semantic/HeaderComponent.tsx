@@ -104,7 +104,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
             value={inputState}
           />
           <TouchableHighlight
-            underlayColor='#f3f3f3'
+            underlayColor='#1b1b1b'
             onPress={() => searchBtn()}
             style={{
               marginBottom: 4,
