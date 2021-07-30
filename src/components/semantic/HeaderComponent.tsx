@@ -33,7 +33,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
   const user = useSelector((state: RootStore) => state.auth);
 
   // post chirp function for when in AddChirpView
-  async function postChirp() {
+  function postChirp() {
     dispatch(PostChirp(Props.newChirp));
     toast.show('Chirp has been added.');
     navigation.goBack();
