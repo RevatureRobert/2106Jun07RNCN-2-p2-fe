@@ -37,7 +37,7 @@ describe('Modal component backdrop', () => {
     });
 
     it('backdrop can be pressed and has functional event handler', async () => {
-        const wrap = wrapper.find(Modal);
+        wrap = wrapper.find(Modal);
         const event = 'onBackdropPress';
         const mockEventHandler = jest.spyOn(wrap.props(), event);
         await wrap.props()[event]();
@@ -103,19 +103,17 @@ describe('Testing ModalComponent when user can delete comment', () => {
     });
 
     it('displays a message asking the user if they wish to delete the chirp/comment', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onPress') === undefined
-            ).find(Text).length
-        ).toBeGreaterThan(0);
+        const length = wrapper.findWhere( node => 
+            node.prop('onPress') === undefined
+        ).find(Text).length
+        expect(length).toBeGreaterThan(0);
     });
 
     it('has two text boxes listening for press that represent delete and cancel options', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onPress') !== undefined
-            ).find(Text).length
-        ).toBeGreaterThan(1);
+        let numOfNodes = wrapper.findWhere( node => 
+            node.prop('onPress') !== undefined
+        ).find(Text).length;
+        expect(numOfNodes).toBeGreaterThan(1);
     });
 
     it('the first text box has a functional press event handler', () => {        
@@ -158,18 +156,18 @@ describe('Testing ModalComponent when user cannnot delete chirp', () => {
     });
 
     it('the first text box has a functional press event handler', () => {        
-        wrap = wrapper.find(TouchableOpacity).first();
+        let myWrap = wrapper.find(TouchableOpacity).first();
         const event = 'onPress';
-        const mockEventHandler = jest.spyOn(wrap.props(), event);
-        wrap.props()[event]();
+        const mockEventHandler = jest.spyOn(myWrap.props(), event);
+        myWrap.props()[event]();
         expect(mockEventHandler).toHaveBeenCalled();
     });
 
     it('the second box has a functional press event handler', () => {        
-        wrap = wrapper.find(TouchableOpacity).last();
+        let thisWrap = wrapper.find(TouchableOpacity).last();
         const event = 'onPress';
-        const mockEventHandler = jest.spyOn(wrap.props(), event);
-        wrap.props()[event]();
+        const mockEventHandler = jest.spyOn(thisWrap.props(), event);
+        thisWrap.props()[event]();
         expect(mockEventHandler).toHaveBeenCalled();
     });
 });
@@ -182,33 +180,32 @@ describe('Testing ModalComponent when user cannnot delete comment', () => {
     });
 
     it('displays message telling user chirp/comment cannot be deleted', () => {
-        wrap = wrapper.findWhere( node => 
+        let thisWrap = wrapper.findWhere( node => 
             node.prop('onPress') === undefined
         ).find(Text);
-        expect(wrap.length).toBeGreaterThan(0);
+        expect(thisWrap.length).toBeGreaterThan(0);
     });
 
     it('has a text box that listens for press that allows user to escape modal view', () => {
-        expect(
-            wrapper.findWhere( node => 
-                node.prop('onPress') !== undefined
-            ).find(Text).length
-        ).toBeGreaterThan(0);
+        let lengthOfNode = wrapper.findWhere( node => 
+            node.prop('onPress') !== undefined
+        ).find(Text).length;
+        expect(lengthOfNode).toBeGreaterThan(0);
     });
 
     it('the first text box has a functional press event handler', () => {        
-        wrap = wrapper.find(TouchableOpacity).first();
+        let thisIsAWrap = wrapper.find(TouchableOpacity).first();
         const event = 'onPress';
-        const mockEventHandler = jest.spyOn(wrap.props(), event);
-        wrap.props()[event]();
+        const mockEventHandler = jest.spyOn(thisIsAWrap.props(), event);
+        thisIsAWrap.props()[event]();
         expect(mockEventHandler).toHaveBeenCalled();
     });
 
     it('the second box has a functional press event handler', () => {        
-        wrap = wrapper.find(TouchableOpacity).last();
+        let thisIsTheWrap = wrapper.find(TouchableOpacity).last();
         const event = 'onPress';
-        const mockEventHandler = jest.spyOn(wrap.props(), event);
-        wrap.props()[event]();
+        const mockEventHandler = jest.spyOn(thisIsTheWrap.props(), event);
+        thisIsTheWrap.props()[event]();
         expect(mockEventHandler).toHaveBeenCalled();
     });
 });

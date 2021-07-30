@@ -82,7 +82,7 @@ describe('Testing DeleteAccModal', () => {
         });
 
         it('the backdrop, when pressed, makes the modal component invisible', () => {
-            wrap = shallow(wrapper.getElement());
+            let wrap = shallow(wrapper.getElement());
             const event = 'onBackdropPress';
             wrap.props()[event]();
             wrap.update();

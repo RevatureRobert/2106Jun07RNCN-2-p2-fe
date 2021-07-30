@@ -5,7 +5,6 @@ import configureStore from 'redux-mock-store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { shallow } from 'enzyme';
-import { ObjectFlags } from 'typescript';
 
 
 /**
