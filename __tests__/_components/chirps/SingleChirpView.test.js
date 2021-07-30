@@ -5,7 +5,6 @@ import { testState } from '../../../src/shared/constants';
 import { nestedHell } from '../../testFunctions';
 
 import SingleChirpView from '../../../src/components/chirps/SingleChirpView';
-import ChirpItemComponent from '../../../src/components/chirps/ChirpItemComponent';
 import PostReplyComponent from '../../../src/components/replies/PostReplyComponent';
 import ChirpRepliesComponent from '../../../src/components/replies/ChirpRepliesComponent';
 import HeaderComponent from '../../../src/components/semantic/HeaderComponent';
@@ -21,6 +20,12 @@ const route = {
         likes: [''],
         media: '',
         timestamp: Date.now().toString(),
+        likeState: {
+            count: 1,
+            isLiked: false,
+            icon: 'heart-outline',
+            color: 'blue',
+        },
     },
 };
 const component = () => {
@@ -34,11 +39,6 @@ describe('Testing SingleChirpView', () => {
 
     it('renders a SafeAreaView', () => {
         const wrap = wrapper.find(SafeAreaView);
-        expect(wrap.length).toBeGreaterThan(0);
-    });
-
-    it('renders a ChirpItemComponent in SafeAreaView', () => {
-        const wrap = wrapper.find(SafeAreaView).find(ChirpItemComponent);
         expect(wrap.length).toBeGreaterThan(0);
     });
 

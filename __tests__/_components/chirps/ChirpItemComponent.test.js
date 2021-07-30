@@ -20,7 +20,7 @@ jest.mock('../../../src/components/semantic/ImageViewModal', () => {
   return ({
       __esModule: true,
       default: () => {
-          return <></>
+          return <>{/*fragment*/}</>
       },
   });
 });
@@ -77,7 +77,7 @@ describe('Testing ChirpItemComponent', () => {
     expect(userWrapper.length > 0).toBe(true);
   });
 
-  it('user can press the chirp', () => {
+  it('user can press the chirp', async () => {
     /*
     > setProps can only affect a root component, hence we rerender at 
         TouchableOpacity component
@@ -92,6 +92,7 @@ describe('Testing ChirpItemComponent', () => {
     const temp = wrapper.find(TouchableOpacity);
     const wrap = shallow(temp.length < 2 ? temp.getElement() : temp.get(0));
     wrap.setProps( {onPress: mockEvent} );
+    console.log(wrap.props())
     wrap.simulate('press');
     expect(mockEvent).toHaveBeenCalled();
   });
@@ -140,7 +141,7 @@ it('you can press the component to navigate to SingleChirpView', async () => {
 });
 
 it('If the chirp has media, a second pressable image is shown', async () => {
-  wrapper = mount(nestedHell(testState, component(false, 'media', 'x', 'user')));
+  wrapper = mount(nestedHell(testState, component(false, 'media')));
   const wrap = wrapper.find(Pressable);
   let eventHandlersCalled = 0;
   wrap.forEach( node => {

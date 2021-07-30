@@ -68,7 +68,7 @@ describe('Testing UserSettingComponent', () => {
             return Promise.resolve( {blob: jest.fn()} );
         });
         jest.spyOn(Auth, 'currentCredentials').mockImplementation( () => {
-            () => {/*no-op*/}
+           /*no-op*/
         });
         wrapper = mount( nestedHell(testState, component('d')) );
     });
@@ -89,7 +89,7 @@ describe('Testing UserSettingComponent', () => {
     it('the first touchable component has a functioning event handler', async () => {
         const wrap = wrapper.find(TouchableOpacity).at(0);
         const event = 'onPress';
-        mockEventHandler = jest.spyOn(wrap.props(), event);
+        const mockEventHandler = jest.spyOn(wrap.props(), event);
         await wrap.prop(event)();
         expect(mockEventHandler).toHaveBeenCalled();
     });
@@ -97,7 +97,7 @@ describe('Testing UserSettingComponent', () => {
     it('the secobd touchable component has a functioning event handler', async () => {
         const wrap = wrapper.find(TouchableOpacity).at(1);
         const event = 'onPress';
-        mockEventHandler = jest.spyOn(wrap.props(), event);
+        const mockEventHandler = jest.spyOn(wrap.props(), event);
         await wrap.prop(event)();
         expect(mockEventHandler).toHaveBeenCalled();
     });

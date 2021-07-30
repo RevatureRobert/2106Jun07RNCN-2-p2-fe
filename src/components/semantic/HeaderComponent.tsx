@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { GetAllChirps, PostChirp } from '../../redux/actions/ChirpActions';
+import { PostChirp } from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from '../../redux/store/store';
@@ -179,6 +179,7 @@ const HeaderComponent: React.FC<Props> = (Props) => {
               height: 24,
               marginLeft: 200,
               marginTop: 6,
+              marginBottom: 8,
             }}
           />
         </View>

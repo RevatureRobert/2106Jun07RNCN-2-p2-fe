@@ -12,7 +12,7 @@ type configObj = {
 function withExtras(config: configObj){
   config.setupFilesAfterEnv.push('<rootDir>/__tests__/test-setup.js');
   // config.testMatch = [
-  //   '<rootDir>/__tests__/_components/chirps/ChirpItemComponent.test.js'
+  //   '<rootDir>/__tests__/_components/chirps/SingleChirpView.test.js',
   // ];
   return config;
 }
@@ -20,7 +20,7 @@ function withExtras(config: configObj){
 module.exports = {
   projects: [
     withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
-    withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),
+    withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),  
   ],
   collectCoverage: true,
   collectCoverageFrom: [

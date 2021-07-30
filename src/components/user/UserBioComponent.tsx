@@ -14,7 +14,7 @@ import { useToast } from 'react-native-toast-notifications';
 
 interface PropType {
   bioTextInit?: string;
-};
+}
 
 const defaultProp = {
   bioTextInit: '',
