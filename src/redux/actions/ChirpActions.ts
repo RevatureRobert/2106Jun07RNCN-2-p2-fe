@@ -2,19 +2,15 @@ import axios from '../axiosConfig';
 import { Dispatch } from 'redux';
 import {
   ChirpsActionsTypes,
-  CHIRPS_DELETE,
   CHIRPS_FAIL,
   CHIRPS_LOADING,
   CHIRPS_SUCCESS,
-  CHIRPS_POST,
 } from '../types/ChirpActionsTypes';
 import {
   RepliesActionTypes,
   REPLIES_FAIL,
   REPLIES_LOADING,
   REPLIES_SUCCESS,
-  REPLIES_POST,
-  REPLIES_DELETE,
 } from '../types/RepliesActionTypes';
 
 // makes an api call that gets all chirps
@@ -46,7 +42,7 @@ export const PostChirp =
       await axios.post('/', chirp);
       const res = await axios.get('/');
       dispatch({
-        type: CHIRPS_POST,
+        type: CHIRPS_SUCCESS,
         payload: res.data,
       });
       return 'Chirp has been posted.';
@@ -65,7 +61,7 @@ export const DeleteChirp =
       await axios.delete(`/${timestamp}`);
       const res = await axios.get('/');
       dispatch({
-        type: CHIRPS_DELETE,
+        type: CHIRPS_SUCCESS,
         payload: res.data,
       });
       return 'Chirp has been deleted.';
@@ -127,7 +123,7 @@ export const PostComment =
       await axios.put(`/${timestamp}/comments`, chirp);
       const res = await axios.get(`/${timestamp}/comments`);
       dispatch({
-        type: REPLIES_POST,
+        type: REPLIES_SUCCESS,
         payload: res.data.Items[0].comments,
       });
     } catch (e) {
@@ -149,7 +145,7 @@ export const DeleteComment =
       await axios.delete(`/${timestamp}/comments/${cmttimestamp}`);
       const res = await axios.get(`/${timestamp}/comments`);
       dispatch({
-        type: REPLIES_DELETE,
+        type: REPLIES_SUCCESS,
         payload: res.data.Items[0].comments,
       });
     } catch (e) {

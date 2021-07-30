@@ -39,19 +39,4 @@ export interface ChirpsSuccess {
   payload: ChirpsType;
 }
 
-export interface ChirpsPost {
-  type: typeof CHIRPS_POST;
-  payload: ChirpsType;
-}
-
-export interface ChirpsDelete {
-  type: typeof CHIRPS_DELETE;
-  payload: ChirpsType;
-}
-
-export type ChirpsActionsTypes =
-  | ChirpsLoading
-  | ChirpsFail
-  | ChirpsSuccess
-  | ChirpsPost
-  | ChirpsDelete;
+export type ChirpsActionsTypes = ChirpsLoading | ChirpsFail | ChirpsSuccess;

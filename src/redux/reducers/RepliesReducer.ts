@@ -35,16 +35,6 @@ const repliesReducer = (
         loading: false,
         replies: action.payload,
       };
-    case REPLIES_POST:
-      return {
-        loading: false,
-        replies: action.payload,
-      };
-    case REPLIES_DELETE:
-      return {
-        loading: false,
-        replies: action.payload,
-      };
     default:
       return state;
   }

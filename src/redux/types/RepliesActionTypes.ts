@@ -31,19 +31,4 @@ export interface RepliesSuccess {
   payload: RepliesType;
 }
 
-export interface RepliesPost {
-  type: typeof REPLIES_POST;
-  payload: RepliesType;
-}
-
-export interface RepliesDelete {
-  type: typeof REPLIES_DELETE;
-  payload: RepliesType;
-}
-
-export type RepliesActionTypes =
-  | RepliesLoading
-  | RepliesFail
-  | RepliesSuccess
-  | RepliesDelete
-  | RepliesPost;
+export type RepliesActionTypes = RepliesLoading | RepliesFail | RepliesSuccess;
