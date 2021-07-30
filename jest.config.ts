@@ -11,24 +11,30 @@ type configObj = {
 
 function withExtras(config: configObj){
   config.setupFilesAfterEnv.push('<rootDir>/__tests__/test-setup.js');
+  config.testMatch = ['<rootDir>/__tests__/_components/user/UserSettingComponent.test.js',]
   return config;
 }
 
 module.exports = {
   projects: [
     withExtras(withEnzyme(require('jest-expo/ios/jest-preset')) as configObj),
-    withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),
+    withExtras(withEnzyme(require('jest-expo/android/jest-preset')) as configObj),  
   ],
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/components/*',
     '<rootDir>/src/components/addchirp/*',
+    '!<rootDir>/src/components/addchirp/addchirpstyles.ts',
     '<rootDir>/src/components/chirps/*',
+    '!<rootDir>/src/components/chirp/chirpstyles.ts',
     '<rootDir>/src/components/navigation/*',
     '<rootDir>/src/components/replies/*',
+    '!<rootDir>/src/components/replies/repliesstyles.ts',
     '<rootDir>/src/components/search/*',
     '<rootDir>/src/components/semantic/*',
+    '!<rootDir>/src/components/semantic/semanticstyles.ts',
     '<rootDir>/src/components/user/*',
+    '!<rootDir>/src/components/user/userstyles.ts',
     '<rootDir>/src/shared/*',
   ],
   coverageDirectory: 'coverage',

@@ -21,13 +21,21 @@ import styles from './userstyles';
 import { Storage, Auth } from 'aws-amplify';
 import passwordValidator from 'password-validator';
 
+interface PropType {
+  loading?: boolean;
+}
+
+const defaultProp = {
+  loading: false,
+}
+
 // main sign out component that shows when user isnt logged in
-const SignupComponent: React.FC = () => {
+const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
   // username, password, email, loading states
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(Props.loading);
 
   // Form validation states
   const [isPassValid, setIsPassValid] = React.useState(false);

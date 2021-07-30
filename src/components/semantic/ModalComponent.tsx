@@ -1,12 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { DeleteChirp, DeleteComment } from '../../redux/actions/ChirpActions';
+import {
+  DeleteChirp,
+  DeleteComment,
+  GetAllChirps,
+} from '../../redux/actions/ChirpActions';
 import { useToast } from 'react-native-toast-notifications';
 import Modal from 'react-native-modal';
 import styles from './semanticstyles';
+import { useDispatch } from 'react-redux';
 
-interface Props {
+interface IProps {
   modalType: string;
   isModalVisible: boolean;
   setModalVisible: any;
@@ -16,36 +21,30 @@ interface Props {
   currentUser: any;
 }
 
-const ModalComponent: React.FC<Props> = ({
-  modalType,
-  isModalVisible,
-  setModalVisible,
-  chirpUser,
-  chirpTimestamp,
-  cmtTimestamp,
-  currentUser,
-}) => {
+const ModalComponent: React.FC<IProps> = (props: IProps) => {
   const toast = useToast();
+  const dispatch = useDispatch();
 
   async function deleteFunc() {
-    let del = 'How did you get this message to appear?';
-    if (modalType === 'chirp') {
-      del = await DeleteChirp(chirpTimestamp);
-    } else if (modalType === 'comment') {
-      del = await DeleteComment(chirpTimestamp, cmtTimestamp);
+    if (props.modalType === 'chirp') {
+      dispatch(DeleteChirp(props.chirpTimestamp));
+      toast.show('Chirp has been deleted.');
+    } else if (props.modalType === 'comment') {
+      dispatch(DeleteComment(props.chirpTimestamp, props.cmtTimestamp));
+      toast.show('Comment has been deleted.');
     }
-    setModalVisible(false);
-    toast.show(del);
+
+    props.setModalVisible(false);
   }
 
   return (
     <View style={styles.modalView}>
       <Modal
-        isVisible={isModalVisible}
+        isVisible={props.isModalVisible}
         backdropColor={'#000000'}
-        onBackdropPress={() => setModalVisible(false)}
+        onBackdropPress={() => props.setModalVisible(false)}
       >
-        {currentUser === chirpUser ? (
+        {props.currentUser === props.chirpUser ? (
           <View style={styles.modal}>
             <Image
               source={require('../../assets/deadbird.png')}
@@ -57,7 +56,7 @@ const ModalComponent: React.FC<Props> = ({
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 style={styles.cancelButton}
-                onPress={() => setModalVisible(false)}
+                onPress={() => props.setModalVisible(false)}
               >
                 <Text style={styles.cancelText}>Wait, no.</Text>
               </TouchableOpacity>
@@ -81,12 +80,12 @@ const ModalComponent: React.FC<Props> = ({
               style={styles.deadBirdImg}
             />
             <Text style={styles.deleteText}>
-              {`Users cannot delete a ${modalType} written by another user.`} 
+              {`Users cannot delete a ${props.modalType} written by another user.`}
             </Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity
                 style={styles.cancelButton}
-                onPress={() => setModalVisible(false)}
+                onPress={() => props.setModalVisible(false)}
               >
                 <Text style={styles.cancelText}>Oh, okay.</Text>
               </TouchableOpacity>

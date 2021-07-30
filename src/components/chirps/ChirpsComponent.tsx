@@ -8,7 +8,6 @@ import LoadingComponent from '../semantic/LoadingComponent';
 import HeaderComponent from '../semantic/HeaderComponent';
 import styles from './chirpstyles';
 import AddChirpBtnComponent from '../addchirp/AddChirpBtnComponent';
-import { navItem } from 'aws-amplify';
 
 // component that holds a list of all the chirps
 const ChirpsComponent: React.FC = () => {
@@ -34,7 +33,6 @@ const ChirpsComponent: React.FC = () => {
 
   // gets all chirps from the store, sends it to ChirpItemComponent as props
   const chirpsState = useSelector((state: RootStore) => state.chirps);
-
   const renderItem = ({ item }: { item: any }) => (
     <ChirpItemComponent
       userImg={item.userImg}

@@ -4,6 +4,8 @@ import {
   CHIRPS_FAIL,
   CHIRPS_LOADING,
   CHIRPS_SUCCESS,
+  CHIRPS_POST,
+  CHIRPS_DELETE,
 } from '../types/ChirpActionsTypes';
 
 interface DefaultStateI {
