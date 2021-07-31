@@ -8,8 +8,7 @@ import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
-  ScrollView
+  StatusBar
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setError, signUp } from '../../redux/actions/AuthActions';
@@ -21,6 +20,8 @@ import LoadingComponent from '../semantic/LoadingComponent';
 import styles from './userstyles';
 import { Storage, Auth } from 'aws-amplify';
 import passwordValidator from 'password-validator';
+import ValidationIconComponent from './ValidationIconComponent';
+import { validate } from './validate';
 
 interface PropType {
   loading?: boolean;
@@ -42,53 +43,6 @@ const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
   const [isPassValid, setIsPassValid] = React.useState(false);
   const [isUserValid, setIsUserValid] = React.useState(false);
   const [isEmailValid, setIsEmailValid] = React.useState(false);
-
-  const checkPass = (attemptedPass: string) => {
-    const schema = new passwordValidator();
-    schema
-      .is()
-      .min(8)
-      .is()
-      .max(30)
-      .has()
-      .digits()
-      .has()
-      .lowercase()
-      .has()
-      .uppercase()
-      .has()
-      .symbols()
-      .has()
-      .not()
-      .spaces();
-    setIsPassValid(schema.validate(attemptedPass) as boolean);
-  };
-
-  const checkName = async (attemptedName: string) => {
-    const schema = new passwordValidator();
-    schema
-      .is()
-      .min(3)
-      .is()
-      .max(30)
-      .has()
-      .lowercase()
-      .has()
-      .not()
-      .uppercase()
-      .has()
-      .not()
-      .symbols()
-      .has()
-      .not()
-      .spaces();
-    setIsUserValid(schema.validate(attemptedName) as boolean);
-  };
-
-  const checkEmail = (attemptedEmail: string) => {
-    const regex = /^\S+@\S+\.\S+$/;
-    setIsEmailValid(regex.test(attemptedEmail));
-  };
 
   // gets error from store
   const { error } = useSelector((state: RootStore) => state.auth);
@@ -258,27 +212,13 @@ const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
             placeholderTextColor='#dfdfdf'
             onChangeText={(inputName) => {
               setUsername(inputName);
-              checkName(inputName);
+              setIsUserValid(validate(inputName, 'username'));
             }}
             style={styles.input}
             autoCapitalize='none'
             autoCorrect={false}
           />
-          {isUserValid ? (
-            <MaterialCommunityIcons
-              name='check'
-              color='#71FF97'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name='close'
-              color='#FF5555'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          )}
+          <ValidationIconComponent field={username} valid={isUserValid} />
         </View>
         <View
           style={{
@@ -292,27 +232,13 @@ const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
             placeholderTextColor='#dfdfdf'
             onChangeText={(inputEmail) => {
               setEmail(inputEmail);
-              checkEmail(inputEmail);
+              setIsEmailValid(validate(inputEmail, 'email'));
             }}
             style={styles.input}
             autoCapitalize='none'
             autoCorrect={false}
           />
-          {isEmailValid ? (
-            <MaterialCommunityIcons
-              name='check'
-              color='#71FF97'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name='close'
-              color='#FF5555'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          )}
+          <ValidationIconComponent field={email} valid={isEmailValid} />
         </View>
         <View
           style={{
@@ -327,27 +253,13 @@ const SignupComponent: React.FC<PropType> = (Props: PropType = defaultProp) => {
             secureTextEntry={true}
             onChangeText={(inputPassword) => {
               setPassword(inputPassword);
-              checkPass(inputPassword);
+              setIsPassValid(validate(inputPassword, 'password'));
             }}
             style={styles.input}
             autoCorrect={false}
             autoCapitalize='none'
           />
-          {isPassValid ? (
-            <MaterialCommunityIcons
-              name='check'
-              color='#71FF97'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name='close'
-              color='#FF5555'
-              size={25}
-              style={{ paddingLeft: 5, alignSelf: 'center' }}
-            />
-          )}
+          <ValidationIconComponent field={password} valid={isPassValid} />
         </View>
         <Text style={styles.signInText}>
           {

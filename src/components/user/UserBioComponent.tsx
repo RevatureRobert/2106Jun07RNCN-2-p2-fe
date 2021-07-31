@@ -4,7 +4,7 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 import { Auth, Storage } from 'aws-amplify';
 import styles from './userstyles';
@@ -17,10 +17,12 @@ interface PropType {
 }
 
 const defaultProp = {
-  bioTextInit: '',
-}
+  bioTextInit: ''
+};
 
-export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultProp) => {
+export const UserBioComponent: React.FC<PropType> = (
+  Props: PropType = defaultProp
+) => {
   const [bioText, setBioText] = React.useState(Props.bioTextInit || '');
   const [currentBio, setCurrentBio] = React.useState('');
   const currentUser = useSelector((state: RootStore) => state.auth.user);
@@ -42,7 +44,7 @@ export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultPro
     Auth.currentCredentials();
     return Storage.put(text, content, {
       level: 'public',
-      contentType: 'text/plain',
+      contentType: 'text/plain'
     })
       .then((response: any) => {
         fetchText();
@@ -86,7 +88,7 @@ export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultPro
           placeholderTextColor='#e1e1e1'
           onChangeText={changeBioHandler}
           value={bioText}
-          style={styles.input}
+          style={styles.bioInput}
           returnKeyType='done'
         />
       </View>
@@ -96,7 +98,7 @@ export const UserBioComponent: React.FC<PropType> = (Props:PropType = defaultPro
             styles.updateBioCount,
             bioText.length > 0 ? { color: '#B1D46A' } : null,
             bioText.length > 100 ? { color: '#D4B16A' } : null,
-            bioText.length > 150 ? { color: '#D46A6A' } : null,
+            bioText.length > 150 ? { color: '#D46A6A' } : null
           ]}
         >
           {bioText.length}/150

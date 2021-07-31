@@ -93,6 +93,17 @@ const styles = StyleSheet.create({
   },
 
   // UserBioComponent.tsx
+  bioInput: {
+    color: '#fff',
+    backgroundColor: '#1b1b1b',
+    borderWidth: 0,
+    borderColor: '#333',
+    marginTop: 5,
+    marginBottom: 5,
+    borderRadius: 15,
+    padding: 10
+  },
+
   updateBioView: {
     padding: 25,
     borderBottomWidth: 1,
