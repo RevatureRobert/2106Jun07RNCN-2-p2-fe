@@ -64,6 +64,34 @@ To-do list:
 
 ## Getting Started
 
+To Run (assume all links are case-sensitive; links may not work after 20 August 2021):
+
+- There is currently no way to run this app on iOS for those not on the development team
+- A web version is available (as a beta) at https://bit.ly/Chirper
+- On Android, there are two ways to get our app
+  - Download the `Expo` app from the Play Store and do ONE of the following
+    - Go to https://expo.dev/@marcski55/React-Native-chirper on a different device and scan the QR code with your Android camera
+    - Paste `exp://exp.host/@marcski55/React-Native-chirper` into the Tools category
+  - Sideload an APK
+    - Using an emulator
+      - Download the APK from https://bit.ly/chirperAPK
+      - Download and install Android Studio from https://developer.android.com/studio
+      - Create a blank project or open an existing one
+      - Open the AVD (Android Virtual Device) Manager using the icon at the top right or selecting it from the `Tools` menu
+      - Open a virtual device
+        - If there are none, one can be created using the botton on the bottom left
+          - The Pixel 3a would be a good template device
+          - Make sure to select an `R` release (shown in the left column)
+          - Accept all defaults
+      - Drag the APK from your Downloads folder (or wherever you saved it) onto the Emulator screen
+        - It will begin the install process automatically; follow any instructions on screen
+    - Using a physical device _(not recommended as it requires sideloading)_
+      - Enable sideloading if you haven't already
+        - Go to `Apps & notifications → Advanced → Special App Access → Install unknown apps`
+        - Select your browser (probably Chrome)
+      - Download the APK https://bit.ly/chriperAPK
+      - Install the app following the prompts on your screen
+
 To Develop:
 
 - Make sure you have NodeJS installed.
