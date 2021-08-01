@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   chirpTimestamp: {
     fontSize: 10,
     color: '#e1e1e1',
+    paddingBottom: 15,
   },
 });
 
