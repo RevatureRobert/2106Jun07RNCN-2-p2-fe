@@ -5,7 +5,7 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
-  ScrollView,
+  ScrollView
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Auth, Storage } from 'aws-amplify';
@@ -22,10 +22,12 @@ interface PropType {
 }
 
 const defaultProp = {
-  imageInit: null,
+  imageInit: null
 };
 
-export const UserSettingComponent: React.FC<PropType> = (Props:PropType = defaultProp) => {
+export const UserSettingComponent: React.FC<PropType> = (
+  Props: PropType = defaultProp
+) => {
   const [image, setImage] = React.useState(Props.imageInit || null);
   const [isModalVisible, setModalVisible] = React.useState(false);
   const currentUser = useSelector((state: RootStore) => state.auth.user);
@@ -51,7 +53,7 @@ export const UserSettingComponent: React.FC<PropType> = (Props:PropType = defaul
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
-      quality: 0.5,
+      quality: 0.5
     });
 
     handleImagePicked(result);
@@ -89,7 +91,7 @@ export const UserSettingComponent: React.FC<PropType> = (Props:PropType = defaul
     Auth.currentCredentials();
     return Storage.put(filename, img, {
       level: 'public',
-      contentType: 'image/jpeg',
+      contentType: 'image/jpeg'
     })
       .then((response: any) => {
         return response.key;
