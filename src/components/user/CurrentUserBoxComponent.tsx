@@ -58,6 +58,8 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
     setImage(signUrl);
   };
 
+  fetchImage()
+
   // log out function
   const logOutPress = () => {
     setImage(null);
@@ -86,8 +88,8 @@ const CurrentUserBoxComponent: React.FC<Props> = ({ username }) => {
       <Image
         source={{ uri: image as any }}
         style={styles.userImg}
-        // style={styles.userImg}
-        // resizeMode='contain'
+      // style={styles.userImg}
+      // resizeMode='contain'
       ></Image>
       {/* username and bio */}
       <Text style={styles.usernameText}>@{username}</Text>
